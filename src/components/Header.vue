@@ -1,12 +1,13 @@
 <template>
     <div id="navbar">
-        <ul id="login">
-        <router-link to="/login" exact>Login</router-link>
-      </ul>
-
-      <ul id="signup">
-        <router-link to="/signup" exact>Sign Up</router-link>
-      </ul>
+      <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
+      <ul> All About Sustainability</ul>
+      <ul><router-link to="/" exact>Home</router-link></ul>
+      <ul><router-link to="/physicalstore" exact>Physical Store</router-link></ul>
+      <ul><router-link to="/onlinemarketplace" exact>Online Marketplace</router-link></ul>   
+      <ul><router-link to="/incubator" exact>Incubator</router-link></ul>
+      <ul><router-link to="/login" exact>Login</router-link></ul>
+      <ul><router-link to="/signup" exact>Sign Up</router-link></ul>
     </div>
 </template>
 
@@ -21,29 +22,15 @@ export default {
 <style>
 #navbar {
   display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
+  text-align:center;
+  color:white;
+  background-color:#c9AA88;
+  height:100px;
+  font-size: 35px;
+  font-family: "Sanchez";
 }
-#websitename {
-  background-color: pink;
-  text-align: center;
-  font-size: 40px;
-}
-#login {
-  flex-grow: 1;
-  flex-basis: 300px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #222;
-  margin: 10px;
-}
-#signup {
-  flex-grow: 1;
-  flex-basis: 300px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #222;
-  margin: 10px;
+.logo {
+  height:80px;
+  padding-left: 50px;
 }
 </style>
