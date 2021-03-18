@@ -1,14 +1,14 @@
 <template>
-  <div id="app">
-    <HomePage msg="Testing"></HomePage>
-    <router-view></router-view>
-    <ProfilePage msg="Testing Alicia"></ProfilePage>
+  <div id="app">   
+    <v-app>  
+      <router-view></router-view>
+    </v-app>
   </div>
 </template>
 
 <script>
-import HomePage from './components/HomePage.vue'
-import ProfilePage from './components/ProfilePage.vue'
+//import HomePage from './components/HomePage.vue'
+//import ProfilePage from './components/ProfilePage.vue'
 //import SignUpPage from './components/SignUpPage.vue'
 //import LoginPage from './components/LoginPage.vue'
 
@@ -16,11 +16,11 @@ import ProfilePage from './components/ProfilePage.vue'
 export default {
   name: 'App',
   components: {
-    HomePage:HomePage,
+    //HomePage:HomePage,
     //ProfilePage:ProfilePage,
     //SignUpPage: SignUpPage,
     //LoginPage: LoginPage,
-    ProfilePage:ProfilePage,
+    //ProfilePage:ProfilePage,
     
   }
 }
