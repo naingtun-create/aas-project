@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <h1 id="websitename">all about Sustainability</h1>
-    <Header></Header>
-    <router-view></router-view>
+    <v-app>
+      <h1 id="websitename">all about Sustainability</h1>
+      <Header></Header>
+      <router-view></router-view>
+    </v-app>
   </div>
 </template>
 
