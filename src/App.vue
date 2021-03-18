@@ -1,19 +1,23 @@
 <template>
-  <div id="app">
-    <HomePage msg="Testing"></HomePage>
-    <ProfilePage msg="Testing Alicia"></ProfilePage>
+  <div id="app" :style="{backgroundImage:'url(https://vuejs.org/images/logo.png)'}">
+    <HomePage></HomePage>
   </div>
 </template>
 
 <script>
 import HomePage from './components/HomePage.vue'
-import ProfilePage from './components/ProfilePage.vue'
+//import ProfilePage from './components/ProfilePage.vue'
+//import SignUpPage from './components/SignUpPage.vue'
+//import LoginPage from './components/LoginPage.vue'
+
 
 export default {
   name: 'App',
   components: {
     HomePage:HomePage,
-    ProfilePage:ProfilePage,
+    //ProfilePage:ProfilePage,
+    //SignUpPage: SignUpPage,
+    //LoginPage: LoginPage,
   }
 }
 </script>
