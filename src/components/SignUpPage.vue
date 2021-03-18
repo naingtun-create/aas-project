@@ -5,7 +5,7 @@
         <input type = "email" id = "email" name = "email"><br>
         <label for = "password"> Password </label><br>
         <input type = "password" id = "pwd" name = "pwd" minlength = "8"><br>
-        <button> Sign Up </button>
+        <v-btn> Sign Up </v-btn>
         <p>Already have account?</p>
     </div>
 </template>
