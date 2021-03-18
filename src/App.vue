@@ -1,6 +1,10 @@
 <template>
   <div id="app" :style="{backgroundImage:'url(https://vuejs.org/images/logo.png)'}">
     <HomePage></HomePage>
+  <div id="app">
+    <HomePage msg="Testing"></HomePage>
+    <router-view></router-view>
+    <ProfilePage msg="Testing Alicia"></ProfilePage>
   </div>
 </template>
 
@@ -18,6 +22,8 @@ export default {
     //ProfilePage:ProfilePage,
     //SignUpPage: SignUpPage,
     //LoginPage: LoginPage,
+    ProfilePage:ProfilePage,
+    
   }
 }
 </script>
