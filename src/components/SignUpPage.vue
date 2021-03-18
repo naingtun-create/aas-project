@@ -1,14 +1,21 @@
 <template>
-    <div id ="SignUpPage">
-        <p>Hello </p>
-        <p>My name is Branda </p>
+    <div id = "SignUpPage">
+        <h2> Get started with All About Sustainability </h2>
+        <label for = "email"> Email Address </label><br>
+        <input type = "email" id = "email" name = "email"><br>
+        <label for = "password"> Password </label><br>
+        <input type = "password" id = "pwd" name = "pwd" minlength = "8"><br>
+        <button> Sign Up </button>
+        <p>Already have account?</p>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'SignUp Page',
+  name: 'SignUpPage',
+  components: {
 
+  }
 }
 </script>
 
