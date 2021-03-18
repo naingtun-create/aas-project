@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <HomePage msg="Testing"></HomePage>
+    <router-view></router-view>
     <ProfilePage msg="Testing Alicia"></ProfilePage>
   </div>
 </template>
@@ -14,6 +15,7 @@ export default {
   components: {
     HomePage:HomePage,
     ProfilePage:ProfilePage,
+    
   }
 }
 </script>
