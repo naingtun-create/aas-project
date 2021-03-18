@@ -1,6 +1,6 @@
 <template>
     <div id = "LoginPage">
-        <p> Hello </p>
+        <p> Hello World </p>
     </div>
 </template>
 
