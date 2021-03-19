@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <v-app>
-      <h1 id="websitename">all about Sustainability</h1>
       <Header></Header>
       <router-view></router-view>
     </v-app>
@@ -38,31 +37,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-header {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
-}
-#websitename {
-  background-color: pink;
-  text-align: center;
-  font-size: 40px;
-}
-#login {
-  flex-grow: 1;
-  flex-basis: 300px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #222;
-  margin: 10px;
-}
-#signup {
-  flex-grow: 1;
-  flex-basis: 300px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #222;
-  margin: 10px;
-}
+
 </style>
