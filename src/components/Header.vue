@@ -3,12 +3,36 @@
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
       <ul class="logo"> All About Sustainability</ul>
       <div class="links">
-      <ul><router-link to="/" exact>Home</router-link></ul>
-      <ul><router-link to="/physicalstore" exact>Physical Store</router-link></ul>
-      <ul><router-link to="/onlinemarketplace" exact>Online Marketplace</router-link></ul>   
-      <ul><router-link to="/incubator" exact>Incubator</router-link></ul>
-      <ul><router-link to="/login" exact>Login</router-link></ul>
-      <ul><router-link to="/signup" exact>Sign Up</router-link></ul>
+        <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <v-icon dark right>mdi-home</v-icon>
+          <ul><router-link to="/" exact>Home</router-link></ul>
+          </v-btn>
+
+          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <v-icon dark right>mdi-store</v-icon>
+          <ul><router-link to="/physicalstore" exact>Physical Store</router-link></ul>
+          </v-btn>
+
+          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <v-icon dark right>mdi-storefront</v-icon>
+          <ul><router-link to="/onlinemarketplace" exact>Online Marketplace</router-link></ul>   
+          </v-btn>
+
+          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <v-icon dark right>mdi-lifebuoy</v-icon>
+          <ul><router-link to="/incubator" exact>Incubator</router-link></ul>
+          </v-btn>
+
+          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <v-icon dark right>mdi-login</v-icon>
+          <ul><router-link to="/login" exact>Login</router-link></ul>
+          </v-btn>
+          
+          <v-btn class="ma-2" color="grey lighten-2" dark>
+          <v-icon dark right>mdi-account-plus</v-icon>
+          <ul><router-link to="/signup" exact>Sign Up</router-link></ul>
+          </v-btn>
+
       </div>
     </div>
 </template>
@@ -38,8 +62,9 @@ export default {
   
 }
 .links{
-  padding-left: 40%;
-  text-align: center;
+  padding-left: 30%;
+  text-align: left;
   display:inline-flex;
+  font-size:20px;
 }
 </style>
