@@ -1,7 +1,7 @@
 <template>
     <div id="LogInPage">
         <v-card>
-            <v-card-title>Log In Form</v-card-title>
+            <v-card-title>Login to your Account</v-card-title>
             <v-card-text>
                 <v-form>
                     <v-text-field label="Email"></v-text-field>
@@ -9,7 +9,17 @@
                 </v-form>
             </v-card-text>
             <v-card-actions>
-                <v-btn x-large block color="blue"> Login </v-btn>
+                <v-btn
+                color="#B3E5FC"
+                class="mr-4"
+                @click="reset"><router-link to="/profile" exact>Login</router-link></v-btn>
+                <v-btn
+                color="#EF9A9A"
+                @click="resetValidation"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
+                <v-btn
+                color="#B2DFDB"
+                @click="resetValidation"><router-link to="/signup" exact>Sign Up</router-link></v-btn>
+
             </v-card-actions>
         </v-card>
     </div> 

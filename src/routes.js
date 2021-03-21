@@ -6,6 +6,7 @@ import PhysicalStore from './components/PhysicalStore.vue'
 import OnlineMarketplace from './components/OnlineMarketplace.vue'
 import Incubator from './components/Incubator.vue'
 import SignUpSuccessful from './components/SignUpSuccessful.vue'
+import ResetPassword from './components/ResetPassword.vue'
 
 export default [
     { path: '/', component: HomePage},
@@ -16,4 +17,5 @@ export default [
     { path: '/onlinemarketplace', component: OnlineMarketplace},
     { path: '/incubator', component: Incubator},
     { path: '/signUpSuccessful', component: SignUpSuccessful},
+    { path: '/resetpassword', component: ResetPassword},
 ]
