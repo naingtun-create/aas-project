@@ -1,6 +1,6 @@
 <template>
-    <div id = "ProfilePage">
-        <p>ProfilePage is here</p>
+    <div id = "ResetPassword">
+        <p>ResetPassword is here</p>
         
     </div>
 </template>

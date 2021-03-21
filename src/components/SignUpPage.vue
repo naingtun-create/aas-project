@@ -1,6 +1,6 @@
 <template>
     <div id = "SignUpPage">
-        <h1> Get started with All About Sustainability </h1>
+        <v-card-title>Get started with All About Sustainability!</v-card-title>
         <v-card-text>
             <v-form>
                 <v-text-field label="Email Address" type="email" filled v-model = "email"></v-text-field>
