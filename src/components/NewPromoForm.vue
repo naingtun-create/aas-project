@@ -8,22 +8,18 @@
           v-bind="attrs"
           v-on="on"
         >
-          New Product Listing
+          New Promotional Activity
         </v-btn>
       </template>
         <v-card> 
             <v-card-title class="headline grey lighten-2">
-                Add a new product!
+                Promote a new activity!
             </v-card-title>
             <v-card-text>
                 <v-form ref="form" lazy-validation>
                     <v-text-field v-model="title" :counter="80" label="Name" required outlined></v-text-field>
                     <v-textarea v-model="description" label="Description" required outlined></v-textarea>
                     <v-text-field v-model="price" type="number" :rules="priceRules" label="Price" required outlined></v-text-field>
-                    <v-select v-model="selectedCategory" :items="categories" filled label="Category" dense></v-select>
-                    <v-textarea v-model="sizeguide" label="Size Guide (e.g. M: Chest 38-40inches)" required outlined></v-textarea>
-                    <v-combobox v-model="select" :items="sizes" 
-                    label="Indicate your sizes available" multiple></v-combobox>
                     <v-file-input label="Product Image" v-model="image" truncate-length="15" outlined></v-file-input>
                     <v-btn color="success" v-on:click="addProduct" class="mr-4">Submit</v-btn>
                     <v-btn color="error" class="mr-4" v-on:click="reset">Reset Form</v-btn>
@@ -46,15 +42,13 @@ export default {
             valid: false,
             title: "",
             description: "",
-            sizeguide:'',
             price: 0,
             priceRules: v => {
                 var t = v.value;
                 v.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
             },
-            selectedCategory:"",
-            categories:['ACCESSORY', 'CLEANING', 'CLOTHING','FOOD & DRINK'],
-            sizes:['XS','S','M','L','XL']
+            image: ""
+            
         }
     },
     methods: {
@@ -90,4 +84,3 @@ export default {
     }
 }
 </script>
-
