@@ -33,15 +33,28 @@
           <ul><router-link to="/signup" exact>Sign Up</router-link></ul>
           </v-btn>
 
+          <v-btn class="ma-2" color="grey lighten-2" v-on:click="logout" dark>
+          <v-icon dark right>mdi-account-plus</v-icon>Sign out
+          </v-btn>
+
       </div>
     </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   data() {
     return {};
   },
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login');
+      });      
+    }
+  }
 };
 </script>
 

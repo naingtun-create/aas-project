@@ -1,5 +1,5 @@
 <template>
-   <div id="SignUpPage">
+   <div id="ShopperSignUpPage">
        <v-card-title>Get started with All About Sustainability!</v-card-title>
        <v-card-text>
            <v-form @submit.prevent="register">
@@ -24,7 +24,7 @@
                </v-card-text>
 
                <p>Already have account?</p>
-        <v-btn x-large v-on:click = "$router.push('login')" color="blue"> Login </v-btn>
+        <v-btn x-large v-on:click = "$router.push('shopperlogin')" color="blue"> Login </v-btn>
 </div> 
 </template>
 

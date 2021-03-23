@@ -1,5 +1,5 @@
 <template>
-   <div id="SignUpPage">
+   <div id="CompanySignUpPage">
        <v-card-title>Get started with All About Sustainability!</v-card-title>
        <v-card-text>
            <v-form @submit.prevent="register">
@@ -24,7 +24,7 @@
                </v-card-text>
 
                <p>Already have account?</p>
-        <v-btn x-large v-on:click = "$router.push('login')" color="blue"> Login </v-btn>
+        <v-btn x-large v-on:click = "$router.push('companylogin')" color="blue"> Login </v-btn>
 </div> 
 </template>
 
@@ -58,7 +58,7 @@ export default {
                         db.collection('users').doc(user.uid).set({
                             fullname: this.fullName,
                             email: this.email,
-                            type: "Shopper"
+                            type: "Company"
                         })
                     }).then(()=> {
                         this.$router.push('home');
