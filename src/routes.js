@@ -9,6 +9,7 @@ import ProductPage from './components/ProductPage.vue'
 import SignUpSuccessful from './components/SignUpSuccessful.vue'
 import ResetPassword from './components/ResetPassword.vue'
 import ResetSuccessful from './components/ResetSuccessful.vue'
+import CompanyPage from './components/CompanyPage.vue'
 import Register from './components/Register.vue'
 
 
@@ -24,5 +25,6 @@ export default [
     { path: '/signUpSuccessful', component: SignUpSuccessful},
     { path: '/resetpassword', component: ResetPassword},
     { path: '/resetsuccess', component: ResetSuccessful},
+    { path: '/companypage', component: CompanyPage},
     { path: '/register', component: Register},
 ]
