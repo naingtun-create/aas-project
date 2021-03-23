@@ -8,6 +8,8 @@ import Incubator from './components/Incubator.vue'
 import SignUpSuccessful from './components/SignUpSuccessful.vue'
 import ResetPassword from './components/ResetPassword.vue'
 import ResetSuccessful from './components/ResetSuccessful.vue'
+import Register from './components/Register.vue'
+
 
 export default [
     { path: '/', component: HomePage},
@@ -20,4 +22,5 @@ export default [
     { path: '/signUpSuccessful', component: SignUpSuccessful},
     { path: '/resetpassword', component: ResetPassword},
     { path: '/resetsuccess', component: ResetSuccessful},
+    { path: '/register', component: Register},
 ]
