@@ -39,6 +39,11 @@ export default {
                 .auth()
                 .createUserWithEmailAndPassword(this.email, this.password)
                 .then(() => {
+                    const user = firebase.auth().currentUser;
+                    //const actionCodeSettings = {
+                      //  url: `${process.env.VUE_APP_HOST_NAME}/sign-in/?email=${user.email}`,
+                        //};
+                    user.sendEmailVerification();
                     alert('Successfully registered! Please login.');
                     this.$router.push('/');
                 })
