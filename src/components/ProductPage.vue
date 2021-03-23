@@ -24,12 +24,14 @@
           dense
         ></v-select>
         <br> <span>Selected: {{ selectedSize }}</span>
+        
     </div> 
   </div>
 </template>
 
 <script>
 export default {
+  props: ["id"],
   data(){
     return{
       company:'Weety',

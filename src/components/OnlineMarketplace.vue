@@ -1,28 +1,38 @@
 <template>
     <div id = "OnlineMarketPlace">
-        <h1>Our Products</h1>
-        <ul id="itemsList">
-            <li v-for="item in items" v-bind:key="item.title">
-                <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-                    <template slot="progress">
-                        <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
-                    </template>
-                    <v-img height="250" v-bind:src="item.image"></v-img>
-                    <v-card-title>{{item.title}}</v-card-title>
-                    <div class="my-4 subtitle-1">${{item.price}} </div>
+        
+        <v-container fluid>
+          <h1>Our Products</h1>
+          <v-toolbar floating>   
+            <v-text-field single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
+          </v-toolbar>
+          <v-layout>
+            <v-row dense>
+                <div v-for="item in filteredProduct" :key="item.id">
+                <v-col>
 
-                    <v-divider class="mx-4"></v-divider>                  
-                    <v-card-text>
-                        <div class="my-4 subtitle-1"> {{item.company}}</div>
-                        <div>{{item.description}}</div>
-                    </v-card-text>
+                    <v-card 
+                     class="mx-auto my-12" width="374" height = "550" color="green lighten-5">
+                        <template slot="progress">
+                            <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
+                        </template>
+                         <v-img height="300" v-bind:src="item.image"></v-img>
+                        <v-card-title><b>{{item.title}}</b></v-card-title>
+                        <p lass="my-4 subtitle-1">{{item.company}}</p>
+                        <p class="my-4 subtitle-1">${{item.price}} </p>
 
-                    <v-card-actions>
-                        <v-btn color="deep-purple lighten-2" text>Learn More</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </li>
-        </ul>        
+                        <v-divider class="mx-4"></v-divider>                  
+
+                        <v-card-actions>
+                            <v-btn x-large depressed outlined color="indigo" v-on:click="route(item.id)">Learn More</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
+                </div>
+            </v-row>
+         
+        </v-layout> 
+        </v-container>  
     </div>
 </template>
 
@@ -34,39 +44,47 @@ export default {
   data(){
     return{
         items:[],
+        search:"",
     }
   },
   methods:{
     fetchItems:function(){
       db.collection('products').get().then(snapshot => {
-        let item = {}
+        let item = []
         snapshot.docs.forEach(doc => {
           item = doc.data();
-          item.show = false
+          item.id = doc.id,
           this.items.push(item)
         });
       });
     },
+    route:function(id){
+        let doc_id = id;
+        this.$router.push({name: 'product', params: {id: doc_id}});
+    }
   },
   created(){this.fetchItems()},
+  computed:{
+      filteredProduct:function(){
+          return this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase());})
+      }
+  }
 }
 
 </script>
 
 <style scoped>
-
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
+.v-card--reveal {
+  align-items: flex-start;
+  bottom: 0;
+  justify-content: flex-start;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%; 
 }
-li {
-  flex-grow: 1;
-  flex-basis: 300px;
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  height:50px;
+
+p {
+    text-align:start;
+    padding-left:20px;
 }
 </style>
