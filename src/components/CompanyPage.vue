@@ -18,6 +18,7 @@
 
 <script>
 import NewProductForm from './NewProductForm.vue'
+import firebase from 'firebase/app';
 
 export default {
     name: "companyPage",
@@ -28,6 +29,15 @@ export default {
     },
     components: {
         NewProductForm: NewProductForm
+    },
+    methods: {
+        fetchUser: function() {
+            const user = firebase.auth().currentUser;
+            console.log(user)
+        }
+    },
+    created() {
+        this.fetchUser()
     }
 }
 </script>
