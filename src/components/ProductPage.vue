@@ -12,6 +12,7 @@
         <p id="bold">Description:</p>
             <p>{{this.addInfo}}</p>
         <p id="bold"> Select Size: </p>
+<<<<<<< HEAD
         <v-select v-model="selectedSize" :items="size" filled label="Size" dense ></v-select>
         <p id="bold"> Select Colour: </p>
         <v-select v-model="selectedColour" :items="colour" filled label="Colour" dense ></v-select>
@@ -21,12 +22,28 @@
         <span id="select">Selected Colour: {{ selectedColour }}</span>
         <br>
         <button>Add to Cart</button>
+=======
+        <select v-model="selectedSize">
+            <option v-for="sizes in size" :key="sizes.id" v-bind:value="sizes">
+                {{sizes}} <br>
+            </option>
+        </select>
+        <v-select
+          :items="size"
+          filled
+          label="Size"
+          dense
+        ></v-select>
+        <br> <span>Selected: {{ selectedSize }}</span>
+        
+>>>>>>> e56fe9ada615ec85835b4ba44dca5b0ff81a4fe4
     </div> 
   </div>
 </template>
 
 <script>
 export default {
+  props: ["id"],
   data(){
     return{
       company:'Weety',
