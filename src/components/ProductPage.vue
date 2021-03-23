@@ -12,6 +12,17 @@
         <p id="bold">Description:</p>
             <p>{{this.addInfo}}</p>
         <p id="bold"> Select Size: </p>
+<<<<<<< HEAD
+        <v-select v-model="selectedSize" :items="size" filled label="Size" dense ></v-select>
+        <p id="bold"> Select Colour: </p>
+        <v-select v-model="selectedColour" :items="colour" filled label="Colour" dense ></v-select>
+        <br> 
+        <span id="select">Selected Size: {{ selectedSize }}</span>
+        <br>
+        <span id="select">Selected Colour: {{ selectedColour }}</span>
+        <br>
+        <button>Add to Cart</button>
+=======
         <select v-model="selectedSize">
             <option v-for="sizes in size" :key="sizes.id" v-bind:value="sizes">
                 {{sizes}} <br>
@@ -25,6 +36,7 @@
         ></v-select>
         <br> <span>Selected: {{ selectedSize }}</span>
         
+>>>>>>> e56fe9ada615ec85835b4ba44dca5b0ff81a4fe4
     </div> 
   </div>
 </template>
@@ -36,8 +48,8 @@ export default {
     return{
       company:'Weety',
       image: "https://cf.shopee.com.my/file/37fdccd60905a08435c673d0c9331a23",
-      price:8,
-      color:['red','blue'],
+      price: 8,
+      colour:['red','blue'],
       size:['S','M','L'],
       category: 'FOOD & DRINK',
       addInfo: 'Use, wash and dry within few seconds, no odour and sustainable up to 2 months',
@@ -45,6 +57,7 @@ export default {
       currentSize: '',
       selectedSize: 'S',
       selectedColour: '',
+      Quantity: 1,
     }
     },
 
@@ -65,7 +78,6 @@ export default {
     padding-top:100px;
     float:right;
     font-size:40px;
-    border: 1px solid #222; 
     margin: 100px;  
 }
 #bold{
@@ -78,9 +90,16 @@ export default {
     font-family: 'Anton', sans-serif;
     color:#c9AA88;
 }
-.button{
-    background-color:#c9AA88;
-
+#select{
+    color:#c9AA88;
+    font-size:40px;
+}
+button {
+  width: 400px;
+  height: 120px;
+  background-color: #c9AA88;
+  border-radius: 10px;
+  border-width: 1px;
 }
 </style>
 
