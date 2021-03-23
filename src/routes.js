@@ -5,6 +5,7 @@ import ProfilePage from './components/ProfilePage.vue'
 import PhysicalStore from './components/PhysicalStore.vue'
 import OnlineMarketplace from './components/OnlineMarketplace.vue'
 import Incubator from './components/Incubator.vue'
+import ProductPage from './components/ProductPage.vue'
 import SignUpSuccessful from './components/SignUpSuccessful.vue'
 import ResetPassword from './components/ResetPassword.vue'
 import ResetSuccessful from './components/ResetSuccessful.vue'
@@ -20,6 +21,7 @@ export default [
     { path: '/physicalstore', component: PhysicalStore},
     { path: '/onlinemarketplace', component: OnlineMarketplace},
     { path: '/incubator', component: Incubator},
+    { path: '/product', name: 'product', component: ProductPage, props: true },
     { path: '/signUpSuccessful', component: SignUpSuccessful},
     { path: '/resetpassword', component: ResetPassword},
     { path: '/resetsuccess', component: ResetSuccessful},
