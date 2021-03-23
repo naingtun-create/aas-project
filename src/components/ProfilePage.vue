@@ -1,6 +1,6 @@
 <template>
-    <div id = "HomePage">
-        <p>Hello</p>
+    <div id = "ProfilePage">
+        <p>ProfilePage is here</p>
         
     </div>
 </template>
