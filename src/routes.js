@@ -22,7 +22,7 @@ export default [
     //{ path: '/', component: HomePage},
     { path: '/', component: LoginDir},
     { path: '/login', component: LoginPage},
-    { path: '/companyLogin', component: CompanyLoginPage},
+    { path: '/companylogin', component: CompanyLoginPage},
     { path: '/shopperlogin', component: ShopperLoginPage},
     { path: '/signup', component: SignUpPage},
     { path: '/companysignup', component: CompanySignUpPage},
