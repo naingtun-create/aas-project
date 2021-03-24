@@ -22,12 +22,13 @@
                     <v-text-field v-model="price" type="number" :rules="priceRules" label="Price" required outlined></v-text-field>
                     <v-select v-model="selectedCategory" :items="categories" filled label="Category" dense></v-select>
                     <v-textarea v-model="sizeguide" label="Size Guide (e.g. M: Chest 38-40inches)" required outlined></v-textarea>
-                    <v-combobox v-model="select" :items="sizes" 
+                    <v-combobox v-model="sizings" :items="sizes" 
                     label="Indicate your sizes available" multiple></v-combobox>
                     <v-file-input label="Product Image" v-model="image" truncate-length="15" outlined></v-file-input>
-                    <v-btn color="success" v-on:click="addProduct" class="mr-4">Submit</v-btn>
+                    <v-btn color="success" v-on:click="addProduct()" class="mr-4">Submit</v-btn>
                     <v-btn color="error" class="mr-4" v-on:click="reset">Reset Form</v-btn>
                     <v-btn class="mr-4" v-on:click="close">Close</v-btn>
+                    {{this.sizings}}
                 </v-form>
             </v-card-text>
         </v-card>
@@ -54,24 +55,33 @@ export default {
             },
             selectedCategory:"",
             categories:['ACCESSORY', 'CLEANING', 'CLOTHING','FOOD & DRINK'],
-            sizes:['XS','S','M','L','XL']
+            sizes:['XS','S','M','L','XL','N.A'],
+            sizings:[],
         }
+    },
+    mounted() {
+        this.addProduct();
     },
     methods: {
         addProduct: function() {
             console.log(this.title)
-            if(this.title==""|| this.description==""||this.price==0){
-                alert("Inputs required in order to sign up.")
+            if(this.title==""|| this.description==""||this.price==0||
+            this.selectedCategory==""){
+                alert("Inputs required in order to post product.")
             } else{
                 var product = {
                     "company": "SLUSHIE",
                     "title":this.title,
                     "description": this.description,
                     "price": this.price,
-                    "image": this.image
+                    "image": "image",
+                    "sizeguide": this.sizeguide,
+                    "sizings": this.sizings,
+                    "category": this.selectedCategory,
                 }
+                console.log(product)
                 db.collection('products').add(product).then( () => {
-                    this.$refs.form.reset();
+                    //this.$refs.form.reset();
                     console.log("product added");
                     alert("Product Added")
                     this.dialog = false;

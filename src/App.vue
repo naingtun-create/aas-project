@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <v-app>
-      <Header></Header>
       <router-view></router-view>
     </v-app>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+//import Header from './components/Header.vue'
 //import HomePage from './components/HomePage.vue'
 //import ProfilePage from './components/ProfilePage.vue'
 //import SignUpPage from './components/SignUpPage.vue'
 //import LoginPage from './components/LoginPage.vue'
+
 
 
 export default {
@@ -23,7 +23,7 @@ export default {
     //SignUpPage: SignUpPage,
     //LoginPage: LoginPage,
     //ProfilePage:ProfilePage,
-    Header:Header,
+    //Header:Header,
   }
 }
 </script>
