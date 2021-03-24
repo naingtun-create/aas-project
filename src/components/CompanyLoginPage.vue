@@ -1,6 +1,7 @@
 <template>
     <div id="CompanyLoginPage">
         <h1>All About Sustainability</h1>
+        <router-link to="/" exact><v-icon dark right>mdi-home</v-icon></router-link>
         <h2>Company's Login Page</h2>
         <br><br>
         <div id="vcard">
@@ -98,5 +99,8 @@ h3 {
 #test {
     padding-left:20px;
     text-align: center;   
+}
+.router-link-active {
+  color:white
 }
 </style>

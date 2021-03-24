@@ -1,6 +1,11 @@
 <template>
     <div id="ResetPassword">
-        <v-card>
+        <h1>All About Sustainability</h1>
+        <router-link to="/" exact><v-icon dark right>mdi-home</v-icon></router-link>        
+        <h2>Forget Password Page</h2>
+        <br><br>
+        <div id="vcard">
+        <v-card id="test" width="700">
             <v-card-title>Reset your password!</v-card-title>
             <v-card-text>
                 <v-form>
@@ -14,6 +19,7 @@
                 @click="reset"><router-link to="/resetsuccess" exact>Reset</router-link></v-btn>
             </v-card-actions>
         </v-card>
+        </div>
     </div> 
 </template>
 
@@ -30,5 +36,44 @@ export default {
 </script>
 
 <style scoped>
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
+#ResetPassword{
+    position: relative;
+    background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+#vcard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+  text-align: left;
+  padding-left: 20px;
+  color: rgb(255, 255, 255);
+  font-family: Nunito;
+  font-weight: bolder;
+  font-size: 40px;
+}
+h2 {
+  font-size: 34px;
+  font-family: Nunito;
+  font-weight: bolder;
+  margin-top:15px;
+  color: rgb(2, 11, 14);
+}
+h3 {
+  font-size: 34px;
+  font-family: Nunito;
+  font-weight: bolder;
+  margin-top:75px;
+  color: rgb(4, 9, 53);
+}
+#test {
+    padding-left:20px;
+    text-align: center;   
+}
 </style>
