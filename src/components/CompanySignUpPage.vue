@@ -1,31 +1,33 @@
 <template>
    <div id="SignUpPage">
-       <v-card-title>Get started with All About Sustainability!</v-card-title>
-       <v-card-text>
-           <v-form @submit.prevent="register">
-               <v-text-field
-               type="email"
-               label="Email address..."
-               v-model="email"></v-text-field>
-               <v-text-field
-                label="Full Name"
-                v-model="fullName"
-               > 
-               </v-text-field>
-               <v-text-field
-               type="password"
-               label="Password..."
-               v-model="password"></v-text-field>
-               <v-btn
-                color="#B3E5FC"
-                class="mr-4"
-                type="submit">Register</v-btn>
-               </v-form>
-               </v-card-text>
-
-               <p>Already have account?</p>
-        <v-btn x-large v-on:click = "$router.push('companylogin')" color="blue"> Login </v-btn>
-</div> 
+       <h1>All About Sustainability</h1>
+       <h2>Company's Sign Up Page</h2>
+       <br><br>
+       <div id="vcard">
+           <v-card id="test" width="700">
+               <v-card-title>Get started with All About Sustainability!</v-card-title>
+               <v-card-text>
+                   <v-form @submit.prevent="register">
+                       <v-text-field
+                       type="email"
+                       label="Email address..."
+                       v-model="email"></v-text-field>
+                       <v-text-field
+                       label="Full Name"
+                       v-model="fullName"></v-text-field>
+                       <v-text-field
+                       type="password"
+                       label="Password..."
+                       v-model="password"></v-text-field>
+                       <v-btn color="#B3E5FC" class="mr-4"
+                       type="submit">Register</v-btn>
+                    </v-form>
+                </v-card-text>
+                <p>Already have account?</p>
+                <v-btn v-on:click = "$router.push('companylogin')" color="blue"> Login </v-btn>
+           </v-card>
+       </div>
+    </div> 
 </template>
 
 <script>
@@ -90,5 +92,36 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     height: 100%;
+}
+#vcard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+  text-align: left;
+  padding-left: 20px;
+  color: rgb(255, 255, 255);
+  font-family: Nunito;
+  font-weight: bolder;
+  font-size: 40px;
+}
+h2 {
+  font-size: 34px;
+  font-family: Nunito;
+  font-weight: bolder;
+  margin-top:75px;
+  color: rgb(2, 11, 14);
+}
+h3 {
+  font-size: 34px;
+  font-family: Nunito;
+  font-weight: bolder;
+  margin-top:50px;
+  color: rgb(4, 9, 53);
+}
+#test {
+    padding-left:20px;
+    text-align: center;   
 }
 </style>

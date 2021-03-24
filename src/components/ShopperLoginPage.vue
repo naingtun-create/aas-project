@@ -4,7 +4,7 @@
         <h2>Shopper's Login Page</h2>
         <br><br>
         <div id="vcard">
-        <v-card id="test" max-width="600" color="#BBDEFB">
+        <v-card id="test" width="700">
             <v-card-title>Login & start browsing!</v-card-title>
             <v-card-text>
                 <v-form>
