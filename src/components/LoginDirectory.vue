@@ -44,7 +44,6 @@ h2 {
   font-weight: bolder;
   margin-top:75px;
   color: rgb(8, 31, 37);
-
 }
 h3 {
   margin: -20px;
