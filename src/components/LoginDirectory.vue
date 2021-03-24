@@ -1,6 +1,6 @@
 <template>
     <div id="loginDir">
-        <h1>All About Sustainability</h1>
+        <h1><router-link to="/" exact>All About Sustainability</router-link></h1>
         <h2>Come be part of the<br>Eco-Friendly Movement</h2>
         <h3>Account Type</h3>
         <div style="margin-left: 0px; margin-top:100px; position: aboslute;right:150px;">
@@ -74,23 +74,6 @@ a {
   text-decoration: none;
 }
 .router-link-active {
-  text-decoration: underline;
-}
-.delete {
-  transition: box-shadow 0.3s;
-  transition: 0.3s;
-  background-color: rgb(0, 114, 180);
-  letter-spacing: 2px;
-  width: 80px;
-  height: 36px;
-  color: white;
-  border: 1px solid rgb(0, 114, 180);
-  border-radius: 5px;
-  margin-bottom: 15px;
-  margin-top: 20px;
-}
-.delete:hover {
-  cursor: pointer;
-  box-shadow: 0 0 11px rgba(33, 33, 33, 0.35);
+  color:white
 }
 </style>
