@@ -2,9 +2,10 @@
     <div id="ShopperLoginPage">
         <h1>All About Sustainability</h1>
         <h2>Shopper's Login Page</h2>
-        <h3>Login & start browsing!</h3>
         <br><br>
+        <div id="vcard">
         <v-card id="test" max-width="600" color="#BBDEFB">
+            <v-card-title>Login & start browsing!</v-card-title>
             <v-card-text>
                 <v-form>
                     <v-text-field label="Email" v-model="email"></v-text-field>
@@ -27,6 +28,7 @@
 
             </v-card-actions>
         </v-card>
+        </div>
     </div> 
 </template>
 
@@ -66,6 +68,11 @@ export default {
     background-repeat: no-repeat;
     height: 100%;
 }
+#vcard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 h1 {
   text-align: left;
   padding-left: 20px;
@@ -75,17 +82,13 @@ h1 {
   font-size: 40px;
 }
 h2 {
-  text-align:left;
-  padding-left:20px;
   font-size: 34px;
   font-family: Nunito;
   font-weight: bolder;
   margin-top:15px;
-  color: rgb(8, 31, 37);
+  color: rgb(2, 11, 14);
 }
 h3 {
-  text-align:left;
-  padding-left:20px;
   font-size: 34px;
   font-family: Nunito;
   font-weight: bolder;
