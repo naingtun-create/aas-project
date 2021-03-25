@@ -1,20 +1,19 @@
 <template>
   <div>
     <div id="intro">
-        <p> {{this.category}} <p>
-        <p id="title"> ECO-STRAW </p>
-        <p>{{this.description}}</p>
-        <img src="https://cf.shopee.com.my/file/37fdccd60905a08435c673d0c9331a23">
+        <p> {{this.datapacket[0].category}} <p>
+        <p id="title"> {{this.datapacket[0].title}}</p>
+        <p>{{this.datapacket[0].description}}</p>
+        <br>
+        <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: {{this.company}}</p>
-        <p>SGD {{this.price}}</p>
-        <p id="bold">Description:</p>
-            <p>{{this.addInfo}}</p>
+        <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
+        <p>SGD {{this.datapacket[0].price}}</p>
         <p id="bold"> Select Size: </p>
-        <v-select v-model="selectedSize" :items="size" filled label="Size" dense ></v-select>
+        <v-select v-model="selectedSize" :items="this.datapacket[0].size" filled label="Size" dense ></v-select>
         <p id="bold"> Select Colour: </p>
-        <v-select v-model="selectedColour" :items="colour" filled label="Colour" dense ></v-select>
+        <v-select v-model="selectedColour" :items="this.datapacket[0].color" filled label="Colour" dense ></v-select>
         <br> 
         <span id="select">Selected Size: {{ selectedSize }}</span>
         <br>
@@ -26,25 +25,40 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import database from '../firebase.js'
+Vue.component('database',database)
 export default {
-  props: ["id"],
-  data(){
-    return{
-      company:'Weety',
-      image: "https://cf.shopee.com.my/file/37fdccd60905a08435c673d0c9331a23",
-      price: 8,
-      colour:['red','blue'],
-      size:['S','M','L'],
-      category: 'FOOD & DRINK',
-      addInfo: 'Use, wash and dry within few seconds, no odour and sustainable up to 2 months',
-      description:"Our Shlurple collapsible, reusable straws are made up of 4 stainless steel straws that snap together, thanks to an inner silicone straw, to become one super-powered Shlurple!   The box is made of a wheat composite which uses reclaimed wheat straw from farms.",
-      currentSize: '',
-      selectedSize: 'S',
-      selectedColour: '',
-      Quantity: 1,
-    }
+    props: ["id"],
+    data(){  
+        return{
+        company:'Weety',
+        image: "https://cf.shopee.com.my/file/37fdccd60905a08435c673d0c9331a23",
+        price: 8,
+        colour:['red','blue'],
+        size:['S','M','L'],
+        category: 'FOOD & DRINK',
+        addInfo: 'Use, wash and dry within few seconds, no odour and sustainable up to 2 months',
+        description:"Our Shlurple collapsible, reusable straws are made up of 4 stainless steel straws that snap together, thanks to an inner silicone straw, to become one super-powered Shlurple!   The box is made of a wheat composite which uses reclaimed wheat straw from farms.",
+        currentSize: '',
+        selectedSize: 'S',
+        selectedColour: '',
+        Quantity: 1,
+        datapacket:[],
+        }
     },
-
+    methods:{
+        fetchItems: function(){
+        database.collection('products').doc(this.id).get().then((doc)=>{
+            let item ={}
+            item=doc.data()
+            this.datapacket.push(item)
+            })  
+        },  
+    },
+    created: function(){
+        this.fetchItems()
+    },
 }
 </script>
 
