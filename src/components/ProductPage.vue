@@ -1,53 +1,69 @@
 <template>
   <div>
     <div id="intro">
-        <p> {{this.category}} <p>
-        <p id="title"> ECO-STRAW </p>
-        <p>{{this.description}}</p>
-        <img src="https://cf.shopee.com.my/file/37fdccd60905a08435c673d0c9331a23">
+        <p> {{this.datapacket[0].category}} <p>
+        <p id="title"> {{this.datapacket[0].title}}</p>
+        <p>{{this.datapacket[0].description}}</p>
+        <br>
+        <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: {{this.company}}</p>
-        <p>SGD {{this.price}}</p>
-        <p id="bold">Description:</p>
-            <p>{{this.addInfo}}</p>
-        <p id="bold"> Select Size: </p>
-        <select v-model="selectedSize">
-            <option v-for="sizes in size" :key="sizes.id" v-bind:value="sizes">
-                {{sizes}} <br>
-            </option>
-        </select>
-        <v-select
-          :items="size"
-          filled
-          label="Size"
-          dense
-        ></v-select>
-        <br> <span>Selected: {{ selectedSize }}</span>
-        
+        <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
+        <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
+        <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
+        <p v-if="this.datapacket[0].size" id="bold"> Select Size: 
+            <v-select v-model="selectedSize" :items="this.datapacket[0].size" filled label="Size" dense ></v-select>
+        </p>
+        <p v-if="this.datapacket[0].colors" id="bold"> Select Colour:
+            <v-select v-model="selectedColour" :items="this.datapacket[0].colors" filled label="Colour" dense ></v-select>
+        </p>
+        <p id="bold"> Select Quantity: </p>
+        <input v-model="qty" id=index placeholder=0 type="number" min="1">
+        <br><br> 
+        <span v-if="this.datapacket[0].size" id="select">Selected Size: {{ selectedSize }}</span>
+        <br>
+        <span v-if="this.datapacket[0].colors" id="select">Selected Colour: {{ selectedColour }}</span>
+        <br>
+        <span id="select">Selected Quantity: {{this.qty}}</span>
+        <br><br>
+        <button>Add to Cart</button>
     </div> 
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import database from '../firebase.js'
+Vue.component('database',database)
 export default {
-  props: ["id"],
-  data(){
-    return{
-      company:'Weety',
-      image: "https://cf.shopee.com.my/file/37fdccd60905a08435c673d0c9331a23",
-      price:8,
-      color:['red','blue'],
-      size:['S','M','L'],
-      category: 'FOOD & DRINK',
-      addInfo: 'Use, wash and dry within few seconds, no odour and sustainable up to 2 months',
-      description:"Our Shlurple collapsible, reusable straws are made up of 4 stainless steel straws that snap together, thanks to an inner silicone straw, to become one super-powered Shlurple!   The box is made of a wheat composite which uses reclaimed wheat straw from farms.",
-      currentSize: '',
-      selectedSize: 'S',
-      selectedColour: '',
-    }
+    props: ["id"],
+    data(){  
+        return{
+        qty:1,
+        currentSize: '',
+        selectedSize: '',
+        selectedColour: '',
+        datapacket:[],
+        order:[],
+        }
     },
+    methods:{
+        fetchItems: function(){
+        database.collection('products').doc(this.id).get().then((doc)=>{
+            let item ={}
+            item=doc.data()
+            this.datapacket.push(item)
+            })  
+        },
+        sendOrder: function() {
+            this.order.push([this.id,this.quantity]);
+            //database.collection('cart').add(Object.assign({}, this.fullbkt)).then(() => location.reload());
 
+        },  
+    },
+    created: function(){
+        this.fetchItems()
+    },
 }
 </script>
 
@@ -65,7 +81,6 @@ export default {
     padding-top:100px;
     float:right;
     font-size:40px;
-    border: 1px solid #222; 
     margin: 100px;  
 }
 #bold{
@@ -78,9 +93,20 @@ export default {
     font-family: 'Anton', sans-serif;
     color:#c9AA88;
 }
-.button{
-    background-color:#c9AA88;
-
+#select{
+    color:#c9AA88;
+    font-size:40px;
+}
+button {
+  width: 400px;
+  height: 120px;
+  background-color: #c9AA88;
+  border-radius: 10px;
+  border-width: 1px;
+}
+input[type=number] {
+    background-color: #ececec;
+    font-size:40px;
 }
 </style>
 

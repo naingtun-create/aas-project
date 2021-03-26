@@ -2,6 +2,7 @@
     <div id="HomePage">
         <img id="example1"
          src="https://youmatter.world/app/uploads/sites/2/2018/12/sustainable-development-definition-examples.jpg">
+    <h1>{{ this.$store.state.authStore.test }}</h1>
     </div>
 </template>
 

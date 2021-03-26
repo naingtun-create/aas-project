@@ -111,8 +111,8 @@ export default {
       });
     },
     route:function(id){
-        let doc_id = id;
-        this.$router.push({name: 'product', params: {id: doc_id}});
+      let doc_id = id;
+      this.$router.push({name: 'product', params: {id: doc_id}});
     }
   },
   created(){this.fetchItems()},
