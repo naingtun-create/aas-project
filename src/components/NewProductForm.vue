@@ -24,11 +24,14 @@
                     <v-textarea v-model="sizeguide" label="Size Guide (e.g. M: Chest 38-40inches)" required outlined></v-textarea>
                     <v-combobox v-model="sizings" :items="sizes" 
                     label="Indicate your sizes available" multiple></v-combobox>
+                    <v-combobox v-model="colors" :items="colorsTemplate" :search-input.sync="search" hide-selected label="Colors of Product" multiple persistent-hint small-chips>
+                    <template v-slot:no-data> <v-list-item-title> No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one</v-list-item-title>
+                    </template></v-combobox><br>
+                    {{this.colors}}
                     <v-file-input label="Product Image" v-model="image" truncate-length="15" outlined></v-file-input>
                     <v-btn color="success" v-on:click="addProduct()" class="mr-4">Submit</v-btn>
                     <v-btn color="error" class="mr-4" v-on:click="reset">Reset Form</v-btn>
                     <v-btn class="mr-4" v-on:click="close">Close</v-btn>
-                    {{this.sizings}}
                 </v-form>
             </v-card-text>
         </v-card>
@@ -57,6 +60,9 @@ export default {
             categories:['ACCESSORY', 'CLEANING', 'CLOTHING','FOOD & DRINK'],
             sizes:['XS','S','M','L','XL','N.A'],
             sizings:[],
+            colorsTemplate:['Red','Blue','White', 'Black'],
+            colors:[],
+            search: null,
         }
     },
     mounted() {
@@ -78,6 +84,7 @@ export default {
                     "sizeguide": this.sizeguide,
                     "sizings": this.sizings,
                     "category": this.selectedCategory,
+                    "colors":this.colors,
                 }
                 console.log(product)
                 db.collection('products').add(product).then( () => {
