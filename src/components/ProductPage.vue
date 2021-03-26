@@ -9,16 +9,23 @@
     </div>
     <div id="contents">
         <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
-        <p>SGD {{this.datapacket[0].price}}</p>
-        <p id="bold"> Select Size: </p>
-        <v-select v-model="selectedSize" :items="this.datapacket[0].size" filled label="Size" dense ></v-select>
-        <p id="bold"> Select Colour: </p>
-        <v-select v-model="selectedColour" :items="this.datapacket[0].color" filled label="Colour" dense ></v-select>
-        <br> 
-        <span id="select">Selected Size: {{ selectedSize }}</span>
+        <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
+        <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
+        <p v-if="this.datapacket[0].size" id="bold"> Select Size: 
+            <v-select v-model="selectedSize" :items="this.datapacket[0].size" filled label="Size" dense ></v-select>
+        </p>
+        <p v-if="this.datapacket[0].colors" id="bold"> Select Colour:
+            <v-select v-model="selectedColour" :items="this.datapacket[0].colors" filled label="Colour" dense ></v-select>
+        </p>
+        <p id="bold"> Select Quantity: </p>
+        <input v-model="qty" id=index placeholder=0 type="number" min="1">
+        <br><br> 
+        <span v-if="this.datapacket[0].size" id="select">Selected Size: {{ selectedSize }}</span>
         <br>
-        <span id="select">Selected Colour: {{ selectedColour }}</span>
+        <span v-if="this.datapacket[0].colors" id="select">Selected Colour: {{ selectedColour }}</span>
         <br>
+        <span id="select">Selected Quantity: {{this.qty}}</span>
+        <br><br>
         <button>Add to Cart</button>
     </div> 
   </div>
@@ -32,19 +39,12 @@ export default {
     props: ["id"],
     data(){  
         return{
-        company:'Weety',
-        image: "https://cf.shopee.com.my/file/37fdccd60905a08435c673d0c9331a23",
-        price: 8,
-        colour:['red','blue'],
-        size:['S','M','L'],
-        category: 'FOOD & DRINK',
-        addInfo: 'Use, wash and dry within few seconds, no odour and sustainable up to 2 months',
-        description:"Our Shlurple collapsible, reusable straws are made up of 4 stainless steel straws that snap together, thanks to an inner silicone straw, to become one super-powered Shlurple!   The box is made of a wheat composite which uses reclaimed wheat straw from farms.",
+        qty:1,
         currentSize: '',
-        selectedSize: 'S',
+        selectedSize: '',
         selectedColour: '',
-        Quantity: 1,
         datapacket:[],
+        order:[],
         }
     },
     methods:{
@@ -54,6 +54,11 @@ export default {
             item=doc.data()
             this.datapacket.push(item)
             })  
+        },
+        sendOrder: function() {
+            this.order.push([this.id,this.quantity]);
+            //database.collection('cart').add(Object.assign({}, this.fullbkt)).then(() => location.reload());
+
         },  
     },
     created: function(){
@@ -98,6 +103,10 @@ button {
   background-color: #c9AA88;
   border-radius: 10px;
   border-width: 1px;
+}
+input[type=number] {
+    background-color: #ececec;
+    font-size:40px;
 }
 </style>
 
