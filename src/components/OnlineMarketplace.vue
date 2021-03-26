@@ -4,52 +4,61 @@
             <v-toolbar floating width="400">   
                 <v-text-field single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
             </v-toolbar><br><br>
-             <v-card>
-      
-                  <v-card-title>Categories</v-card-title>
-            <v-container class="pt-0" fluid>
-              <v-checkbox
-                label="Decoration"
-                v-model="selectedCategories"
-                value="Decoration"
-                hide-details
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="Clothing"
-                v-model="selectedCategories"
-                value="Clothing"
-                hide-details
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="Food and Drink"
-                v-model="selectedCategories"
-                value="Food and Drink"
-                hide-details
-                dense
-              ></v-checkbox>
-            </v-container>
-            <br />
+            
+            <v-card>
+            <v-card-title>Categories</v-card-title>
+              <v-container class="pt-0" fluid>
+                <v-checkbox
+                  label="All"
+                  v-model="selectedCategories"
+                  value="All"
+                  hide-details
+                  dense
+                ></v-checkbox>
+                <v-checkbox
+                  label="Decoration"
+                  v-model="selectedCategories"
+                  value="Decoration"
+                  hide-details
+                  dense
+                ></v-checkbox>
+                <v-checkbox
+                  label="Clothing"
+                  v-model="selectedCategories"
+                  value="Clothing"
+                  hide-details
+                  dense
+                ></v-checkbox>
+                <v-checkbox
+                  label="Food and Drink"
+                  v-model="selectedCategories"
+                  value="Food and Drink"
+                  hide-details
+                  dense
+                ></v-checkbox>
+              </v-container>
+              <br />
             <v-divider></v-divider>
             <v-card-title>Sort By Price</v-card-title>
-            <v-container class="pt-0" fluid>
-              <v-checkbox
-                label="Descending"
-                v-model="sortPrice"
-                hide-details
-                value = "Descending"
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="Ascending"
-                v-model="sortPrice"
-                hide-details
-                value = "Ascending"
-                dense
-              ></v-checkbox>
-            </v-container>
-  </v-card>
+              <v-container class="pt-0" fluid>
+                <v-checkbox
+                  label="Descending"
+                  v-model="sortPrice"
+                  hide-details
+                  value = "Descending"
+                  dense
+                  @click = "sortByPrice"
+                ></v-checkbox>
+                <v-checkbox
+                  label="Ascending"
+                  v-model="sortPrice"
+                  hide-details
+                  value = "Ascending"
+                  dense
+                  @click = "sortByPrice"
+                ></v-checkbox>
+              </v-container>
+            </v-card>
         </nav>
               
         <h1 id="title">Our Products</h1>
@@ -71,7 +80,7 @@
                         <v-card-title><b>{{item.title}}</b></v-card-title>
                         <p class="my-4 subtitle-1">{{item.company}}</p>
                         <p class="my-4 subtitle-1">${{item.price}} </p>
-
+                        <p class="my-4 subtitle-1">CATEGORY: {{item.category}} </p>
                         <v-divider class="mx-4"></v-divider>                  
 
                         <v-card-actions>
@@ -97,6 +106,8 @@ export default {
     return{
         items:[],
         search:"",
+        sortPrice:"",
+        selectedCategories:"All",
     }
   },
   methods:{
@@ -113,12 +124,31 @@ export default {
     route:function(id){
       let doc_id = id;
       this.$router.push({name: 'product', params: {id: doc_id}});
+    },
+    sortByPrice:function(){
+      if(this.sortPrice == "Descending"){
+        this.items.sort(function(a, b) {return parseFloat(b.price) - parseFloat(a.price);});
+      } else{
+        this.items.sort(function(a, b) {return parseFloat(a.price) - parseFloat(b.price);});
+      }
+    },
+    selectByCategory:function(){
+      this.items.filter(item => item.category.toLowerCase() == this.selectedCategories.toLowerCase());
     }
   },
   created(){this.fetchItems()},
   computed:{
       filteredProduct:function(){
-          return this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase());})
+        var finalList = []
+        finalList = this.items
+        if(this.search != "" && this.selectedCategories != "All"){
+          finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase()) && (item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase()));})
+        } else if(this.search != ""){
+          finalList = this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase());})
+        } else if(this.selectedCategories != "All"){
+          finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase())});
+        } 
+        return finalList;
       }
   }
 }
@@ -130,8 +160,6 @@ export default {
     font-weight: bold;
     font-size:80px;
     font-family: 'Anton', sans-serif;
-    text-align:start;
-    margin-left:10px;
 }
 nav {
     float: left;
@@ -164,6 +192,7 @@ li {
   padding: 10px;
   margin: 10px;
 }
+
 .v-card--reveal {
   align-items: flex-start;
   bottom: 0;
