@@ -6,93 +6,89 @@
             </v-toolbar><br><br>
             
             <v-card>
-            <v-card-title>Categories</v-card-title>
-              <v-container class="pt-0" fluid>
-                <v-checkbox
-                  label="All"
-                  v-model="selectedCategories"
-                  value="All"
-                  hide-details
-                  dense
-                ></v-checkbox>
-                <v-checkbox
-                  label="Decoration"
-                  v-model="selectedCategories"
-                  value="Decoration"
-                  hide-details
-                  dense
-                ></v-checkbox>
-                <v-checkbox
-                  label="Clothing"
-                  v-model="selectedCategories"
-                  value="Clothing"
-                  hide-details
-                  dense
-                ></v-checkbox>
-                <v-checkbox
-                  label="Food and Drink"
-                  v-model="selectedCategories"
-                  value="Food and Drink"
-                  hide-details
-                  dense
-                ></v-checkbox>
-              </v-container>
-              <br />
-            <v-divider></v-divider>
-            <v-card-title>Sort By Price</v-card-title>
-              <v-container class="pt-0" fluid>
-                <v-checkbox
-                  label="Descending"
-                  v-model="sortPrice"
-                  hide-details
-                  value = "Descending"
-                  dense
-                  @click = "sortByPrice"
-                ></v-checkbox>
-                <v-checkbox
-                  label="Ascending"
-                  v-model="sortPrice"
-                  hide-details
-                  value = "Ascending"
-                  dense
-                  @click = "sortByPrice"
-                ></v-checkbox>
-              </v-container>
+                <v-card-title>Categories</v-card-title>
+                <v-container class="pt-0" fluid>
+                    <v-checkbox
+                        label="All"
+                        v-model="selectedCategories"
+                        value="All"
+                        hide-details
+                        dense
+                    ></v-checkbox>
+                    <v-checkbox
+                        label="Decoration"
+                        v-model="selectedCategories"
+                        value="Decoration"
+                        hide-details
+                        dense
+                    ></v-checkbox>
+                    <v-checkbox
+                        label="Clothing"
+                        v-model="selectedCategories"
+                        value="Clothing"
+                        hide-details
+                        dense
+                    ></v-checkbox>
+                    <v-checkbox
+                        label="Food and Drink"
+                        v-model="selectedCategories"
+                        value="Food and Drink"
+                        hide-details
+                        dense
+                    ></v-checkbox>
+                </v-container>
+                <br />
+                <v-divider></v-divider>
+                <v-card-title>Sort By Price</v-card-title>
+                <v-container class="pt-0" fluid>
+                    <v-checkbox
+                        label="Descending"
+                        v-model="sortPrice"
+                        hide-details
+                        value = "Descending"
+                        dense
+                        @click = "sortByPrice"
+                    ></v-checkbox>
+                    <v-checkbox
+                        label="Ascending"
+                        v-model="sortPrice"
+                        hide-details
+                        value = "Ascending"
+                        dense
+                        @click = "sortByPrice"
+                    ></v-checkbox>
+                </v-container>
             </v-card>
         </nav>
               
         <h1 id="title">Our Products</h1>
-        <div id="contents">
-        
-            
-          <v-container fluid>
-          <v-layout>
-            <ul id="itemsList">
-               
-                <li v-for="item in filteredProduct" :key="item.id">
+        <div id="contents">          
+            <v-container fluid>
+                <v-layout>
+                    <ul id="itemsList">
+                        <li v-for="item in filteredProduct" :key="item.id">
 
-                    <v-card 
-                     class="mx-auto my-12" width="650" height = "800" color="green lighten-5">
-                        <template slot="progress">
-                            <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
-                        </template>
-                        <v-img height="500" v-bind:src="item.image"></v-img>
-                        <v-card-title><b>{{item.title}}</b></v-card-title>
-                        <p class="my-4 subtitle-1">{{item.company}}</p>
-                        <p class="my-4 subtitle-1">${{item.price}} </p>
-                        <p class="my-4 subtitle-1">CATEGORY: {{item.category}} </p>
-                        <v-divider class="mx-4"></v-divider>                  
+                            <v-card class="mx-auto my-12" width="650" height = "830" color="green lighten-5">
+                                <template slot="progress">
+                                    <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
+                                </template>
+                                <v-img height="500" v-bind:src="item.image"></v-img>
+                                <h1 id="productTitle"><b>{{item.title}}</b></h1>
+                                <p class="my-4 subtitle-1">{{item.company}}</p>
+                                <p class="my-4 subtitle-1"><b>${{item.price}}</b></p>
+                                <p class="my-4 subtitle-1">CATEGORY: {{item.category}} </p>
+                                <v-divider class="mx-4"></v-divider>                  
 
-                        <v-card-actions>
-                            <v-btn x-large depressed outlined color="indigo" v-on:click="route(item.id)">Learn More</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </li>
+                                <v-card-actions>
+                                    <v-btn x-large depressed outlined color="indigo" v-on:click="route(item.id)">Learn More</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </li>
                 
-            </ul>
+                    </ul>
          
-        </v-layout> 
-        </v-container>  
+                </v-layout> 
+            </v-container>  
         </div>
     </div>
 </template>
@@ -201,9 +197,14 @@ li {
   position: absolute;
   width: 100%; 
 }
-
+#productTitle {
+  font-family: "Lucida Console", Times, serif;
+  font-size: 30px;
+  text-align:start;
+  padding:20px;
+}
 p {
     text-align:start;
-    padding-left:20px;
+    padding-left:25px;
 }
 </style>

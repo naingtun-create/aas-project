@@ -57,7 +57,7 @@ export default {
                 v.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
             },
             selectedCategory:"",
-            categories:['ACCESSORY', 'CLEANING', 'CLOTHING','FOOD & DRINK'],
+            categories:['ACCESSORY', 'CLEANING', 'CLOTHING','FOOD and DRINK'],
             sizes:['XS','S','M','L','XL','N.A'],
             sizings:[],
             colorsTemplate:['Red','Blue','White', 'Black'],
