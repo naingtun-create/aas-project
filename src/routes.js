@@ -16,6 +16,7 @@ import ResetSuccessful from './components/ResetSuccessful.vue'
 import CompanyPage from './components/CompanyPage.vue'
 import Register from './components/Register.vue'
 import LoginDir from './components/LoginDirectory.vue'
+import Payment from './components/Payment.vue'
 
 
 export default [
@@ -37,4 +38,5 @@ export default [
     { path: '/resetsuccess', component: ResetSuccessful},
     { path: '/companypage', component: CompanyPage},
     { path: '/register', component: Register},
+    { path: '/payment', component: Payment},
 ]
