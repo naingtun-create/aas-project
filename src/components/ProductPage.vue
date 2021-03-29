@@ -37,7 +37,9 @@
 import Vue from 'vue'
 import database from '../firebase.js'
 import firebase from 'firebase'
+
 Vue.component('database',database)
+
 export default {
     props: ["id"],
     data(){  
