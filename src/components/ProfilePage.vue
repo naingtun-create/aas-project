@@ -1,12 +1,3 @@
 <template>
-    <div id = "ProfilePage">
-        <p>ProfilePage is here</p>
-        
-    </div>
-</template>
-
-<script>
-</script>
-
-<style scoped>
-</style>
+    <p> this is profile </p>
+</template>>
