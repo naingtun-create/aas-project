@@ -1,5 +1,6 @@
 <template>
     <div id = "OnlineMarketPlace">
+      <shopper-header></shopper-header>
         <nav>
             <v-toolbar floating width="400">   
                 <v-text-field single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
@@ -94,7 +95,7 @@
 </template>
 
 <script>
-import db from '../firebase.js'
+import db from '../../firebase.js'
 
 export default {
   name: 'OnlineMarketPlacePage',

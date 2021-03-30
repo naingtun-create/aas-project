@@ -1,8 +1,8 @@
 <template>
-   <div id="ShopperSignUpPage">
+   <div id="SignUpPage">
        <h1>All About Sustainability</h1>
        <router-link to="/" exact><v-icon dark right>mdi-home</v-icon></router-link>
-       <h2>Shopper's Sign Up Page</h2>
+       <h2>Company's Sign Up Page</h2>
        <br><br>
        <div id="vcard">
            <v-card id="test" width="700">
@@ -20,23 +20,21 @@
                        type="password"
                        label="Password..."
                        v-model="password"></v-text-field>
-                       <v-btn
-                       color="#B3E5FC"
-                       class="mr-4"
+                       <v-btn color="#B3E5FC" class="mr-4"
                        type="submit">Register</v-btn>
-                       </v-form>
-                       </v-card-text>
-                       <p>Already have account?</p>
-                       <v-btn v-on:click = "$router.push('shopperlogin')" color="blue"> Login</v-btn>
+                    </v-form>
+                </v-card-text>
+                <p>Already have account?</p>
+                <v-btn v-on:click = "$router.push('companylogin')" color="blue"> Login </v-btn>
            </v-card>
        </div>
-</div> 
+    </div> 
 </template>
 
 <script>
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import db from '../firebase.js';
+import db from '../../firebase.js';
 
 
 export default {
@@ -63,7 +61,7 @@ export default {
                         db.collection('users').doc(user.uid).set({
                             fullname: this.fullName,
                             email: this.email,
-                            type: "Shopper"
+                            type: "Company"
                         })
                     }).then(()=> {
                         this.$router.push('home');
@@ -88,7 +86,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
-#ShopperSignUpPage{
+#SignUpPage{
     position: relative;
     background-size: cover;
     background-image: url("https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80");
