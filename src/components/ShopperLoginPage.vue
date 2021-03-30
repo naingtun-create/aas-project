@@ -14,18 +14,18 @@
                 </v-form>
             </v-card-text>
             <v-card-actions>
-                <v-form @submit.prevent="login">
+                <v-form @submit.prevent="login()">
                 <v-btn
                 color="#B3E5FC"
                 class="mr-4"
-                @click="login">Login</v-btn>
+                v-on:click="login()">Login</v-btn>
                 </v-form>
                 <v-btn
                 color="#EF9A9A"
-                @click="resetValidation"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
+                v-on:click="resetValidation()"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
                 <v-btn
                 color="#B2DFDB"
-                @click="resetValidation"><router-link to="/shoppersignup" exact>Sign Up</router-link></v-btn>
+                v-on:click="resetValidation()"><router-link to="/shoppersignup" exact>Sign Up</router-link></v-btn>
 
             </v-card-actions>
         </v-card>
@@ -35,25 +35,49 @@
 
 <script>
 import firebase from 'firebase';
+import db from "../firebase.js";
+
 export default {
     data() {
         return {
-            email: '',
-            password: '',
+            email: null,
+            password: null,
         };
     },
     methods: {
-        login() {
-            firebase
-                .auth()
-                .signInWithEmailAndPassword(this.email, this.password)
-                .then(() => {
-                    alert('Successfully logged in');
-                    this.$router.push('/profile');
-                })
-                .catch(error => {
-                    alert(error.message);
-                });
+        login: async function() {
+            
+            if (this.email == null|| this.password==null  ){
+                alert("Please fill in your email and password!")
+            } else {
+
+                var data = await db.collection("shoppers").where("email","==",this.email).get()
+                if(data.empty) {
+                    alert("No such shopper email exist in the database. If you are a company, please proceed to the company login page!")
+                } else {
+                    await firebase
+                        .auth()
+                        .signInWithEmailAndPassword(this.email, this.password)
+                        .then(() => {
+                            alert('Successfully logged in');
+                            this.$router.push('/profile');
+                        })
+                        .catch(error => {
+                            alert(error.message);
+                        });
+
+                }
+            }
+            // firebase
+            //     .auth()
+            //     .signInWithEmailAndPassword(this.email, this.password)
+            //     .then(() => {
+            //         alert('Successfully logged in');
+            //         this.$router.push('/profile');
+            //     })
+            //     .catch(error => {
+            //         alert(error.message);
+            //     });
         },
     },
 };

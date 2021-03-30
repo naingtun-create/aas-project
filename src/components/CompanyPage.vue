@@ -2,11 +2,52 @@
 <div id="companyPage">
     <div id="intro">
         <div id="heading">
-            <p id="title" style="float:left">Shlurple</p>
-            <img style="float:right" src="https://scontent-xsp1-3.xx.fbcdn.net/v/t1.6435-9/47048761_335724880552808_8218427797866020864_n.png?_nc_cat=109&ccb=1-3&_nc_sid=6e5ad9&_nc_ohc=yT94h9Dqx14AX-xfDpI&_nc_ht=scontent-xsp1-3.xx&oh=08c999948f94804f657fa3093df8422c&oe=607ECD95">
+            <!-- <p id="title" style="float:left">Shlurple</p> -->
+            <p id="title" style="float:left">{{companyData.companyname}}</p>
+            <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
+                <template v-slot:default="dialog">
+                <v-card>
+                    <v-toolbar
+                    color="primary"
+                    dark
+                    >Upload Company's Profile Image</v-toolbar>
+                    <br>
+                    <v-card-text>
+                        <v-file-input
+                        accept="image/*"
+                        label="Product Image"
+                        truncate-length="15"
+                        type="file"
+                        v-model="image"
+                        outlined
+                        @change="onFilePicked"
+                        ></v-file-input>
+                        <img v-show="imageURL == ''" src="../assets/DummyImage.png" height="200"/>
+                        <img v-show="imageURL != ''" :src="imageURL" height="200"/>
+                        
+                    </v-card-text>
+                    <v-card-actions class="justify-end">
+                    <v-btn text @click="uploadImage">
+                        Upload    
+                    </v-btn>
+                    <v-btn
+                        text
+                        @click="dialog.value = false"
+                    >Close</v-btn>
+                    </v-card-actions>
+                </v-card>
+                </template>
+            </v-dialog>
+            <img v-show="profileURL != ''" style="float:right" :src="profileURL" v-on:click="toggleDialog">
+            <img v-show="profileURL == ''" style="float:right" src="../assets/UploadCompanyImage.png" v-on:click="toggleDialog">
         </div>
+            <br/>
             <h3> Our Story </h3>
-                <p> In 2018, Shlurple was born from an ingrained love of the sea… watching a turtle cry in pain 
+                <p>
+                    <br/>
+                    {{companyData.description}}
+                </p>
+                <!-- <p> In 2018, Shlurple was born from an ingrained love of the sea… watching a turtle cry in pain 
                     as a single-use plastic straw was removed from its nostril was the catalyst for us to want 
                     to make a change.
                     <br>
@@ -17,7 +58,7 @@
                     our current plastic pollution problem. 
                     <br>
                     <br>We hope you join us on our journey and remember… BUY A SHLURPLE, SAVE A TURTLE.
-                </p>
+                </p> -->
     </div>
 
     <div id="products">
@@ -39,16 +80,105 @@
 <script>
 import NewProductForm from './NewProductForm.vue'
 import NewPromoForm from './NewPromoForm.vue'
+import firebase from "firebase";
+import db from "../firebase.js";
 
 export default {
     name: "companyPage",
     data: () => {
         return {   
+            dialog: false,
+            image: [], 
+            imageURL: "",
+            profileURL: "",
+            companyData: [],
+            products: []
         }
     },
     components: {
         NewProductForm: NewProductForm,
         NewPromoForm: NewPromoForm,
+    },
+    methods: {
+        toggleDialog: function() {
+            this.dialog = !this.dialog
+        },
+        close: function() {
+            this.close();
+            this.toggleDialog();
+            
+        },
+        uploadImage: async function() {
+
+            var user = firebase.auth().currentUser;
+            var k = user.uid;
+
+        //Putting it in the storage
+        try {
+            //Its is place ProductImages => CompanyId => productiD
+            //Reference to the storage
+            var storageRef = firebase.storage().ref("ProfilePics/" + user.uid + "/" + k);
+
+            //Waiting till it uploaded to firebase storage
+            await storageRef.put(this.image)
+            var _extension = this.image.name.split(".")[1]
+
+            //Update the metadata to be uploaded as image
+            var newMetadata = {
+                contentType: 'image/' + _extension
+            };
+
+            await storageRef.updateMetadata(newMetadata)
+
+            //Retrieving the download URL for the product Image
+            await storageRef.getDownloadURL().then( async function(url) {
+                    //Add it into the database
+                    await db.collection("company")
+                    .doc(k)
+                    .update({
+                        "profilePic" : url.toString()
+                    })
+                    console.log("success")
+                
+            }).then(
+                this.close(),
+                alert("Uploaded Successfully!")
+            );
+
+        } catch (e) {
+          console.log(e);
+        }
+            
+        },
+        onFilePicked: function() {
+            var reader = new FileReader() 
+            reader.readAsDataURL(this.image)
+            reader.onload = () => {
+                this.imageURL = reader.result;
+            }
+        },
+        reset: function() {
+            this.imageURL = ''
+            this.image = []
+        },
+        fetchData: async function() {
+            var user = firebase.auth().currentUser;
+            var k = user.uid;
+
+            await db.collection("company").doc(k).get().then((doc) => {
+                this.companyData = doc.data();
+                this.profileURL = this.companyData.profilePic
+                console.log(this.profileURL)
+            })
+
+            var products = await db.collection("products").where("company","==",k).get()
+            console.log(products)
+            console.log(this.companyData)
+
+        }
+    },
+    created () {
+        this.fetchData()
     }
 }
 </script>
@@ -109,5 +239,9 @@ export default {
 #promotionals {
     padding-top:0px;
     width: 60%;
+}
+img {
+  width: 100%;
+  height: auto;
 }
 </style>

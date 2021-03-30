@@ -8,7 +8,7 @@
            <v-card id="test" width="700">
                <v-card-title>Get started with All About Sustainability!</v-card-title>
                <v-card-text>
-                   <v-form @submit.prevent="register" lazy-validation>
+                   <v-form @submit.prevent="register">
                        <v-text-field
                        type="email"
                        label="Email address"
@@ -20,7 +20,7 @@
                        ></v-text-field>
                        <v-text-field
                        label="Company Name"
-                       v-model="fullName"></v-text-field>
+                       v-model="companyName"></v-text-field>
                        <v-textarea
                        label="Company Description"
                        v-model="description"></v-textarea>
@@ -29,7 +29,7 @@
                     </v-form>
                 </v-card-text>
                 <p>Already have account?</p>
-                <v-btn v-on:click = "$router.push('companylogin')" color="blue"> Login </v-btn>
+                <v-btn v-on:click = "$router.push({path: '/companylogin'})" color="blue">Login</v-btn>
            </v-card>
        </div>
     </div> 
@@ -45,7 +45,7 @@ export default {
     name: 'Register',
     data() {
         return {
-            fullName: '',
+            companyName: '',
             email: '',
             password: '',
             image:[],
@@ -54,26 +54,36 @@ export default {
         };
     },
     methods: {
-        register()  {
+        register: async function()  {
             
-            firebase
+            await firebase
                 .auth()
                 .createUserWithEmailAndPassword(this.email, this.password)
-                .then(() => {
+                .then( async () => {
 
                     const user = firebase.auth().currentUser;
                     
                     user.updateProfile({
                         displayName: this.fullName
-                    }).then(() => {
-                        db.collection('users').doc(user.uid).set({
-                            fullname: this.fullName,
+                    }).then( async () => {
+                        await db.collection('company').doc(user.uid).set({
+                            companyname: this.companyName,
                             email: this.email,
                             type: "Company",
                             description: this.description,
                         })
-                    }).then(()=> {
+                        
+                        await firebase.auth().signOut().then(function() {
+                            // Sign-out successful.
+                            console.log("Signed Up and Signed Out!")
+
+                        }, function(error) {
+                            // An error happened.
+                            console.log(error)
+                        });
+
                         this.$router.push('signUpSuccessful');
+                 
                     }).catch(error => {
                         alert(error.message)
                     })
@@ -82,8 +92,9 @@ export default {
                       //  url: `${process.env.VUE_APP_HOST_NAME}/sign-in/?email=${user.email}`,
                         //};
                     user.sendEmailVerification();
-                    alert('Successfully registered! Please login.');
-                    this.$router.push('/');
+
+                    
+                    
                 })
                 .catch(error => {
                     alert(error.message);
