@@ -46,7 +46,7 @@
 <script>
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import db from '../firebase.js';
+import db from '../../firebase.js';
 
 
 export default {

@@ -1,5 +1,6 @@
 <template>
     <div id = "PaymentPage">
+      <shopper-header></shopper-header>
         <nav>
         <v-card size="900" class="mx-auto" color = "#E3F2FD">
             <v-container>
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-import db from '../firebase.js'
+import db from '../../firebase.js'
 
 export default {
   name: 'OnlineMarketPlacePage',

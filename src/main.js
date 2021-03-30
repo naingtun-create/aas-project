@@ -5,10 +5,14 @@ import Routes from './routes.js'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
 import store from './store/store' 
 import firebase from  'firebase';
+import shopperHeader from './components/shopper/shopperHeader.vue'
+import companyHeader from './components/company/companyHeader.vue'
 
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
+Vue.component('shopper-header',shopperHeader)
+Vue.component('company-header',companyHeader)
 
 const myRouter = new VueRouter({
   routes: Routes,
