@@ -13,8 +13,8 @@
                                     <v-img height="250" src="https://static.onecms.io/wp-content/uploads/sites/23/2020/08/24/what-is-a-sustainable-product-2000.jpg"></v-img>
                                 </v-avatar>
                                 <div>
-                                    <v-card-title class="headline" color="black">Title of items</v-card-title>
-                                    <v-card-subtitle color="black">Quantity</v-card-subtitle>
+                                    <v-card-title class="headline" color="black">{{item.totalPrice}}</v-card-title>
+                                    <v-card-subtitle color="black">color[0]</v-card-subtitle>
                                 </div>
 
                             </div>
@@ -49,13 +49,41 @@ export default {
   },
   methods:{
     fetchItems:function(){
-      db.collection('cart').get().then(snapshot => {
-        let item = []
-        snapshot.docs.forEach(doc => {
-          item = doc.data();
-          //item.id = doc.id,
-          this.items.push(item)
-        });
+      var user = firebase.auth().currentUser;
+      db.collection('cart').doc(user.uid).get().then(doc => {
+        var product = {
+          colors: [],
+          title: '',
+          image: '',
+          id: '',
+          totalPrice: 0,
+        }
+        var details = []
+        details = doc.data()
+        //console.log(details)  
+        for(var info in details){
+          //console.log(details[info].id)    
+          for(var item in this.items){
+            if(details[info].id == this.items[item].id){
+              this.items[item].colors.push([details[info].color, details[info].quantity, details[info].size])
+              this.items[item].totalPrice += details[info].price * details[info].quantity
+              break
+            } 
+          }
+          product.colors.push([details[info].color, details[info].qty, details[info].size])
+          product.id = details[info].id
+          product.totalPrice += details[info].price * details[info].qty
+          this.items.push(product)
+          product = {
+            colors: [],
+            title: '',
+            image: '',
+            id: '',
+            totalPrice: 0,
+          }
+
+        }
+        console.log(this.items)
       });
     },
   },
