@@ -1,6 +1,6 @@
 <template>
   <div>
-    <shopper-header></shopper-header>
+    <company-header></company-header>
     <div id="intro">
         <img id="arrow" src='../../assets/arrow.png'>
         <router-link id="arrow" to="/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
