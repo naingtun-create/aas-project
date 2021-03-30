@@ -1,5 +1,6 @@
 <template>
 <div id="companyPage">
+    <company-header></company-header>
     <div id="intro">
         <div id="heading">
             <!-- <p id="title" style="float:left">Shlurple</p> -->
@@ -183,7 +184,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<sty,
+        CompanyHeaderle scoped>
 #intro {
     float:left;
     padding-top:100px;
