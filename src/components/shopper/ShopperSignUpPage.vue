@@ -20,6 +20,16 @@
                        type="password"
                        label="Password..."
                        v-model="password"></v-text-field>
+                       <v-text-field
+                       label="Address"
+                       v-model="address"></v-text-field>
+                       <v-text-field
+                       type="number"
+                       label="Postal Code"
+                       v-model="postalCode"></v-text-field>
+                       <v-text-field
+                       label="Unit Number"
+                       v-model="unitNo"></v-text-field>
                        <v-btn
                        color="#B3E5FC"
                        class="mr-4"
@@ -46,6 +56,9 @@ export default {
             fullName: '',
             email: '',
             password: '',
+            address: '',
+            postalCode: '',
+            unitNo: ''
         };
     },
     methods: {
@@ -63,20 +76,24 @@ export default {
                         db.collection('users').doc(user.uid).set({
                             fullname: this.fullName,
                             email: this.email,
+                            address: this.address,
+                            postalCode: this.postalCode,
+                            unitNo: this.unitNo,
                             type: "Shopper"
                         })
                     }).then(()=> {
-                        this.$router.push('home');
+                        alert("Account Created Successfully!")
+                        this.$router.push('shopperlogin');
                     }).catch(error => {
                         alert(error.message)
                     })
                     
-                    //const actionCodeSettings = {
-                      //  url: `${process.env.VUE_APP_HOST_NAME}/sign-in/?email=${user.email}`,
-                        //};
-                    user.sendEmailVerification();
-                    alert('Successfully registered! Please login.');
-                    this.$router.push('/');
+                    // //const actionCodeSettings = {
+                    //   //  url: `${process.env.VUE_APP_HOST_NAME}/sign-in/?email=${user.email}`,
+                    //     //};
+                    // user.sendEmailVerification();
+                    // alert('Successfully registered! Please login.');
+                    // this.$router.push('/');
                 })
                 .catch(error => {
                     alert(error.message);

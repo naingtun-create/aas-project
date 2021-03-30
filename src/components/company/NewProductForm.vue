@@ -69,7 +69,6 @@
                 >
               </template></v-combobox
             ><br />
-            {{ this.colors }}
             <v-file-input
               accept="image/*"
               label="Product Image"

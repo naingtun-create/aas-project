@@ -8,18 +8,22 @@
            <v-card id="test" width="700">
                <v-card-title>Get started with All About Sustainability!</v-card-title>
                <v-card-text>
-                   <v-form @submit.prevent="register">
+                   <v-form @submit.prevent="register" lazy-validation>
                        <v-text-field
                        type="email"
-                       label="Email address..."
+                       label="Email address"
+                       required
                        v-model="email"></v-text-field>
                        <v-text-field
-                       label="Full Name"
-                       v-model="fullName"></v-text-field>
-                       <v-text-field
-                       type="password"
                        label="Password..."
-                       v-model="password"></v-text-field>
+                       v-model="password"
+                       ></v-text-field>
+                       <v-text-field
+                       label="Company Name"
+                       v-model="fullName"></v-text-field>
+                       <v-textarea
+                       label="Company Description"
+                       v-model="description"></v-textarea>
                        <v-btn color="#B3E5FC" class="mr-4"
                        type="submit">Register</v-btn>
                     </v-form>
@@ -44,10 +48,14 @@ export default {
             fullName: '',
             email: '',
             password: '',
+            image:[],
+            imageURL:'',
+            description:'',
         };
     },
     methods: {
-        register() {
+        register()  {
+            
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(this.email, this.password)
@@ -61,10 +69,11 @@ export default {
                         db.collection('users').doc(user.uid).set({
                             fullname: this.fullName,
                             email: this.email,
-                            type: "Company"
+                            type: "Company",
+                            description: this.description,
                         })
                     }).then(()=> {
-                        this.$router.push('home');
+                        this.$router.push('signUpSuccessful');
                     }).catch(error => {
                         alert(error.message)
                     })
