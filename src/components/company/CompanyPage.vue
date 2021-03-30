@@ -23,7 +23,7 @@
                         outlined
                         @change="onFilePicked"
                         ></v-file-input>
-                        <img v-show="imageURL == ''" src="../assets/DummyImage.png" height="200"/>
+                        <img v-show="imageURL == ''" src="../../assets/DummyImage.png" height="200"/>
                         <img v-show="imageURL != ''" :src="imageURL" height="200"/>
                         
                     </v-card-text>
@@ -40,7 +40,7 @@
                 </template>
             </v-dialog>
             <img v-show="profileURL != ''" style="float:right" :src="profileURL" v-on:click="toggleDialog">
-            <img v-show="profileURL == ''" style="float:right" src="../assets/UploadCompanyImage.png" v-on:click="toggleDialog">
+            <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png" v-on:click="toggleDialog">
         </div>
             <br/>
             <h3> Our Story </h3>
@@ -82,7 +82,7 @@
 import NewProductForm from './NewProductForm.vue'
 import NewPromoForm from './NewPromoForm.vue'
 import firebase from "firebase";
-import db from "../firebase.js";
+import db from "../../firebase.js";
 
 export default {
     name: "companyPage",

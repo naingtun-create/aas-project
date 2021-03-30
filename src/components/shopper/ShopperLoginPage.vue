@@ -35,7 +35,7 @@
 
 <script>
 import firebase from 'firebase';
-import db from "../firebase.js";
+import db from "../../firebase";
 
 export default {
     data() {
