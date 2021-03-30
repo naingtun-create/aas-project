@@ -53,7 +53,7 @@ export default {
   display: flex;
   padding-top: 0px;
   color:white;
-  background-color:#2e856e;
+  background-color:#c9AA88;
   height:100px;
   font-size:35px;
   padding-top: 0px;
