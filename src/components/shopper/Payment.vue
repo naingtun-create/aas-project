@@ -38,8 +38,7 @@
 
 <script>
 import db from '../../firebase.js'
-import firebase from 'firebase';
-
+import firebase from 'firebase'
 export default {
   name: 'OnlineMarketPlacePage',
   data(){

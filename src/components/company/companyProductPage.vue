@@ -3,7 +3,8 @@
     <company-header></company-header>
     <div id="intro">
         <img id="arrow" src='../../assets/arrow.png'>
-        <router-link id="arrow" to="/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
+        <router-link id="arrow" to="/company/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
+        <br><br>
         <p> {{this.datapacket[0].category}} <p>
         <p id="title"> {{this.datapacket[0].title}}</p>
         <p>{{this.datapacket[0].description}}</p>
@@ -13,23 +14,16 @@
     <div id="contents">
         <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
-        <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
+        <p id="bold">Additional Information: </p> {{this.datapacket[0].sizeguide}}
         <p v-if="this.datapacket[0].size" id="bold"> Select Size: 
             <v-select v-model="selectedSize" :items="this.datapacket[0].size" filled label="Size" dense ></v-select>
         </p>
-        <p v-if="this.datapacket[0].colors" id="bold"> Select Colour:
-            <v-select v-model="selectedColour" :items="this.datapacket[0].colors" filled label="Colour" dense ></v-select>
-        </p>
-        <p id="bold"> Select Quantity: </p>
-        <input v-model="qty" id=index placeholder=0 type="number" min="1">
-        <br><br> 
-        <span v-if="this.datapacket[0].size" id="select">Selected Size: {{ selectedSize }}</span>
         <br>
-        <span v-if="this.datapacket[0].colors" id="select">Selected Colour: {{ selectedColour }}</span>
-        <br>
-        <span id="select">Selected Quantity: {{this.qty}}</span>
-        <br><br>
-        <button v-on:click="sendOrder()">Add to Cart</button>
+        <p id="bold"> Colours Available:</p>
+        <p v-for="color in this.datapacket[0].colors" :key="color.id">{{color}}</p>
+
+        <p id="bold"> Sizes Available:</p>
+        <p v-for="size in this.datapacket[0].siz" :key="size.id">{{size}}</p>
     </div> 
   </div>
 </template>
@@ -102,14 +96,14 @@ export default {
 #intro {
     width:50%;
     float:left;
-    padding-top:100px;
+    padding-top:50px;
     padding-left:200px;
     font-size:30px;
     text-align:left;
 }
 #contents {
     width:40%;
-    padding-top:100px;
+    padding-top:130px;
     float:right;
     font-size:40px;
     margin: 100px;  
