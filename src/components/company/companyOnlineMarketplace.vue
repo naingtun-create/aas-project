@@ -1,6 +1,6 @@
 <template>
     <div id = "OnlineMarketPlace">
-      <shopper-header></shopper-header>
+      <company-header></company-header>
         <nav>
             <v-toolbar floating width="400">   
                 <v-text-field single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>

@@ -14,7 +14,6 @@ import cIncubator from './components/company/companyIncubator.vue'
 import cProductPage from './components/company/companyProductPage.vue'
 import cPhysicalStore from './components/company/companyPhysicalStore.vue'
 import cOnlineMarketplace from './components/company/companyOnlineMarketplace.vue'
-import cPayment from './components/company/companyPayment.vue'
 
 import ShopperLoginPage from './components/shopper/ShopperLoginPage.vue'
 import ShopperSignUpPage from './components/shopper/ShopperSignUpPage.vue'
@@ -38,7 +37,6 @@ export default [
     { path: '/signUpSuccessful', component: SignUpSuccessful},
     { path: '/resetpassword', component: ResetPassword},
     { path: '/resetsuccess', component: ResetSuccessful},
-    { path: '/companypage', component: CompanyPage},
     { path: '/register', component: Register},
     { path: '/payment', component: Payment},
 
@@ -48,7 +46,7 @@ export default [
     { path: '/shopper/incubator', component: Incubator},
     { path: '/shopper/product', name: 'product', component: ProductPage, props: true },
 
-    { path: '/company/payment', component: cPayment},
+    { path: '/companypage', component: CompanyPage},
     { path: '/company/physicalstore', component: cPhysicalStore},
     { path: '/company/onlinemarketplace', component: cOnlineMarketplace},
     { path: '/company/incubator', component: cIncubator},
