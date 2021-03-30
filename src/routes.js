@@ -28,7 +28,7 @@ export default [
     { path: '/signup', component: SignUpPage},
     { path: '/companysignup', component: CompanySignUpPage},
     { path: '/shoppersignup', component: ShopperSignUpPage},
-    { path: '/profile', component: ProfilePage, meta: { requiresAuth: true}},
+    { path: '/profile', component: ProfilePage, meta: {requiresAuth: true}},
     { path: '/physicalstore', component: PhysicalStore},
     { path: '/onlinemarketplace', component: OnlineMarketplace},
     { path: '/incubator', component: Incubator},
