@@ -33,13 +33,13 @@ export default [
     { path: '/signup', component: SignUpPage},
     { path: '/companysignup', component: CompanySignUpPage},
     { path: '/shoppersignup', component: ShopperSignUpPage},
-    { path: '/profile', component: ProfilePage, meta: {requiresAuth: true}},
     { path: '/signUpSuccessful', component: SignUpSuccessful},
     { path: '/resetpassword', component: ResetPassword},
     { path: '/resetsuccess', component: ResetSuccessful},
     { path: '/register', component: Register},
     { path: '/payment', component: Payment},
 
+    { path: '/shopper/profile', component: ProfilePage, meta: {requiresAuth: true}},
     { path: '/shopper/payment', component: Payment},
     { path: '/shopper/physicalstore', component: PhysicalStore},
     { path: '/shopper/onlinemarketplace', component: OnlineMarketplace},
@@ -50,5 +50,5 @@ export default [
     { path: '/company/physicalstore', component: cPhysicalStore},
     { path: '/company/onlinemarketplace', component: cOnlineMarketplace},
     { path: '/company/incubator', component: cIncubator},
-    { path: '/company/product', name: 'product', component: cProductPage, props: true },
+    { path: '/company/product', name: 'companyProduct', component: cProductPage, props: true },
 ]
