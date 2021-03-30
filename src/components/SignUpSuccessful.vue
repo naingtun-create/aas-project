@@ -11,8 +11,8 @@
             </v-card-text>
         </v-card><br><br><br><br>
 
-        <p>Already have account?</p>
-        <v-btn x-large v-on:click = "$router.push('login')" color="blue"> Login </v-btn>
+        <p>Get started with our website?</p>
+        <v-btn x-large v-on:click = "$router.push('/')" color="blue"> Login </v-btn>
     </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <shopper-header></shopper-header>
     <v-container class="grey lighten-5 mb-6">
       <v-row no-gutters class="mb-6">
         <v-col cols="2">

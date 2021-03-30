@@ -69,7 +69,6 @@
                 >
               </template></v-combobox
             ><br />
-            {{ this.colors }}
             <v-file-input
               accept="image/*"
               label="Product Image"
@@ -95,7 +94,7 @@
 </template>
 
 <script>
-import db from "../firebase.js";
+import db from "../../firebase.js";
 import firebase from "firebase";
 
 export default {
@@ -147,9 +146,9 @@ export default {
           price: this.price,
           image: [],
           sizeguide: this.sizeguide,
-          sizings: Object.assign({}, this.sizings),
+          sizings: this.sizings,
           category: this.selectedCategory,
-          colors: Object.assign({}, this.colors),
+          colors: this.colors,
         };
 
         console.log(product);
@@ -205,7 +204,7 @@ export default {
     },
     onFilePicked: function() {
         
-        var reader = new FileReader()
+        var reader = new FileReader() 
         reader.readAsDataURL(this.image)
         reader.onload = () => {
             this.imageURL = reader.result;
