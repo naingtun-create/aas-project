@@ -73,13 +73,12 @@ export default {
                     user.updateProfile({
                         displayName: this.fullName
                     }).then(() => {
-                        db.collection('users').doc(user.uid).set({
+                        db.collection('shoppers').doc(user.uid).set({
                             fullname: this.fullName,
                             email: this.email,
                             address: this.address,
                             postalCode: this.postalCode,
                             unitNo: this.unitNo,
-                            type: "Shopper"
                         })
                     }).then(()=> {
                         alert("Account Created Successfully!")
