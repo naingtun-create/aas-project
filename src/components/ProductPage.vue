@@ -1,6 +1,8 @@
 <template>
   <div>
     <div id="intro">
+        <img id="arrow" src='../assets/arrow.png'>
+        <router-link id="arrow" to="/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
         <p> {{this.datapacket[0].category}} <p>
         <p id="title"> {{this.datapacket[0].title}}</p>
         <p>{{this.datapacket[0].description}}</p>
@@ -26,7 +28,7 @@
         <br>
         <span id="select">Selected Quantity: {{this.qty}}</span>
         <br><br>
-        <button>Add to Cart</button>
+        <button v-on:click="sendOrder()">Add to Cart</button>
     </div> 
   </div>
 </template>
@@ -34,7 +36,10 @@
 <script>
 import Vue from 'vue'
 import database from '../firebase.js'
+import firebase from 'firebase'
+
 Vue.component('database',database)
+
 export default {
     props: ["id"],
     data(){  
@@ -45,6 +50,8 @@ export default {
         selectedColour: '',
         datapacket:[],
         order:[],
+        currentCart:[],
+        user:firebase.auth().currentUser.uid,
         }
     },
     methods:{
@@ -53,11 +60,34 @@ export default {
             let item ={}
             item=doc.data()
             this.datapacket.push(item)
-            })  
+            })
+        var docRef = database.collection("cart").doc(this.user);
+        docRef.get().then((docSnapshot) => {
+            if (docSnapshot.exists) {
+                docRef.get().then((doc) => {
+                    let item={}
+                    item=doc.data()
+                    console.log(item)
+                    this.currentCart.push(item);
+                })
+            }
+        });
+        
         },
         sendOrder: function() {
-            this.order.push([this.id,this.quantity]);
-            //database.collection('cart').add(Object.assign({}, this.fullbkt)).then(() => location.reload());
+            if(Object.keys(this.currentCart).length>0){
+                this.currentCart=Object.values(this.currentCart[0]);
+                console.log(Object.values(this.currentCart)[0])
+            }
+            this.currentCart.push({
+                    id:this.id,
+                    qty:this.qty,
+                    size:this.selectedSize,
+                    color:this.selectedColour,
+                    price:this.datapacket[0].price,
+                });
+            database.collection("cart").doc(this.user).set(Object.assign({},this.currentCart));
+            alert("Your order has been added to cart")
 
         },  
     },
@@ -107,6 +137,11 @@ button {
 input[type=number] {
     background-color: #ececec;
     font-size:40px;
+}
+#arrow {
+    height:60px;
+    font-size:40px;
+    color:black;
 }
 </style>
 
