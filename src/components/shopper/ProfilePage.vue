@@ -1,14 +1,67 @@
 <template>
     <div id="profilepage">
-        <h1>Header</h1>
-        <h2>Testing</h2>
-        <h3>Hello World</h3>
-        <div style="margin-left: 0px; margin-top:100px; position: aboslute;right:150px;">
-            <p>Testing</p>
+        <shopper-header></shopper-header>
+        <h1>My Account</h1>
+
+        <div class="row">
+          
+          <div id="column1">
+            <h2>View</h2>
+            <ul>
+              <li>
+                <v-btn><router-link to="/companylogin" exact>Purchase History</router-link></v-btn>
+              </li>
+              <li>
+                <v-btn><router-link to="/shopperlogin" exact>Cart</router-link></v-btn>
+              </li>
+              <li>
+                <v-btn><router-link to="/shopperlogin" exact>My Likes</router-link></v-btn>
+              </li>
+              <li>
+                <v-btn><router-link to="/shopperlogin" exact>My Vouchers</router-link></v-btn>
+              </li>
+              <li>
+                <v-btn><router-link to="/shopperlogin" exact>Funded Kickstarters</router-link></v-btn>
+              </li>
+              <li>
+                <v-btn><router-link to="/shopperlogin" exact>Payment Details</router-link></v-btn>
+              </li>
+              <li>
+                <v-btn><router-link to="/shopperlogin" exact>Account Settings</router-link></v-btn>
+              </li>                                                                      
+            </ul>
+            <v-btn class="ma-2" color="grey lighten-2" v-on:click="logout" dark>
+              <v-icon dark right>mdi-account-remove</v-icon>Sign out
+            </v-btn>            
+          </div>
+          
+          <div id="column2">
+            <h1>Omar Yahla</h1>
+
+          </div>
+        
         </div>
+
+    
     </div>
 </template>
 
+<script>
+import firebase from 'firebase'
+
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login');
+      });      
+    }
+  }
+};
+</script>
 
 
 
@@ -23,7 +76,7 @@
 }
 h1 {
   text-align: left;
-  padding-left: 20px;
+  padding-left: 500px;
   color: rgb(8, 8, 8);
   font-family: Nunito;
   font-weight: bolder;
@@ -50,22 +103,25 @@ h4 {
   font-family: Nunito;
   font-weight: normal;
 }
+#column1 {
+  float: left;
+  width: 30%;
+}
+#column2 {
+  float: left;
+  width: 70%;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 ul {
-  list-style-type: none;
-  margin-top: -20px;
+  margin-top: 100px;
   padding: 0;
 }
 li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  font-family: Nunito;
-  font-weight: bold;
-  color: rgb(0, 114, 180);
-  text-decoration: none;
-}
-.router-link-active {
-  color:white
+  margin-top:25px;
 }
 </style>
