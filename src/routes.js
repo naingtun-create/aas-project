@@ -16,6 +16,7 @@ import cOnlineMarketplace from './components/company/companyOnlineMarketplace.vu
 
 import ShopperLoginPage from './components/shopper/ShopperLoginPage.vue'
 import ShopperSignUpPage from './components/shopper/ShopperSignUpPage.vue'
+import ShopperPurchaseHistory from './components/shopper/ShopperPurchaseHistory.vue'
 import ProfilePage from './components/shopper/ProfilePage.vue'
 import Incubator from './components/shopper/Incubator.vue'
 import ProductPage from './components/shopper/ProductPage.vue'
@@ -44,6 +45,7 @@ export default [
     { path: '/shopper/onlinemarketplace', component: OnlineMarketplace},
     { path: '/shopper/incubator', component: Incubator},
     { path: '/shopper/product', name: 'product', component: ProductPage, props: true },
+    { path: '/shopper/purchasehistory', component: ShopperPurchaseHistory},
 
     { path: '/companypage', component: CompanyPage},
     { path: '/company/physicalstore', component: cPhysicalStore},
