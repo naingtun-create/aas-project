@@ -4,32 +4,32 @@
       <ul class="logo"> All About Sustainability</ul>
       <div class="links">
           <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <router-link to="/shopper/physicalstore" exact>Physical Store</router-link>
           <v-icon dark right>mdi-store</v-icon>
-          <ul><router-link to="/shopper/physicalstore" exact>Physical Store</router-link></ul>
           </v-btn>
 
           <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <router-link to="/shopper/onlinemarketplace" exact>Online Marketplace</router-link> 
           <v-icon dark right>mdi-storefront</v-icon>
-          <ul><router-link to="/shopper/onlinemarketplace" exact>Online Marketplace</router-link></ul>   
           </v-btn>
 
           <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <router-link to="/shopper/incubator" exact>Incubator</router-link>
           <v-icon dark right>mdi-lifebuoy</v-icon>
-          <ul><router-link to="/shopper/incubator" exact>Incubator</router-link></ul>
           </v-btn>
 
           <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <router-link to="/shopper/profile" exact>Profile</router-link>
           <v-icon dark right>mdi-account</v-icon>
-          <ul><router-link to="/shopper/profile" exact>Profile</router-link></ul>
           </v-btn>
 
           <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <router-link to="/shopper/payment" exact>View Cart</router-link>
           <v-icon dark right>mdi-cart</v-icon>
-          <ul><router-link to="/shopper/payment" exact>View Cart</router-link></ul>
           </v-btn>
 
-          <v-btn class="ma-2" color="grey lighten-2" v-on:click="logout" dark>
-          <v-icon dark right>mdi-account-remove</v-icon>Sign out
+          <v-btn class="ma-2" color="red" v-on:click="logout" dark>Sign Out
+          <v-icon dark right>mdi-account-remove</v-icon>
           </v-btn>
 
       </div>
