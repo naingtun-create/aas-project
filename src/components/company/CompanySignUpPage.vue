@@ -13,17 +13,19 @@
                        type="email"
                        label="Email address"
                        required
-                       v-model="email"></v-text-field>
-                       <v-text-field
-                       label="Password..."
-                       v-model="password"
-                       ></v-text-field>
+                       v-model="email" append-icon="mdi-email"></v-text-field>
+                       <v-text-field label="Password (Press icon to show/hide password)" v-model="password"
+                       :value="myPass"                     
+                       :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                       @click:append="() => (value = !value)"
+                       :type="value ? 'password' : 'text'">
+                       </v-text-field>      
                        <v-text-field
                        label="Company Name"
-                       v-model="companyName"></v-text-field>
+                       v-model="companyName" append-icon="mdi-domain"></v-text-field>
                        <v-textarea
                        label="Company Description"
-                       v-model="description"></v-textarea>
+                       v-model="description" append-icon="mdi-image-text"></v-textarea>
                        <v-btn color="#B3E5FC" class="mr-4"
                        type="submit">Register</v-btn>
                     </v-form>
@@ -51,6 +53,7 @@ export default {
             image:[],
             imageURL:'',
             description:'',
+            value:String,
         };
     },
     methods: {
