@@ -1,4 +1,3 @@
-//import HomePage from './components/HomePage.vue'
 import SignUpPage from './components/SignUpPage.vue'
 import SignUpSuccessful from './components/SignUpSuccessful.vue'
 import ResetPassword from './components/ResetPassword.vue'
@@ -25,7 +24,6 @@ import OnlineMarketplace from './components/shopper/OnlineMarketplace.vue'
 import Payment from './components/shopper/Payment.vue'
 
 export default [
-    //{ path: '/', component: HomePage},
     { path: '/login', component: LoginDir},
     { path: '/', component: LoginDir},
     { path: '/companylogin', component: CompanyLoginPage},
