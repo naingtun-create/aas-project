@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div id="profilepage">
         <h1>Header</h1>
         <h2>Testing</h2>
@@ -69,3 +70,16 @@ a {
   color:white
 }
 </style>
+=======
+    <div id="ProfilePage">
+        <shopper-header></shopper-header>
+        <p> this is profile xxx</p>
+        </div>
+</template>>
+
+<script>
+</script>
+
+<style scoped>
+</style>
+>>>>>>> bb3b551df031a9a815a879a6864c8cf8909481ec

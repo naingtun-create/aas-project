@@ -1,6 +1,6 @@
 <template>
     <div id = "Incubator">
-        <shopper-header></shopper-header>
+        <company-header></company-header>
         <p>This is Incubator page</p>
         
     </div>

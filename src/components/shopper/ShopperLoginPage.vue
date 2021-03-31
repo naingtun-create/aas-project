@@ -60,7 +60,7 @@ export default {
                         .signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
                             alert('Successfully logged in');
-                            this.$router.push('/profile');
+                            this.$router.push('/shopper/profile');
                         })
                         .catch(error => {
                             alert(error.message);
