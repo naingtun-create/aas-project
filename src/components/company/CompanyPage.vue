@@ -1,5 +1,5 @@
 <template>
-<div id="companyPage">
+<div id="companypage">
     <company-header></company-header>
     <div id="intro">
         <div id="heading">
@@ -62,19 +62,24 @@
                 </p> -->
     </div>
 
-    <div id="products">
-        <h3 id="introproduct">Our Products </h3>
-    <div id="contentsproduct">
-        <NewProductForm></NewProductForm>
+    <div id="combined">
+        <ul>
+            <li>
+                <div id="productsection">
+                    <h3>Our Products</h3>
+                    <NewProductForm></NewProductForm>
+                </div>
+            </li>
+            
+            <li>
+                <div id="promotionsection">
+                    <h3>Upcoming Promotional Activities</h3>
+                    <NewPromoForm></NewPromoForm>
+                </div>
+            </li>
+        </ul>
     </div>
-    </div>
-
-    <div id="promotionals">
-        <h3 id="intropromo">Upcoming Promotional Activities </h3>
-    <div id="contents">
-        <NewPromoForm></NewPromoForm>
-    </div>
-    </div>
+    <br><br>
 </div>
 </template>
 
@@ -187,7 +192,13 @@ export default {
 </script>
 
 <style scoped>
-
+#companypage {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+}
 #intro {
     float:left;
     padding-top:100px;
@@ -195,37 +206,23 @@ export default {
     font-size:30px;
     text-align:left;
 }
-#introproduct {
+#productsection {
     float:left;
-    padding-top:100px;
-    padding-left:200px;
-    font-size:30px;
     text-align:left;
+    font-size:30px;
+    padding-left:170px;
+    
 }
-#intropromo {
+#promotionsection {
     float:left;
-    padding-top:100px;
-    padding-left:200px;
-    font-size:30px;
     text-align:left;
+    font-size:30px;
+    padding-left:170px;
+    margin-top:50px;
+    
 }
-#contentsproduct {
-    width:40%;
-    padding-top:150px;
-    float:right;
-    font-size:40px;
-    margin: 100px;  
-    padding-left:100px;
-}
-#contents {
-    width:40%;
-    padding-top:50px;
-    float:right;
-    font-size:40px;
-    margin: 50px;  
-}
-#bold{
-    font-weight: bold;
+#combined{
+    display:table-cell;
 }
 #title{
     font-weight: bold;
@@ -236,16 +233,15 @@ export default {
 #heading {
     display: inline-block;
 }
-#products {
-    padding-top:0px;
-    width:60%;
-}
-#promotionals {
-    padding-top:0px;
-    width: 60%;
-}
 img {
   width: 100%;
   height: auto;
+}
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+li {
+  margin-top:25px;
 }
 </style>
