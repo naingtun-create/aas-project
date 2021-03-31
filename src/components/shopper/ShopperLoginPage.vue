@@ -9,8 +9,13 @@
             <v-card-title>Login & start browsing!</v-card-title>
             <v-card-text>
                 <v-form>
-                    <v-text-field label="Email" v-model="email"></v-text-field>
-                    <v-text-field label="Password" v-model="password"></v-text-field>
+                    <v-text-field label="Email" v-model="email" append-icon="mdi-email"></v-text-field>
+                    <v-text-field label="Password (Press icon to show/hide password)" v-model="password"
+                    :value="myPass"                     
+                    :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="() => (value = !value)"
+                    :type="value ? 'password' : 'text'">
+                    </v-text-field>
                 </v-form>
             </v-card-text>
             <v-card-actions>
@@ -42,6 +47,7 @@ export default {
         return {
             email: null,
             password: null,
+            value:String,
         };
     },
     methods: {
