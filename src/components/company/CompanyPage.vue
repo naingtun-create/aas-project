@@ -91,7 +91,7 @@ export default {
             dialog: false,
             image: [], 
             imageURL: "",
-            profileURL: "",
+            profileURL: '',
             companyData: [],
             products: []
         }
@@ -168,7 +168,9 @@ export default {
 
             await db.collection("company").doc(k).get().then((doc) => {
                 this.companyData = doc.data();
-                this.profileURL = this.companyData.profilePic
+                if (!this.companyData.profilePic.empty) {
+                    this.profileURL = this.companyData.profilePic
+                }
                 console.log(this.profileURL)
             })
 
@@ -184,8 +186,8 @@ export default {
 }
 </script>
 
-<sty,
-        CompanyHeaderle scoped>
+<style scoped>
+
 #intro {
     float:left;
     padding-top:100px;
