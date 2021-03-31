@@ -1,4 +1,3 @@
-import LoginPage from './components/LoginPage.vue'
 //import HomePage from './components/HomePage.vue'
 import SignUpPage from './components/SignUpPage.vue'
 import SignUpSuccessful from './components/SignUpSuccessful.vue'
@@ -26,8 +25,8 @@ import Payment from './components/shopper/Payment.vue'
 
 export default [
     //{ path: '/', component: HomePage},
+    { path: '/login', component: LoginDir},
     { path: '/', component: LoginDir},
-    { path: '/login', component: LoginPage},
     { path: '/companylogin', component: CompanyLoginPage},
     { path: '/shopperlogin', component: ShopperLoginPage},
     { path: '/signup', component: SignUpPage},
