@@ -23,6 +23,8 @@ import PhysicalStore from './components/shopper/PhysicalStore.vue'
 import OnlineMarketplace from './components/shopper/OnlineMarketplace.vue'
 import Payment from './components/shopper/Payment.vue'
 
+import pstore from './components/shopper/Store.vue'
+
 export default [
     { path: '/login', component: LoginDir},
     { path: '/', component: LoginDir},
@@ -44,6 +46,8 @@ export default [
     { path: '/shopper/incubator', component: Incubator},
     { path: '/shopper/product', name: 'product', component: ProductPage, props: true },
     { path: '/shopper/purchasehistory', component: ShopperPurchaseHistory},
+
+    { path: '/shopper/pstore', component: pstore},
 
     { path: '/companypage', component: CompanyPage},
     { path: '/company/physicalstore', component: cPhysicalStore},

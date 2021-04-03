@@ -4,27 +4,19 @@
         <nav>
         <v-card size="1000" class="mx-auto" color = "#E3F2FD">
             <v-container>
-                <ul>
-                <li v-for="item in items" :key="item.id">
-  
-                            <div class="d-lg-flex flex-no-wrap" >
-
-                                <v-avatar class="ma-3" size="250" tile>
-                                    <v-img height="300" src="https://static.onecms.io/wp-content/uploads/sites/23/2020/08/24/what-is-a-sustainable-product-2000.jpg"></v-img>
-                                </v-avatar>
-                                <div id="productInfo">
-                                    <h1>item.title</h1>
-                                    <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
-                                    <p>Cost: ${{item.totalPrice}}</p>
-                                </div>
-
-                            </div>
-                            <v-divider ></v-divider>    
-                       
-                </li>
-                    
-                </ul>
-                <p id="subtotal" > SUBTOTAL:${{this.subtotal}}</p>
+                <ul><li v-for="item in items" :key="item.id">
+                  <div class="d-lg-flex flex-no-wrap" >
+                    <v-avatar class="ma-3" size="250" tile>
+                      <v-img height="300" src="https://static.onecms.io/wp-content/uploads/sites/23/2020/08/24/what-is-a-sustainable-product-2000.jpg"></v-img>
+                    </v-avatar>
+                    <div id="productInfo">
+                      <h1>item.title</h1>
+                      <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
+                      <p>Cost: ${{item.totalPrice}}</p>
+                    </div>
+                  </div>
+                </li></ul>
+              <p id="subtotal" > SUBTOTAL:${{this.subtotal}}</p>
             </v-container>
         </v-card>
         </nav>
