@@ -63,7 +63,7 @@
         </nav>
               
         <h1 id="title">Our Products</h1>
-        <div id="contents">          
+        <div id="contents">     
             <v-container fluid>
                 <v-layout>
                     <ul id="itemsList">

@@ -3,6 +3,11 @@
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
       <ul class="logo"> All About Sustainability</ul>
       <div class="links">
+        <v-btn class="ma-2" color="blue-grey lighten-2" dark>
+          <router-link to="/shopper/pstore" exact>Physical Store</router-link>
+          <v-icon dark right>mdi-store</v-icon>
+          </v-btn>
+
           <v-btn class="ma-2" color="blue-grey lighten-2" dark>
           <router-link to="/shopper/physicalstore" exact>Physical Store</router-link>
           <v-icon dark right>mdi-store</v-icon>
