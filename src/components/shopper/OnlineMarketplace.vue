@@ -17,23 +17,30 @@
                         dense
                     ></v-checkbox>
                     <v-checkbox
-                        label="Decoration"
+                        label="ACCESSORY"
                         v-model="selectedCategories"
-                        value="Decoration"
+                        value="ACCESSORY"
                         hide-details
                         dense
                     ></v-checkbox>
                     <v-checkbox
-                        label="Clothing"
+                        label="CLEANING"
                         v-model="selectedCategories"
-                        value="Clothing"
+                        value="CLEANING"
                         hide-details
                         dense
                     ></v-checkbox>
                     <v-checkbox
-                        label="Food and Drink"
+                        label="CLOTHING"
                         v-model="selectedCategories"
-                        value="Food and Drink"
+                        value="CLOTHING"
+                        hide-details
+                        dense
+                    ></v-checkbox>
+                    <v-checkbox
+                        label="FOOD and DRINK"
+                        v-model="selectedCategories"
+                        value="FOOD and DRINK"
                         hide-details
                         dense
                     ></v-checkbox>
