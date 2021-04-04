@@ -4,19 +4,29 @@
         <nav>
         <v-card size="1000" class="mx-auto" color = "#E3F2FD">
             <v-container>
-                <ul><li v-for="item in items" :key="item.id">
-                  <div class="d-lg-flex flex-no-wrap" >
-                    <v-avatar class="ma-3" size="250" tile>
-                      <v-img height="300" src="https://static.onecms.io/wp-content/uploads/sites/23/2020/08/24/what-is-a-sustainable-product-2000.jpg"></v-img>
-                    </v-avatar>
-                    <div id="productInfo">
-                      <h1>item.title</h1>
-                      <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
-                      <p>Cost: ${{item.totalPrice}}</p>
-                    </div>
-                  </div>
-                </li></ul>
-              <p id="subtotal" > SUBTOTAL:${{this.subtotal}}</p>
+                <ul>
+                <li v-for="(item,id) in items" :key="id">
+  
+                            <div class="d-lg-flex flex-no-wrap" >
+
+                                <v-avatar class="ma-3" size="250" tile>
+                                    <v-img height="300" src="https://static.onecms.io/wp-content/uploads/sites/23/2020/08/24/what-is-a-sustainable-product-2000.jpg"></v-img>
+                                </v-avatar>
+                                <div id="productInfo">
+                                    <h1>item.title</h1>
+                                    <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
+                                    <p>Cost: ${{item.totalPrice}}</p>
+                                    <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(id)">Delete</v-btn>    
+                                </div>
+                                                         
+                            </div>
+                            <br>
+                            <v-divider ></v-divider>    
+                       
+                </li>
+                    
+                </ul>
+                <p id="subtotal" > SUBTOTAL:${{this.subtotal}}</p>
             </v-container>
         </v-card>
         </nav>
@@ -24,7 +34,8 @@
             <img src = "https://upload.wikimedia.org/wikipedia/commons/e/e5/SPAYD_stored_in_the_QR_code.png" width = "700px" >
             <p>Please scan the QR code</p> 
             <p>Pay the required amount as stated in the subtotal</p>
-            <v-btn class="ml-2 mt-5" outlined rounded x-large>Make Payment</v-btn>
+            <NewPaymentForm v-bind:paidPrice = "subtotal"></NewPaymentForm>
+            
         </div>
     </div>
 </template>
@@ -32,6 +43,7 @@
 <script>
 import db from '../../firebase.js'
 import firebase from 'firebase'
+import NewPaymentForm from './NewPaymentForm.vue'
 
 export default {
   name: 'OnlineMarketPlacePage',
@@ -41,7 +53,11 @@ export default {
         subtotal:0,
         absent:true,
         productInfo:[],  
+        //paymentDetails:[],  
     }
+  },
+  components: {
+      NewPaymentForm: NewPaymentForm,
   },
   methods:{
     fetchItems:function(){
@@ -52,7 +68,8 @@ export default {
           title: '',
           image: '',
           id: '',
-          totalPrice: 0,          
+          totalPrice: 0,
+        
         }
         var details = []
         details = doc.data()
@@ -117,7 +134,16 @@ export default {
         //console.log(this.items)
       });
     },
+    deleteItem:function(pdt_id){
+      var user = firebase.auth().currentUser;
+      db.collection('cart').doc(user.uid).update({
+        [pdt_id]: firebase.firestore.FieldValue.delete()
+      }).then(() => location.reload());
+    },   
+    
   },
+
+
   created(){this.fetchItems()},
 
 }
@@ -174,5 +200,9 @@ h1{
   font-size: 50px;
   font-family: "monospace", Times, serif;
   padding-bottom: 15px;
+}
+
+#delete {
+  left: 700px;
 }
 </style>
