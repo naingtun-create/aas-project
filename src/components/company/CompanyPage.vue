@@ -44,22 +44,10 @@
         </div>
             <br/>
             <h3> Our Story </h3>
-                <p>
-                    <br/>
-                    {{companyData.description}}
-                </p>
-                <!-- <p> In 2018, Shlurple was born from an ingrained love of the sea… watching a turtle cry in pain 
-                    as a single-use plastic straw was removed from its nostril was the catalyst for us to want 
-                    to make a change.
-                    <br>
-                    <br>Shlurple’s mission has always been to provide alternatives to single-use plastic. 
-                    So, guided by our love for turtles and life as a whole, we have created a range of products 
-                    that not only reduce unnecessary waste but provide a platform to discuss the cleaning up of our act 
-                    and our oceans. We will continue to grow our following and provide alternatives until we solve 
-                    our current plastic pollution problem. 
-                    <br>
-                    <br>We hope you join us on our journey and remember… BUY A SHLURPLE, SAVE A TURTLE.
-                </p> -->
+            <p>
+                <br/>
+                {{companyData.description}}
+            </p>
     </div>
 
     <div id="combined">
@@ -89,6 +77,7 @@ import NewPromoForm from './NewPromoForm.vue'
 import firebase from "firebase";
 import db from "../../firebase.js";
 
+
 export default {
     name: "companyPage",
     data: () => {
@@ -110,8 +99,10 @@ export default {
             this.dialog = !this.dialog
         },
         close: function() {
-            this.close();
+            this.reset();
             this.toggleDialog();
+            //this.$forceUpdate();
+            location.reload()
             
         },
         uploadImage: async function() {
