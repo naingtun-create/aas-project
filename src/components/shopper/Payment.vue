@@ -10,13 +10,13 @@
                             <div class="d-lg-flex flex-no-wrap" >
 
                                 <v-avatar class="ma-3" size="250" tile>
-                                    <v-img height="300" src="https://static.onecms.io/wp-content/uploads/sites/23/2020/08/24/what-is-a-sustainable-product-2000.jpg"></v-img>
+                                    <v-img height="300" v-bind:src="item.image"></v-img>
                                 </v-avatar>
                                 <div id="productInfo">
-                                    <h1>item.title</h1>
+                                    <h1>{{item.title}}</h1>
                                     <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
                                     <p>Cost: ${{item.totalPrice}}</p>
-                                    <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(id)">Delete</v-btn>    
+                                    <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
                                 </div>
                                                          
                             </div>
@@ -34,7 +34,7 @@
             <img src = "https://upload.wikimedia.org/wikipedia/commons/e/e5/SPAYD_stored_in_the_QR_code.png" width = "700px" >
             <p>Please scan the QR code</p> 
             <p>Pay the required amount as stated in the subtotal</p>
-            <NewPaymentForm v-bind:paidPrice = "subtotal"></NewPaymentForm>
+            <NewPaymentForm v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
             
         </div>
     </div>
@@ -69,13 +69,13 @@ export default {
           image: '',
           id: '',
           totalPrice: 0,
-        
+          cartID:[],
         }
         var details = []
         details = doc.data()
         //console.log(details)  
         for(var info in details){
-          //console.log(details[info].id)    
+          //console.log(details.keys)    
           for(var item in this.items){
             //console.log(this.items[item].id) 
             if(details[info].id == this.items[item].id){
@@ -86,6 +86,7 @@ export default {
               }
               this.items[item].totalPrice += details[info].price * details[info].qty
               this.subtotal += details[info].price * details[info].qty
+              this.items[item].cartID.push(info)
               this.absent = false
               break   
             } else{
@@ -101,6 +102,7 @@ export default {
             product.id = details[info].id
             product.totalPrice += details[info].price * details[info].qty
             this.subtotal += details[info].price * details[info].qty
+            product.cartID.push(info)
             this.items.push(product)
             product = {
               colors: [],
@@ -108,6 +110,7 @@ export default {
               image: '',
               id: '',
               totalPrice: 0,
+              cartID:[],
             }
           }
 
@@ -117,28 +120,43 @@ export default {
             let good = {}
             snapshot.docs.forEach(doc => {
                 good = doc.data();
-                this.productInfo.push(good)
-                //console.log(this.productInfo)  
+                this.productInfo.push([doc.id, good])
             });
-        });
-        //console.log(this.productInfo)  
+           //console.log(this.productInfo)  
         for(var pdt in this.items){
           for(var goods in this.productInfo){
-            if(this.items[pdt].id == this.productInfo[goods].id){
-              this.items[pdt].image = this.productInfo[goods].image                
-              this.items[pdt].title = this.productInfo[goods].title
+            //console.log(this.productInfo[goods].id)   
+            
+            //console.log(this.productInfo[goods][0])  
+            if(this.items[pdt].id == this.productInfo[goods][0]){
+              this.items[pdt].image = this.productInfo[goods][1].image 
+              //console.log(this.productInfo[goods][1].image)                
+              this.items[pdt].title = this.productInfo[goods][1].title
+              console.log(this.items) 
               break
             }
           }
         }
+            //console.log(this.productInfo)  
+        });
+        //console.log(this.productInfo)  
+
         //console.log(this.items)
       });
     },
-    deleteItem:function(pdt_id){
+    deleteItem:function(cart_id, pdt_id, price){
       var user = firebase.auth().currentUser;
-      db.collection('cart').doc(user.uid).update({
-        [pdt_id]: firebase.firestore.FieldValue.delete()
-      }).then(() => location.reload());
+      console.log(cart_id)
+      for(var id of cart_id){
+        db.collection('cart').doc(user.uid).update({         
+          [id]: firebase.firestore.FieldValue.delete()
+        });
+      }
+      this.filterList = this.items.filter((itemf) => itemf.id != pdt_id)
+      this.subtotal -= price
+      this.items = this.filterList
+      //location.reload()
+      
     },   
     
   },
@@ -197,9 +215,10 @@ p{
 }
 
 h1{
-  font-size: 50px;
-  font-family: "monospace", Times, serif;
+  font-size: 40px;
+  font-family: "Copperplate", Times, serif;
   padding-bottom: 15px;
+  color:"#A52A2A";
 }
 
 #delete {

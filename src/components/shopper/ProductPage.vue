@@ -3,7 +3,7 @@
     <shopper-header></shopper-header>
     <div id="intro">
         <img id="arrow" src='../../assets/arrow.png'>
-        <router-link id="arrow" to="/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
+        <router-link id="arrow" to="/shopper/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
         <br><br>
         <p> {{this.datapacket[0].category}} <p>
         <p id="title"> {{this.datapacket[0].title}}</p>
@@ -15,8 +15,8 @@
         <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
         <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
-        <p v-if="this.datapacket[0].size" id="bold"> Select Size: 
-            <v-select v-model="selectedSize" :items="this.datapacket[0].size" filled label="Size" dense ></v-select>
+        <p v-if="this.datapacket[0].sizings" id="bold"> Select Size: 
+            <v-select v-model="selectedSize" :items="this.datapacket[0].sizings" filled label="Size" dense ></v-select>
         </p>
         <p v-if="this.datapacket[0].colors" id="bold"> Select Colour:
             <v-select v-model="selectedColour" :items="this.datapacket[0].colors" filled label="Colour" dense ></v-select>
