@@ -105,8 +105,10 @@ export default {
             this.dialog = !this.dialog
         },
         close: function() {
-            this.close();
             this.toggleDialog();
+            this.imageURL = ""
+            this.image = []
+            location.reload();
             
         },
         uploadImage: async function() {
@@ -120,6 +122,10 @@ export default {
             //Reference to the storage
             var storageRef = firebase.storage().ref("ProfilePics/" + user.uid + "/" + k);
 
+            //remember to add the delete or update storage to check first
+
+
+            
             //Waiting till it uploaded to firebase storage
             await storageRef.put(this.image)
             var _extension = this.image.name.split(".")[1]
@@ -168,7 +174,7 @@ export default {
 
             await db.collection("company").doc(k).get().then((doc) => {
                 this.companyData = doc.data();
-                if (!this.companyData.profilePic.empty) {
+                if (typeof this.companyData.profilePic !== 'undefined') {
                     this.profileURL = this.companyData.profilePic
                 }
                 console.log(this.profileURL)
