@@ -20,7 +20,7 @@
             <br>
             <p id="paidAmount"> Paid Amount: <b>${{paidPrice}}</b></p>
             <br><br>
-            <v-btn color="success" v-on:click="addProduct()" class="mr-4"
+            <v-btn color="success" v-on:click="addPayment()" class="mr-4"
               >Confirm Payment</v-btn
             >
             <v-btn class="mr-4" v-on:click="close">Cancel</v-btn>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import db from '../../firebase.js'
+import firebase from 'firebase'
 
 export default {
   name: "NewProductForm",
@@ -40,15 +42,47 @@ export default {
       dialog: false,
       valid: false,
       invoice: "",
+      purchasedItems:[],
     };
   },
   props: {
-    paidPrice: {type: Number}
+    paidPrice: {type: Number},
+    paidItems: {type: Array}
   },
   methods: {
     close: function() {
       this.dialog = false;
     },
+    reset: function() {
+      this.$refs.form.reset();
+    },
+    addPayment:function(){
+      this.purchasedItems = this.paidItems
+      var user = firebase.auth().currentUser;
+      var features = []
+      for(var i in this.paidItems){
+        var item = this.paidItems[i].colors
+        for(var j in item){
+          var string = item[j][0] + " | " + item[j][1] + " | " + item[j][2]
+          features.push(string)
+        }    
+        this.purchasedItems[i].colors = features
+      }
+      console.log(this.paidItems)
+      var order = { //create java object with key value pairs
+        "Products": this.purchasedItems,
+        "PaymentInvoice": this.invoice,
+        "PaidAmount":this.paidPrice,
+        "UserID": user.uid,       
+      }
+      db.collection('transactions').add(order).then(()=>{
+        console.log("payment added");
+        this.reset();
+        
+      })
+      console.log(this.paidItems)
+      db.collection('cart').doc(user.uid).delete().then(() => location.reload())
+    }
 
   },
 };
