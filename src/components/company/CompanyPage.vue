@@ -1,9 +1,8 @@
 <template>
-<div id="companyPage">
+<div id="companypage">
     <company-header></company-header>
     <div id="intro">
         <div id="heading">
-            <!-- <p id="title" style="float:left">Shlurple</p> -->
             <p id="title" style="float:left">{{companyData.companyname}}</p>
             <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog">
@@ -41,48 +40,45 @@
             </v-dialog>
             <img v-show="profileURL != ''" style="float:right" :src="profileURL" v-on:click="toggleDialog">
             <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png" v-on:click="toggleDialog">
-        </div>
-            <br/>
-            <h3> Our Story </h3>
-                <p>
-                    <br/>
-                    {{companyData.description}}
-                </p>
-                <!-- <p> In 2018, Shlurple was born from an ingrained love of the sea… watching a turtle cry in pain 
-                    as a single-use plastic straw was removed from its nostril was the catalyst for us to want 
-                    to make a change.
-                    <br>
-                    <br>Shlurple’s mission has always been to provide alternatives to single-use plastic. 
-                    So, guided by our love for turtles and life as a whole, we have created a range of products 
-                    that not only reduce unnecessary waste but provide a platform to discuss the cleaning up of our act 
-                    and our oceans. We will continue to grow our following and provide alternatives until we solve 
-                    our current plastic pollution problem. 
-                    <br>
-                    <br>We hope you join us on our journey and remember… BUY A SHLURPLE, SAVE A TURTLE.
-                </p> -->
+    </div>
+        <br/>
+        <h3> Our Story </h3>
+        <br/>
+        <p>
+            {{companyData.description}}
+        </p>
     </div>
 
-    <div id="products">
-        <h3 id="introproduct">Our Products </h3>
-    <div id="contentsproduct">
-        <NewProductForm></NewProductForm>
+    <div id="combined">
+        <ul>
+            <li>
+                <div id="productsection">
+                    <h3>Our Products</h3>
+                    <ProductDisplay></ProductDisplay>
+                    <NewProductForm></NewProductForm>
+                </div>
+            </li>
+            
+            <li>
+                <div id="promotionsection">
+                    <h3>Upcoming Promotional Activities</h3>
+                    <NewPromoForm></NewPromoForm>
+                </div>
+            </li>
+        </ul>
     </div>
-    </div>
+    <br><br>
 
-    <div id="promotionals">
-        <h3 id="intropromo">Upcoming Promotional Activities </h3>
-    <div id="contents">
-        <NewPromoForm></NewPromoForm>
     </div>
-    </div>
-</div>
 </template>
 
 <script>
 import NewProductForm from './NewProductForm.vue'
 import NewPromoForm from './NewPromoForm.vue'
+import ProductDisplay from "./ProductDisplay"
 import firebase from "firebase";
 import db from "../../firebase.js";
+
 
 export default {
     name: "companyPage",
@@ -99,16 +95,17 @@ export default {
     components: {
         NewProductForm: NewProductForm,
         NewPromoForm: NewPromoForm,
+        ProductDisplay: ProductDisplay
     },
     methods: {
         toggleDialog: function() {
             this.dialog = !this.dialog
         },
         close: function() {
+            this.reset();
             this.toggleDialog();
-            this.imageURL = ""
-            this.image = []
-            location.reload();
+            //this.$forceUpdate();
+            location.reload()
             
         },
         uploadImage: async function() {
@@ -120,11 +117,9 @@ export default {
         try {
             //Its is place ProductImages => CompanyId => productiD
             //Reference to the storage
-            var storageRef = firebase.storage().ref("ProfilePics/" + user.uid + "/" + k);
+            var storageRef = firebase.storage().ref("ProfilePics/" + k);
 
             //remember to add the delete or update storage to check first
-
-
             
             //Waiting till it uploaded to firebase storage
             await storageRef.put(this.image)
@@ -193,7 +188,13 @@ export default {
 </script>
 
 <style scoped>
-
+#companypage {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+}
 #intro {
     float:left;
     padding-top:100px;
@@ -201,37 +202,23 @@ export default {
     font-size:30px;
     text-align:left;
 }
-#introproduct {
+#productsection {
     float:left;
-    padding-top:100px;
-    padding-left:200px;
-    font-size:30px;
     text-align:left;
+    font-size:30px;
+    padding-left:170px;
+    
 }
-#intropromo {
+#promotionsection {
     float:left;
-    padding-top:100px;
-    padding-left:200px;
-    font-size:30px;
     text-align:left;
+    font-size:30px;
+    padding-left:170px;
+    margin-top:50px;
+    
 }
-#contentsproduct {
-    width:40%;
-    padding-top:150px;
-    float:right;
-    font-size:40px;
-    margin: 100px;  
-    padding-left:100px;
-}
-#contents {
-    width:40%;
-    padding-top:50px;
-    float:right;
-    font-size:40px;
-    margin: 50px;  
-}
-#bold{
-    font-weight: bold;
+#combined{
+    display:table-cell;
 }
 #title{
     font-weight: bold;
@@ -242,16 +229,16 @@ export default {
 #heading {
     display: inline-block;
 }
-#products {
-    padding-top:0px;
-    width:60%;
-}
-#promotionals {
-    padding-top:0px;
-    width: 60%;
-}
 img {
   width: 100%;
   height: auto;
 }
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+li {
+  margin-top:25px;
+}
+
 </style>

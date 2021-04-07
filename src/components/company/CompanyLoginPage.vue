@@ -9,8 +9,13 @@
             <v-card-title>Login & start selling!</v-card-title>
             <v-card-text>
                 <v-form>
-                    <v-text-field label="Email" v-model="email"></v-text-field>
-                    <v-text-field label="Password" v-model="password"></v-text-field>
+                    <v-text-field label="Email" v-model="email" append-icon="mdi-email"></v-text-field>
+                    <v-text-field label="Password (Press icon to show/hide password)" v-model="password"
+                    :value="myPass"                     
+                    :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="() => (value = !value)"
+                    :type="value ? 'password' : 'text'">>
+                    </v-text-field>
                 </v-form>
             </v-card-text>
             <v-card-actions>
@@ -42,6 +47,7 @@ export default {
         return {
             email: null,
             password: null,
+            value:String,
         };
     },
     methods: {
@@ -68,12 +74,6 @@ export default {
 
                 }
 
-                // //Check if they are a company account
-                // await db.collection("company").where("email","==",this.email).orderBy("email").then( async () => {
-                // }).catch((e) => {
-                //     console.log(e)
-                //     alert("No such company email exist in the database. If you are a shopper, please proceed to the shopper login page!")
-                // })
             }
 
         },

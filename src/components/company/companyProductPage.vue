@@ -23,7 +23,7 @@
         <p v-for="color in this.datapacket[0].colors" :key="color.id">{{color}}</p>
 
         <p id="bold"> Sizes Available:</p>
-        <p v-for="size in this.datapacket[0].siz" :key="size.id">{{size}}</p>
+        <p v-for="size in this.datapacket[0].sizings" :key="size.id">{{size}}</p>
     </div> 
   </div>
 </template>
@@ -67,7 +67,6 @@ export default {
                 })
             }
         });
-        
         },
         sendOrder: function() {
             if(Object.keys(this.currentCart).length>0){

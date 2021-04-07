@@ -3,7 +3,7 @@
     <shopper-header></shopper-header>
     <div id="intro">
         <img id="arrow" src='../../assets/arrow.png'>
-        <router-link id="arrow" to="/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
+        <router-link id="arrow" to="/shopper/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
         <br><br>
         <p> {{this.datapacket[0].category}} <p>
         <p id="title"> {{this.datapacket[0].title}}</p>

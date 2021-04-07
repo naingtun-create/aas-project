@@ -11,25 +11,30 @@
                    <v-form @submit.prevent="register">
                        <v-text-field
                        type="email"
-                       label="Email address..."
-                       v-model="email"></v-text-field>
+                       label="Email"
+                       v-model="email" append-icon="mdi-email"></v-text-field>
                        <v-text-field
                        label="Full Name"
-                       v-model="fullName"></v-text-field>
+                       v-model="fullName" append-icon="mdi-account"></v-text-field>
                        <v-text-field
-                       type="password"
-                       label="Password..."
-                       v-model="password"></v-text-field>
+                       label="Phone Number"
+                       v-model="phoneNumber" append-icon="mdi-phone"></v-text-field>
+                       <v-text-field label="Password (Press icon to show/hide password)" v-model="password"
+                       :value="myPass"                     
+                       :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                       @click:append="() => (value = !value)"
+                       :type="value ? 'password' : 'text'">
+                       </v-text-field>                       
                        <v-text-field
                        label="Address"
-                       v-model="address"></v-text-field>
+                       v-model="address" append-icon="mdi-home"></v-text-field>
                        <v-text-field
                        type="number"
                        label="Postal Code"
-                       v-model="postalCode"></v-text-field>
+                       v-model="postalCode" append-icon="mdi-map-marker"></v-text-field>
                        <v-text-field
                        label="Unit Number"
-                       v-model="unitNo"></v-text-field>
+                       v-model="unitNo" append-icon="mdi-ticket-confirmation"></v-text-field>
                        <v-btn
                        color="#B3E5FC"
                        class="mr-4"
@@ -56,9 +61,11 @@ export default {
             fullName: '',
             email: '',
             password: '',
+            phoneNumber: '',
             address: '',
             postalCode: '',
-            unitNo: ''
+            unitNo: '',
+            value:String,
         };
     },
     methods: {
@@ -76,6 +83,7 @@ export default {
                         db.collection('shoppers').doc(user.uid).set({
                             fullname: this.fullName,
                             email: this.email,
+                            phoneNumber: this.phoneNumber,
                             address: this.address,
                             postalCode: this.postalCode,
                             unitNo: this.unitNo,

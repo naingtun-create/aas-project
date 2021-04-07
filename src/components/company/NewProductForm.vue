@@ -185,6 +185,7 @@ export default {
             alert("Product Added");
             this.dialog = false;
             this.reset();
+            location.reload()
           });
         
         } catch (e) {
