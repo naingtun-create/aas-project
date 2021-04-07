@@ -74,12 +74,6 @@ export default {
 
                 }
 
-                // //Check if they are a company account
-                // await db.collection("company").where("email","==",this.email).orderBy("email").then( async () => {
-                // }).catch((e) => {
-                //     console.log(e)
-                //     alert("No such company email exist in the database. If you are a shopper, please proceed to the shopper login page!")
-                // })
             }
 
         },

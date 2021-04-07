@@ -1,8 +1,9 @@
 <template>
   <div id="profilepage">
     <shopper-header></shopper-header>
+    <br/>
     <h1>Welcome to your AAS Account!</h1>
-    <v-avatar size="128" v-on:click="toggleDialog">
+    <v-avatar size="128" v-on:click="toggleUploadDialog">
       <span
         v-if="!this.profileURL"
         class="white--text headline"
@@ -11,7 +12,7 @@
       <img v-else :src="this.profileURL" />
     </v-avatar>
     <v-dialog
-      v-model="dialog"
+      v-model="uploadDialog"
       transition="dialog-top-transition"
       max-width="600"
       persistent
@@ -55,16 +56,14 @@
             <h2>View</h2>
             <ul>
               <li>
-                <v-btn class="ma-2" color="#20d3bb" dark>
-                  <router-link to="/shopper/purchasehistory" exact
-                    >Purchase History</router-link
-                  >
+                <v-btn class="ma-2" color="#20d3bb" v-on:click = "$router.push({path:'/shopper/purchasehistory'})" dark>
+                  Purchase History
                   <v-icon dark right>mdi-history</v-icon>
                 </v-btn>
               </li>
               <li>
-                <v-btn class="ma-2" color="#20d3bb" dark>
-                  <router-link to="/shopper/payment" exact>Cart</router-link>
+                <v-btn class="ma-2" color="#20d3bb" v-on:click = "$router.push({path:'/shopper/payment'})" dark>
+                  Cart
                   <v-icon dark right>mdi-cart</v-icon>
                 </v-btn>
               </li>
@@ -93,10 +92,37 @@
                 </v-btn>
               </li>
               <li>
-                <v-btn class="ma-2" color="#20d3bb" dark
+                <v-btn class="ma-2" color="#20d3bb" dark v-on:click="toggleEditDialog"
                   >Account Settings
                   <v-icon dark right>mdi-account-cog</v-icon>
                 </v-btn>
+                 <v-dialog
+                  v-model="editDialog"
+                  transition="dialog-top-transition"
+                  max-width="600"
+                  persistent>
+                  <template v-slot:default="dialog">
+                    <v-card>
+                      <v-toolbar color="primary" dark
+                        >Update your Personal Details</v-toolbar>
+                      <br/>
+                      <v-card-text>
+                        <v-text-field label="Address" v-model="updateAddress">
+                        </v-text-field>
+                        <v-text-field label="Postal Code" v-model="updatePostalCode">
+                        </v-text-field>
+                        <v-text-field label="Phone Number" v-model="updatePhone">
+                        </v-text-field>
+                      </v-card-text>
+                      <v-card-actions class="justify-end">
+                        <v-btn text @click="confirmUpdate">
+                          Update
+                        </v-btn>
+                        <v-btn text @click="dialog.value = false">Close</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </template>
+                </v-dialog>          
               </li>
             </ul>
             <ul>
@@ -112,9 +138,10 @@
       </div>
 
       <div id="column2">
-        <h1 id="h1col2">{{ shopperData.fullname }}</h1>
+        <h1 id="h1col2">{{shopperData.fullname}}</h1>
         <div id="box2">
           <h2>My Contact Details</h2>
+         
           <ul>
             <li>
               <div id="li2">
@@ -126,7 +153,15 @@
               <div id="li2">
                 <v-icon>mdi-map-marker</v-icon>
                 <h4>
-                  {{ shopperData.address + " " + shopperData.postalCode }}
+                  {{shopperData.address + " " + shopperData.postalCode}}
+                </h4>
+              </div>
+            </li>
+            <li v-show="shopperData.phoneNumber">
+              <div id="li2">
+                <v-icon>mdi-phone</v-icon>
+                <h4>
+                  {{shopperData.phoneNumber}}
                 </h4>
               </div>
             </li>
@@ -162,7 +197,7 @@
             </li>
           </ul>
         </div>
-        <br /><br /><br />
+        <br/><br/><br/>
       </div>
     </div>
   </div>
@@ -175,22 +210,24 @@ import db from "../../firebase.js";
 export default {
   data() {
     return {
+      id:"",
       shopperData: [],
       image: [],
       imageURL: "",
       profileURL: "",
       initials: "",
-      dialog: false,
+      updateAddress: "",
+      updatePhone: "",
+      updatePostalCode: "",
+      uploadDialog: false,
+      editDialog: false
     };
   },
   methods: {
     logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ path: "/" });
-        });
+      firebase.auth().signOut().then(() => {
+        this.$router.replace({path: "/"})
+      });      
     },
     close: function() {
       
@@ -200,8 +237,6 @@ export default {
       //location.reload();
     },
     uploadImage: async function() {
-      var user = firebase.auth().currentUser;
-      var k = user.uid;
 
       //Putting it in the storage
       try {
@@ -209,7 +244,7 @@ export default {
         //Reference to the storage
         var storageRef = firebase
           .storage()
-          .ref("ProfilePics/" + user.uid + "/" + k);
+          .ref("ProfilePics/" + this.id);
 
         //Waiting till it uploaded to firebase storage
         await storageRef.put(this.image);
@@ -229,7 +264,7 @@ export default {
             //Add it into the database
             await db
               .collection("shoppers")
-              .doc(k)
+              .doc(this.id)
               .update({
                 profilePic: url.toString(),
               });
@@ -252,12 +287,10 @@ export default {
       this.image = [];
     },
     fetchData: async function() {
-      var user = firebase.auth().currentUser;
-      var k = user.uid;
 
       await db
         .collection("shoppers")
-        .doc(k)
+        .doc(this.id)
         .get()
         .then((doc) => {
           this.shopperData = doc.data();
@@ -278,13 +311,45 @@ export default {
         this.initials = fullname[0][0];
       }
     },
-    toggleDialog: function() {
-      this.dialog = !this.dialog;
+    toggleUploadDialog: function() {
+      this.uploadDialog = !this.uploadDialog;
     },
+    toggleEditDialog: function() {
+      this.editDialog = !this.editDialog;
+
+    },
+    confirmUpdate: async function() {
+
+      await db.collection("shoppers").doc(this.id).update({
+        address: this.updateAddress,
+        postalCode: this.updatePostalCode,
+        phoneNumber: this.updatePhone
+
+
+      }).catch(e => {
+        console.log(e)
+      });
+
+      alert("Update Successful")
+
+      location.reload();
+    }
+  },
+  watch: {
+    shopperData: function() {
+      this.updateAddress = this.shopperData.address;
+      this.updatePhone = this.shopperData.phoneNumber;
+      this.updatePostalCode = this.shopperData.postalCode
+    }
+
   },
   created() {
+    var user = firebase.auth().currentUser;
+    this.id = user.uid;
     this.fetchData();
+  
   },
+
 };
 </script>
 

@@ -67,7 +67,6 @@ export default {
                 })
             }
         });
-        
         },
         sendOrder: function() {
             if(Object.keys(this.currentCart).length>0){

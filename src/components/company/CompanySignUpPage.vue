@@ -26,6 +26,9 @@
                        <v-textarea
                        label="Company Description"
                        v-model="description" append-icon="mdi-image-text"></v-textarea>
+                        <v-text-field
+                       label="Company Website"
+                       v-model="companyWebsite" append-icon="mdi-web"></v-text-field>
                        <v-btn color="#B3E5FC" class="mr-4"
                        type="submit">Register</v-btn>
                     </v-form>
@@ -53,6 +56,7 @@ export default {
             image:[],
             imageURL:'',
             description:'',
+            companyWebsite: '',
             value:String,
         };
     },
@@ -74,6 +78,7 @@ export default {
                             email: this.email,
                             type: "Company",
                             description: this.description,
+                            website: this.companyWebsite
                         })
                         
                         await firebase.auth().signOut().then(function() {

@@ -24,7 +24,7 @@
           <v-icon dark right>mdi-account</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" color="red" v-on:click="logout" dark>Sign Out
+          <v-btn class="ma-2" color="red" v-on:click="logout()" dark>Sign Out
           <v-icon dark right>mdi-account-remove</v-icon>
           </v-btn>
 
@@ -43,7 +43,7 @@ export default {
     logout() {
 
       firebase.auth().signOut().then(() => {
-        this.$router.push({path: "home"})
+        this.$router.replace({path: "/"})
       });      
     }
   }

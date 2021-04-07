@@ -3,7 +3,6 @@
     <company-header></company-header>
     <div id="intro">
         <div id="heading">
-            <!-- <p id="title" style="float:left">Shlurple</p> -->
             <p id="title" style="float:left">{{companyData.companyname}}</p>
             <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog">
@@ -41,13 +40,13 @@
             </v-dialog>
             <img v-show="profileURL != ''" style="float:right" :src="profileURL" v-on:click="toggleDialog">
             <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png" v-on:click="toggleDialog">
-        </div>
-            <br/>
-            <h3> Our Story </h3>
-            <p>
-                <br/>
-                {{companyData.description}}
-            </p>
+    </div>
+        <br/>
+        <h3> Our Story </h3>
+        <br/>
+        <p>
+            {{companyData.description}}
+        </p>
     </div>
 
     <div id="combined">
@@ -55,6 +54,7 @@
             <li>
                 <div id="productsection">
                     <h3>Our Products</h3>
+                    <ProductDisplay></ProductDisplay>
                     <NewProductForm></NewProductForm>
                 </div>
             </li>
@@ -68,12 +68,14 @@
         </ul>
     </div>
     <br><br>
-</div>
+
+    </div>
 </template>
 
 <script>
 import NewProductForm from './NewProductForm.vue'
 import NewPromoForm from './NewPromoForm.vue'
+import ProductDisplay from "./ProductDisplay"
 import firebase from "firebase";
 import db from "../../firebase.js";
 
@@ -93,6 +95,7 @@ export default {
     components: {
         NewProductForm: NewProductForm,
         NewPromoForm: NewPromoForm,
+        ProductDisplay: ProductDisplay
     },
     methods: {
         toggleDialog: function() {
@@ -114,8 +117,10 @@ export default {
         try {
             //Its is place ProductImages => CompanyId => productiD
             //Reference to the storage
-            var storageRef = firebase.storage().ref("ProfilePics/" + user.uid + "/" + k);
+            var storageRef = firebase.storage().ref("ProfilePics/" + k);
 
+            //remember to add the delete or update storage to check first
+            
             //Waiting till it uploaded to firebase storage
             await storageRef.put(this.image)
             var _extension = this.image.name.split(".")[1]
@@ -164,7 +169,7 @@ export default {
 
             await db.collection("company").doc(k).get().then((doc) => {
                 this.companyData = doc.data();
-                if (!this.companyData.profilePic.empty) {
+                if (typeof this.companyData.profilePic !== 'undefined') {
                     this.profileURL = this.companyData.profilePic
                 }
                 console.log(this.profileURL)
@@ -235,4 +240,5 @@ ul {
 li {
   margin-top:25px;
 }
+
 </style>

@@ -16,6 +16,9 @@
                        <v-text-field
                        label="Full Name"
                        v-model="fullName" append-icon="mdi-account"></v-text-field>
+                       <v-text-field
+                       label="Phone Number"
+                       v-model="phoneNumber" append-icon="mdi-phone"></v-text-field>
                        <v-text-field label="Password (Press icon to show/hide password)" v-model="password"
                        :value="myPass"                     
                        :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
@@ -58,6 +61,7 @@ export default {
             fullName: '',
             email: '',
             password: '',
+            phoneNumber: '',
             address: '',
             postalCode: '',
             unitNo: '',
@@ -79,6 +83,7 @@ export default {
                         db.collection('shoppers').doc(user.uid).set({
                             fullname: this.fullName,
                             email: this.email,
+                            phoneNumber: this.phoneNumber,
                             address: this.address,
                             postalCode: this.postalCode,
                             unitNo: this.unitNo,
