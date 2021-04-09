@@ -13,11 +13,11 @@
                 :animation="marker.animation"
                 :icon="marker.icon"
                 :position="marker.position"
+                :popup="marker.popup"
                 @click="onMapMarkerClick(marker.id)"
                 @mouseover="onMapMarkerMouseOver(marker.id)"
                 @mouseout="onMapMarkerMouseOut(marker.id)">
             </googlemaps-marker>
-
         </googlemaps-map>
     </div>
 </template>
@@ -27,12 +27,17 @@ export default {
     data () {
         return {
             mapCenter: {lat: 0, lng: 0},
+            myCoordinates: {lat: 0,lng: 0},
             zoom: 11,
+            test:null,
             mapMarkers: null,
             mapMarkerIconSize: null,
             ignoreCenterOnSelectedStore: false,
             selectedLat:1.3521,
             selectedLong:103.8198,
+            selectedMarker:null,
+            imgLocation: 'https://image.flaticon.com/icons/png/128/684/684908.png',
+            myLocation:'https://www.flaticon.com/svg/vstatic/svg/106/106175.svg?token=exp=1617872600~hmac=201d3e04f68d92cb330f8e01327208f8'
         }
     },
     props:{
@@ -40,23 +45,32 @@ export default {
             type: Array,
         },
         selectedStore: {
-            type: Array,
+            type: Object,
+        },
+        testProp:{
+            type:Number,
         },
     },
     watch: {
         selectedStore (newValue, oldValue) {
             this.selectMapMarker(oldValue, false)
             this.selectMapMarker(newValue, true)
-        }
+        },
+        testProp: function() {
+            this.useLocation();
+        },
     },
     methods: {
-        ...mapActions(['updateSelectedStore']),
+        ...mapActions(['onMapMarkerClick','centerOnStore','selectMapMarker']),
         // -------------------
         // events
         // -------------------
         onMapMarkerClick (id) {
             this.ignoreCenterOnSelectedStore = true
             this.selectedStore = id
+            this.selectedMarker = id
+            this.$emit('selectedMarker', this.selectedMarker);
+
         },
         onMapMarkerMouseOver (id) {
             const marker = this.mapMarkers[id]
@@ -72,17 +86,7 @@ export default {
         // -------------------
         // other methods
         // -------------------
-        updateMapCenter () {
-            // to update the map center we need some time delay, otherwise the change wouldn't work
-            this.mapMarkers = null
-            setTimeout(() => {
-                this.mapCenter.lat = this.selectedLat
-                this.mapCenter.lng = this.selectedLong
-                this.zoom = 11
-                this.addMapMarkers()
-            }, 500)
-        },
-        addMapMarkers () {
+        addMapMarkers(){
             // go through the stores list and add a map marker for each
             let markers = {}
             for (let i = 0; i < Object.keys(this.stores).length; i++) {
@@ -91,13 +95,13 @@ export default {
                 marker.title = this.stores[i].name + '\n' + this.stores[i].Address
                 marker.animation = 4
                 marker.position = {
-                    lat: this.stores[i].latitude,
-                    lng: this.stores[i].longitude
+                    lat: this.stores[i].ip.latitude,
+                    lng: this.stores[i].ip.longitude
                 }
-                marker.icon = null;
+                marker.icon = null
                 markers[this.stores[i].id] = marker
             }
-            this.mapMarkers = markers
+            this.mapMarkers=markers
         },
         centerOnStore (location) {
             // will repositioned the map center to the specific location
@@ -109,38 +113,57 @@ export default {
                 }
             }
         },
-        recenterMapLocation () {
-            // will recenter the map either to selected store if any
-            // or the selected location if no store is selected
-            //if (this.selectedStore && this.mapMarkers && this.mapMarkers[this.selectedStore]) {
-           //     this.centerOnStore(this.mapMarkers[this.selectedStore].position)
-           // } else if (this.selectedLocation) {
-                // this.updateMapCenter(this.selectedLocation)
+        recenterMapLocation (){
+            setTimeout(() => {
                 const location = {
-                    lat: this.selectedLat,
-                    lng: this.selectedLong
-                }
+                        lat: 1.3521,
+                        lng: 103.8198
+                    }
+                this.addMapMarkers()    
                 this.centerOnStore(location)
-            //}
+            }, 500);
         },
-        selectMapMarker (id, isOn) {
+        selectMapMarker (store, isOn) {
             // will make the specified id marker either heilighted or not
-            if (this.mapMarkers && this.mapMarkers[id]) {
-                const url = isOn ? this.mapIcons.selectedIcon : this.mapIcons.defaultIcon
-                const icon = {url: url, scaledSize: this.mapMarkerIconSize}
-                this.mapMarkers[id].icon = icon
-                if (isOn) {
-                    const storeLocation = Object.assign({}, this.mapMarkers[id].position)
-                    this.centerOnStore(storeLocation)
-                }
+                if (this.mapMarkers && this.mapMarkers[store.id]) {
+                    if (isOn) {
+                        const icon = {url:this.imgLocation, scaledSize: this.mapMarkerIconSize}
+                        this.mapMarkers[store.id].icon = icon
+                        this.mapMarkers[store.id].label = this.stores[store.id]
+                        const storeLocation = Object.assign({}, this.mapMarkers[store.id].position)
+                        this.centerOnStore(storeLocation)
+                        this.zoom=15
+                    } else {
+                        const icon = null
+                        this.mapMarkers[store.id].label = null
+                        this.mapMarkers[store.id].icon = icon                        
+                    }
             }
+        },
+        useLocation() {
+            this.$getLocation({})
+                    .then(coordinates => {
+                        this.myCoordinates = coordinates;
+                    })
+                    .catch(error => alert(error));
+                alert("Hold on! This might take a while!")
+            setTimeout(() => {
+                const location = {
+                    lat: this.myCoordinates.lat,
+                    lng: this.myCoordinates.lng
+                }
+                this.zoom=15;
+                this.centerOnStore(location)
+            }, 4000)
         }
+        
     },
-    beforeMount () {
-        this.updateMapCenter((this.selectedLat,this.selectedLong));
+    created(){
+        this.addMapMarkers();
+        this.recenterMapLocation();
     },
     googleMapsReady () {
-        this.mapMarkerIconSize = new window.google.maps.Size(40, 40)
+        this.mapMarkerIconSize = new window.google.maps.Size(100, 100)
     }
 }
 </script>
