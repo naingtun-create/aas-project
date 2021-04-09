@@ -53,9 +53,9 @@ export default {
     },
     methods: {
         addProduct: function() {
-            console.log(this.title)
+         
             if(this.title==""|| this.description==""||this.price==0){
-                alert("Inputs required in order to sign up.")
+                alert("Inputs required in order to sign up.");
             } else{
                 var product = {
                     "company": "SLUSHIE",
@@ -63,17 +63,17 @@ export default {
                     "description": this.description,
                     "price": this.price,
                     "image": this.image
-                }
+                };
                 db.collection('products').add(product).then( () => {
                     this.$refs.form.reset();
                     console.log("product added");
-                    alert("Product Added")
+                    alert("Product Added");
                     this.dialog = false;
-                })
+                });
             }
         },
         reset: function()  {
-            console.log("reset")
+            console.log("reset");
             this.$refs.form.reset();
         },
         close: function() {

@@ -48,20 +48,20 @@ export default {
         var user = firebase.auth().currentUser;
         var k = user.uid;
 
-        var storageRef = firebase.storage().ref("ProductImages/"+ k + "/" + this.productID );   
+        var storageRef = firebase.storage().ref("ProductImages/"+ k + "/" + this.productID);   
         
         await db.collection("products").doc(this.productID).delete().then(async function() {
             //Maybe don't delete totally from the database?
-            await storageRef.delete()
+            await storageRef.delete();
 
         }).catch((e) => {
-            console.log(e)
+            console.log(e);
         })
-          this.dialog = false
+          this.dialog = false;
           console.log("Deleted")
           alert("Deleted Successfully!")
 
-          location.reload()
+          location.reload();
       }
   }
 };
