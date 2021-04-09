@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import db from "../../firebase.js";
+import db from "../../../firebase.js";
 import firebase from "firebase";
 import ErrorPreventionDialog from "./ErrorPreventionDialog.vue"
 

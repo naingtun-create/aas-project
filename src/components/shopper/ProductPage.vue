@@ -12,7 +12,7 @@
         <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
+        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].company}} </a></p>
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
         <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
         <p v-if="this.datapacket[0].sizings" id="bold"> Select Size: 
@@ -39,13 +39,11 @@
 import Vue from 'vue'
 import database from '../../firebase.js'
 import firebase from 'firebase'
-
 Vue.component('database',database)
-
 export default {
-    props: ["id"],
     data(){  
         return{
+        id: this.$route.params.id,
         qty:1,
         currentSize: '',
         selectedSize: '',
@@ -57,14 +55,14 @@ export default {
         }
     },
     methods:{
-        fetchItems: function(){
-        database.collection('products').doc(this.id).get().then((doc)=>{
+        fetchItems: async function(){
+        await database.collection('products').doc(this.id).get().then((doc)=>{
             let item ={}
             item=doc.data()
             this.datapacket.push(item)
             })
-        var docRef = database.collection("cart").doc(this.user);
-        docRef.get().then((docSnapshot) => {
+        var docRef = await database.collection("cart").doc(this.user);
+        await docRef.get().then((docSnapshot) => {
             if (docSnapshot.exists) {
                 docRef.get().then((doc) => {
                     let item={}
@@ -90,8 +88,11 @@ export default {
                 });
             database.collection("cart").doc(this.user).set(Object.assign({},this.currentCart));
             alert("Your order has been added to cart")
-
-        },  
+        },
+        reroute: function() {
+            var companyID = this.datapacket[0].company;
+            this.$router.push({ name: "viewCompanyPage", params: { id: companyID } });
+        }
     },
     created: function(){
         this.fetchItems()
@@ -146,4 +147,3 @@ input[type=number] {
     color:black;
 }
 </style>
-

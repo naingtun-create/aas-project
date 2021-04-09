@@ -3,38 +3,38 @@
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
       <ul class="logo"> All About Sustainability</ul>
       <div class="links">
-        <v-btn class="ma-2" color="blue-grey lighten-2" dark>
-          <router-link to="/shopper/pstore" exact>Physical Store</router-link>
-          <v-icon dark right>mdi-store</v-icon>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/pstore'})" color="blue-grey lighten-2" dark>
+            Physical Store
+            <v-icon dark right>mdi-store</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
-          <router-link to="/shopper/physicalstore" exact>Physical Store</router-link>
-          <v-icon dark right>mdi-store</v-icon>
+          <!-- <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" color="blue-grey lighten-2" dark>
+            Physical Store
+            <v-icon dark right>mdi-store</v-icon>
+          </v-btn> -->
+
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" color="blue-grey lighten-2" dark>
+            Online Marketplace
+            <v-icon dark right>mdi-storefront</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
-          <router-link to="/shopper/onlinemarketplace" exact>Online Marketplace</router-link> 
-          <v-icon dark right>mdi-storefront</v-icon>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/incubator'})"  color="blue-grey lighten-2" dark>
+            Incubator
+            <v-icon dark right>mdi-lifebuoy</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
-          <router-link to="/shopper/incubator" exact>Incubator</router-link>
-          <v-icon dark right>mdi-lifebuoy</v-icon>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" color="blue-grey lighten-2" dark>
+            Profile
+            <v-icon dark right>mdi-account</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
-          <router-link to="/shopper/profile" exact>Profile</router-link>
-          <v-icon dark right>mdi-account</v-icon>
-          </v-btn>
-
-          <v-btn class="ma-2" color="blue-grey lighten-2" dark>
-          <router-link to="/shopper/payment" exact>View Cart</router-link>
-          <v-icon dark right>mdi-cart</v-icon>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})"  color="blue-grey lighten-2" dark>
+            View Cart
+            <v-icon dark right>mdi-cart</v-icon>
           </v-btn>
 
           <v-btn class="ma-2" color="red" v-on:click="logout" dark>Sign Out
-          <v-icon dark right>mdi-account-remove</v-icon>
+            <v-icon dark right>mdi-account-remove</v-icon>
           </v-btn>
 
       </div>

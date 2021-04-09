@@ -73,9 +73,9 @@
 </template>
 
 <script>
-import NewProductForm from './NewProductForm.vue'
-import NewPromoForm from './NewPromoForm.vue'
-import ProductDisplay from "./ProductDisplay"
+import NewProductForm from './Profile_Components/NewProductForm.vue'
+import NewPromoForm from './Profile_Components/NewPromoForm.vue'
+import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
 

@@ -33,7 +33,7 @@
 
 <script>
 import firebase from "firebase";
-import db from "../../firebase.js";
+import db from "../../../firebase.js";
 
 export default {
   props: ["productName", "productID"],
@@ -51,7 +51,7 @@ export default {
         var storageRef = firebase.storage().ref("ProductImages/"+ k + "/" + this.productID );   
         
         await db.collection("products").doc(this.productID).delete().then(async function() {
-
+            //Maybe don't delete totally from the database?
             await storageRef.delete()
 
         }).catch((e) => {
