@@ -6,33 +6,35 @@
         <br><br>
         <div id="vcard">
         <v-card id="test" width="700">
-            <v-card-title>Login & start browsing!</v-card-title>
-            <v-card-text>
-                <v-form>
-                    <v-text-field label="Email" v-model="email" append-icon="mdi-email"></v-text-field>
-                    <v-text-field label="Password (Press icon to show/hide password)" v-model="password"
-                    :value="myPass"                     
-                    :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="() => (value = !value)"
-                    :type="value ? 'password' : 'text'">
-                    </v-text-field>
-                </v-form>
-            </v-card-text>
-            <v-card-actions>
-                <v-form @submit.prevent="login()">
-                <v-btn
-                color="#B3E5FC"
-                class="mr-4"
-                v-on:click="login()">Login</v-btn>
-                </v-form>
-                <v-btn
-                color="#EF9A9A"
-                v-on:click="resetValidation()"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
-                <v-btn
-                color="#B2DFDB"
-                v-on:click="resetValidation()"><router-link to="/shoppersignup" exact>Sign Up</router-link></v-btn>
+            <div id="content">
+                <v-card-title>Login & start browsing!</v-card-title>
+                <v-card-text>
+                    <v-form>
+                        <v-text-field label="Email" v-model="email" append-icon="mdi-email"></v-text-field>
+                        <v-text-field label="Password (Press icon to show/hide password)" v-model="password"
+                        :value="myPass"                     
+                        :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                        @click:append="() => (value = !value)"
+                        :type="value ? 'password' : 'text'">
+                        </v-text-field>
+                    </v-form>
+                </v-card-text>
+                <v-card-actions>
+                    <v-form @submit.prevent="login()">
+                    <v-btn
+                    color="#B3E5FC"
+                    class="mr-4"
+                    v-on:click="login()">Login</v-btn>
+                    </v-form>
+                    <v-btn
+                    color="#EF9A9A"
+                    v-on:click="resetValidation()"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
+                    <v-btn
+                    color="#B2DFDB"
+                    v-on:click="resetValidation()"><router-link to="/shoppersignup" exact>Sign Up</router-link></v-btn>
 
-            </v-card-actions>
+                </v-card-actions>
+            </div>
         </v-card>
         </div>
     </div> 
@@ -129,5 +131,8 @@ h3 {
 #test {
     padding-left:20px;
     text-align: center;   
+}
+#content {
+    padding: 3%
 }
 </style>

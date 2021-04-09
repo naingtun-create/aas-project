@@ -26,45 +26,27 @@
               </p>
               <p class="my-4 subtitle-1">CATEGORY: {{ item.category }}</p>
               <v-divider class="mx-4"></v-divider>
-
-              <v-card-actions>
-                <v-btn
-                  x-large
-                  depressed
-                  outlined
-                  color="indigo"
-                  v-on:click="route(item.id)"
-                  >Learn More</v-btn>
-                  <error-prevention-dialog :productName="item.title" :productID="item.id"/>
-              </v-card-actions>
             </v-card>
           </li>
         </ul>
-        
       </v-layout>
     </v-container>
   </div>
 </template>
 
 <script>
-import db from "../../firebase.js";
-import firebase from "firebase";
-import ErrorPreventionDialog from "./ErrorPreventionDialog.vue"
+import db from "../../../firebase.js";
 
 export default {
-  components: { ErrorPreventionDialog },
+  props: ["companyID"],
   data() {
     return {
       items: [],
     };
   },
-  component: {
-      ErrorPreventionDialog: ErrorPreventionDialog
-  },
   methods: {
     fetchItems() {
-      var user = firebase.auth().currentUser;
-      var k = user.uid;
+      var k = this.companyID
 
       db.collection("products")
         .where("company", "==", k)
@@ -72,41 +54,40 @@ export default {
         .then((snapshot) => {
           let item = [];
           snapshot.docs.forEach((doc) => {
-            
             item = doc.data();
-            item.id = doc.id
-            console.log(item)
+            item.id = doc.id;
+            console.log(item);
             this.items.push(item);
           });
 
-          console.log(this.items)
+          console.log(this.items);
         });
     },
-    route:function(id){
+    route: function(id) {
       let doc_id = id;
-      this.$router.push({name: 'companyProduct', params: {id: doc_id}});
+      this.$router.push({ name: "companyProduct", params: { id: doc_id } });
     },
   },
   created() {
-      this.fetchItems();
-  }
+    this.fetchItems();
+  },
 };
 </script>
 
 <style scoped>
-#title{
-    font-weight: bold;
-    font-size:80px;
-    font-family: 'Anton', sans-serif;
+#title {
+  font-weight: bold;
+  font-size: 80px;
+  font-family: "Anton", sans-serif;
 }
 
 #content {
-    float: right;
-    padding: 30px; 
-    width: 80%;
-    background-color: #FFFAF0;
-    height: 700px; 
-}  
+  float: right;
+  padding: 30px;
+  width: 80%;
+  background-color: #fffaf0;
+  height: 700px;
+}
 
 ul {
   display: flex;
@@ -129,18 +110,18 @@ li {
   justify-content: flex-start;
   opacity: 0.5;
   position: absolute;
-  width: 100%; 
+  width: 100%;
 }
 
 #productTitle {
   font-family: "Lucida Console", Times, serif;
   font-size: 30px;
-  text-align:start;
-  padding:20px;
+  text-align: start;
+  padding: 20px;
 }
 
 p {
-    text-align:start;
-    padding-left:25px;
+  text-align: start;
+  padding-left: 25px;
 }
 </style>

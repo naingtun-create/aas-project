@@ -22,6 +22,7 @@ import ProductPage from './components/shopper/ProductPage.vue'
 import PhysicalStore from './components/shopper/PhysicalStore.vue'
 import OnlineMarketplace from './components/shopper/OnlineMarketplace.vue'
 import Payment from './components/shopper/Payment.vue'
+import ViewCompanyPage from './components/shopper/CompanyPageView.vue'
 
 import pstore from './components/shopper/Store.vue'
 
@@ -46,6 +47,7 @@ export default [
     { path: '/shopper/incubator', component: Incubator},
     { path: '/shopper/product', name: 'product', component: ProductPage, props: true },
     { path: '/shopper/purchasehistory', component: ShopperPurchaseHistory},
+    { path: '/shopper/viewcompany', name: 'viewCompanyPage', component: ViewCompanyPage, props: true },
 
     { path: '/shopper/pstore', component: pstore},
 
@@ -54,4 +56,5 @@ export default [
     { path: '/company/onlinemarketplace', component: cOnlineMarketplace},
     { path: '/company/incubator', component: cIncubator},
     { path: '/company/product', name: 'companyProduct', component: cProductPage, props: true },
+    
 ]

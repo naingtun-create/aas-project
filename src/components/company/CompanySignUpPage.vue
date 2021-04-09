@@ -6,6 +6,7 @@
        <br><br>
        <div id="vcard">
            <v-card id="test" width="700">
+               <div id="content">
                <v-card-title>Get started with All About Sustainability!</v-card-title>
                <v-card-text>
                    <v-form @submit.prevent="register">
@@ -33,8 +34,10 @@
                        type="submit">Register</v-btn>
                     </v-form>
                 </v-card-text>
+                <br/>
                 <p>Already have account?</p>
                 <v-btn v-on:click = "$router.push({path: '/companylogin'})" color="blue">Login</v-btn>
+                </div>
            </v-card>
        </div>
     </div> 
@@ -152,5 +155,9 @@ h3 {
 #test {
     padding-left:20px;
     text-align: center;   
+}
+
+#content {
+    padding: 3%
 }
 </style>

@@ -12,7 +12,7 @@
         <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
+        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].company}}</a></p>
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
         <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
         <p v-if="this.datapacket[0].sizings" id="bold"> Select Size: 
@@ -62,6 +62,7 @@ export default {
             let item ={}
             item=doc.data()
             this.datapacket.push(item)
+            
             })
         var docRef = database.collection("cart").doc(this.user);
         docRef.get().then((docSnapshot) => {
@@ -92,6 +93,10 @@ export default {
             alert("Your order has been added to cart")
 
         },  
+        reroute: function() {
+            var companyID = this.datapacket[0].company;
+            this.$router.push({ name: "viewCompanyPage", params: { companyID: companyID } });
+        }
     },
     created: function(){
         this.fetchItems()
