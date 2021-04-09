@@ -160,15 +160,15 @@ export default {
             var storageRef = firebase.storage().ref("ProductImages/" + user.uid + "/" + k);
 
             //Waiting till it uploaded to firebase storage
-            await storageRef.put(this.image)
-            var _extension = this.image.name.split(".")[1]
+            await storageRef.put(this.image);
+            var _extension = this.image.name.split(".")[1];
 
             //Update the metadata to be uploaded as image
             var newMetadata = {
                 contentType: 'image/' + _extension
             };
 
-            await storageRef.updateMetadata(newMetadata)
+            await storageRef.updateMetadata(newMetadata);
 
           //Retrieving the download URL for the product Image
           await storageRef.getDownloadURL().then(function(url) {
@@ -185,7 +185,7 @@ export default {
             alert("Product Added");
             this.dialog = false;
             this.reset();
-            location.reload()
+            location.reload();
           });
         
         } catch (e) {
@@ -205,8 +205,8 @@ export default {
     },
     onFilePicked: function() {
         
-        var reader = new FileReader() 
-        reader.readAsDataURL(this.image)
+        var reader = new FileReader();
+        reader.readAsDataURL(this.image);
         reader.onload = () => {
             this.imageURL = reader.result;
         }

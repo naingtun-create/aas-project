@@ -28,10 +28,10 @@
                     </v-form>
                     <v-btn
                     color="#EF9A9A"
-                    v-on:click="resetValidation()"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
+                    v-on:click="resetValidation"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
                     <v-btn
                     color="#B2DFDB"
-                    v-on:click="resetValidation()"><router-link to="/shoppersignup" exact>Sign Up</router-link></v-btn>
+                    v-on:click="resetValidation"><router-link to="/shoppersignup" exact>Sign Up</router-link></v-btn>
 
                 </v-card-actions>
             </div>
@@ -55,12 +55,15 @@ export default {
     methods: {
         login: async function() {
             
-            if (this.email == null|| this.password==null  ){
-                alert("Please fill in your email and password!")
+            if (this.email == null|| this.password==null){
+
+                alert("Please fill in your email and password!");
+                
             } else {
 
-                var data = await db.collection("shoppers").where("email","==",this.email).get()
-                if(data.empty) {
+                var data = await db.collection("shoppers").where("email","==",this.email).get();
+
+                if (data.empty) {
                     alert("No such shopper email exist in the database. If you are a company, please proceed to the company login page!")
                 } else {
                     await firebase
@@ -87,6 +90,7 @@ export default {
             //         alert(error.message);
             //     });
         },
+        
     },
 };
 </script>
