@@ -26,6 +26,18 @@
               </p>
               <p class="my-4 subtitle-1">CATEGORY: {{ item.category }}</p>
               <v-divider class="mx-4"></v-divider>
+
+              
+              <v-card-actions>
+                <v-btn
+                  x-large
+                  depressed
+                  outlined
+                  color="indigo"
+                  v-on:click="route(item.id)"
+                  >Learn More</v-btn>
+              </v-card-actions>
+
             </v-card>
           </li>
         </ul>
@@ -45,10 +57,10 @@ export default {
     };
   },
   methods: {
-    fetchItems() {
+    fetchItems: async function(){
       var k = this.companyID
-
-      db.collection("products")
+    
+      await db.collection("products")
         .where("company", "==", k)
         .get()
         .then((snapshot) => {
@@ -65,10 +77,11 @@ export default {
     },
     route: function(id) {
       let doc_id = id;
-      this.$router.push({ name: "companyProduct", params: { id: doc_id } });
+      this.$router.push({ name: "product", params: { id: doc_id } });
     },
   },
   created() {
+    console.log(this.companyID)
     this.fetchItems();
   },
 };

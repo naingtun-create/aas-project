@@ -21,7 +21,7 @@
             <li>
                 <div id="productsection">
                     <h3>Our Products</h3>
-                    <ProductDisplay></ProductDisplay>
+                    <ProductDisplay :companyID="this.id"></ProductDisplay>
                 </div>
             </li>
             
@@ -44,7 +44,7 @@ import db from "../../firebase.js";
 
 export default {
     name: "companyPage",
-    props: ["companyID"],
+    props:["id"],
     data: () => {
         return {   
             image: [], 
@@ -66,16 +66,17 @@ export default {
         },
         fetchData: async function() {
 
-            var k = this.companyID;
+            var k = this.id;
+                  
             await db.collection("company").doc(k).get().then((doc) => {
                 this.companyData = doc.data();
-                if (typeof this.companyData.profilePic !== 'undefined') {
+                if (typeof this.companyData.profilePic != 'undefined') {
                     this.profileURL = this.companyData.profilePic;
                 }
                 console.log(this.profileURL);
             })
 
-            var products = await db.collection("products").where("company","==", k).get();
+            var products = await db.collection("products").get();
             console.log(products)
             console.log(this.companyData)
 

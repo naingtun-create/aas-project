@@ -45,9 +45,9 @@ export default [
     { path: '/shopper/physicalstore', component: PhysicalStore},
     { path: '/shopper/onlinemarketplace', component: OnlineMarketplace},
     { path: '/shopper/incubator', component: Incubator},
-    { path: '/shopper/product', name: 'product', component: ProductPage, props: true },
+    { path: '/shopper/product/:id', name: 'product', component: ProductPage, props: true },
     { path: '/shopper/purchasehistory', component: ShopperPurchaseHistory},
-    { path: '/shopper/viewcompany', name: 'viewCompanyPage', component: ViewCompanyPage, props: true },
+    { path: '/shopper/viewcompany/:id', name: 'viewCompanyPage', component: ViewCompanyPage, props: true },
 
     { path: '/shopper/pstore', component: pstore},
 
@@ -55,6 +55,6 @@ export default [
     { path: '/company/physicalstore', component: cPhysicalStore},
     { path: '/company/onlinemarketplace', component: cOnlineMarketplace},
     { path: '/company/incubator', component: cIncubator},
-    { path: '/company/product', name: 'companyProduct', component: cProductPage, props: true },
+    { path: '/company/product/:id', name: 'companyProduct', component: cProductPage, props: true },
     
 ]

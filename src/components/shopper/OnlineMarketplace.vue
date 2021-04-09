@@ -127,7 +127,7 @@ export default {
     },
     route:function(id){
       let doc_id = id;
-      this.$router.push({name: 'product', params: {id: doc_id}});
+      this.$router.push({name: 'product' , params: { id: doc_id}});
     },
     sortByPrice:function(){
       if(this.sortPrice == "Descending"){
