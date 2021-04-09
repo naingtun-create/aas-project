@@ -28,7 +28,7 @@ export default {
         return {
             mapCenter: {lat: 0, lng: 0},
             myCoordinates: {lat: 0,lng: 0},
-            zoom: 11,
+            zoom: 13,
             test:null,
             mapMarkers: null,
             mapMarkerIconSize: null,
@@ -66,8 +66,6 @@ export default {
         // events
         // -------------------
         onMapMarkerClick (id) {
-            this.ignoreCenterOnSelectedStore = true
-            this.selectedStore = id
             this.selectedMarker = id
             this.$emit('selectedMarker', this.selectedMarker);
 
@@ -152,9 +150,9 @@ export default {
                     lat: this.myCoordinates.lat,
                     lng: this.myCoordinates.lng
                 }
-                this.zoom=15;
+                this.zoom=14;
                 this.centerOnStore(location)
-            }, 4000)
+            }, 3000)
         }
         
     },

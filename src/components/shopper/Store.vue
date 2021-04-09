@@ -16,8 +16,9 @@
                                         <v-layout row wrap>
                                             <ul>
                                                 <v-flex xs12 v-for="store in stores" :key="store.id" 
-                                                    class="store-container" @mouseover="hoveredOnStore=store.id" @mouseleave="hoveredOnStore=null" :class="[(hoveredOnStore===store.id && selectedStore!==store.id)? 'animated pulse store-hovered-on': '']">
+                                                    class="store-container" @mouseover="hoveredOnStore=store.id" @mouseleave="hoveredOnStore=null" :class="[(hoveredOnStore===store.id && selectedSt!==store.id)? 'animated pulse store-hovered-on': '']">
                                                     <v-card class="store-item-card" 
+                                                        :class="{isSelected: selectedSt === store.id}"
                                                         @click.capture="onStoreClick(store,store.id)">
                                                         <v-card-text >
                                                             <a v-bind:href="store.website" target="_blank">{{store.name}}</a>
@@ -63,22 +64,16 @@ export default {
             storesSouth:[],
             storesCentral:[],
             selectedStore:{details:{},id:""},
-            ignoreScrollToSelectedStore: false,
+            selectedSt:null,
             hoveredOnStore: null,
             useLocation:0,
         }
     },
     watch: {
         selectedStore () {
-            // need to wait until the selected store class changes
-            if (this.ignoreScrollToSelectedStore) {
-                this.ignoreScrollToSelectedStore = false
-            } else {
-                // triger the auto scroll only if the selection is triggered from outside the list
                 setTimeout(() => {
                     this.scrollToSelectedStore()
                 }, 50)
-            }
         }
     },
     methods: {
@@ -111,8 +106,8 @@ export default {
             }
         },  */
         onStoreClick (store,id) {
-            this.ignoreScrollToSelectedStore = true
             this.selectedStore = {details: store, id:id}
+            this.selectedSt = id
         },
         onRecenterMapLocation () {
             // need to emit the event to parent component
@@ -130,9 +125,12 @@ export default {
         scrollToSelectedStore () {
             // scroll to the selected store
             const storesList = this.$el.querySelector('.container.stores-list-container')
-            const selectedStore = this.$el.querySelector('.store-item-card.v-card.isSelected')
-            if (storesList && selectedStore) {
-                storesList.scrollTop = selectedStore.offsetTop - selectedStore.offsetHeight
+            const selectedSt = this.$el.querySelector('.store-item-card.v-card.isSelected')
+            console.log(storesList )
+            console.log(selectedSt) 
+            if (storesList && selectedSt) {
+                console.log(selectedSt.offsetTop - selectedSt.offsetHeight)
+                storesList.scrollTop = selectedSt.offsetTop - selectedSt.offsetHeight
             }
         },
         trigger () {
@@ -149,14 +147,6 @@ export default {
 </script>
 
 <style scoped>
-.location-edit .inline-input {
-    display: inline-flex;
-    width: 70%;
-}
-.location-edit .inline-button {
-    margin-left: 0;
-    margin-right: 0;
-}
 .stores-list-container {
     padding-left: 0;
     padding-right: 0;
@@ -172,12 +162,10 @@ export default {
     outline: 5px solid #9FA8DA;
     background-color: #BBDEFB;
 }
-.store-hours {
-    padding-left: 20px;
-}
 .store-item-card {
     width: 500px;
     cursor: pointer;
+    font-size:100em;
 }
 .store-item-card.isSelected {
     border: 4px solid #5C6BC0;

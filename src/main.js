@@ -23,7 +23,7 @@ Vue.component('company-header',companyHeader)
 Vue.use(VueGoogleMaps, {
   load: {
       // put your google API key either in the ./config/local.env.js file or just hardcode in the string below
-      apiKey: process.env.GOOGLE_API_KEY || '',
+      apiKey: 'AIzaSyDCH_j7Xz32HgtT5iTwS1TyqwDFCezYjsc',
       libraries: ['places'],
       useBetaRenderer: false
   }
