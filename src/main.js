@@ -11,11 +11,13 @@ import companyHeader from './components/company/companyHeader.vue'
 import VueGoogleMaps from 'vue-googlemaps'
 import 'vue-googlemaps/dist/vue-googlemaps.css'
 import VueResource from 'vue-resource'
+import VueGeolocation from 'vue-browser-geolocation'
 
+Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(VueResource)
 Vue.use(VueRouter)
-Vue.config.productionTip = false
+Vue.use(VueGeolocation)
 Vue.component('shopper-header',shopperHeader)
 Vue.component('company-header',companyHeader)
 Vue.use(VueGoogleMaps, {

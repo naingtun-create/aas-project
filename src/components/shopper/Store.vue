@@ -2,25 +2,25 @@
     <div id="store">
     <shopper-header></shopper-header>
     <v-container fluid fill-height grid-list-lg>
-        <v-layout row wrap align-content-start >
-            <v-flex xs4 sm3>
+        <v-layout row wrap align-content-start>
+            <v-flex xs4 md3>
                 <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
-                    <v-card color="cyan accent-4" class="elevation-8 fill-height">
+                    <v-card color="#c9AA88" class="elevation-8 fill-height">
                         <v-container fluid grid-list-lg>
                             <v-layout row wrap>
-
                                 <v-flex xs12 class="stores-list">
-                                    <div class="subheading">Nearby Stores</div>
+                                    <br>
+                                    <h1>All Stores</h1>
+                                    <br>
                                     <v-container fluid class="stores-list-container">
                                         <v-layout row wrap>
                                             <ul>
-                                                <v-flex xs12 v-for="store in stores" :key="store.id"
+                                                <v-flex xs12 v-for="store in stores" :key="store.id" 
                                                     class="store-container" @mouseover="hoveredOnStore=store.id" @mouseleave="hoveredOnStore=null" :class="[(hoveredOnStore===store.id && selectedStore!==store.id)? 'animated pulse store-hovered-on': '']">
-                                                    <v-card class="store-item-card"
-                                                        :class="{isSelected: selectedStore === store.id}"
-                                                        @click.capture="onStoreClick(store.id)">
-                                                        <v-card-text>
-                                                            <p>{{store.name}}</p>
+                                                    <v-card class="store-item-card" 
+                                                        @click.capture="onStoreClick(store,store.id)">
+                                                        <v-card-text >
+                                                            <a v-bind:href="store.website" target="_blank">{{store.name}}</a>
                                                             <p> {{store.Address}}</p>
                                                             <p>Singapore {{store.postalCode}}</p>
                                                         </v-card-text>
@@ -29,16 +29,21 @@
                                             </ul>
                                         </v-layout>
                                     </v-container>
+                                    
                                 </v-flex>
                             </v-layout>
                         </v-container>
+                        <br>
+                        <h1>Find Stores near me</h1> <br>
+                        <p> Please ensure your browser enables location sharing </p>
+                        <button v-on:click="trigger()"> Use Current Location </button> <br><br>
                     </v-card>
+                    {{this.stores +this.useLocation}}
+
                 </transition>
             </v-flex>
-            <v-flex xs8 sm9>
-                <transition appear enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
-                    <app-map-panel v-bind:stores="stores" v-bind:selectedStore="selectedStore"></app-map-panel>
-                </transition>
+            <v-flex xs8 md9>
+                <app-map-panel :testProp="useLocation" v-bind:stores="stores" v-bind:selectedStore="selectedStore" v-on:selectedMarker="selectedMarker"></app-map-panel>
             </v-flex>
         </v-layout>
     </v-container>
@@ -52,9 +57,28 @@ export default {
     data () {
         return {
             stores:[],
-            selectedStore:null,
+            storesEast:[],
+            storesWest:[],
+            storesNorth:[],
+            storesSouth:[],
+            storesCentral:[],
+            selectedStore:{details:{},id:""},
             ignoreScrollToSelectedStore: false,
-            hoveredOnStore: null
+            hoveredOnStore: null,
+            useLocation:0,
+        }
+    },
+    watch: {
+        selectedStore () {
+            // need to wait until the selected store class changes
+            if (this.ignoreScrollToSelectedStore) {
+                this.ignoreScrollToSelectedStore = false
+            } else {
+                // triger the auto scroll only if the selection is triggered from outside the list
+                setTimeout(() => {
+                    this.scrollToSelectedStore()
+                }, 50)
+            }
         }
     },
     methods: {
@@ -68,9 +92,27 @@ export default {
                 });
             });
         },
-        onStoreClick (storeId) {
+        /** 
+            console.log(this.stores)
+            for(let i=0;i<this.stores.length;i++){
+                var current = this.stores[i].region;
+                console.log(this.stores[i].region)
+                if(current=="central"){
+                    this.storesCentral.push(this.stores[i]);
+                } else if (current=="north"){
+                    this.storesNorth.push(this.stores[i]);
+                } else if (current=="south"){
+                    this.storesSouth.push(this.stores[i]);
+                } else if (current=="east"){
+                    this.storesEast.push(this.stores[i]);
+                } else if (current=="west"){
+                    this.storesWest.push(this.stores[i]);
+                }
+            }
+        },  */
+        onStoreClick (store,id) {
             this.ignoreScrollToSelectedStore = true
-            this.selectedStore = storeId
+            this.selectedStore = {details: store, id:id}
         },
         onRecenterMapLocation () {
             // need to emit the event to parent component
@@ -78,12 +120,30 @@ export default {
             // or we can use vuex
             EventBus.recenterMapLocation()
         },
+        selectedMarker (id) {
+            for (let i=0;i<this.stores.length;i++){
+                if (id==this.stores[i].id){
+                    this.onStoreClick(this.stores[i],id);
+                }
+            }
+        },
+        scrollToSelectedStore () {
+            // scroll to the selected store
+            const storesList = this.$el.querySelector('.container.stores-list-container')
+            const selectedStore = this.$el.querySelector('.store-item-card.v-card.isSelected')
+            if (storesList && selectedStore) {
+                storesList.scrollTop = selectedStore.offsetTop - selectedStore.offsetHeight
+            }
+        },
+        trigger () {
+            this.useLocation +=1;
+        },
     },
     components: {
         'app-map-panel': MapPanel
     },
     created(){
-        this.fetchItems()
+        this.fetchItems();
     },
 }
 </script>
@@ -116,6 +176,7 @@ export default {
     padding-left: 20px;
 }
 .store-item-card {
+    width: 500px;
     cursor: pointer;
 }
 .store-item-card.isSelected {
@@ -124,5 +185,12 @@ export default {
 }
 .recenter-map-icon {
     cursor: pointer;
+}
+button {
+  width: 400px;
+  height: 120px;
+  background-color: white;
+  border-radius: 10px;
+  border-width: 1px;
 }
 </style>
