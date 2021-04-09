@@ -51,22 +51,22 @@ export default {
     },
     methods:{
         fetchItems: function(){
-        database.collection('products').doc(this.id).get().then((doc)=>{
-            let item ={}
-            item=doc.data()
-            this.datapacket.push(item)
-            })
-        var docRef = database.collection("cart").doc(this.user);
-        docRef.get().then((docSnapshot) => {
-            if (docSnapshot.exists) {
-                docRef.get().then((doc) => {
-                    let item={}
-                    item=doc.data()
-                    console.log(item)
-                    this.currentCart.push(item);
+            database.collection('products').doc(this.id).get().then((doc)=>{
+                let item ={}
+                item=doc.data()
+                this.datapacket.push(item)
                 })
-            }
-        });
+            var docRef = database.collection("cart").doc(this.user);
+            docRef.get().then((docSnapshot) => {
+                if (docSnapshot.exists) {
+                    docRef.get().then((doc) => {
+                        let item={}
+                        item=doc.data()
+                        console.log(item)
+                        this.currentCart.push(item);
+                    })
+                }
+            });
         },
         sendOrder: function() {
             if(Object.keys(this.currentCart).length>0){
