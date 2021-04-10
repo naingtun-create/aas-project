@@ -13,8 +13,8 @@
             <v-icon dark right>mdi-storefront</v-icon> 
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/incubator'})"  color="blue-grey lighten-2" dark>
-            Incubator
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/forum'})"  color="blue-grey lighten-2" dark>
+            Forum
             <v-icon dark right>mdi-lifebuoy</v-icon>
           </v-btn>
 

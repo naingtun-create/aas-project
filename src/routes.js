@@ -8,7 +8,7 @@ import LoginDir from './components/LoginDirectory.vue'
 import CompanyPage from './components/company/CompanyPage.vue'
 import CompanySignUpPage from './components/company/CompanySignUpPage.vue'
 import CompanyLoginPage from './components/company/CompanyLoginPage.vue'
-import cIncubator from './components/company/CompanyIncubator.vue'
+import cForum from './components/company/CompanyForum.vue'
 import cProductPage from './components/company/CompanyProductPage.vue'
 import cPhysicalStore from './components/company/CompanyPhysicalStore.vue'
 import cOnlineMarketplace from './components/company/CompanyOnlineMarketplace.vue'
@@ -17,7 +17,7 @@ import ShopperLoginPage from './components/shopper/ShopperLoginPage.vue'
 import ShopperSignUpPage from './components/shopper/ShopperSignUpPage.vue'
 import ShopperPurchaseHistory from './components/shopper/ShopperPurchaseHistory.vue'
 import ProfilePage from './components/shopper/ProfilePage.vue'
-import Incubator from './components/shopper/Incubator.vue'
+import Forum from './components/shopper/Forum.vue'
 import ProductPage from './components/shopper/ProductPage.vue'
 import PhysicalStore from './components/shopper/PhysicalStore.vue'
 import OnlineMarketplace from './components/shopper/OnlineMarketplace.vue'
@@ -43,15 +43,15 @@ export default [
     { path: '/shopper/payment', component: Payment},
     { path: '/shopper/physicalstore', component: PhysicalStore},
     { path: '/shopper/onlinemarketplace', component: OnlineMarketplace},
-    { path: '/shopper/incubator', component: Incubator},
+    { path: '/shopper/forum', component: Forum},
     { path: '/shopper/product/:id', name: 'product', component: ProductPage, props: true },
     { path: '/shopper/purchasehistory', component: ShopperPurchaseHistory},
     { path: '/shopper/viewcompany/:id', name: 'viewCompanyPage', component: ViewCompanyPage, props: true },
 
-    { path: '/companypage', component: CompanyPage},
+    { path: '/company/companypage', component: CompanyPage},
     { path: '/company/physicalstore', component: cPhysicalStore},
     { path: '/company/onlinemarketplace', component: cOnlineMarketplace},
-    { path: '/company/incubator', component: cIncubator},
+    { path: '/company/forum', component: cForum},
     { path: '/company/product/:id', name: 'companyProduct', component: cProductPage, props: true },
     
 ]

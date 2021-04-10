@@ -35,7 +35,7 @@
                   color="indigo"
                   v-on:click="route(item.id)"
                   >Learn More</v-btn>
-                  <error-prevention-dialog :productName="item.title" :productID="item.id"/>
+                  <error-prevention-dialog :itemName="item.title" :itemID="item.id" type="products"/>
               </v-card-actions>
             </v-card>
           </li>

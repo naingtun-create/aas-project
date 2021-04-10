@@ -43,6 +43,8 @@ export default {
       valid: false,
       invoice: "",
       purchasedItems:[],
+      date: new Date().toISOString().substr(0, 10),
+      time: new Date().getTime()
     };
   },
   props: {
@@ -74,6 +76,8 @@ export default {
         "PaymentInvoice": this.invoice,
         "PaidAmount":this.paidPrice,
         "UserID": user.uid,       
+        "Date": this.date,
+        "Time": this.time
       }
       db.collection('transactions').add(order).then(()=>{
         console.log("payment added");
