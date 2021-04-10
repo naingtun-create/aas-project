@@ -1,164 +1,188 @@
 <template>
-  <div>
+    <div id="store">
     <shopper-header></shopper-header>
-    <v-container class="grey lighten-5 mb-6">
-      <v-row no-gutters class="mb-6">
-        <v-col cols="2">
-          <v-card class="pa-4" elevation="2" id="filterbar" outlined>
-            <v-card-title>Categories</v-card-title>
-            <v-container class="pt-0" fluid>
-              <v-checkbox
-                label="Decor"
-                v-model="selectedCategories"
-                value="Decor"
-                hide-details
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="Clothes"
-                v-model="selectedCategories"
-                value="Clothes"
-                hide-details
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="Food"
-                v-model="selectedCategories"
-                value="Food"
-                hide-details
-                dense
-              ></v-checkbox>
-            </v-container>
-            <br />
-            <v-divider></v-divider>
-            <v-card-title>Location</v-card-title>
-            <v-container class="pt-0" fluid>
-              <v-checkbox
-                label="North"
-                v-model="selectedRegion"
-                value="North"
-                hide-details
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="South"
-                v-model="selectedRegion"
-                value="South"
-                hide-details
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="East"
-                v-model="selectedRegion"
-                value="East"
-                hide-details
-                dense
-              ></v-checkbox>
-              <v-checkbox
-                label="West"
-                v-model="selectedRegion"
-                value="West"
-                hide-details
-                dense
-              ></v-checkbox>
-            </v-container>
-            <v-divider></v-divider>
-            <v-card-subtitle
-              >Or simply put in your postal code!</v-card-subtitle
-            >
-            <v-text-field
-              label="Postal Code"
-              v-model="postalCode"
-              outlined
-              :rules="[numberRule]"
-            ></v-text-field>
-          </v-card>
-        </v-col>
-        <v-col cols="10">
-          <v-card id="map" class="pa-4" elevation="2" outlined>
-            map
-            <v-divider></v-divider>
-            <ul id="locationList">
-              <li v-bind:key="l.id" v-for="l in locations">
-                <h2 id="LName">{{ l.id + ". " + l.name }}</h2>
-                <p>{{ l.address }}</p>
-              </li>
-            </ul>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
-</template>
+    <v-container fluid fill-height grid-list-lg>
+        <v-layout row wrap align-content-start>
+            <v-flex xs4 md3>
+                <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
+                    <v-card color="#c9AA88" class="elevation-8 fill-height">
+                        <v-container fluid grid-list-lg>
+                            <v-layout row wrap>
+                                <v-flex xs12 class="stores-list">
+                                    <br>
+                                    <h1 id='title'>All Stores</h1>
+                                    <br>
+                                    <v-container fluid class="stores-list-container">
+                                        <v-layout row wrap>
+                                            <ul>
+                                                <v-flex xs12 v-for="store in stores" :key="store.id" 
+                                                    class="store-container" @mouseover="hoveredOnStore=store.id" @mouseleave="hoveredOnStore=null" :class="[(hoveredOnStore===store.id && selectedSt!==store.id)? 'animated pulse store-hovered-on': '']">
+                                                    <v-card class="store-item-card" 
+                                                        :class="{isSelected: selectedSt === store.id}"
+                                                        @click.capture="onStoreClick(store,store.id)">
+                                                        <v-card-text >
+                                                            <a v-bind:href="store.website" target="_blank">{{store.name}}</a>
+                                                            <p> {{store.Address}}</p>
+                                                            <p>Singapore {{store.postalCode}}</p>
+                                                        </v-card-text>
+                                                    </v-card>
+                                                </v-flex>
+                                            </ul>
+                                        </v-layout>
+                                    </v-container>
+                                    
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                        <br>
+                        <h1 id='title'>Find Stores near me</h1> <br>
+                        <p> Please ensure your browser enables location sharing </p>
+                        <button v-on:click="trigger()"> Use Current Location </button> <br><br>
+                    </v-card>
+                    {{this.stores +this.useLocation}}
 
+                </transition>
+            </v-flex>
+            <v-flex xs8 md9>
+                <app-map-panel :testProp="useLocation" v-bind:stores="stores" v-bind:selectedStore="selectedStore" v-on:selectedMarker="selectedMarker"></app-map-panel>
+            </v-flex>
+        </v-layout>
+    </v-container>
+    </div>
+</template>
 <script>
+import EventBus from '../../eventBus.js'
+import db from '../../firebase.js'
+import MapPanel from './MapPanel'
 export default {
-  data: () => ({
-    categories: ["Decor", "Clothes", "Food"],
-    numberRule: (v) => {
-      if (!v.trim()) return true;
-      if (!isNaN(parseFloat(v)) && v >= 0 && v <= 999999) return true;
-      return "It has to be a number";
+    data () {
+        return {
+            stores:[],
+            storesEast:[],
+            storesWest:[],
+            storesNorth:[],
+            storesSouth:[],
+            storesCentral:[],
+            selectedStore:{details:{},id:""},
+            selectedSt:null,
+            hoveredOnStore: null,
+            useLocation:0,
+        }
     },
-    selectedCategories: [],
-    selectedRegion: [],
-    postalCode: "XXXXXX",
-    locations: [
-      {
-        id: 1,
-        name: "CoCoNut",
-        address: "Tampines 1 st 82 BLK 856E",
-      },
-      {
-        id: 2,
-        name: "CoCoNut",
-        address: "Tampines 1 st 82 BLK 856E",
-      },
-      {
-        id: 3,
-        name: "CoCoNut",
-        address: "Tampines 1 st 82 BLK 856E",
-      },
-      {
-        id: 4,
-        name: "CoCoNut",
-        address: "Tampines 1 st 82 BLK 856E",
-      },
-      {
-        id: 5,
-        name: "CoCoNut",
-        address: "Tampines 1 st 82 BLK 856E",
-      },
-      {
-        id: 6,
-        name: "CoCoNut",
-        address: "Tampines 1 st 82 BLK 856E",
-      },
-    ],
-  }),
-};
+    watch: {
+        selectedStore () {
+                setTimeout(() => {
+                    this.scrollToSelectedStore()
+                }, 50)
+        }
+    },
+    methods: {
+        fetchItems:function(){
+            db.collection('physicalStores').get().then(snapshot => {
+                let item = []
+                snapshot.docs.forEach(doc => {
+                item = doc.data();
+                item.id = doc.id,
+                this.stores.push(item)
+                });
+            });
+        },
+        /** 
+            console.log(this.stores)
+            for(let i=0;i<this.stores.length;i++){
+                var current = this.stores[i].region;
+                console.log(this.stores[i].region)
+                if(current=="central"){
+                    this.storesCentral.push(this.stores[i]);
+                } else if (current=="north"){
+                    this.storesNorth.push(this.stores[i]);
+                } else if (current=="south"){
+                    this.storesSouth.push(this.stores[i]);
+                } else if (current=="east"){
+                    this.storesEast.push(this.stores[i]);
+                } else if (current=="west"){
+                    this.storesWest.push(this.stores[i]);
+                }
+            }
+        },  */
+        onStoreClick (store,id) {
+            this.selectedStore = {details: store, id:id}
+            this.selectedSt = id
+        },
+        onRecenterMapLocation () {
+            // need to emit the event to parent component
+            // we can either use the event bus
+            // or we can use vuex
+            EventBus.recenterMapLocation()
+        },
+        selectedMarker (id) {
+            for (let i=0;i<this.stores.length;i++){
+                if (id==this.stores[i].id){
+                    this.onStoreClick(this.stores[i],id);
+                }
+            }
+        },
+        scrollToSelectedStore () {
+            // scroll to the selected store
+            const storesList = this.$el.querySelector('.container.stores-list-container')
+            const selectedSt = this.$el.querySelector('.store-item-card.v-card.isSelected')
+            console.log(storesList )
+            console.log(selectedSt) 
+            if (storesList && selectedSt) {
+                console.log(selectedSt.offsetTop - selectedSt.offsetHeight)
+                storesList.scrollTop = selectedSt.offsetTop - selectedSt.offsetHeight
+            }
+        },
+        trigger () {
+            this.useLocation +=1;
+        },
+    },
+    components: {
+        'app-map-panel': MapPanel
+    },
+    created(){
+        this.fetchItems();
+    },
+}
 </script>
 
 <style scoped>
-#locationList {
-  width: 100%;
-  max-width: 70%;
-  margin: 0px;
-  padding: 0 5px;
-  box-sizing: border-box;
+#title {
+    font-family: "Sanchez";
+    font-size: 30px;
 }
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
+.stores-list-container {
+    padding-left: 0;
+    padding-right: 0;
+    height: 60vh;
+    overflow: auto;
+    padding-top: 10px;
 }
-li {
-  flex-grow: 1;
-  flex-basis: 200px;
-  list-style-type: none;
-  text-align: left;
-  padding: 10px;
-  margin: 10px;
+.store-container {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+.store-container.store-hovered-on .store-item-card {
+    outline: 5px solid #9FA8DA;
+    background-color: #BBDEFB;
+}
+.store-item-card {
+    width: 500px;
+    cursor: pointer;
+    font-size:100em;
+}
+.store-item-card.isSelected {
+    border: 4px solid #5C6BC0;
+    background-color: #BBDEFB;
+}
+.recenter-map-icon {
+    cursor: pointer;
+}
+button {
+  width: 400px;
+  height: 120px;
+  background-color: white;
+  border-radius: 10px;
+  border-width: 1px;
 }
 </style>

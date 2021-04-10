@@ -55,7 +55,7 @@
                 <div id="productsection">
                     <h3>Our Products</h3>
                     <ProductDisplay></ProductDisplay>
-                    <NewProductForm></NewProductForm>
+                    <NewProductForm v-bind:companyData="companyData"></NewProductForm>
                 </div>
             </li>
             

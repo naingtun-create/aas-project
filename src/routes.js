@@ -8,10 +8,10 @@ import LoginDir from './components/LoginDirectory.vue'
 import CompanyPage from './components/company/CompanyPage.vue'
 import CompanySignUpPage from './components/company/CompanySignUpPage.vue'
 import CompanyLoginPage from './components/company/CompanyLoginPage.vue'
-import cIncubator from './components/company/companyIncubator.vue'
-import cProductPage from './components/company/companyProductPage.vue'
-import cPhysicalStore from './components/company/companyPhysicalStore.vue'
-import cOnlineMarketplace from './components/company/companyOnlineMarketplace.vue'
+import cIncubator from './components/company/CompanyIncubator.vue'
+import cProductPage from './components/company/CompanyProductPage.vue'
+import cPhysicalStore from './components/company/CompanyPhysicalStore.vue'
+import cOnlineMarketplace from './components/company/CompanyOnlineMarketplace.vue'
 
 import ShopperLoginPage from './components/shopper/ShopperLoginPage.vue'
 import ShopperSignUpPage from './components/shopper/ShopperSignUpPage.vue'
@@ -24,7 +24,6 @@ import OnlineMarketplace from './components/shopper/OnlineMarketplace.vue'
 import Payment from './components/shopper/Payment.vue'
 import ViewCompanyPage from './components/shopper/CompanyPageView.vue'
 
-import pstore from './components/shopper/Store.vue'
 
 export default [
     { path: '/login', component: LoginDir},
@@ -48,8 +47,6 @@ export default [
     { path: '/shopper/product/:id', name: 'product', component: ProductPage, props: true },
     { path: '/shopper/purchasehistory', component: ShopperPurchaseHistory},
     { path: '/shopper/viewcompany/:id', name: 'viewCompanyPage', component: ViewCompanyPage, props: true },
-
-    { path: '/shopper/pstore', component: pstore},
 
     { path: '/companypage', component: CompanyPage},
     { path: '/company/physicalstore', component: cPhysicalStore},
