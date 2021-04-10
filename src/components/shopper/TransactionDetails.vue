@@ -6,10 +6,10 @@
       max-width="600"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn class="ma-2" v-bind="attrs" v-on="on" color="#20d3bb" dark>
+        <button v-bind="attrs" v-on="on"  dark>
           View More Details
           <v-icon dark right>mdi-account-details</v-icon>
-        </v-btn>
+        </button>
       </template>
       <template v-slot:default="dialog">
         <v-card width="100%">
@@ -75,5 +75,16 @@ li {
   text-align: center;
   padding: 10px;
   margin: 10px;
+}
+button {
+  height: 120px;
+  width: 350px;
+  background-color: #c9AA88;
+  border-radius: 10px;
+  font-weight: bold;
+  color:white;
+  border-width: 1px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
 }
 </style>

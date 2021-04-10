@@ -1,6 +1,6 @@
 <template>
 <div id="companypage">
-    <company-header></company-header>
+    <shopper-header></shopper-header>
     <div id="intro">
         <div id="heading">
             <p id="title" style="float:left">{{companyData.companyname}}</p>

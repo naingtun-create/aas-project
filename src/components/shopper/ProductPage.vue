@@ -12,7 +12,7 @@
         <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].company}} </a></p>
+        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].companyName}} </a></p>
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
         <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
         <p v-if="this.datapacket[0].sizings" id="bold"> Select Size: 
@@ -87,6 +87,8 @@ export default {
                     price:this.datapacket[0].price,
                 });
             database.collection("cart").doc(this.user).set(Object.assign({},this.currentCart));
+            this.currentCart=[];
+            this.fetchItems();
             alert("Your order has been added to cart")
         },
         reroute: function() {

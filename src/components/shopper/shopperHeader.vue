@@ -3,7 +3,7 @@
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
       <ul class="logo"> All About Sustainability</ul>
       <div class="links">
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/pstore'})" color="blue-grey lighten-2" dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" color="blue-grey lighten-2" dark>
             Physical Store
             <v-icon dark right>mdi-store</v-icon>
           </v-btn>

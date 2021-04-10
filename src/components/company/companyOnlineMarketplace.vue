@@ -10,8 +10,8 @@
            
           <div id='nav'>  
             <v-card>
-                <v-card-title>Categories</v-card-title>
-                <v-container class="pt-0" fluid>
+                <v-card-title id="categories">Categories</v-card-title>
+                <v-container class="pt-0" id="info" fluid>
                     <v-checkbox
                         label="All"
                         v-model="selectedCategories"
@@ -48,11 +48,11 @@
                         dense
                     ></v-checkbox>
                 </v-container>
-                <br />
+                <br>
                 <v-divider></v-divider>
-                <v-card-title>Sort By Price</v-card-title>
+                <v-card-title id="categories">Sort By Price</v-card-title>
                 <v-container class="pt-0" fluid>
-                    <v-checkbox
+                    <v-checkbox id="info"
                         label="Descending"
                         v-model="sortPrice"
                         hide-details
@@ -78,13 +78,13 @@
                 <v-layout>
                     <ul id="itemsList">
                         <li v-for="item in filteredProduct" :key="item.id">
-                            <v-card class="mx-auto my-12" width="650" height = "830" color="F4F5F7">
+                            <v-card class="mx-auto my-12" width="650" height = "830" color="#EBFFED">
                                 <v-img height="500" v-bind:src="item.image"></v-img>
                                 <div id='leftInfo'>
                                 <h1 id="productTitle"><b>{{item.title}}</b></h1>
-                                <p >{{item.companyName}}</p>
-                                <p ><b>${{item.price}}</b></p>
+                                <p id='name'>{{item.companyName}}</p>
                                 <p>CATEGORY: {{item.category}} </p>  
+                                <p id="price"><b>$ {{item.price}}</b></p>
                                 </div>         
                                 <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> 
                             </v-card>
@@ -160,7 +160,7 @@ export default {
 #title{
   font-weight: bold;
   font-size:80px;
-  font-family: "Sanchez";
+  font-family: 'Montserrat', sans-serif;
   padding-top:30px
 }
 #nav {
@@ -194,7 +194,7 @@ export default {
 }
 
 #leftInfo{
-  width: 40%;
+  width: 60%;
   float: left;
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
@@ -232,6 +232,22 @@ li {
 p {
     text-align:start;
     padding-left:25px;
+}
+#price {
+  font-size:40px;
+}
+#name {
+  font-size:30px;
+  font-family: 'Montserrat', sans-serif;
+}
+#info{
+  font-size:20px;
+  font-family: 'Montserrat', sans-serif;
+}
+#categories{
+  font-size:30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 }
 button {
   height: 120px;
