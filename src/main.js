@@ -6,8 +6,8 @@ import Routes from './routes.js'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
 import store from './store/store' 
 import firebase from  'firebase';
-import shopperHeader from './components/shopper/shopperHeader.vue'
-import companyHeader from './components/company/companyHeader.vue'
+import shopperHeader from './components/shopper/ShopperHeader.vue'
+import companyHeader from './components/company/CompanyHeader.vue'
 import VueGoogleMaps from 'vue-googlemaps'
 import 'vue-googlemaps/dist/vue-googlemaps.css'
 import VueResource from 'vue-resource'
@@ -23,7 +23,7 @@ Vue.component('company-header',companyHeader)
 Vue.use(VueGoogleMaps, {
   load: {
       // put your google API key either in the ./config/local.env.js file or just hardcode in the string below
-      apiKey: process.env.GOOGLE_API_KEY || '',
+      apiKey: 'AIzaSyDCH_j7Xz32HgtT5iTwS1TyqwDFCezYjsc',
       libraries: ['places'],
       useBetaRenderer: false
   }

@@ -1,11 +1,14 @@
 <template>
     <div id = "OnlineMarketPlace">
       <company-header></company-header>
-        <nav>
+      <h1 id="title">Our Products</h1>
+          <div id='search'>
             <v-toolbar floating width="400">   
-                <v-text-field single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
+                <v-text-field  single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
             </v-toolbar><br><br>
-            
+          </div>
+           
+          <div id='nav'>  
             <v-card>
                 <v-card-title>Categories</v-card-title>
                 <v-container class="pt-0" fluid>
@@ -67,29 +70,23 @@
                     ></v-checkbox>
                 </v-container>
             </v-card>
-        </nav>
+          </div>
               
-        <h1 id="title">Our Products</h1>
-        <div id="contents">          
+       
+        <div id="content">          
             <v-container fluid>
                 <v-layout>
                     <ul id="itemsList">
                         <li v-for="item in filteredProduct" :key="item.id">
-
-                            <v-card class="mx-auto my-12" width="650" height = "830" color="green lighten-5">
-                                <template slot="progress">
-                                    <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
-                                </template>
+                            <v-card class="mx-auto my-12" width="650" height = "830" color="F4F5F7">
                                 <v-img height="500" v-bind:src="item.image"></v-img>
+                                <div id='leftInfo'>
                                 <h1 id="productTitle"><b>{{item.title}}</b></h1>
-                                <p class="my-4 subtitle-1">{{item.company}}</p>
-                                <p class="my-4 subtitle-1"><b>${{item.price}}</b></p>
-                                <p class="my-4 subtitle-1">CATEGORY: {{item.category}} </p>
-                                <v-divider class="mx-4"></v-divider>                  
-
-                                <v-card-actions>
-                                    <v-btn x-large depressed outlined color="indigo" v-on:click="route(item.id)">Learn More</v-btn>
-                                </v-card-actions>
+                                <p >{{item.companyName}}</p>
+                                <p ><b>${{item.price}}</b></p>
+                                <p>CATEGORY: {{item.category}} </p>  
+                                </div>         
+                                <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> 
                             </v-card>
                         </li>
                 
@@ -161,26 +158,47 @@ export default {
 
 <style scoped>
 #title{
-    font-weight: bold;
-    font-size:80px;
-    font-family: 'Anton', sans-serif;
+  font-weight: bold;
+  font-size:80px;
+  font-family: "Sanchez";
+  padding-top:30px
 }
-nav {
-    float: left;
-    width: 20%;
-    background: #E3F2FD;
-    padding: 30px; 
-    height: 700px; 
-    margin-top:10px;
-    margin-left:10px;
+#nav {
+  float: left;
+  width: 20%;
+  padding: 30px; 
+  padding-top:180px;
+  margin-left:10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+
 }
 #content {
-    float: right;
-    padding: 30px; 
-    width: 80%;
-    background-color: #FFFAF0;
-    height: 700px; 
+  float: right;
+  width: 78%;
+  height: 700px; 
+  margin-top:10px;
 }  
+#search {
+  float: right;
+  height: 100px; 
+  padding: 10px; 
+  margin-right:30px;
+} 
+
+#rightBtn{
+  width: 30%;
+  float: right;
+  margin-right:40px;
+  margin-top:110px
+}
+
+#leftInfo{
+  width: 40%;
+  float: left;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
 
 ul {
   display: flex;
@@ -206,7 +224,7 @@ li {
   width: 100%; 
 }
 #productTitle {
-  font-family: "Lucida Console", Times, serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 30px;
   text-align:start;
   padding:20px;
@@ -214,5 +232,15 @@ li {
 p {
     text-align:start;
     padding-left:25px;
+}
+button {
+  height: 120px;
+  background-color: #c9AA88;
+  border-radius: 10px;
+  font-weight: bold;
+  color:white;
+  border-width: 1px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
 }
 </style>
