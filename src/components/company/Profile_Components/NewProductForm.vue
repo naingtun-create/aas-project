@@ -118,6 +118,11 @@ export default {
       search: null,
     };
   },
+  props:{
+    companyData: {
+      type: Array,
+    },
+  },
   methods: {
     addProduct: async function() {
       //Get the company user
@@ -141,6 +146,7 @@ export default {
         //Create product datapacket
         var product = {
           company: user.uid,
+          companyName:this.companyData.companyname,
           title: this.title,
           description: this.description,
           price: this.price,

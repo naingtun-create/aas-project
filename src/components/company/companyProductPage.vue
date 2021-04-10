@@ -12,7 +12,7 @@
         <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: {{this.datapacket[0].company}}</p>
+        <p id="bold"> View Seller: {{this.datapacket[0].companyName}}</p>
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
         <p id="bold">Additional Information: </p> {{this.datapacket[0].sizeguide}}
         <p v-if="this.datapacket[0].size" id="bold"> Select Size: 
