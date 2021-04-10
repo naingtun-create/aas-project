@@ -1,7 +1,7 @@
 <template>
-    <div id = "Incubator">
+    <div id = "forum">
         <shopper-header></shopper-header>
-        <p>This is Incubator page</p>
+        <p>This is Forum page</p>
         
     </div>
 </template>

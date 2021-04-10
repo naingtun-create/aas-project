@@ -6,10 +6,13 @@
           New Product Listing
         </v-btn>
       </template>
+      <v-toolbar
+        color="primary"
+        dark
+        class="headline"
+      >Add a New Product!</v-toolbar>
       <v-card>
-        <v-card-title class="headline grey lighten-2">
-          Add a new product!
-        </v-card-title>
+        <div id="content">
         <v-card-text>
           <v-form ref="form" lazy-validation>
             <v-text-field
@@ -79,6 +82,7 @@
               @change="onFilePicked"
             ></v-file-input>
             <img :src="imageURL" height="150"/>
+            <br/>
             <v-btn color="success" v-on:click="addProduct()" class="mr-4"
               >Submit</v-btn
             >
@@ -88,6 +92,7 @@
             <v-btn class="mr-4" v-on:click="close">Close</v-btn>
           </v-form>
         </v-card-text>
+        </div>
       </v-card>
     </v-dialog>
   </div>
@@ -115,6 +120,7 @@ export default {
       sizings: [],
       colorsTemplate: ["Red", "Blue", "White", "Black"],
       colors: [],
+      date: new Date().toISOString().substr(0, 10),
       search: null,
     };
   },
@@ -146,7 +152,7 @@ export default {
         //Create product datapacket
         var product = {
           company: user.uid,
-          companyName:this.companyData.companyname,
+          companyname:this.companyData[0].companyname,
           title: this.title,
           description: this.description,
           price: this.price,
@@ -155,6 +161,7 @@ export default {
           sizings: this.sizings,
           category: this.selectedCategory,
           colors: this.colors,
+          date: this.date
         };
 
         console.log(product);
@@ -221,3 +228,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+#content {
+  padding: 3%
+}
+
+
+</style>
