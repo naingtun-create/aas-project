@@ -50,6 +50,7 @@ export default {
             email: null,
             password: null,
             value:String,
+            myPass: String
         };
     },
     methods: {
@@ -71,7 +72,7 @@ export default {
                         .signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
                             alert('Successfully logged in');
-                            this.$router.push('/shopper/profile');
+                            this.$router.push({ path: '/shopper/profile'});
                         })
                         .catch(error => {
                             alert(error.message);
@@ -79,6 +80,8 @@ export default {
 
                 }
             }
+
+        
             // firebase
             //     .auth()
             //     .signInWithEmailAndPassword(this.email, this.password)
@@ -90,6 +93,9 @@ export default {
             //         alert(error.message);
             //     });
         },
+        resetValidation: function() { 
+
+        }
         
     },
 };

@@ -3,7 +3,8 @@
     <company-header></company-header>
     <div id="intro">
         <div id="heading">
-            <p id="title" style="float:left">{{companyData.companyname}}</p>
+            <p id="title" style="float:left">{{companyData[0].companyname}}</p>
+            
             <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog">
                 <v-card>
@@ -38,15 +39,20 @@
                 </v-card>
                 </template>
             </v-dialog>
-            <img v-show="profileURL != ''" style="float:right" :src="profileURL" v-on:click="toggleDialog">
-            <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png" v-on:click="toggleDialog">
-    </div>
+            <img v-show="profileURL != ''" style="float:right" :src="profileURL">
+            <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png">
+            <br/>
+           
+        </div>
         <br/>
-        <h3> Our Story </h3>
+        <v-btn color="red lighten-2" dark  v-on:click="toggleDialog">Upload Company Picture</v-btn>
+        <br/><br/>
+        <h3>Our Story</h3>
         <br/>
         <p>
-            {{companyData.description}}
+            {{companyData[0].description}}
         </p>
+        <p> Visit us at: <a :href="companyData[0].website">{{companyData[0].website}}</a></p>
     </div>
 
     <div id="combined">
@@ -54,15 +60,21 @@
             <li>
                 <div id="productsection">
                     <h3>Our Products</h3>
+                    <br/>
                     <ProductDisplay></ProductDisplay>
+                    <br/>
                     <NewProductForm v-bind:companyData="companyData"></NewProductForm>
                 </div>
             </li>
             
             <li>
-                <div id="promotionsection">
-                    <h3>Upcoming Promotional Activities</h3>
-                    <NewPromoForm></NewPromoForm>
+                <div id="activitysection">
+                    <h3>Upcoming Activities</h3>
+                    <br/>
+                    <ActivityDisplay v-bind:companyID="this.id"></ActivityDisplay>
+                    <br/>
+                    <NewActivityForm v-bind:companyID="this.id"></NewActivityForm>
+                    
                 </div>
             </li>
         </ul>
@@ -74,16 +86,18 @@
 
 <script>
 import NewProductForm from './Profile_Components/NewProductForm.vue'
-import NewPromoForm from './Profile_Components/NewPromoForm.vue'
+import NewActivityForm from './Profile_Components/NewActivityForm.vue'
 import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
+import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
 
 
 export default {
     name: "companyPage",
     data: () => {
         return {   
+            id:"",
             dialog: false,
             image: [], 
             imageURL: "",
@@ -94,7 +108,8 @@ export default {
     },
     components: {
         NewProductForm: NewProductForm,
-        NewPromoForm: NewPromoForm,
+        NewActivityForm: NewActivityForm,
+        ActivityDisplay: ActivityDisplay,
         ProductDisplay: ProductDisplay
     },
     methods: {
@@ -105,19 +120,19 @@ export default {
             this.reset();
             this.toggleDialog();
             //this.$forceUpdate();
-            location.reload()
+            //location.reload()
             
         },
         uploadImage: async function() {
 
-            var user = firebase.auth().currentUser;
-            var k = user.uid;
+        var k = this.id;
+          
 
         //Putting it in the storage
         try {
-            //Its is place ProductImages => CompanyId => productiD
+            //Its is place ProductImages => CompanyId
             //Reference to the storage
-            var storageRef = firebase.storage().ref("ProfilePics/" + k);
+            var storageRef = firebase.storage().ref("ProfilePics/" + k );
 
             //remember to add the delete or update storage to check first
             
@@ -140,12 +155,15 @@ export default {
                     .update({
                         "profilePic" : url.toString()
                     })
-                    console.log("success")
+
+                    console.log(url)
                 
             }).then(
                 this.close(),
                 alert("Uploaded Successfully!")
-            );
+            ).catch (e => {
+                console.log(e)
+            });
 
         } catch (e) {
           console.log(e);
@@ -168,9 +186,13 @@ export default {
             var k = user.uid;
 
             await db.collection("company").doc(k).get().then((doc) => {
-                this.companyData = doc.data();
-                if (typeof this.companyData.profilePic !== 'undefined') {
-                    this.profileURL = this.companyData.profilePic
+                var data = {};
+                data = doc.data();
+                this.companyData.push(data);
+                //this.companyData = doc.data();
+
+                if (typeof this.companyData[0].profilePic !== 'undefined') {
+                    this.profileURL = this.companyData[0].profilePic
                 }
                 console.log(this.profileURL)
             })
@@ -182,7 +204,10 @@ export default {
         }
     },
     created () {
+        var user = firebase.auth().currentUser;
+        this.id = user.uid;
         this.fetchData()
+        
     }
 }
 </script>
@@ -209,7 +234,7 @@ export default {
     padding-left:170px;
     
 }
-#promotionsection {
+#activitysection {
     float:left;
     text-align:left;
     font-size:30px;
@@ -230,8 +255,10 @@ export default {
     display: inline-block;
 }
 img {
-  width: 100%;
-  height: auto;
+  
+  padding-top: 3%;
+  padding-right: 25%;
+
 }
 ul {
   padding: 0;

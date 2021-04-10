@@ -50,6 +50,7 @@ export default {
             email: null,
             password: null,
             value:String,
+            myPass: String
         };
     },
     methods: {
@@ -68,7 +69,9 @@ export default {
                         .signInWithEmailAndPassword(this.email, this.password)
                         .then(() => {
                             alert('Successfully logged in');
-                            this.$router.push('/companypage');
+                            
+                            this.$router.push({ path: '/company/companypage'});
+                         
                         })
                         .catch(error => {
                             alert(error.message);
