@@ -1,32 +1,23 @@
 <template>
   <div id="profilepage">
     <shopper-header></shopper-header>
-    <br />
-    <h1>Welcome to your AAS Account!</h1>
-    <v-avatar size="170" v-on:click="toggleUploadDialog">
-      <span v-if="!this.profileURL" class="white--text headline">{{
-        this.initials
-      }}</span>
-      <img v-else :src="this.profileURL" />
-    </v-avatar>
-    <v-dialog
-      v-model="uploadDialog"
-      transition="dialog-top-transition"
-      max-width="600"
-      persistent
-    >
+    <br>
+    <h1>Welcome back,<br>{{ shopperData.fullname }}</h1><br><br><br>
+    <div id="left">
+      <v-avatar size="400" v-on:click="toggleUploadDialog">
+        <span v-if="!this.profileURL" class="white--text headline">{{this.initials}}</span>
+        <img  v-else :src="this.profileURL">
+      </v-avatar>
+      <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
       <template v-slot:default="dialog">
         <v-card>
           <v-toolbar color="primary" dark>Upload Your Profile Image</v-toolbar>
           <br />
           <v-card-text>
             <v-file-input
-              accept="image/*"
-              label="Product Image"
-              truncate-length="15"
-              type="file"
-              v-model="image"
-              outlined
+              accept="image/*" label="Product Image"
+              truncate-length="15" type="file"
+              v-model="image" outlined
               @change="onFilePicked"
             ></v-file-input>
             <img
@@ -44,100 +35,41 @@
           </v-card-actions>
         </v-card>
       </template>
-    </v-dialog>
-    <div class="row">
-      <div id="column1">
-        <div id="content1">
-          <div id="box1">
+      </v-dialog> <br><br><br>
+          <div id="boxleft">
             <h2>View</h2>
             <ul>
               <li>
-                <v-btn
-                  class="ma-2"
-                  color="#20d3bb"
-                  v-on:click="
-                    $router.push({ path: '/shopper/purchasehistory' })
-                  "
-                  dark
-                >
+                <v-btn id="innerbutton" v-on:click="$router.push({ path: '/shopper/purchasehistory' })" dark>
                   Purchase History
                   <v-icon dark right>mdi-history</v-icon>
                 </v-btn>
               </li>
               <li>
-                <v-btn
-                  class="ma-2"
-                  color="#20d3bb"
-                  v-on:click="$router.push({ path: '/shopper/payment' })"
-                  dark
-                >
+                <v-btn id="innerbutton" v-on:click="$router.push({ path: '/shopper/payment' })" dark>
                   Cart
                   <v-icon dark right>mdi-cart</v-icon>
                 </v-btn>
               </li>
               <li>
-                <v-btn class="ma-2" color="#20d3bb" dark
-                  >My Likes
-                  <v-icon dark right>mdi-thumb-up</v-icon>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn class="ma-2" color="#20d3bb" dark
-                  >My Vouchers
-                  <v-icon dark right>mdi-ticket-percent</v-icon>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn class="ma-2" color="#20d3bb" dark
-                  >Funded Kickstarters
-                  <v-icon dark right>mdi-cash-refund</v-icon>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn class="ma-2" color="#20d3bb" dark
-                  >Payment Details
-                  <v-icon dark right>mdi-credit-card</v-icon>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn
-                  class="ma-2"
-                  color="#20d3bb"
-                  dark
-                  v-on:click="toggleEditDialog"
-                  >Account Settings
+                <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Account Settings
                   <v-icon dark right>mdi-account-cog</v-icon>
                 </v-btn>
-                <v-dialog
-                  v-model="editDialog"
-                  transition="dialog-top-transition"
-                  max-width="600"
-                  persistent
-                >
+                <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
                   <template v-slot:default="dialog">
                     <v-card>
-                      <v-toolbar color="primary" dark
-                        >Update your Personal Details</v-toolbar
-                      >
-                      <br />
+                      <v-toolbar color="primary" dark>Update your Personal Details</v-toolbar>
+                      <br>
                       <v-card-text>
                         <v-text-field label="Address" v-model="updateAddress">
                         </v-text-field>
-                        <v-text-field
-                          label="Postal Code"
-                          v-model="updatePostalCode"
-                        >
+                        <v-text-field label="Postal Code" v-model="updatePostalCode">
                         </v-text-field>
-                        <v-text-field
-                          label="Phone Number"
-                          v-model="updatePhone"
-                        >
+                        <v-text-field label="Phone Number" v-model="updatePhone">
                         </v-text-field>
                       </v-card-text>
                       <v-card-actions class="justify-end">
-                        <v-btn text @click="confirmUpdate">
-                          Update
-                        </v-btn>
+                        <v-btn text @click="confirmUpdate">Update</v-btn>
                         <v-btn text @click="dialog.value = false">Close</v-btn>
                       </v-card-actions>
                     </v-card>
@@ -147,80 +79,68 @@
             </ul>
             <ul>
               <li>
-                <v-btn class="ma-2" color="red" v-on:click="logout" dark
-                  >Sign Out
+                <button v-on:click="logout">Sign Out
                   <v-icon dark right>mdi-account-remove</v-icon>
-                </v-btn>
+                </button><br><br>
+
               </li>
             </ul>
-          </div>
-        </div>
+
       </div>
+      </div>
+    
+    <div id="right">
+        <h1 id="name">{{ shopperData.fullname }}</h1>
+        <div id="boxcontact">
+          <h2 id="mycontactdetails">My Contact Details</h2>
+          <div id="icon">
+            <ul>
+              <li><v-icon size=50>mdi-email</v-icon></li>
+              <li><v-icon size=50>mdi-map-marker</v-icon></li>
+              <li><v-icon size=50>mdi-phone</v-icon></li>
+            </ul>
+          </div>
+          <div id="details">
+            <ul>
+              <li>{{shopperData.email}}</li>
+              <li>{{ shopperData.address + " " + shopperData.postalCode }}</li>
+              <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
+            </ul>
+          </div>
+        </div><br><br><br>
 
-      <div id="column2">
-        <h1 id="h1col2">{{ shopperData.fullname }}</h1>
-        <div id="box2">
-          <h2>My Contact Details</h2>
-
-          <ul>
-            <li>
-              <div id="li2">
-                <v-icon>mdi-email</v-icon>
-                <h4>{{ shopperData.email }}</h4>
-              </div>
-            </li>
-            <li>
-              <div id="li2">
-                <v-icon>mdi-map-marker</v-icon>
-                <h4>
-                  {{ shopperData.address + " " + shopperData.postalCode }}
-                </h4>
-              </div>
-            </li>
-            <li v-show="shopperData.phoneNumber">
-              <div id="li2">
-                <v-icon>mdi-phone</v-icon>
-                <h4>
-                  {{ shopperData.phoneNumber }}
-                </h4>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div id="box3">
-          <h2>Purchase History</h2>
-          <v-list >
-            <br>
+        <div id="boxpayment">
+          <h2 id="mycontactdetails">Purchase History</h2>
+          <v-list><br>
             <v-list-item v-for="(purchase,id) in purchaseHistory" :key="id">
-
-        
               <v-list width="100%" subheader>
-                <v-subheader>{{purchase.PaymentInvoice}}</v-subheader>
-                <v-list-item v-for="(product,id) in purchase.Products" :key="id">
-                  
-                  <v-list-item-avatar tile size="100px"> 
-                    <v-img :alt="`${product.title}`" :src="product.image" ></v-img>
-                  </v-list-item-avatar>
-
-                  <v-list-item-content>
-                    <v-list-item-title v-text="product.title"></v-list-item-title>
-                  </v-list-item-content>
-
-                </v-list-item>
-                
-                <v-list-item-action right> 
-                  <transaction-details :purchase="purchase"/>
-                </v-list-item-action>
-                <v-divider></v-divider>
+                <div id="leftdetails">
+                  <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice}}</v-subheader>
+                  <v-list-item v-for="(product,id) in purchase.Products" :key="id"> 
+                    <div id="invoice">
+                      <v-list-item-avatar tile size="250px"> 
+                        <v-img :alt="`${product.title}`" :src="product.image" ></v-img>
+                      </v-list-item-avatar>
+                      </div>
+                      <v-list-item-content>
+                        <v-list-item-title id="purchasedetails" v-text="product.title"></v-list-item-title>
+                      </v-list-item-content>
+                      
+                  </v-list-item>
+                </div>
+                <div id="rightdetails">
+                  <v-list-item-action> 
+                    <transaction-details :purchase="purchase"/>
+                  </v-list-item-action>
+                </div>
+                  <v-divider></v-divider>
               </v-list>
-     
-            </v-list-item>
+            </v-list-item><br><br>
           </v-list>
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -392,31 +312,23 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   height: 100%;
+  padding-bottom:50px;
 }
 h1 {
   text-align: left;
   padding-left: 150px;
-  color: rgb(8, 8, 8);
-  font-family: Nunito;
+  color: #c9AA88;;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
-  font-size: 40px;
-}
-#h1col2 {
-  text-align: left;
-  padding-left: 500px;
-  color: rgb(8, 8, 8);
-  font-family: Nunito;
-  font-weight: bolder;
-  font-size: 40px;
-  padding-top: 50px;
+  font-size: 60px;
 }
 h2 {
   margin: -20px;
-  font-size: 34px;
-  font-family: Nunito;
-  font-weight: bolder;
-  margin-top: 75px;
-  color: rgb(8, 31, 37);
+  font-size: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  margin-top: 55px;
+  color:#c9AA88
 }
 h3 {
   text-align: left;
@@ -436,8 +348,10 @@ h4 {
 #column1 {
   width: 30%;
 }
-#box1 {
-  outline-style: solid;
+#boxleft {
+  border-radius: 25px;
+  border: 6px solid #c9AA88;
+  border-radius: 10px;
 }
 #content1 {
   width: 500px;
@@ -447,9 +361,20 @@ h4 {
   float: left;
   width: 70%;
 }
-#box2 {
-  outline-style: solid;
-  width: 1600px;
+#boxcontact {
+  width: 90%;
+  height:500px;
+  border-radius: 25px;
+  border: 6px solid #c9AA88;
+  border-radius: 10px;
+}
+#boxpayment {
+  width: 90%;
+  border-radius: 25px;
+  border: 6px solid #c9AA88;
+  border-radius: 10px;
+  min-height: 100px;
+  height: auto;
 }
 #box3 {
   outline-style: solid;
@@ -472,14 +397,96 @@ li {
 .ul2 {
   list-style-type: none;
 }
-#li2 {
+#contact {
   display: flex;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
 }
 img {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
-  width: 150px;
+}
+#innerbutton{
+  height: 120px;
+  width: 80%;
+  font-weight: bold;
+  background-color: white;
+  color:black;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 4px solid #c9AA88;
+}
+button {
+  height: 120px;
+  width: 250px;
+  background-color: #c9AA88;
+  border-radius: 10px;
+  font-weight: bold;
+  color:white;
+  border-width: 1px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+}
+#left {
+  float:left;
+  width:20%;
+  margin-left:100px;
+}
+#right {
+  float:right;
+  width:70%;
+  margin-left:100px;
+}
+#name{
+  text-align:left;
+  color: rgb(8, 8, 8);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 100px;
+  margin-top:150px;
+  height:300px;
+}
+#mycontactdetails{
+  color:#c9AA88;
+  text-align:left;
+  padding-left:150px;
+}
+#icon{
+  float:left;
+  width:20%;
+}
+#details{
+  float:left;
+  text-align:left;
+  width:80%;
+  font-size:30px;
+  font-family: 'Montserrat', sans-serif;
+  padding-right:200px;
+}
+#invoice{
+  font-size:30px;
+  padding-left:100px;
+  font-weight:bold;
+  font-family: 'Montserrat', sans-serif;
+}
+#purchasedetails{
+  font-size:30px;
+  padding-left:100px;
+  text-align:left;
+  font-family: 'Montserrat', sans-serif;
+}
+#leftdetails{
+  width:60%;
+  float:left;
+  padding-top:50px;
+
+}
+#rightdetails{
+  width:40%;
+  float:right;
+  padding-top:50px;
 }
 
 </style>

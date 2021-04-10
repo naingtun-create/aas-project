@@ -178,7 +178,7 @@ export default {
 button {
   width: 400px;
   height: 120px;
-  background-color: #c9AA88;
+  background-color: white;
   border-radius: 10px;
   border-width: 1px;
 }

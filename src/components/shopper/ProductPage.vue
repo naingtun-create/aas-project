@@ -87,6 +87,8 @@ export default {
                     price:this.datapacket[0].price,
                 });
             database.collection("cart").doc(this.user).set(Object.assign({},this.currentCart));
+            this.currentCart=[];
+            this.fetchItems();
             alert("Your order has been added to cart")
         },
         reroute: function() {
