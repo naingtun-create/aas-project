@@ -112,6 +112,7 @@ export default {
         search:"",
         sortPrice:"",
         selectedCategories:"All",
+        companyNameList:[],
     }
   },
   methods:{
@@ -124,6 +125,7 @@ export default {
           this.items.push(item)
         });
       });
+
     },
     route:function(id){
       let doc_id = id;
