@@ -15,7 +15,7 @@
                                 <div id="productInfo">
                                     <h1>{{item.title}}</h1>
                                     <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
-                                    <p>Cost: ${{item.totalPrice}}</p>
+                                    <p id="cost"><b>Cost: ${{item.totalPrice}}</b></p>
                                     <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
                                 </div>
                                                          
@@ -31,7 +31,7 @@
         </v-card>
         </nav>
         <div id="contents">
-            <img src = "https://upload.wikimedia.org/wikipedia/commons/e/e5/SPAYD_stored_in_the_QR_code.png" width = "700px" >
+            <img src = "../../assets/payment_code.png" width = "700px" >
             <p>Please scan the QR code</p> 
             <p>Pay the required amount as stated in the subtotal</p>
             <NewPaymentForm v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
@@ -53,7 +53,6 @@ export default {
         subtotal:0,
         absent:true,
         productInfo:[],  
-        //paymentDetails:[],  
     }
   },
   components: {
@@ -73,11 +72,9 @@ export default {
         }
         var details = []
         details = doc.data()
-        //console.log(details)  
-        for(var info in details){
-          //console.log(details.keys)    
+
+        for(var info in details){   
           for(var item in this.items){
-            //console.log(this.items[item].id) 
             if(details[info].id == this.items[item].id){
               if(details[info].size == ""){
                 this.items[item].colors.push([details[info].color, details[info].qty,'Not Applicable'])
@@ -122,26 +119,18 @@ export default {
                 good = doc.data();
                 this.productInfo.push([doc.id, good])
             });
-           //console.log(this.productInfo)  
         for(var pdt in this.items){
           for(var goods in this.productInfo){
-            //console.log(this.productInfo[goods].id)   
-            
-            //console.log(this.productInfo[goods][0])  
             if(this.items[pdt].id == this.productInfo[goods][0]){
-              this.items[pdt].image = this.productInfo[goods][1].image 
-              //console.log(this.productInfo[goods][1].image)                
+              this.items[pdt].image = this.productInfo[goods][1].image              
               this.items[pdt].title = this.productInfo[goods][1].title
               console.log(this.items) 
               break
             }
           }
         }
-            //console.log(this.productInfo)  
+ 
         });
-        //console.log(this.productInfo)  
-
-        //console.log(this.items)
       });
     },
     deleteItem:function(cart_id, pdt_id, price){
@@ -155,7 +144,6 @@ export default {
       this.filterList = this.items.filter((itemf) => itemf.id != pdt_id)
       this.subtotal -= price
       this.items = this.filterList
-      //location.reload()
       
     },   
     
@@ -207,6 +195,7 @@ p{
     font-size: 40px;
     text-align:end;
     padding-right:100px;
+    color:lightcoral;
 }
 #productInfo {
   padding-left:80px;
@@ -223,5 +212,10 @@ h1{
 
 #delete {
   left: 700px;
+}
+
+#cost {
+  color:red;
+  font-weight: bolder;
 }
 </style>

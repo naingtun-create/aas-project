@@ -82,7 +82,7 @@
                                 </template>
                                 <v-img height="500" v-bind:src="item.image"></v-img>
                                 <h1 id="productTitle"><b>{{item.title}}</b></h1>
-                                <p class="my-4 subtitle-1">{{item.company}}</p>
+                                <p class="my-4 subtitle-1">{{item.companyName}}</p>
                                 <p class="my-4 subtitle-1"><b>${{item.price}}</b></p>
                                 <p class="my-4 subtitle-1">CATEGORY: {{item.category}} </p>
                                 <v-divider class="mx-4"></v-divider>                  
@@ -112,6 +112,7 @@ export default {
         search:"",
         sortPrice:"",
         selectedCategories:"All",
+        companyNameList:[],
     }
   },
   methods:{
@@ -124,6 +125,7 @@ export default {
           this.items.push(item)
         });
       });
+
     },
     route:function(id){
       let doc_id = id;
