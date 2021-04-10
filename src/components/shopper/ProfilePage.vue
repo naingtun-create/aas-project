@@ -1,8 +1,7 @@
 <template>
   <div id="profilepage">
     <shopper-header></shopper-header>
-    <br>
-    <h1>Welcome back,<br>{{ shopperData.fullname }}</h1><br><br><br>
+    <br><br><br>
     <div id="left">
       <v-avatar size="400" v-on:click="toggleUploadDialog">
         <span v-if="!this.profileURL" class="white--text headline">{{this.initials}}</span>
