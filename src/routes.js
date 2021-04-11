@@ -1,8 +1,4 @@
-import SignUpPage from './components/SignUpPage.vue'
-import SignUpSuccessful from './components/SignUpSuccessful.vue'
 import ResetPassword from './components/ResetPassword.vue'
-import ResetSuccessful from './components/ResetSuccessful.vue'
-import Register from './components/Register.vue'
 import LoginDir from './components/LoginDirectory.vue'
 
 import CompanyPage from './components/company/CompanyPage.vue'
@@ -30,13 +26,9 @@ export default [
     { path: '/', component: LoginDir},
     { path: '/companylogin', component: CompanyLoginPage},
     { path: '/shopperlogin', component: ShopperLoginPage},
-    { path: '/signup', component: SignUpPage},
     { path: '/companysignup', component: CompanySignUpPage},
     { path: '/shoppersignup', component: ShopperSignUpPage},
-    { path: '/signUpSuccessful', component: SignUpSuccessful},
     { path: '/resetpassword', component: ResetPassword},
-    { path: '/resetsuccess', component: ResetSuccessful},
-    { path: '/register', component: Register},
     { path: '/payment', component: Payment},
 
     { path: '/shopper/profile', component: ProfilePage, meta: {requiresAuth: true}},
