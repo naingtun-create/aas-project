@@ -91,10 +91,11 @@ export default {
                         }, function(error) {
                             // An error happened.
                             console.log(error)
-                        });
-
-                        this.$router.push('signUpSuccessful');
-                 
+                        })
+                        .then(() => {
+                            alert("Account Created Successfully!");
+                            this.$router.push("companylogin");
+                        })  
                     }).catch(error => {
                         alert(error.message)
                     })
@@ -102,7 +103,7 @@ export default {
                     //const actionCodeSettings = {
                       //  url: `${process.env.VUE_APP_HOST_NAME}/sign-in/?email=${user.email}`,
                         //};
-                    user.sendEmailVerification();
+                    //user.sendEmailVerification();
 
                     
                     
