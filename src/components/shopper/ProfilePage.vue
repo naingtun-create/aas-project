@@ -114,7 +114,7 @@
             <v-list-item v-for="(purchase,id) in purchaseHistory" :key="id">
               <v-list width="100%" subheader>
                 <div id="leftdetails">
-                  <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice}}</v-subheader>
+                  <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice + " |  " + purchase.Date}}</v-subheader>
                   <v-list-item v-for="(product,id) in purchase.Products" :key="id"> 
                     <div id="invoice">
                       <v-list-item-avatar tile size="100px"> 
@@ -268,10 +268,22 @@ export default {
             this.purchaseHistory.push(doc.data());
           });
         });
+      this.purchaseHistory = this.purchaseHistory.sort(this.compareDates);
 
       console.log(this.shopperData);
     },
-    generateInitials() {
+    compareDates: function(a, b) {
+
+      if (a.timestamp > b.timestamp) {
+        return -1;
+      } else if (a.timestamp < b.timestamp) {
+        return 1;
+      } else {
+        return 0;
+      }
+
+    },
+    generateInitials: function () {
       var fullname = this.shopperData.fullname.split("\\s+");
       if (fullname.length > 1) {
         this.initials = fullname[0][0] + fullname[1][0];
@@ -308,6 +320,7 @@ export default {
       this.updateAddress = this.shopperData.address;
       this.updatePhone = this.shopperData.phoneNumber;
       this.updatePostalCode = this.shopperData.postalCode;
+
     },
   },
   created() {
