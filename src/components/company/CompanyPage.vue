@@ -2,14 +2,13 @@
 <div id="companypage">
     <company-header></company-header>
     <div id="intro">
-        <div id="heading">
-            <p id="title" style="float:left">{{companyData[0].companyname}}</p>
-            
+        <p id="title">{{companyData[0].companyname}}</p>
+        <div id="heading">            
             <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog">
                 <v-card>
                     <v-toolbar
-                    color="primary"
+                    color="#c9AA88"
                     dark
                     >Upload Company's Profile Image</v-toolbar>
                     <br>
@@ -23,7 +22,7 @@
                         outlined
                         @change="onFilePicked"
                         ></v-file-input>
-                        <img v-show="imageURL == ''" src="../../assets/DummyImage.png" height="200"/>
+                        <img v-show="imageURL == ''" src="../../assets/DummyImage.png" height="150"/>
                         <img v-show="imageURL != ''" :src="imageURL" height="200"/>
                         
                     </v-card-text>
@@ -45,8 +44,12 @@
         
         </div>
         <br/>
-        <v-btn color="red lighten-2" dark  v-on:click="dialog = true">Upload Company Picture</v-btn>
-        <br/><br/>
+        <div id="uploadpic">
+        <v-btn x-small v-on:click="dialog = true">Upload Company Picture
+        <v-icon dark right>mdi-image</v-icon>
+        </v-btn>
+        </div>
+        <br/>
         <h3>Our Story</h3>
         <br/>
         <p>
@@ -54,8 +57,6 @@
         </p>
         <p> Visit us at: <a :href="companyData[0].website">{{companyData[0].website}}</a></p>
         
-        <change-password-dialog/>
-
         <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
             <template>
                 <v-card>
@@ -73,7 +74,14 @@
             </template>
         </v-dialog>
 
-        <v-btn v-on:click="editDialog = true">Update Story</v-btn>
+        <div id="editstory">
+        <v-btn x-small v-on:click="editDialog = true">Edit Story
+        <v-icon dark right>mdi-information</v-icon>
+        </v-btn>
+        </div>
+        <br/><br/><br/><br/>
+        <change-password-dialog/>
+
 
     </div>
 
@@ -236,23 +244,38 @@ export default {
 }
 #intro {
     float:left;
-    padding-top:100px;
-    padding-left:200px;
-    font-size:30px;
+    padding-top:50px;
+    padding-left:100px;
+    font-size:15px;
     text-align:left;
+    display:inline-table
+}
+#heading {
+    display: flex;   
 }
 #title{
     font-weight: bold;
-    font-size:80px;
+    font-size:20px;
     font-family: 'Anton', sans-serif;
     color:#c9AA88
 }
-#heading {
-    display: inline-block;
-}
 img {
-  padding-top: 3%;
-  padding-right: 25%;
-
+  border: 1px solid #ddd;
+  border-radius: 2x;
+  padding: 2px;
+  width: 200px;
+  margin-top: -10px;
+}
+h3 {
+    margin-top:20px;
+    margin-bottom:-15px;
+}
+#editstory{
+    float:right;
+    padding-right:100px;
+}
+#uploadpic{
+    float:right;
+    padding-right:100px;
 }
 </style>

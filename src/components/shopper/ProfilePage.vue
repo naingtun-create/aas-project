@@ -65,12 +65,17 @@
             </ul>
             <ul>
               <li>
+                <div id="changepw">
                 <change-password-dialog/>
+                </div>
               </li>
               <li>
+                <div id="signoutbutton">
                 <button v-on:click="logout">Sign Out
                   <v-icon dark right>mdi-account-remove</v-icon>
-                </button><br><br>
+                </button>
+                </div>
+                <br><br>
 
               </li>
             </ul>
@@ -384,7 +389,14 @@ p{
 
   height: auto;
 }
-
+#changepw {
+  margin-left:-40px;
+  margin-top:-10px;
+  margin-bottom:55px;
+}
+#signoutbutton {
+  margin-left:-23px;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
