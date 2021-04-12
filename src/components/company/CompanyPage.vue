@@ -221,8 +221,7 @@ export default {
     created () {
         var user = firebase.auth().currentUser;
         this.id = user.uid;
-        this.fetchData()
-        
+        this.fetchData();
     }
 }
 </script>
