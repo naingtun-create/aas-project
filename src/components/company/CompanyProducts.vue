@@ -2,10 +2,10 @@
 <div id="companyproducts">
     <company-header></company-header>
     <h1>Our Products</h1>
-    <br/>
+    <h3>Share your products with our community!</h3>
     <ProductDisplay></ProductDisplay>
-    <br/>
     <NewProductForm v-bind:companyData="companyData"></NewProductForm>
+    <br/>
 
 </div>
 </template>
@@ -138,5 +138,8 @@ export default {
 </script>
 
 <style scoped>
-
+h3 {
+    text-align: left;
+    padding-left: 75px;
+}
 </style>
