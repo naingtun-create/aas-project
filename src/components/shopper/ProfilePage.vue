@@ -3,7 +3,7 @@
     <shopper-header></shopper-header>
     <br><br><br>
     <div id="left">
-      <v-avatar size="200" v-on:click="toggleUploadDialog">
+      <v-avatar size="200">
         <span v-if="!this.profileURL" id="initials">{{this.initials}}</span>
         <img  v-else :src="this.profileURL">
       </v-avatar>
@@ -65,6 +65,7 @@
             </ul>
             <ul>
               <li>
+                <button v-on:click="toggleUploadDialog">Upload Profile Picture</button>
                 <button v-on:click="logout">Sign Out
                   <v-icon dark right>mdi-account-remove</v-icon>
                 </button><br><br>
@@ -167,46 +168,61 @@ export default {
         });
     },
     close: function() {
-      this.toggleDialog();
+      this.uploadDialog = false;
+      this.editDialog = false;
       this.reset();
-      //this.$forceUpdate();
-      //location.reload();
+      //this.$router.go();
     },
     uploadImage: async function() {
-      //Putting it in the storage
-      try {
-        
-        //Reference to the storage
-        var storageRef = firebase.storage().ref("ProfilePics/" + this.id);
 
-        //Waiting till it uploaded to firebase storage
-        await storageRef.put(this.image);
-        var _extension = this.image.name.split(".")[1];
+        var k = this.id;
+        //Putting it in the storage
+            try {
+                //Its is place ProductImages => CompanyId
+                //Reference to the storage
+                var storageRef = firebase.storage().ref("ProfilePics/" + k );
 
-        //Update the metadata to be uploaded as image
-        var newMetadata = {
-          contentType: "image/" + _extension,
-        };
+                //remember to add the delete or update storage to check first
+                if (this.profileURL) {
+                  await storageRef.delete()
+                }
 
-        await storageRef.updateMetadata(newMetadata);
+                //Waiting till it uploaded to firebase storage
+                await storageRef.put(this.image)
+                var _extension = this.image.name.split(".")[1]
 
-        //Retrieving the download URL for the product Image
-        await storageRef
-          .getDownloadURL()
-          .then(async function(url) {
-            //Add it into the database
-            await db
-              .collection("shoppers")
-              .doc(this.id)
-              .update({
-                profilePic: url.toString(),
-              });
-            console.log("success");
-          })
-          .then(this.close(), alert("Uploaded Successfully!"));
-      } catch (e) {
-        console.log(e);
-      }
+                //Update the metadata to be uploaded as image
+                var newMetadata = {
+                    contentType: 'image/' + _extension
+                };
+
+                await storageRef.updateMetadata(newMetadata)
+
+                //Retrieving the download URL for the product Image
+                await storageRef.getDownloadURL().then(async function(url) {
+
+                        //Add it into the database
+                        await db.collection("shoppers").doc(k).update({
+                            "profilePic" : url.toString()
+                        }).catch( e => {
+                          console.log(e)
+                        })
+
+                        console.log(url)
+                    
+                }).then(
+                    this.close(),
+                    alert("Uploaded Successfully! Please refresh the page yourself!"),
+                    
+                   
+                ).catch (e => {
+                    console.log(e)
+                });
+
+            } catch (e) {
+            console.log(e);
+            }
+                
     },
     onFilePicked: function() {
       var reader = new FileReader();
@@ -274,7 +290,7 @@ export default {
 
       alert("Update Successful");
 
-      location.reload();
+      location.reload()
     },
   },
   watch: {
@@ -288,7 +304,6 @@ export default {
     var user = firebase.auth().currentUser;
     this.id = user.uid;
     this.fetchData();
-    console.log(this.purchaseHistory);
   },
 };
 </script>

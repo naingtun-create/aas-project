@@ -12,7 +12,7 @@
         <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].companyName}} </a></p>
+        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].companyname}} </a></p>
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br><br>
         <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
         <br><br>
@@ -99,6 +99,7 @@ export default {
     },
     created: function(){
         this.fetchItems()
+ 
     },
 }
 </script>
