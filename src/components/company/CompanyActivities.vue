@@ -6,6 +6,8 @@
     <ActivityDisplay v-bind:companyID="this.id"></ActivityDisplay>
     <NewActivityForm v-bind:companyID="this.id"></NewActivityForm>
     <br/>
+    <DisplayActivity v-bind:companyID="this.id"></DisplayActivity>
+    <br/>
 
 </div>
 </template>
@@ -17,6 +19,8 @@ import NewActivityForm from './Profile_Components/NewActivityForm.vue'
 import firebase from "firebase";
 import db from "../../firebase.js";
 import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
+import DisplayActivity from './Profile_Components/DisplayActivity.vue'
+
 
 export default {
     name: "companyPage",
@@ -35,6 +39,7 @@ export default {
         //NewProductForm: NewProductForm,
         NewActivityForm: NewActivityForm,
         ActivityDisplay: ActivityDisplay,
+        DisplayActivity: DisplayActivity,
         //ProductDisplay: ProductDisplay
     },
     methods: {
