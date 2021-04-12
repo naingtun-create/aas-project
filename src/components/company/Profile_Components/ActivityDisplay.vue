@@ -34,7 +34,7 @@
 
                     <v-list-item >
                         <v-list-item-icon>
-                        <v-icon color="indigo">mdi-event</v-icon>
+                        <v-icon color="indigo">mdi-bookmark</v-icon>
                         </v-list-item-icon>
 
                         <v-list-item-content>
@@ -69,7 +69,9 @@
 
                     <v-list-item>
                         <v-list-item-content>
+
                             <error-prevention-dialog :itemName="activity.title" :itemID="activity.id" type="activities"/>
+                            <activity-information :itemData="activity"/>
                         </v-list-item-content>
                     </v-list-item>
                     
@@ -82,6 +84,7 @@
 <script>
 import db from "../../../firebase.js";
 import ErrorPreventionDialog from "./ErrorPreventionDialog.vue"
+import ActivityInformation from "./ActivityInformation.vue"
 
 export default {
     name: "ActivityDisplay",
@@ -114,7 +117,8 @@ export default {
         }
     },
     components: {
-        ErrorPreventionDialog: ErrorPreventionDialog
+        ErrorPreventionDialog: ErrorPreventionDialog,
+        ActivityInformation: ActivityInformation
     },
     created () {
         this.fetchActivity();
