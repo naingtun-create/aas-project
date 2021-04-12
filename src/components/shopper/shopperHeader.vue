@@ -2,8 +2,8 @@
     <div id="navbar">
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
       <ul class="logo"> All About Sustainability</ul>
-      <div class="links">
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" color="blue-grey lighten-2" dark>
+      <div id="links">
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" dark>
             Nearby
             <v-icon dark right>mdi-store</v-icon>
           </v-btn>
@@ -13,22 +13,22 @@
             <v-icon dark right>mdi-store</v-icon>
           </v-btn> -->
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" color="blue-grey lighten-2" dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
             Marketplace
             <v-icon dark right>mdi-storefront</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/forum'})"  color="blue-grey lighten-2" dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/forum'})" dark>
             Activities
             <v-icon dark right>mdi-lifebuoy</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})"  color="blue-grey lighten-2" dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})" dark>
             Cart
             <v-icon dark right>mdi-cart</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" color="blue-grey lighten-2" dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" dark>
             Profile
             <v-icon dark right>mdi-account</v-icon>
           </v-btn>          
@@ -62,9 +62,9 @@ export default {
 #navbar {
   display: flex;
   padding-top: 0px;
-  color:#c9AA88;
-  background-color:white;
-  height:100px;
+  color:white;
+  background-color:#c9AA88;
+  height:80px;
   font-size:35px;
   padding-top: 0px;
   font-family: "Sanchez";
@@ -72,12 +72,20 @@ export default {
 .logo {
   height:80px;
   padding-left: 50px;
+  font-size:25px;
   
 }
-.links{
-  padding-left: 30%;
+.btnroutes{
+  font-size:10px;
+}
+#links{
+  float:left;
+  padding-left: 10%;
+  padding-top:1%;
   text-align: left;
   display:inline-flex;
   font-size:20px;
+  width:40%;
+
 }
 </style>

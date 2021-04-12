@@ -77,14 +77,14 @@ li {
   margin: 10px;
 }
 button {
-  height: 120px;
-  width: 350px;
+  height: 70px;
+  width: 200px;
   background-color: #c9AA88;
   border-radius: 10px;
   font-weight: bold;
   color:white;
   border-width: 1px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 30px;
+  font-size: 15px;
 }
 </style>
