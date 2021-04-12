@@ -1,7 +1,8 @@
 <template>
     <div id="changePassword">
-        <v-btn color="red lighten-2" dark v-on:click="passwordDialog=true">
+        <v-btn dark x-small color="red lighten-2" v-on:click="passwordDialog=true">
             Change Account Password
+        <v-icon dark right>mdi-lock-reset</v-icon>
         </v-btn>
         <v-dialog v-model="passwordDialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog" >
