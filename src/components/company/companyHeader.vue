@@ -2,7 +2,7 @@
     <div id="navbar">
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
       <ul class="logo"> All About Sustainability</ul>
-      <div class="links">
+      <div id="links">
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
             My Products
             <v-icon dark right>mdi-storefront</v-icon>
@@ -63,12 +63,19 @@ export default {
 .logo {
   height:80px;
   padding-left: 50px;
-  
+  font-size: 25px;
 }
-.links{
-  padding-left: 30%;
+.btnroutes{
+  font-size:10px;
+}
+#links{
+  float:left;
+  padding-left: 10%;
+  padding-top:1%;
   text-align: left;
   display:inline-flex;
   font-size:20px;
+  width:40%;
+
 }
 </style>
