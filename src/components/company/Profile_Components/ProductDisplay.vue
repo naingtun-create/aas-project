@@ -5,7 +5,7 @@
         <ul id="itemsList">
           <li v-for="item in items" :key="item.id">
             <v-card
-              class="mx-auto my-12"
+              class="mx-auto"
               width="250"
               height="380"
               color="green lighten-5"

@@ -1,11 +1,11 @@
 <template>
 <div id="companyactivities">
     <company-header></company-header>
-    <h1>Our Activities</h1>
-    <br/>
+    <h1>Our Activites</h1>
+    <h3>Promote your activites for our community to support!</h3>
     <ActivityDisplay v-bind:companyID="this.id"></ActivityDisplay>
-    <br/>
     <NewActivityForm v-bind:companyID="this.id"></NewActivityForm>
+    <br/>
 
 </div>
 </template>
@@ -138,5 +138,8 @@ export default {
 </script>
 
 <style scoped>
-
+h3 {
+    text-align: left;
+    padding-left: 65px;
+}
 </style>
