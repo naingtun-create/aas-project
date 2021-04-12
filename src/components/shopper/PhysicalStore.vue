@@ -10,7 +10,7 @@
                             <v-layout row wrap>
                                 <v-flex xs12 class="stores-list">
                                     <br>
-                                    <h1 id='title'>All Stores</h1>
+                                    <h1 id='title'>Eco-Friendly Stores</h1>
                                     <br>
                                     <v-container fluid class="stores-list-container">
                                         <v-layout row wrap>
@@ -35,7 +35,7 @@
                             </v-layout>
                         </v-container>
                         <br>
-                        <h1 id='title'>Find Stores near me</h1> <br>
+                        <h1 id='title'>Find Stores Nearby!</h1> <br>
                         <p> Please ensure your browser enables location sharing </p>
                         <button v-on:click="trigger()"> Use Current Location </button> <br><br>
                     </v-card>

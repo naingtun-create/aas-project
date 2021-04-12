@@ -2,7 +2,7 @@
   <div id="ResetPassword">
     <h1>All About Sustainability</h1>
     <router-link to="/" exact><v-icon dark right>mdi-home</v-icon></router-link>
-    <h2>Forget Password Page</h2>
+    <h2>Reset Password Page</h2>
     <br /><br />
     <div id="vcard">
       <v-card id="test" width="700">
@@ -42,12 +42,13 @@ export default {
           .then(function() {
             // Email sent.
             console.log("Sent Successfully")
+            alert("Check your email for further instructions to reset your password!")
           })
           .catch(function(error) {
             alert(error);
           });
         
-        this.$router.push({path: "/resetpassword"});
+        this.$router.push({path: "/login"});
       } else {
         alert("Please fill in your email");
         console.log(this.$router)
