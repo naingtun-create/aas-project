@@ -62,8 +62,8 @@ export default {
 #navbar {
   display: flex;
   padding-top: 0px;
-  color:white;
-  background-color:#c9AA88;
+  color:#c9AA88;
+  background-color:white;
   height:100px;
   font-size:35px;
   padding-top: 0px;

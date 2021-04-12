@@ -2,7 +2,7 @@
   <div id="purchasehistory">
     <shopper-header></shopper-header>
 
-    <h2>Purchase History</h2>
+    <h2 id="title">Purchase History</h2>
     <v-list>
       <br />
       <v-list-item v-for="(purchase, id) in purchaseHistory" :key="id">
@@ -67,4 +67,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#title{
+  text-align:left;
+  color: #c9AA88;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 100px;
+  margin-top:150px;
+  height:300px;
+}
+
+
+
+
+</style>

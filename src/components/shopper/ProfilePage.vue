@@ -4,14 +4,14 @@
     <br><br><br>
     <div id="left">
       <v-avatar size="400" v-on:click="toggleUploadDialog">
-        <span v-if="!this.profileURL" class="white--text headline">{{this.initials}}</span>
+        <span v-if="!this.profileURL" id="initials">{{this.initials}}</span>
         <img  v-else :src="this.profileURL">
       </v-avatar>
       <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
       <template v-slot:default="dialog">
         <v-card>
           <v-toolbar color="primary" dark>Upload Your Profile Image</v-toolbar>
-          <br />
+          <br>
           <v-card-text>
             <v-file-input
               accept="image/*" label="Product Image"
@@ -23,7 +23,7 @@
               v-show="imageURL == ''"
               src="../../assets/DummyImage.png"
               height="200"
-            />
+            >
             <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" />
           </v-card-text>
           <v-card-actions class="justify-end">
@@ -305,6 +305,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+
 #profilepage {
   position: relative;
   background-size: cover;
@@ -316,7 +317,7 @@ export default {
 h1 {
   text-align: left;
   padding-left: 150px;
-  color: #c9AA88;;
+  color: #c9AA88;
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
   font-size: 60px;
@@ -327,7 +328,7 @@ h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   margin-top: 55px;
-  color:#c9AA88
+  color:white;
 }
 h3 {
   text-align: left;
@@ -349,8 +350,9 @@ h4 {
 }
 #boxleft {
   border-radius: 25px;
-  border: 6px solid #c9AA88;
+  border: 6px solid white;
   border-radius: 10px;
+  background-color: #c9AA88;
 }
 #content1 {
   width: 500px;
@@ -373,6 +375,7 @@ h4 {
   border: 6px solid #c9AA88;
   border-radius: 10px;
   min-height: 100px;
+
   height: auto;
 }
 #box3 {
@@ -406,6 +409,17 @@ img {
   border-radius: 4px;
   padding: 5px;
 }
+#initials{
+  border: 5px solid #c9AA88;
+  border-radius: 50%;
+  text-align:center;
+  font-size:200px;
+  color:#c9AA88;
+  width:250px;
+  height:250px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
 #innerbutton{
   height: 120px;
   width: 80%;
@@ -424,7 +438,9 @@ button {
   border-radius: 10px;
   font-weight: bold;
   color:white;
+  border: 10px solid white;
   border-width: 1px;
+  text-align:center;
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
 }
@@ -440,7 +456,7 @@ button {
 }
 #name{
   text-align:left;
-  color: rgb(8, 8, 8);
+  color: #c9AA88;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 100px;
@@ -460,6 +476,7 @@ button {
   float:left;
   text-align:left;
   width:80%;
+  color:black;
   font-size:30px;
   font-family: 'Montserrat', sans-serif;
   padding-right:200px;
