@@ -1,51 +1,36 @@
 <template>
     <div id = "OnlineMarketPlace">
       <shopper-header></shopper-header>
-      <h1 id="title">Our Products</h1>
+      <h3 id="title">Support your local eco-friendly products!</h3>
           <div id='search'>
             <v-toolbar floating width="400">   
                 <v-text-field  single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
-            </v-toolbar><br><br>
+            </v-toolbar>
           </div>
            
           <div id='nav'>  
             <v-card>
                 <v-card-title id="categories">Categories</v-card-title>
-                <v-container class="pt-0" id="info" fluid>
+                <v-container id="info" fluid>
                     <v-checkbox
-                        label="All"
-                        v-model="selectedCategories"
-                        value="All"
-                        hide-details
-                        dense
+                        label="All" v-model="selectedCategories"
+                        value="All" hide-details dense
                     ></v-checkbox>
                     <v-checkbox
-                        label="ACCESSORY"
-                        v-model="selectedCategories"
-                        value="ACCESSORY"
-                        hide-details
-                        dense
+                        label="ACCESSORY" v-model="selectedCategories"
+                        value="ACCESSORY" hide-details dense
                     ></v-checkbox>
                     <v-checkbox
-                        label="CLEANING"
-                        v-model="selectedCategories"
-                        value="CLEANING"
-                        hide-details
-                        dense
+                        label="CLEANING" v-model="selectedCategories"
+                        value="CLEANING" hide-details dense
                     ></v-checkbox>
                     <v-checkbox
-                        label="CLOTHING"
-                        v-model="selectedCategories"
-                        value="CLOTHING"
-                        hide-details
-                        dense
+                        label="CLOTHING" v-model="selectedCategories"
+                        value="CLOTHING" hide-details dense
                     ></v-checkbox>
                     <v-checkbox
-                        label="FOOD and DRINK"
-                        v-model="selectedCategories"
-                        value="FOOD and DRINK"
-                        hide-details
-                        dense
+                        label="FOOD and DRINK" v-model="selectedCategories"
+                        value="FOOD and DRINK" hide-details dense
                     ></v-checkbox>
                 </v-container>
                 <br>
@@ -78,15 +63,14 @@
                 <v-layout>
                     <ul id="itemsList">
                         <li v-for="item in filteredProduct" :key="item.id">
-                            <v-card class="mx-auto my-12" width="650" height = "830" color="#EBFFED">
-                                <v-img height="500" v-bind:src="item.image"></v-img>
-                                <div id='leftInfo'>
-                                <h1 id="productTitle"><b>{{item.title}}</b></h1>
-                                <p id='name'>{{item.companyName}}</p>
-                                <p>CATEGORY: {{item.category}} </p>  
-                                <p id="price"><b>$ {{item.price}}</b></p>
-                                </div>         
-                                <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> 
+                            <v-card class="mx-auto my-12" width="230" height = "370" color="#EBFFED">
+                                <v-img height="200" v-bind:src="item.image"></v-img>
+                                <h1 id="productTitle">{{item.title}}</h1>
+                                
+                                <p id='name'>{{item.companyname}}<br>
+                                CATEGORY: {{item.category}} </p>  
+                                <p id="price"><b>$ {{item.price}}</b>
+                                <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> </p>
                             </v-card>
                         </li>
                 
@@ -159,7 +143,7 @@ export default {
 <style scoped>
 #title{
   font-weight: bold;
-  font-size:80px;
+  font-size:30px;
   font-family: 'Montserrat', sans-serif;
   padding-top:30px
 }
@@ -167,17 +151,18 @@ export default {
   float: left;
   width: 20%;
   padding: 30px; 
-  padding-top:180px;
+  padding-top:100px;
   margin-left:10px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-size: 15px;
 
 }
+
 #content {
   float: right;
   width: 78%;
   height: 700px; 
-  margin-top:10px;
+  margin-top:-70px;
 }  
 #search {
   float: right;
@@ -189,8 +174,8 @@ export default {
 #rightBtn{
   width: 30%;
   float: right;
-  margin-right:40px;
-  margin-top:110px
+  margin-right:10px;
+  margin-bottom:10px;
 }
 
 #leftInfo{
@@ -209,10 +194,9 @@ ul {
 
 li {
   flex-grow: 1;
-  flex-basis: 300px;
+  flex-basis: auto;
   text-align: center;
-  padding: 10px;
-  margin: 10px;
+  margin-top: 10px;
 }
 
 .v-card--reveal {
@@ -225,38 +209,40 @@ li {
 }
 #productTitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 30px;
+  font-size: 15px;
   text-align:start;
   padding:20px;
 }
-p {
+p{
     text-align:start;
-    padding-left:25px;
+    padding-left:15px;
 }
 #price {
-  font-size:40px;
+  font-size:20px;
 }
 #name {
-  font-size:30px;
+  font-size:10px;
   font-family: 'Montserrat', sans-serif;
+  margin-top:-10px;
 }
 #info{
-  font-size:20px;
+  font-size:10px;
   font-family: 'Montserrat', sans-serif;
+  margin-top:-30px;
 }
 #categories{
-  font-size:30px;
+  font-size:20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
 button {
-  height: 120px;
+  height: 40px;
   background-color: #c9AA88;
-  border-radius: 10px;
+  border-radius: 10%;
   font-weight: bold;
   color:white;
   border-width: 1px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 30px;
+  font-size: 10px;
 }
 </style>

@@ -28,11 +28,12 @@
                     </v-form>
                     <v-btn
                     color="#EF9A9A"
-                    v-on:click="resetValidation"><router-link to="/resetpassword" exact>Reset Password</router-link></v-btn>
+                    class="mr-4"
+                    v-on:click="resetValidation">Reset Password</v-btn>
                     <v-btn
                     color="#B2DFDB"
-                    v-on:click="resetValidation"><router-link to="/shoppersignup" exact>Sign Up</router-link></v-btn>
-
+                    class="mr-4"
+                    v-on:click="signuppage">Sign Up</v-btn>                    
                 </v-card-actions>
             </div>
         </v-card>
@@ -94,9 +95,11 @@ export default {
             //     });
         },
         resetValidation: function() { 
-
-        }
-        
+            this.$router.push({ path: '/resetpassword'});
+        },
+        signuppage: function() { 
+            this.$router.push({ path: '/shoppersignup'});
+        }        
     },
 };
 </script>
@@ -129,7 +132,7 @@ h2 {
   font-family: Nunito;
   font-weight: bolder;
   margin-top:15px;
-  color: rgb(2, 11, 14);
+  color: rgb(255, 255, 255);
 }
 h3 {
   font-size: 34px;

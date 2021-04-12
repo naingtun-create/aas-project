@@ -5,9 +5,9 @@
         <ul id="itemsList">
           <li v-for="item in items" :key="item.id">
             <v-card
-              class="mx-auto my-12"
-              width="650"
-              height="830"
+              class="mx-auto"
+              width="250"
+              height="400"
               color="green lighten-5"
             >
               <template slot="progress">
@@ -17,19 +17,19 @@
                   indeterminate
                 ></v-progress-linear>
               </template>
-              <v-img height="500" v-bind:src="item.image"></v-img>
+              <v-img height="200" v-bind:src="item.image"></v-img>
               <h1 id="productTitle">
                 <b>{{ item.title }}</b>
               </h1>
               <p class="my-4 subtitle-1">
                 <b>${{ item.price }}</b>
               </p>
-              <p class="my-4 subtitle-1">CATEGORY: {{ item.category }}</p>
+              <p id="description">Category: {{ item.category }}</p>
               <v-divider class="mx-4"></v-divider>
 
               <v-card-actions>
                 <v-btn
-                  x-large
+                  small
                   depressed
                   outlined
                   color="indigo"
@@ -99,30 +99,26 @@ export default {
     font-size:80px;
     font-family: 'Anton', sans-serif;
 }
-
 #content {
-    float: right;
-    padding: 30px; 
-    width: 80%;
+    float: left;
+    padding: 0px;
+    width: 100%;
     background-color: #FFFAF0;
     height: 700px; 
 }  
-
 ul {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
 }
-
 li {
   flex-grow: 1;
-  flex-basis: 300px;
+  flex-basis: 250px;
   text-align: center;
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
 }
-
 .v-card--reveal {
   align-items: flex-start;
   bottom: 0;
@@ -131,16 +127,20 @@ li {
   position: absolute;
   width: 100%; 
 }
-
 #productTitle {
   font-family: "Lucida Console", Times, serif;
-  font-size: 30px;
+  font-size: 15px;
   text-align:start;
-  padding:20px;
+  padding:10px;
 }
-
 p {
-    text-align:start;
-    padding-left:25px;
+  text-align:start;
+  padding-left:10px;
+}
+#description {
+  font-family: "Lucida Console", Times, serif;
+  font-size: 13px;
+  text-align:start;
+  margin-top:-5px;
 }
 </style>

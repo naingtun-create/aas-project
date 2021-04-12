@@ -12,24 +12,25 @@
         <v-img v-bind:src="this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
-        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].companyName}} </a></p>
-        <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br>
+        <p id="bold"> View Seller: <a v-on:click="reroute">{{this.datapacket[0].companyname}} </a></p>
+        <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br><br>
         <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
-        <p v-if="this.datapacket[0].sizings" id="bold"> Select Size: 
-            <v-select v-model="selectedSize" :items="this.datapacket[0].sizings" filled label="Size" dense ></v-select>
+        <br><br>
+        <p id="bold" v-if="this.datapacket[0].sizings[0]"> Select Size: 
+            <v-select id="choicebox" v-model="selectedSize" :items="this.datapacket[0].sizings" filled label="Size" dense ></v-select>
         </p>
         <p v-if="this.datapacket[0].colors" id="bold"> Select Colour:
             <v-select v-model="selectedColour" :items="this.datapacket[0].colors" filled label="Colour" dense ></v-select>
         </p>
         <p id="bold"> Select Quantity: </p>
         <input v-model="qty" id=index placeholder=0 type="number" min="1">
-        <br><br> 
+        <br>
         <span v-if="this.datapacket[0].size" id="select">Selected Size: {{ selectedSize }}</span>
         <br>
         <span v-if="this.datapacket[0].colors" id="select">Selected Colour: {{ selectedColour }}</span>
         <br>
         <span id="select">Selected Quantity: {{this.qty}}</span>
-        <br><br>
+        <br>
         <button v-on:click="sendOrder()">Add to Cart</button>
     </div> 
   </div>
@@ -98,54 +99,61 @@ export default {
     },
     created: function(){
         this.fetchItems()
+ 
     },
 }
 </script>
 
 <style scoped>
 #intro {
-    width:50%;
+    width:40%;
     float:left;
     padding-top:50px;
-    padding-left:200px;
-    font-size:30px;
+    padding-left:100px;
+    font-size:20px;
     text-align:left;
 }
 #contents {
     width:40%;
     padding-top:100px;
     float:right;
-    font-size:40px;
+    font-size:20px;
     margin: 100px;  
 }
 #bold{
     font-weight: bold;
     color:#c9AA88;
 }
+#choicebox{
+    font-weight: bold;
+    color:#c9AA88;
+    font-size:20px;
+    width:80%;
+}
 #title{
     font-weight: bold;
-    font-size:80px;
+    font-size:30px;
     font-family: 'Anton', sans-serif;
     color:#c9AA88;
 }
 #select{
     color:#c9AA88;
-    font-size:40px;
+    font-size:15px;
 }
 button {
-  width: 400px;
-  height: 120px;
+  width: 200px;
+  height: 80px;
   background-color: #c9AA88;
   border-radius: 10px;
   border-width: 1px;
 }
 input[type=number] {
     background-color: #ececec;
-    font-size:40px;
+    font-size:20px;
 }
 #arrow {
-    height:60px;
-    font-size:40px;
+    height:30px;
+    font-size:20px;
     color:black;
 }
 </style>

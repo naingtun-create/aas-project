@@ -43,7 +43,7 @@ h2 {
   font-family: Nunito;
   font-weight: bolder;
   margin-top:75px;
-  color: rgb(8, 31, 37);
+  color: rgb(255, 255, 255);
 }
 h3 {
   margin: -20px;

@@ -55,42 +55,16 @@
         <p> Visit us at: <a :href="companyData[0].website">{{companyData[0].website}}</a></p>
     </div>
 
-    <div id="combined">
-        <ul>
-            <li>
-                <div id="productsection">
-                    <h3>Our Products</h3>
-                    <br/>
-                    <ProductDisplay></ProductDisplay>
-                    <br/>
-                    <NewProductForm v-bind:companyData="companyData"></NewProductForm>
-                </div>
-            </li>
-            
-            <li>
-                <div id="activitysection">
-                    <h3>Upcoming Activities</h3>
-                    <br/>
-                    <ActivityDisplay v-bind:companyID="this.id"></ActivityDisplay>
-                    <br/>
-                    <NewActivityForm v-bind:companyID="this.id"></NewActivityForm>
-                    
-                </div>
-            </li>
-        </ul>
-    </div>
-    <br><br>
-
     </div>
 </template>
 
 <script>
-import NewProductForm from './Profile_Components/NewProductForm.vue'
-import NewActivityForm from './Profile_Components/NewActivityForm.vue'
-import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
+//import NewProductForm from './Profile_Components/NewProductForm.vue'
+//import NewActivityForm from './Profile_Components/NewActivityForm.vue'
+//import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
-import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
+//import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
 
 
 export default {
@@ -107,10 +81,10 @@ export default {
         }
     },
     components: {
-        NewProductForm: NewProductForm,
-        NewActivityForm: NewActivityForm,
-        ActivityDisplay: ActivityDisplay,
-        ProductDisplay: ProductDisplay
+        //NewProductForm: NewProductForm,
+        //NewActivityForm: NewActivityForm,
+        //ActivityDisplay: ActivityDisplay,
+        //ProductDisplay: ProductDisplay
     },
     methods: {
         toggleDialog: function() {
@@ -125,50 +99,53 @@ export default {
         },
         uploadImage: async function() {
 
-        var k = this.id;
+            var k = this.id;
           
 
         //Putting it in the storage
-        try {
-            //Its is place ProductImages => CompanyId
-            //Reference to the storage
-            var storageRef = firebase.storage().ref("ProfilePics/" + k );
+            try {
+                //Its is place ProductImages => CompanyId
+                //Reference to the storage
+                var storageRef = firebase.storage().ref("ProfilePics/" + k );
 
-            //remember to add the delete or update storage to check first
-            
-            //Waiting till it uploaded to firebase storage
-            await storageRef.put(this.image)
-            var _extension = this.image.name.split(".")[1]
+                //remember to add the delete or update storage to check first
+                if (this.profileURL != "") {
+                await storageRef.delete()
+                }
 
-            //Update the metadata to be uploaded as image
-            var newMetadata = {
-                contentType: 'image/' + _extension
-            };
+                //Waiting till it uploaded to firebase storage
+                await storageRef.put(this.image)
+                var _extension = this.image.name.split(".")[1]
 
-            await storageRef.updateMetadata(newMetadata)
+                //Update the metadata to be uploaded as image
+                var newMetadata = {
+                    contentType: 'image/' + _extension
+                };
 
-            //Retrieving the download URL for the product Image
-            await storageRef.getDownloadURL().then( async function(url) {
-                    //Add it into the database
-                    await db.collection("company")
-                    .doc(k)
-                    .update({
-                        "profilePic" : url.toString()
-                    })
+                await storageRef.updateMetadata(newMetadata)
 
-                    console.log(url)
+                //Retrieving the download URL for the product Image
+                await storageRef.getDownloadURL().then( async function(url) {
+                        //Add it into the database
+                        await db.collection("company")
+                        .doc(k)
+                        .update({
+                            "profilePic" : url.toString()
+                        })
+
+                        console.log(url)
+                    
+                }).then(
+                    this.close(),
+                    alert("Uploaded Successfully!")
+                ).catch (e => {
+                    console.log(e)
+                });
+
+            } catch (e) {
+            console.log(e);
+            }
                 
-            }).then(
-                this.close(),
-                alert("Uploaded Successfully!")
-            ).catch (e => {
-                console.log(e)
-            });
-
-        } catch (e) {
-          console.log(e);
-        }
-            
         },
         onFilePicked: function() {
             var reader = new FileReader() 
@@ -227,24 +204,6 @@ export default {
     font-size:30px;
     text-align:left;
 }
-#productsection {
-    float:left;
-    text-align:left;
-    font-size:30px;
-    padding-left:170px;
-    
-}
-#activitysection {
-    float:left;
-    text-align:left;
-    font-size:30px;
-    padding-left:170px;
-    margin-top:50px;
-    
-}
-#combined{
-    display:table-cell;
-}
 #title{
     font-weight: bold;
     font-size:80px;
@@ -255,17 +214,8 @@ export default {
     display: inline-block;
 }
 img {
-  
   padding-top: 3%;
   padding-right: 25%;
 
 }
-ul {
-  padding: 0;
-  list-style-type: none;
-}
-li {
-  margin-top:25px;
-}
-
 </style>
