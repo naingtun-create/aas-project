@@ -16,7 +16,7 @@
         <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br><br>
         <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
         <br><br>
-        <p id="bold" v-if="this.datapacket[0].sizings[0]=='N.A.'"> Select Size: 
+        <p id="bold" v-if="this.datapacket[0].sizings[0]"> Select Size: 
             <v-select id="choicebox" v-model="selectedSize" :items="this.datapacket[0].sizings" filled label="Size" dense ></v-select>
         </p>
         <p v-if="this.datapacket[0].colors" id="bold"> Select Colour:
