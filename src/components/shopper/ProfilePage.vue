@@ -65,9 +65,17 @@
             </ul>
             <ul>
               <li>
+                <div id="changepw">
+                <change-password-dialog/>
+                </div>
+              </li>
+              <li>
+                <div id="signoutbutton">
                 <button v-on:click="logout">Sign Out
                   <v-icon dark right>mdi-account-remove</v-icon>
-                </button><br><br>
+                </button>
+                </div>
+                <br><br>
 
               </li>
             </ul>
@@ -91,7 +99,7 @@
           <div id="details">
             <ul>
               <li>{{shopperData.email}}</li>
-              <li>{{ shopperData.address + " " + shopperData.postalCode }}</li>
+              <li>{{shopperData.address + " " + shopperData.postalCode}}</li>
               <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
             </ul>
           </div>
@@ -138,6 +146,7 @@
 import firebase from "firebase";
 import db from "../../firebase.js";
 import transactionDetails from "./TransactionDetails.vue"
+import ChangePasswordDialog from '../ChangePassword.vue';
 
 export default {
   data() {
@@ -157,7 +166,8 @@ export default {
     };
   },
   components: {
-    transactionDetails
+    transactionDetails,
+    ChangePasswordDialog
   },
   methods: {
     logout() {
@@ -172,7 +182,6 @@ export default {
       this.uploadDialog = false;
       this.editDialog = false;
       this.reset();
-      //this.$router.go();
     },
     uploadImage: async function() {
 
@@ -367,7 +376,14 @@ p{
 
   height: auto;
 }
-
+#changepw {
+  margin-left:-40px;
+  margin-top:-10px;
+  margin-bottom:55px;
+}
+#signoutbutton {
+  margin-left:-23px;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";

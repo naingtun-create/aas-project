@@ -65,6 +65,7 @@ export default {
           totalPrice: 0,
           cartID:[],
           companyID:'',
+          completed:false,
         }
         var details = []
         details = doc.data()
@@ -105,6 +106,7 @@ export default {
               totalPrice: 0,
               cartID:[],
               companyID:'',
+              completed:false,
             }
           }
 

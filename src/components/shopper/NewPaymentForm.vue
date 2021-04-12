@@ -81,7 +81,6 @@ export default {
         "Date": this.date,
         "Time": this.time,
         "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
-        "completed":false,
       }
       db.collection('transactions').add(order).then(()=>{
         console.log("payment added");

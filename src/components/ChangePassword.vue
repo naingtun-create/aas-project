@@ -1,9 +1,10 @@
 <template>
     <div id="changePassword">
-        <v-btn color="red lighten-2" dark v-on:click="dialog=true">
+        <v-btn dark x-small color="red lighten-2" v-on:click="passwordDialog=true">
             Change Account Password
+        <v-icon dark right>mdi-lock-reset</v-icon>
         </v-btn>
-        <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
+        <v-dialog v-model="passwordDialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog" >
                 <v-card>
                     <v-toolbar
@@ -51,10 +52,14 @@ export default {
         return {
             password: null,
             password2: null,
-            dialog: false
+            passwordDialog: false
         }
     },
     methods: {
+       close: function() {
+            this.passwordDialog= false;
+            this.$refs.form.reset();
+       },
        updatePassword: async function() {
             var user = firebase.auth().currentUser;
 
@@ -63,24 +68,20 @@ export default {
             } else if ( this.password == this.password2) {
                 await user.updatePassword(this.password).then(function() {
                 // Update successful.
-                    this.close();
                     alert("It has been successfully updated!")
-
                 }).catch(function(error) {
                 // An error happened.
                     console.log(error)
+                    alert("Password is not updated! Error occurred " + error )
                 });
+                this.close();
 
             } else {
                 alert("Password typed in are mismatched")
             }
 
        },
-       close: function() {
-           this.dialog = false;
-           this.$refs.form.reset();
-           
-       }
+
     },
 }
 </script>
