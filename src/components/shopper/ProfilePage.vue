@@ -3,14 +3,14 @@
     <shopper-header></shopper-header>
     <br><br><br>
     <div id="left">
-      <v-avatar size="200">
+      <v-avatar size="180">
         <span v-if="!this.profileURL" id="initials">{{this.initials}}</span>
         <img  v-else :src="this.profileURL">
       </v-avatar>
       <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
       <template v-slot:default="dialog">
         <v-card>
-          <v-toolbar color="primary" dark>Upload Your Profile Image</v-toolbar>
+          <v-toolbar color="#c9AA88" dark>Upload Your Profile Image</v-toolbar>
           <br>
           <v-card-text>
             <v-file-input
@@ -22,7 +22,7 @@
             <img
               v-show="imageURL == ''"
               src="../../assets/DummyImage.png"
-              height="200"
+              height="200" width="550"
             >
             <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" />
           </v-card-text>
@@ -44,7 +44,7 @@
                 <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
                   <template v-slot:default="dialog">
                     <v-card>
-                      <v-toolbar color="primary" dark>Update your Personal Details</v-toolbar>
+                      <v-toolbar color="#c9AA88" dark>Update your Personal Details</v-toolbar>
                       <br>
                       <v-card-text>
                         <v-text-field label="Address" v-model="updateAddress">
@@ -65,7 +65,6 @@
             </ul>
             <ul>
               <li>
-                <button v-on:click="toggleUploadDialog">Upload Profile Picture</button>
                 <button v-on:click="logout">Sign Out
                   <v-icon dark right>mdi-account-remove</v-icon>
                 </button><br><br>
@@ -77,7 +76,9 @@
       </div>
     
     <div id="right">
+      
         <h1 id="name">{{ shopperData.fullname }}</h1>
+        <button id='profilebtn' v-on:click="toggleUploadDialog">Upload Profile Picture</button>
         <div id="boxcontact">
           <h2 id="mycontactdetails">My Contact Details</h2>
           <div id="icon">
@@ -94,7 +95,7 @@
               <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
             </ul>
           </div>
-          <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Edit Account
+          <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Edit Contact
                   <v-icon dark right>mdi-account-cog</v-icon>
                 </v-btn>
         </div><br><br><br>
@@ -319,6 +320,7 @@ export default {
   height: 100%;
   padding-bottom:50px;
 }
+
 h1 {
   text-align: left;
   padding-left: 150px;
@@ -343,7 +345,7 @@ p{
 }
 #boxleft {
   padding:50px;
-  margin-top:-70px;
+  margin-top:-50px;
   border-radius: 25px;
   border: 3px solid white;
   border-radius: 10px;
@@ -389,9 +391,9 @@ li {
   font-size: 50px;
 }
 img {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
+  border-radius: 50%;
+  margin-top:-50px;
+
 }
 #initials{
   border: 5px solid #c9AA88;
@@ -399,11 +401,22 @@ img {
   text-align:center;
   font-size:100px;
   color:#c9AA88;
-  margin-top:-70px;
+  margin-top:-30px;
   width:130px;
   height:130px;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+}
+#profilebtn{
+  margin-top:-100px;
+  float:left;
+  font-size:10px;
+  width:120px;
+  height:30px;
+  color:black;
+  background-color:white;
+  border: 2px solid #c9AA88;
+
 }
 #innerbutton{
   margin-top:60px;
@@ -446,7 +459,7 @@ button {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 40px;
-  margin-left:-100px;
+  margin-left:-150px;
   margin-top:10px;
   height:170px;
 }

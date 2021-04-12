@@ -69,7 +69,9 @@ export default {
           features.push(string)
         }    
         this.purchasedItems[i].colors = features
+        features = []
       }
+
       console.log(this.paidItems)
       var order = { //create java object with key value pairs
         "Products": this.purchasedItems,
@@ -77,14 +79,17 @@ export default {
         "PaidAmount":this.paidPrice,
         "UserID": user.uid,       
         "Date": this.date,
-        "Time": this.time
+        "Time": this.time,
+        "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
+        "completed":false,
       }
       db.collection('transactions').add(order).then(()=>{
         console.log("payment added");
         this.reset();
         
       })
-      console.log(this.paidItems)
+      //console.log(this.paidItems)
+
       db.collection('cart').doc(user.uid).delete().then(() => location.reload())
     }
 

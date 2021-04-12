@@ -1,11 +1,11 @@
 <template>
     <div id = "OnlineMarketPlace">
       <shopper-header></shopper-header>
-      <h1 id="title">Our Products</h1>
+      <h3 id="title">Support your local eco-friendly products!</h3>
           <div id='search'>
             <v-toolbar floating width="400">   
                 <v-text-field  single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
-            </v-toolbar><br><br>
+            </v-toolbar>
           </div>
            
           <div id='nav'>  
@@ -143,7 +143,7 @@ export default {
 <style scoped>
 #title{
   font-weight: bold;
-  font-size:40px;
+  font-size:30px;
   font-family: 'Montserrat', sans-serif;
   padding-top:30px
 }
@@ -151,7 +151,7 @@ export default {
   float: left;
   width: 20%;
   padding: 30px; 
-  padding-top:180px;
+  padding-top:100px;
   margin-left:10px;
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
@@ -162,7 +162,7 @@ export default {
   float: right;
   width: 78%;
   height: 700px; 
-  margin-top:10px;
+  margin-top:-70px;
 }  
 #search {
   float: right;

@@ -13,7 +13,7 @@
       </template>
       <template v-slot:default="dialog">
         <v-card width="100%">
-          <v-toolbar color="primary" dark>{{
+          <v-toolbar color="#c9AA88" dark>{{
             "Invoice: " + purchase.PaymentInvoice + "'s Details"
           }}</v-toolbar>
           <v-card-text>
