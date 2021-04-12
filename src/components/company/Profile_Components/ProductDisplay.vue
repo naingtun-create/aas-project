@@ -7,7 +7,7 @@
             <v-card
               class="mx-auto"
               width="250"
-              height="380"
+              height="400"
               color="green lighten-5"
             >
               <template slot="progress">
