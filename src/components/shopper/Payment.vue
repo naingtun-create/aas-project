@@ -7,22 +7,18 @@
                 <ul>
                 <li v-for="(item,id) in items" :key="id">
   
-                            <div class="d-lg-flex flex-no-wrap" >
-
-                                <v-avatar class="ma-3" size="250" tile>
-                                    <v-img height="300" v-bind:src="item.image"></v-img>
-                                </v-avatar>
-                                <div id="productInfo">
-                                    <h1>{{item.title}}</h1>
-                                    <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
-                                    <p id="cost"><b>Cost: ${{item.totalPrice}}</b></p>
-                                    <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
-                                </div>
-                                                         
-                            </div>
-                            <br>
-                            <v-divider ></v-divider>    
-                       
+                  <div class="d-lg-flex flex-no-wrap" >
+                    <v-avatar class="ma-3" size="250" tile>
+                      <v-img height="300" v-bind:src="item.image"></v-img>
+                    </v-avatar>
+                    <div id="productInfo">
+                      <h1>{{item.title}}</h1>
+                      <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
+                      <p id="cost"><b>Cost: ${{item.totalPrice}}</b></p>
+                      <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
+                    </div>
+                  </div><br>
+                  <v-divider ></v-divider>     
                 </li>
                     
                 </ul>
