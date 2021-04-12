@@ -13,7 +13,7 @@
             <v-icon dark right>mdi-sale</v-icon> 
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})"  dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
             My Orders
             <v-icon dark right>mdi-receipt</v-icon>
           </v-btn>
