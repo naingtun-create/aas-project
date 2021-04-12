@@ -28,7 +28,7 @@ export default {
         return {
             mapCenter: {lat: 0, lng: 0},
             myCoordinates: {lat: 0,lng: 0},
-            zoom: 13,
+            zoom: 11,
             test:null,
             mapMarkers: null,
             mapMarkerIconSize: null,
@@ -130,7 +130,7 @@ export default {
                         this.mapMarkers[store.id].label = this.stores[store.id]
                         const storeLocation = Object.assign({}, this.mapMarkers[store.id].position)
                         this.centerOnStore(storeLocation)
-                        this.zoom=15
+                        this.zoom=14
                     } else {
                         const icon = null
                         this.mapMarkers[store.id].label = null

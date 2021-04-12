@@ -1,5 +1,5 @@
 <template>
-  <div id="NewProductForm">
+  <div id="newproductform">
     <v-dialog v-model="dialog" persistent width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
@@ -230,7 +230,9 @@ export default {
 </script>
 
 <style scoped>
-
+#newproductform {
+  margin-top:-50px; 
+}
 #content {
   padding: 3%
 }
