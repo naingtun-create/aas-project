@@ -3,19 +3,19 @@
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
       <ul class="logo"> All About Sustainability</ul>
       <div class="links">
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/physicalstore'})" color="blue-grey lighten-2" dark>
-            Nearby
-            <v-icon dark right>mdi-store</v-icon>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" color="blue-grey lighten-2" dark>
+            My Products
+            <v-icon dark right>mdi-storefront</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/onlinemarketplace'})" color="blue-grey lighten-2" dark>
-            Marketplace
-            <v-icon dark right>mdi-storefront</v-icon> 
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" color="blue-grey lighten-2" dark>
+            My Activities
+            <v-icon dark right>mdi-sale</v-icon> 
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/forum'})"  color="blue-grey lighten-2" dark>
-            Activities
-            <v-icon dark right>mdi-lifebuoy</v-icon>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})"  color="blue-grey lighten-2" dark>
+            My Orders
+            <v-icon dark right>mdi-receipt</v-icon>
           </v-btn>
 
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" color="blue-grey lighten-2" dark>
