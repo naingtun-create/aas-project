@@ -65,6 +65,7 @@ export default {
           id: '',
           totalPrice: 0,
           cartID:[],
+          companyID:'',
         }
         var details = []
         details = doc.data()
@@ -104,6 +105,7 @@ export default {
               id: '',
               totalPrice: 0,
               cartID:[],
+              companyID:'',
             }
           }
 
@@ -120,7 +122,8 @@ export default {
             if(this.items[pdt].id == this.productInfo[goods][0]){
               this.items[pdt].image = this.productInfo[goods][1].image              
               this.items[pdt].title = this.productInfo[goods][1].title
-              console.log(this.items) 
+              this.items[pdt].companyID = this.productInfo[goods][1].company
+              //console.log(this.items) 
               break
             }
           }

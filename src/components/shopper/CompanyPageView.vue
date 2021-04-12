@@ -2,18 +2,14 @@
 <div id="companypage">
     <shopper-header></shopper-header>
     <div id="intro">
+        <p id="title" >{{companyData.companyname}}</p>
         <div id="heading">
-            <p id="title" style="float:left">{{companyData.companyname}}</p>
-            
-            <img v-show="profileURL != ''" style="float:right" :src="profileURL">
-            <img v-show="profileURL == ''" style="float:right" src="../../assets/NoCompanyImage.png">
-    </div>
-        <br/>
-        <h3> Our Story </h3>
-        <br/>
-        <p>
-            {{companyData.description}}
-        </p>
+            <img v-show="profileURL != ''" style="float:left" :src="profileURL">
+            <img v-show="profileURL == ''" style="float:left" src="../../assets/NoCompanyImage.png">
+        </div>
+    <h3> Our Story </h3>
+    <br/>
+    <p>{{companyData.description}}</p>
     </div>
 
     <div id="combined">
@@ -98,48 +94,52 @@ export default {
 }
 #intro {
     float:left;
-    padding-top:100px;
-    padding-left:200px;
-    font-size:30px;
+    padding-top:50px;
+    padding-left:100px;
+    font-size:15px;
     text-align:left;
+    display:inline-table
 }
-#productsection {
-    float:left;
-    text-align:left;
-    font-size:30px;
-    padding-left:170px;
-    
+#heading {
+    display: flex;   
 }
-#promotionsection {
-    float:left;
-    text-align:left;
-    font-size:30px;
-    padding-left:170px;
-    margin-top:50px;
-    
+#title{
+    font-weight: bold;
+    font-size:20px;
+    font-family: 'Anton', sans-serif;
+    color:#c9AA88
+}
+img {
+  border: 1px solid #ddd;
+  border-radius: 2x;
+  padding: 2px;
+  width: 150px;
+  margin-top: -10px;
+}
+h3 {
+    margin-top:20px;
+    margin-bottom:-15px;
 }
 #combined{
     display:table-cell;
 }
-#title{
-    font-weight: bold;
-    font-size:80px;
-    font-family: 'Anton', sans-serif;
-    color:#c9AA88
+#productsection {
+    float:left;
+    text-align:left;
+    padding-left:75px;
+    margin-top:-15px;
 }
-#heading {
-    display: inline-block;
-}
-img {
-  width: 100%;
-  height: auto;
+#promotionsection {
+    float:left;
+    text-align:left;
+    padding-left:75px;
 }
 ul {
   padding: 0;
   list-style-type: none;
 }
 li {
-  margin-top:25px;
+  margin-top:0px;
 }
 
 
