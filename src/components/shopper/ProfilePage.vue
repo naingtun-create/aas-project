@@ -3,7 +3,7 @@
     <shopper-header></shopper-header>
     <br><br><br>
     <div id="left">
-      <v-avatar size="400" v-on:click="toggleUploadDialog">
+      <v-avatar size="200" v-on:click="toggleUploadDialog">
         <span v-if="!this.profileURL" id="initials">{{this.initials}}</span>
         <img  v-else :src="this.profileURL">
       </v-avatar>
@@ -36,24 +36,11 @@
       </template>
       </v-dialog> <br><br><br>
           <div id="boxleft">
-            <h2>View</h2>
+            <h2> Welcome to All About Sustainability.</h2><br><br><br><br>
+            <p> "One-stop portal for eco-friendly stores"</p>
             <ul>
               <li>
-                <v-btn id="innerbutton" v-on:click="$router.push({ path: '/shopper/purchasehistory' })" dark>
-                  Purchase History
-                  <v-icon dark right>mdi-history</v-icon>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn id="innerbutton" v-on:click="$router.push({ path: '/shopper/payment' })" dark>
-                  Cart
-                  <v-icon dark right>mdi-cart</v-icon>
-                </v-btn>
-              </li>
-              <li>
-                <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Account Settings
-                  <v-icon dark right>mdi-account-cog</v-icon>
-                </v-btn>
+  
                 <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
                   <template v-slot:default="dialog">
                     <v-card>
@@ -94,9 +81,9 @@
           <h2 id="mycontactdetails">My Contact Details</h2>
           <div id="icon">
             <ul>
-              <li><v-icon size=50>mdi-email</v-icon></li>
-              <li><v-icon size=50>mdi-map-marker</v-icon></li>
-              <li><v-icon size=50>mdi-phone</v-icon></li>
+              <li><v-icon size=20>mdi-email</v-icon></li>
+              <li><v-icon size=20>mdi-map-marker</v-icon></li>
+              <li><v-icon size=20>mdi-phone</v-icon></li>
             </ul>
           </div>
           <div id="details">
@@ -106,6 +93,9 @@
               <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
             </ul>
           </div>
+          <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Edit Account
+                  <v-icon dark right>mdi-account-cog</v-icon>
+                </v-btn>
         </div><br><br><br>
 
         <div id="boxpayment">
@@ -117,7 +107,7 @@
                   <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice}}</v-subheader>
                   <v-list-item v-for="(product,id) in purchase.Products" :key="id"> 
                     <div id="invoice">
-                      <v-list-item-avatar tile size="250px"> 
+                      <v-list-item-avatar tile size="100px"> 
                         <v-img :alt="`${product.title}`" :src="product.image" ></v-img>
                       </v-list-item-avatar>
                       </div>
@@ -320,68 +310,47 @@ h1 {
   color: #c9AA88;
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
-  font-size: 60px;
+  font-size: 30px;
 }
 h2 {
   margin: -20px;
-  font-size: 50px;
+  font-size: 25px;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  margin-top: 55px;
+  margin-top: 35px;
   color:white;
 }
-h3 {
-  text-align: left;
-  padding-left: 100px;
-  font-size: 20px;
-  font-family: Nunito;
-  font-weight: bolder;
-  margin-top: 25px;
-  color: rgb(6, 7, 7);
-}
-h4 {
-  font-size: 20px;
-  font-family: Nunito;
-  font-weight: normal;
-  
-}
-#column1 {
-  width: 30%;
+p{
+  color:black;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
 }
 #boxleft {
+  padding:50px;
+  margin-top:-70px;
   border-radius: 25px;
-  border: 6px solid white;
+  border: 3px solid white;
   border-radius: 10px;
   background-color: #c9AA88;
 }
-#content1 {
-  width: 500px;
-  padding-left: 100px;
-}
-#column2 {
-  float: left;
-  width: 70%;
-}
+
 #boxcontact {
   width: 90%;
-  height:500px;
-  border-radius: 25px;
-  border: 6px solid #c9AA88;
+  height:270px;
+  border: 3px solid #c9AA88;
   border-radius: 10px;
 }
 #boxpayment {
   width: 90%;
   border-radius: 25px;
-  border: 6px solid #c9AA88;
+  border: 3px solid #c9AA88;
   border-radius: 10px;
   min-height: 100px;
 
   height: auto;
 }
-#box3 {
-  outline-style: solid;
-  width: 1600px;
-}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -413,27 +382,30 @@ img {
   border: 5px solid #c9AA88;
   border-radius: 50%;
   text-align:center;
-  font-size:200px;
+  font-size:100px;
   color:#c9AA88;
-  width:250px;
-  height:250px;
+  margin-top:-70px;
+  width:130px;
+  height:130px;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
 #innerbutton{
-  height: 120px;
-  width: 80%;
+  margin-top:60px;
+  margin-right:40px;
+  height: 60px;
+  width: 15%;
   font-weight: bold;
   background-color: white;
   color:black;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-size: 10px;
   border-radius: 10px;
-  border: 4px solid #c9AA88;
+  border: 2px solid #c9AA88;
 }
 button {
-  height: 120px;
-  width: 250px;
+  height: 70px;
+  width: 150px;
   background-color: #c9AA88;
   border-radius: 10px;
   font-weight: bold;
@@ -442,61 +414,62 @@ button {
   border-width: 1px;
   text-align:center;
   font-family: 'Montserrat', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
 }
 #left {
   float:left;
   width:20%;
-  margin-left:100px;
+  margin-left:60px;
 }
 #right {
   float:right;
   width:70%;
-  margin-left:100px;
 }
 #name{
   text-align:left;
   color: #c9AA88;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  font-size: 100px;
-  margin-top:150px;
-  height:300px;
+  font-size: 40px;
+  margin-left:-100px;
+  margin-top:10px;
+  height:170px;
 }
 #mycontactdetails{
   color:#c9AA88;
   text-align:left;
-  padding-left:150px;
+  padding-left:100px;
 }
 #icon{
   float:left;
+  margin-top:-50px;
   width:20%;
 }
 #details{
   float:left;
   text-align:left;
-  width:80%;
+  width:60%;
   color:black;
-  font-size:30px;
+  font-size:15px;
+  margin-top:-50px;
   font-family: 'Montserrat', sans-serif;
   padding-right:200px;
 }
 #invoice{
-  font-size:30px;
+  font-size:15px;
   padding-left:100px;
   font-weight:bold;
   font-family: 'Montserrat', sans-serif;
 }
 #purchasedetails{
-  font-size:30px;
-  padding-left:100px;
+  font-size:15px;
+  padding-left:50px;
   text-align:left;
   font-family: 'Montserrat', sans-serif;
 }
 #leftdetails{
   width:60%;
   float:left;
-  padding-top:50px;
 
 }
 #rightdetails{
