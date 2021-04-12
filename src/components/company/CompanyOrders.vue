@@ -2,20 +2,30 @@
 <div id="companyproducts">
     <company-header></company-header>
     <h1>View Customer Orders </h1>
-    <div id="boxpayment">
+    <div id="boxorder">
         <v-list><br>
             <v-list-item v-for="(item,id) in items" :key="id">
                     <div id="invoice">
-                      <v-list-item-avatar tile size="100px"> 
+                      <v-list-item-avatar tile size="200px"> 
                         <v-img :alt="`${item.title}`" :src="item.image" ></v-img>
                       </v-list-item-avatar>
-                      </div>
-                      <v-list-item-content>
-                        <v-list-item-title id="purchasedetails" v-text="item.title"></v-list-item-title>
-                        <p>{{item.product}}</p>
-                        <p>{{item.paidAmount}}</p>
-                      </v-list-item-content>
-                  <v-divider></v-divider>
+                    </div>
+                    <v-list-item-content>
+                        <h2 id="itemTitle" >{{item.title}}</h2><br>
+                        <p v-for = "color in item.product" :key="color.id" id="details">ORDER DETAILS: <b>{{color}}</b></p>
+                        <p id="cost">TOTAL COST: ${{item.paidAmount}}</p>
+                        <p id="date"> DATE: {{item.date}}</p>
+                        <v-divider></v-divider>
+                    </v-list-item-content>
+                    <v-list-item-content>
+                        <ClientDetailForm v-bind:clientID = item.userID></ClientDetailForm>
+                        <v-btn x-small color="red lighten-2" dark> 
+                            Complete Order 
+                            <v-icon dark right>mdi-thumb-up</v-icon>
+                        </v-btn>
+                    </v-list-item-content>
+
+                  
             </v-list-item><br><br>
           </v-list>
         </div>
@@ -25,6 +35,7 @@
 <script>
 import db from '../../firebase.js'
 import firebase from 'firebase'
+import ClientDetailForm from './ClientDetail.vue'
 
 export default {
     name: "companyproducts",
@@ -33,10 +44,13 @@ export default {
             items:[],
         };
     },
+    components: {
+        ClientDetailForm: ClientDetailForm,
+    },
     methods:{
         fetchItems:function(){
             var user = firebase.auth().currentUser;
-            db.collection('transactions').get().then(snapshot => {
+            db.collection('transactions').orderBy("timestamp","desc").get().then(snapshot => {
                 let item = []
                 snapshot.docs.forEach(doc => {
                     item = doc.data()
@@ -50,12 +64,14 @@ export default {
                                 "userID": item.UserID,       
                                 "product":item.Products[i].colors,
                                 "image": item.Products[i].image,
+                                "date":item.Date,
+                                //"orderID":doc.id,
                             }
                             this.items.push(intake)    
                         }
                     }
                 });
-                console.log(this.items)
+                //console.log(this.items)
             });
         },
     },
@@ -65,19 +81,37 @@ export default {
 </script>
 
 <style scoped>
-#boxpayment {
-  width: 90%;
-  border-radius: 25px;
-  border: 3px solid #c9AA88;
-  border-radius: 10px;
-  min-height: 100px;
+h1{
+    padding:20px;
+    font-family:Verdana, Tahoma, sans-serif;
 
-  height: auto;
+}
+#boxorder {
+    width: 80%;
+    border-radius: 25px;
+    border: 3px solid #c9AA88;
+    border-radius: 10px;
+    min-height: 100px;
+    height: auto;
+    position:center;
+    margin-left:100px;
 }
 #invoice{
-  font-size:15px;
-  padding-left:100px;
-  font-weight:bold;
-  font-family: 'Montserrat', sans-serif;
+    font-size:15px;
+    padding-left:100px;
+    font-weight:bold;
+    font-family: 'Montserrat', sans-serif;
+}
+#title{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bold;
+    font-size:12px;
+
+}
+#details{
+    color:lightcoral
+}
+#cost{
+    color:lightcoral
 }
 </style>
