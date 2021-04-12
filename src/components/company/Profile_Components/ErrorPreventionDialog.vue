@@ -15,13 +15,13 @@
         <template v-slot:default="dialog">
           <v-card>
             <v-toolbar color="primary" dark
-              >{{"Delete " + productName}}</v-toolbar>
+              >{{"Delete " + itemName}}</v-toolbar>
             <br />
             <v-card-text>
                 <h2>Are you sure?</h2>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn text @click="deleteProduct">Yes</v-btn>
+              <v-btn text @click="deleteItem">Yes</v-btn>
               <v-btn text @click="dialog.value = false">No</v-btn>
             </v-card-actions>
           </v-card>
@@ -36,21 +36,26 @@ import firebase from "firebase";
 import db from "../../../firebase.js";
 
 export default {
-  props: ["productName", "productID"],
+  props: ["itemName", "itemID", "type"],
   data() {
     return {
       dialog: false,
     };
   },
   methods: {
-      deleteProduct: async function() {
+      deleteItem: async function() {
 
         var user = firebase.auth().currentUser;
         var k = user.uid;
 
-        var storageRef = firebase.storage().ref("ProductImages/"+ k + "/" + this.productID);   
-        
-        await db.collection("products").doc(this.productID).delete().then(async function() {
+        var storageRef = null;
+        if (this.type == "activities") {
+          storageRef = firebase.storage().ref("ActivityImages/"+ k + "/" + this.itemID); 
+        } else {
+          storageRef = firebase.storage().ref("ProductImages/"+ k + "/" + this.itemID); 
+        }
+
+        await db.collection(this.type).doc(this.itemID).delete().then(async function() {
             //Maybe don't delete totally from the database?
             await storageRef.delete();
 

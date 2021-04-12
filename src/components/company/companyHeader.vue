@@ -4,21 +4,21 @@
       <ul class="logo"> All About Sustainability</ul>
       <div class="links">
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/physicalstore'})" color="blue-grey lighten-2" dark>
-            Physical Store
+            Nearby
             <v-icon dark right>mdi-store</v-icon>
           </v-btn>
 
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/onlinemarketplace'})" color="blue-grey lighten-2" dark>
-            Online Marketplace
+            Marketplace
             <v-icon dark right>mdi-storefront</v-icon> 
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/incubator'})"  color="blue-grey lighten-2" dark>
-            Incubator
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/forum'})"  color="blue-grey lighten-2" dark>
+            Activities
             <v-icon dark right>mdi-lifebuoy</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/companypage'})" color="blue-grey lighten-2" dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" color="blue-grey lighten-2" dark>
             Profile
             <v-icon dark right>mdi-account</v-icon>
           </v-btn>
