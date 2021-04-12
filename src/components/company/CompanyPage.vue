@@ -55,42 +55,16 @@
         <p> Visit us at: <a :href="companyData[0].website">{{companyData[0].website}}</a></p>
     </div>
 
-    <div id="combined">
-        <ul>
-            <li>
-                <div id="productsection">
-                    <h3>Our Products</h3>
-                    <br/>
-                    <ProductDisplay></ProductDisplay>
-                    <br/>
-                    <NewProductForm v-bind:companyData="companyData"></NewProductForm>
-                </div>
-            </li>
-            
-            <li>
-                <div id="activitysection">
-                    <h3>Upcoming Activities</h3>
-                    <br/>
-                    <ActivityDisplay v-bind:companyID="this.id"></ActivityDisplay>
-                    <br/>
-                    <NewActivityForm v-bind:companyID="this.id"></NewActivityForm>
-                    
-                </div>
-            </li>
-        </ul>
-    </div>
-    <br><br>
-
     </div>
 </template>
 
 <script>
-import NewProductForm from './Profile_Components/NewProductForm.vue'
-import NewActivityForm from './Profile_Components/NewActivityForm.vue'
-import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
+//import NewProductForm from './Profile_Components/NewProductForm.vue'
+//import NewActivityForm from './Profile_Components/NewActivityForm.vue'
+//import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
-import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
+//import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
 
 
 export default {
@@ -107,10 +81,10 @@ export default {
         }
     },
     components: {
-        NewProductForm: NewProductForm,
-        NewActivityForm: NewActivityForm,
-        ActivityDisplay: ActivityDisplay,
-        ProductDisplay: ProductDisplay
+        //NewProductForm: NewProductForm,
+        //NewActivityForm: NewActivityForm,
+        //ActivityDisplay: ActivityDisplay,
+        //ProductDisplay: ProductDisplay
     },
     methods: {
         toggleDialog: function() {
@@ -227,24 +201,6 @@ export default {
     font-size:30px;
     text-align:left;
 }
-#productsection {
-    float:left;
-    text-align:left;
-    font-size:30px;
-    padding-left:170px;
-    
-}
-#activitysection {
-    float:left;
-    text-align:left;
-    font-size:30px;
-    padding-left:170px;
-    margin-top:50px;
-    
-}
-#combined{
-    display:table-cell;
-}
 #title{
     font-weight: bold;
     font-size:80px;
@@ -255,17 +211,8 @@ export default {
     display: inline-block;
 }
 img {
-  
   padding-top: 3%;
   padding-right: 25%;
 
 }
-ul {
-  padding: 0;
-  list-style-type: none;
-}
-li {
-  margin-top:25px;
-}
-
 </style>
