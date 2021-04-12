@@ -27,11 +27,7 @@
                     <div id="productInfo">
                       <h1>{{ product.title }}</h1><br>
                       <p v-for="color in product.colors" :key="color.id">
-<<<<<<< HEAD
-                        {{ color }}
-=======
                         {{color}}
->>>>>>> e8be36f58c0ee41d44cec9d91e475a9b696e7e6e
                       </p>
                       <p>Cost: ${{ product.totalPrice }}</p>
                     </div>
