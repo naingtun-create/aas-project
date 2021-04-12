@@ -3,33 +3,31 @@
         <ul>
             <li v-for="activity in activities" :key="activity.id">
                 <v-card
-                    max-width="350"
+                    max-width="1000"
                     class="mx-auto">
+                    <div id="images">
                     <v-img
                     :src="activity.image"
-                    height="300"
+                    height="400"
                     dark
                 >
                     </v-img>
+                    <div id="afterimages">
+                    <v-list>
+                    <v-list-item >
+                        <v-list-item-icon>
+                        <v-icon color="indigo">mdi-subtitles</v-icon>
+                        </v-list-item-icon>
+                        <div class="my-4">{{activity.title}}</div>
+                    </v-list-item>
+                    <v-divider inset></v-divider>
 
-                    <v-list two-line>
-                    <v-list-item>
-                        
+                    <v-list-item >
                         <v-list-item-icon>
                         <v-icon color="indigo">mdi-message-bulleted</v-icon>
                         </v-list-item-icon>
-
-                        <v-list-text>
-                        
-                        <div class="my-4 subtitle-1">
-                            {{activity.title}}
-                        </div>
                         <div class="my-4 subtitle-2">{{activity.description}}</div>
-                        </v-list-text>
-
                     </v-list-item>
-
-                
                     <v-divider inset></v-divider>
 
                     <v-list-item >
@@ -38,44 +36,37 @@
                         </v-list-item-icon>
 
                         <v-list-item-content>
-                        <v-list-item-title>{{activity.startDate}}</v-list-item-title>
+                        <div class="my-4 subtitle-3">{{activity.startDate}}</div>
                         <v-list-item-subtitle>Start Date</v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>
-
-                    <v-list-item >
-                        <v-list-item-action></v-list-item-action>
 
                         <v-list-item-content>
-                        <v-list-item-title>{{activity.endDate}}</v-list-item-title>
+                        <div class="my-4 subtitle-3">{{activity.endDate}}</div>
                         <v-list-item-subtitle>End Date</v-list-item-subtitle>
-                        </v-list-item-content>
+                        </v-list-item-content>                        
                     </v-list-item>
-
                     <v-divider inset></v-divider>
 
-                    <v-list-item>
+                    <v-list-item >
                         <v-list-item-icon>
                         <v-icon color="indigo">mdi-map-marker</v-icon>
                         </v-list-item-icon>
+                        <div class="my-4 subtitle-1">{{activity.location}}</div>
+                    </v-list-item>
+
+
+
+                    <v-list-item>
+
 
                         <v-list-item-content>
                         <v-list-item-title>{{activity.location}}</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                     </v-list>
-
-                    <v-divider inset></v-divider>
-
-                    <v-list-item>
-                        <v-list-item-content>
-
-                            <error-prevention-dialog :itemName="activity.title" :itemID="activity.id" type="activities"/>
-                            <activity-information :itemData="activity"/>
-                        </v-list-item-content>
-                    </v-list-item>
-                    
-                </v-card>
+                    </div>
+                    </div>
+                    </v-card>
             </li>
         </ul>
     </div>
@@ -83,8 +74,8 @@
 
 <script>
 import db from "../../../firebase.js";
-import ErrorPreventionDialog from "./ErrorPreventionDialog.vue"
-import ActivityInformation from "./ActivityInformation.vue"
+//import ErrorPreventionDialog from "./ErrorPreventionDialog.vue"
+//import ActivityInformation from "./ActivityInformation.vue"
 
 export default {
     name: "ActivityDisplay",
@@ -117,8 +108,8 @@ export default {
         }
     },
     components: {
-        ErrorPreventionDialog: ErrorPreventionDialog,
-        ActivityInformation: ActivityInformation
+        //ErrorPreventionDialog: ErrorPreventionDialog,
+        //ActivityInformation: ActivityInformation
     },
     created () {
         this.fetchActivity();
@@ -127,41 +118,30 @@ export default {
 </script>
 
 <style scoped>
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
+#contents {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    float:left;
+    text-align: left;
 }
 li {
-  flex-grow: 1;
-  flex-basis: 250px;
-  text-align: center;
-  padding: 10px;
-  margin: 20px;
+    margin:50px;
 }
-.v-card--reveal {
-  align-items: flex-start;
-  bottom: 0;
-  justify-content: flex-start;
-  opacity: 0.5;
-  position: absolute;
-  width: 100%; 
+ul {
+    list-style-type: none;
+    margin:0px;
 }
-#productTitle {
-  font-family: "Lucida Console", Times, serif;
-  font-size: 15px;
-  text-align:start;
-  padding:10px;
+
+#images {
+    display:flex;
+    width:50%;
+    height:400px;
 }
-p {
-  text-align:start;
-  padding-left:10px;
-}
-#description {
-  font-family: "Lucida Console", Times, serif;
-  font-size: 13px;
-  text-align:start;
-  margin-top:-5px;
+#afterimages {
+    display:flex;
+    width:100%;
 }
 </style>
