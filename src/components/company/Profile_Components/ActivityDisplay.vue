@@ -1,13 +1,13 @@
 <template>
-    <div id ="activityDisplay">
+    <div id ="contents">
         <ul>
             <li v-for="activity in activities" :key="activity.id">
                 <v-card
-                    max-width="375"
+                    max-width="350"
                     class="mx-auto">
                     <v-img
                     :src="activity.image"
-                    height="300px"
+                    height="300"
                     dark
                 >
                     </v-img>
@@ -123,9 +123,53 @@ export default {
 </script>
 
 <style scoped>
-
-li {
-    list-style: none;
+#title{
+    font-weight: bold;
+    font-size:80px;
+    font-family: 'Anton', sans-serif;
 }
-
+#content {
+    float: left;
+    padding: 0px;
+    width: 100%;
+    background-color: #FFFAF0;
+    height: 700px; 
+}  
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  flex-grow: 1;
+  flex-basis: 250px;
+  text-align: center;
+  padding: 10px;
+  margin: 20px;
+}
+.v-card--reveal {
+  align-items: flex-start;
+  bottom: 0;
+  justify-content: flex-start;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%; 
+}
+#productTitle {
+  font-family: "Lucida Console", Times, serif;
+  font-size: 15px;
+  text-align:start;
+  padding:10px;
+}
+p {
+  text-align:start;
+  padding-left:10px;
+}
+#description {
+  font-family: "Lucida Console", Times, serif;
+  font-size: 13px;
+  text-align:start;
+  margin-top:-5px;
+}
 </style>
