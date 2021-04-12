@@ -42,10 +42,10 @@
             <img v-show="profileURL != ''" style="float:right" :src="profileURL">
             <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png">
             <br/>
-           
+        
         </div>
         <br/>
-        <v-btn color="red lighten-2" dark  v-on:click="toggleDialog">Upload Company Picture</v-btn>
+        <v-btn color="red lighten-2" dark  v-on:click="dialog = true">Upload Company Picture</v-btn>
         <br/><br/>
         <h3>Our Story</h3>
         <br/>
@@ -53,18 +53,37 @@
             {{companyData[0].description}}
         </p>
         <p> Visit us at: <a :href="companyData[0].website">{{companyData[0].website}}</a></p>
+        
+        <change-password-dialog/>
+
+        <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
+            <template>
+                <v-card>
+                    <v-toolbar color="#c9AA88" dark>Update Company's Story</v-toolbar>
+                    <br>
+                    <v-card-text>
+                        <v-textarea solo v-model="updateStory">
+                        </v-textarea>
+                    </v-card-text>
+                    <v-card-actions class="justify-end">
+                        <v-btn text @click="storyUpdate">Update</v-btn>
+                        <v-btn text @click="closeUpdateDialog">Close</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </template>
+        </v-dialog>
+
+        <v-btn v-on:click="editDialog = true">Update Story</v-btn>
+
     </div>
 
     </div>
 </template>
 
 <script>
-//import NewProductForm from './Profile_Components/NewProductForm.vue'
-//import NewActivityForm from './Profile_Components/NewActivityForm.vue'
-//import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
-//import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
+import ChangePasswordDialog from '../ChangePassword.vue';
 
 
 export default {
@@ -77,75 +96,77 @@ export default {
             imageURL: "",
             profileURL: '',
             companyData: [],
-            products: []
+            products: [],
+            updateStory: "",
+            editDialog: false
         }
     },
     components: {
-        //NewProductForm: NewProductForm,
-        //NewActivityForm: NewActivityForm,
-        //ActivityDisplay: ActivityDisplay,
-        //ProductDisplay: ProductDisplay
+        ChangePasswordDialog: ChangePasswordDialog
     },
     methods: {
-        toggleDialog: function() {
-            this.dialog = !this.dialog
-        },
         close: function() {
-            this.reset();
-            this.toggleDialog();
-            //this.$forceUpdate();
-            //location.reload()
+            this.imageURL = '';
+            this.image = [];
+            this.dialog = false;
+        },
+        closeUpdateDialog: function() {
+            this.editDialog = false;
+            this.updateStory = this.companyData[0].description;
             
         },
         uploadImage: async function() {
 
             var k = this.id;
           
+            if (this.image != []) {
+                //Putting it in the storage
+                try {
+                    //Its is place ProductImages => CompanyId
+                    //Reference to the storage
+                    var storageRef = firebase.storage().ref("ProfilePics/" + k );
 
-        //Putting it in the storage
-            try {
-                //Its is place ProductImages => CompanyId
-                //Reference to the storage
-                var storageRef = firebase.storage().ref("ProfilePics/" + k );
+                    //remember to add the delete or update storage to check first
+                    if (this.profileURL != "") {
+                    await storageRef.delete()
+                    }
 
-                //remember to add the delete or update storage to check first
-                if (this.profileURL != "") {
-                await storageRef.delete()
+                    //Waiting till it uploaded to firebase storage
+                    await storageRef.put(this.image)
+                    var _extension = this.image.name.split(".")[1]
+
+                    //Update the metadata to be uploaded as image
+                    var newMetadata = {
+                        contentType: 'image/' + _extension
+                    };
+
+                    await storageRef.updateMetadata(newMetadata)
+
+                    //Retrieving the download URL for the product Image
+                    await storageRef.getDownloadURL().then( async function(url) {
+                            //Add it into the database
+                            await db.collection("company")
+                            .doc(k)
+                            .update({
+                                "profilePic" : url.toString()
+                            })
+
+                            console.log(url)
+                        
+                    }).then(
+                        this.close(),
+                        alert("Uploaded Successfully!")
+                    ).catch (e => {
+                        console.log(e)
+                    });
+
+                } catch (e) {
+                console.log(e);
                 }
-
-                //Waiting till it uploaded to firebase storage
-                await storageRef.put(this.image)
-                var _extension = this.image.name.split(".")[1]
-
-                //Update the metadata to be uploaded as image
-                var newMetadata = {
-                    contentType: 'image/' + _extension
-                };
-
-                await storageRef.updateMetadata(newMetadata)
-
-                //Retrieving the download URL for the product Image
-                await storageRef.getDownloadURL().then( async function(url) {
-                        //Add it into the database
-                        await db.collection("company")
-                        .doc(k)
-                        .update({
-                            "profilePic" : url.toString()
-                        })
-
-                        console.log(url)
-                    
-                }).then(
-                    this.close(),
-                    alert("Uploaded Successfully!")
-                ).catch (e => {
-                    console.log(e)
-                });
-
-            } catch (e) {
-            console.log(e);
+            } else {
+                alert("Please choose an image to be uploaded!")
             }
-                
+        
         },
         onFilePicked: function() {
             var reader = new FileReader() 
@@ -154,9 +175,21 @@ export default {
                 this.imageURL = reader.result;
             }
         },
-        reset: function() {
-            this.imageURL = ''
-            this.image = []
+        storyUpdate: async function() {
+            await db
+                .collection("company")
+                .doc(this.id)
+                .update({
+                    description: this.updateStory
+                })
+                .catch((e) => {
+                console.log(e);
+                });
+
+            alert("Update Successful");
+
+            location.reload()
+
         },
         fetchData: async function() {
             var user = firebase.auth().currentUser;
@@ -178,6 +211,11 @@ export default {
             console.log(products)
             console.log(this.companyData)
 
+        }
+    },
+    watch: {
+        companyData: function() {
+            this.updateStory = this.companyData[0].description;
         }
     },
     created () {

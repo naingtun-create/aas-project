@@ -57,6 +57,7 @@ export default {
   methods: {
     toggleDialog: function() {
       this.dialog = !this.dialog;
+
     },
   },
 };
