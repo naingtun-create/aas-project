@@ -21,18 +21,22 @@
               <ul>
                 <li v-for="(product,id) in purchase.Products" :key="id">
                   <div class="d-lg-flex flex-no-wrap">
-                    <v-avatar class="ma-3" size="250" tile>
-                      <v-img height="300" v-bind:src="product.image"></v-img>
+                    <v-avatar class="ma-3" size="200" tile>
+                      <v-img height="200" v-bind:src="product.image"></v-img>
                     </v-avatar>
                     <div id="productInfo">
-                      <h1>{{ product.title }}</h1>
+                      <h1>{{ product.title }}</h1><br>
                       <p v-for="color in product.colors" :key="color.id">
+<<<<<<< HEAD
                         {{ color }}
+=======
+                        {{color}}
+>>>>>>> e8be36f58c0ee41d44cec9d91e475a9b696e7e6e
                       </p>
                       <p>Cost: ${{ product.totalPrice }}</p>
                     </div>
                   </div>
-                  <br />
+                  <br >
                   <v-divider></v-divider>
                 </li>
               </ul>
@@ -86,5 +90,17 @@ button {
   border-width: 1px;
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
+}
+h1 {
+  color: #c9AA88;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: 25px;
+  margin-left:50px;
+  text-align:center;
+  line-height: 150%;
+}
+p {
+  margin-left:50px;
 }
 </style>
