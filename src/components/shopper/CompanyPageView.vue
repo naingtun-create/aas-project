@@ -127,7 +127,7 @@ h3 {
     float:left;
     text-align:left;
     padding-left:75px;
-    
+    margin-top:-15px;
 }
 #promotionsection {
     float:left;
