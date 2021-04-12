@@ -1,9 +1,9 @@
 <template>
     <div id="store">
     <shopper-header></shopper-header>
-    <v-container fluid fill-height grid-list-lg>
+    <v-container id="left" fluid fill-height grid-list-lg>
         <v-layout row wrap align-content-start>
-            <v-flex xs4 md3>
+            <v-flex xs4 xs3>
                 <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
                     <v-card color="#c9AA88" class="elevation-8 fill-height">
                         <v-container fluid grid-list-lg>
@@ -22,28 +22,27 @@
                                                         @click.capture="onStoreClick(store,store.id)">
                                                         <v-card-text >
                                                             <a v-bind:href="store.website" target="_blank">{{store.name}}</a>
-                                                            <p> {{store.Address}}</p>
-                                                            <p>Singapore {{store.postalCode}}</p>
+                                                            <p> {{store.Address}}
+                                                            <br>Singapore {{store.postalCode}}</p>
+                                                            
                                                         </v-card-text>
                                                     </v-card>
                                                 </v-flex>
                                             </ul>
                                         </v-layout>
                                     </v-container>
-                                    
                                 </v-flex>
                             </v-layout>
                         </v-container>
-                        <br>
-                        <h1 id='title'>Find Stores Nearby!</h1> <br>
-                        <p> Please ensure your browser enables location sharing </p>
-                        <button v-on:click="trigger()"> Use Current Location </button> <br><br>
+                        <h1 id='title'>Find Stores Nearby!</h1>
+                        <button v-on:click="trigger()"> Use Current Location </button>
+                        <p id="locationsharing"> Please ensure your browser enables location sharing </p>
                     </v-card>
                     {{this.stores +this.useLocation}}
 
                 </transition>
             </v-flex>
-            <v-flex xs8 md9>
+            <v-flex xs8 sm9>
                 <app-map-panel :testProp="useLocation" v-bind:stores="stores" v-bind:selectedStore="selectedStore" v-on:selectedMarker="selectedMarker"></app-map-panel>
             </v-flex>
         </v-layout>
@@ -87,32 +86,11 @@ export default {
                 });
             });
         },
-        /** 
-            console.log(this.stores)
-            for(let i=0;i<this.stores.length;i++){
-                var current = this.stores[i].region;
-                console.log(this.stores[i].region)
-                if(current=="central"){
-                    this.storesCentral.push(this.stores[i]);
-                } else if (current=="north"){
-                    this.storesNorth.push(this.stores[i]);
-                } else if (current=="south"){
-                    this.storesSouth.push(this.stores[i]);
-                } else if (current=="east"){
-                    this.storesEast.push(this.stores[i]);
-                } else if (current=="west"){
-                    this.storesWest.push(this.stores[i]);
-                }
-            }
-        },  */
         onStoreClick (store,id) {
             this.selectedStore = {details: store, id:id}
             this.selectedSt = id
         },
         onRecenterMapLocation () {
-            // need to emit the event to parent component
-            // we can either use the event bus
-            // or we can use vuex
             EventBus.recenterMapLocation()
         },
         selectedMarker (id) {
@@ -149,14 +127,22 @@ export default {
 <style scoped>
 #title {
     font-family: "Sanchez";
-    font-size: 30px;
+    font-size: 20px;
+    margin-top:5px;
+}
+p{
+    font-size:12px;
+}
+#locationsharing{
+    margin-top:5px;
 }
 .stores-list-container {
     padding-left: 0;
     padding-right: 0;
     height: 60vh;
     overflow: auto;
-    padding-top: 10px;
+    margin-top:-20px;
+
 }
 .store-container {
     padding-left: 0!important;
@@ -167,9 +153,10 @@ export default {
     background-color: #BBDEFB;
 }
 .store-item-card {
-    width: 500px;
+    width: 250px;
     cursor: pointer;
-    font-size:100em;
+    height: auto;
+    height:105px;
 }
 .store-item-card.isSelected {
     border: 4px solid #5C6BC0;
@@ -179,10 +166,11 @@ export default {
     cursor: pointer;
 }
 button {
-  width: 400px;
-  height: 120px;
+  width: 160px;
+  height: 60px;;
   background-color: white;
   border-radius: 10px;
   border-width: 1px;
+  font-size:12px;
 }
 </style>
