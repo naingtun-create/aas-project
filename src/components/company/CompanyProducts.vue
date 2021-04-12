@@ -140,6 +140,6 @@ export default {
 <style scoped>
 h3 {
     text-align: left;
-    padding-left: 75px;
+    padding-left: 65px;
 }
 </style>
