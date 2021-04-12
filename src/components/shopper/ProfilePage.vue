@@ -171,6 +171,7 @@ export default {
       this.uploadDialog = false;
       this.editDialog = false;
       this.reset();
+      //this.$router.go();
     },
     uploadImage: async function() {
 
@@ -199,7 +200,7 @@ export default {
 
                 //Retrieving the download URL for the product Image
                 await storageRef.getDownloadURL().then(async function(url) {
-                        console.log("done")
+
                         //Add it into the database
                         await db.collection("shoppers").doc(k).update({
                             "profilePic" : url.toString()
@@ -211,8 +212,9 @@ export default {
                     
                 }).then(
                     this.close(),
-                    alert("Uploaded Successfully!"),
-                    location.reload()
+                    alert("Uploaded Successfully! Please refresh the page yourself!"),
+                    
+                   
                 ).catch (e => {
                     console.log(e)
                 });
@@ -288,7 +290,7 @@ export default {
 
       alert("Update Successful");
 
-      location.reload();
+      location.reload()
     },
   },
   watch: {
