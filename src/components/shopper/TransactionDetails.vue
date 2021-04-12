@@ -27,8 +27,7 @@
                     <div id="productInfo">
                       <h1>{{ product.title }}</h1>
                       <p v-for="color in product.colors" :key="color.id">
-                        {{ color[0] }} | Quantity: {{ color[1] }} | Size:
-                        {{ color[2] }}
+                        {{ color }}
                       </p>
                       <p>Cost: ${{ product.totalPrice }}</p>
                     </div>
@@ -58,6 +57,7 @@ export default {
   methods: {
     toggleDialog: function() {
       this.dialog = !this.dialog;
+
     },
   },
 };
