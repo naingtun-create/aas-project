@@ -8,7 +8,7 @@
         persistent
       >
         <template v-slot:activator="{ on, attrs }">
-        <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
+        <v-btn x-small color="red lighten-2" dark v-bind="attrs" v-on="on">
           Delete
         </v-btn>
       </template>
