@@ -1,17 +1,22 @@
 <template>
     <div id = "forum">
         <shopper-header></shopper-header>
-<<<<<<< HEAD:src/components/shopper/Incubator.vue
-        <p>This is Incubator page</p>
-      
-=======
         <p>This is Forum page</p>
+        <BarChart></BarChart>
+        <LineChart></LineChart>
         
->>>>>>> 72033b28cd21d4166689a4b49101e26c0d17a9d8:src/components/shopper/Forum.vue
     </div>
 </template>
 
 <script>
+import BarChart from "../chart/Recycling";
+import LineChart from "../chart/waste";
+export default {
+  components: {
+    BarChart,
+    LineChart
+  }
+};
 </script>
 
 <style scoped>
