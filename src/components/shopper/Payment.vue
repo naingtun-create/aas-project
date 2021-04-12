@@ -2,14 +2,13 @@
     <div id = "PaymentPage">
       <shopper-header></shopper-header>
         <nav>
-        <v-card size="1000" class="mx-auto" color = "#E3F2FD">
+        <v-card size="1000" id="order">
             <v-container>
                 <ul>
                 <li v-for="(item,id) in items" :key="id">
-  
                   <div class="d-lg-flex flex-no-wrap" >
-                    <v-avatar class="ma-3" size="250" tile>
-                      <v-img height="300" v-bind:src="item.image"></v-img>
+                    <v-avatar class="ma-3" size="200" tile>
+                      <v-img height="200" v-bind:src="item.image"></v-img>
                     </v-avatar>
                     <div id="productInfo">
                       <h1>{{item.title}}</h1>
@@ -18,7 +17,7 @@
                       <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
                     </div>
                   </div><br>
-                  <v-divider ></v-divider>     
+                  <v-divider width="60%"></v-divider>     
                 </li>
                     
                 </ul>
@@ -27,7 +26,7 @@
         </v-card>
         </nav>
         <div id="contents">
-            <img src = "../../assets/payment_code.png" width = "700px" >
+            <img src = "../../assets/payment_code.png" width = "350px" >
             <p>Please scan the QR code</p> 
             <p>Pay the required amount as stated in the subtotal</p>
             <NewPaymentForm v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
@@ -171,15 +170,15 @@ li {
 }
 nav {
     float: left;
-    width: 55%;
-    padding: 30px; 
+    width: 60%;
+    padding:15px; 
     height: 1000px; 
     margin-top:10px;
     margin-left:10px;
 }
 #content {
     float: right;
-    padding: 30px; 
+    padding: 15px; 
     width: 45%;
     background-color: #FFFAF0;
     height: 1000px; 
@@ -187,11 +186,11 @@ nav {
 p{
   font-family: "Courier New", Times, serif;
   color:"black";
-  font-size: 25px;
+  font-size: 15px;
   font-weight: bold;
 }
 #subtotal{
-    font-size: 40px;
+    font-size: 20px;
     text-align:end;
     padding-right:100px;
     color:lightcoral;
@@ -203,18 +202,21 @@ p{
 }
 
 h1{
-  font-size: 40px;
+  font-size: 20px;
   font-family: "Copperplate", Times, serif;
   padding-bottom: 15px;
   color:"#A52A2A";
 }
 
 #delete {
-  left: 700px;
+  left: 300px;
 }
 
 #cost {
   color:red;
   font-weight: bolder;
+}
+#order{
+  border: 2px solid #c9AA88;
 }
 </style>
