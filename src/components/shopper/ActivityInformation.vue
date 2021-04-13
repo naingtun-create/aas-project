@@ -32,7 +32,7 @@
             </v-card-actions>
 
             <h4 class="title">Company Name</h4>
-            {{itemData.companyname}}
+            <a v-on:click="reroute">{{itemData.companyname}}</a>
 
             <v-divider></v-divider>
             <v-expand-transition>
@@ -70,8 +70,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import db from "../../firebase.js";
 
 export default {
   props: ["itemData"],
@@ -84,8 +82,11 @@ export default {
   methods: {
       toggleDialog: function() {
           this.dialog = !this.dialog;
-          console.log(firebase)
-          console.log(db)
+
+      },
+      reroute: function() {
+        var companyID = this.itemData.companyID;
+        this.$router.push({ name: "viewCompanyPage", params: { id: companyID } });
       }
 
       
