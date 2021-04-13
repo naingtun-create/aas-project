@@ -21,8 +21,14 @@
                         <ClientDetailForm v-bind:clientID = item.userID></ClientDetailForm>
                         <v-btn id = "complete" small color="red lighten-2" dark @click="updateItems(item.orderID, item.productID, item.completed)"> 
                             Complete Order 
+                            {{item.completed[item.productID]}}
                             <v-icon dark right>mdi-thumb-up</v-icon>
                         </v-btn>
+                    </v-list-item-content>
+                        
+                    <v-list-item-content>
+                        <v-icon x-large color= "green" v-show="item.completed[item.productID]">mdi-sticker-check</v-icon>
+                        <v-icon x-large color= "red" v-show="!item.completed[item.productID]">mdi-account-clock</v-icon>
                     </v-list-item-content>
 
                   
@@ -57,7 +63,7 @@ export default {
                     //console.log(item)
                     for(var i in item.Products){
                         console.log(item.Products)
-                        if(item.Products[i].companyID == user.uid && item.completed[i] == false){
+                        if(item.Products[i].companyID == user.uid){
                             var intake = { 
                                 "title": item.Products[i].title,
                                 "paidAmount":item.Products[i].totalPrice,
