@@ -67,9 +67,9 @@
                                 <v-img height="200" v-bind:src="item.image"></v-img>
                                 <h1 id="productTitle">{{item.title}}</h1>
                                 
-                                <p id='name'>{{item.companyname}}<br>
-                                Category: {{item.category}} </p>  
-                                <p id="price"><b>$ {{item.price}}</b>
+                                <p id='name'>{{item.companyname}}<br></p>
+                                <p id='category'>Category: {{item.category}} </p>  
+                                <p id="price" class="my-4 subtitle-1"><b>$ {{item.price}}</b>
                                 <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> </p>
                             </v-card>
                         </li>
@@ -211,10 +211,10 @@ li {
   width: 100%; 
 }
 #productTitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
+  font-family: "Lucida Console", Times, serif;
+  font-size: 13px;
   text-align:start;
-  padding:20px;
+  padding:10px;
 }
 p{
     text-align:start;
@@ -227,6 +227,12 @@ p{
   font-size:10px;
   font-family: 'Montserrat', sans-serif;
   margin-top:-10px;
+  font-weight: bold;
+}
+#category {
+  font-size:10px;
+  font-family: "Lucida Console", Times, serif;
+  margin-top:-15px;
 }
 #info{
   font-size:10px;
