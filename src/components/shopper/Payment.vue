@@ -106,7 +106,7 @@ export default {
               totalPrice: 0,
               cartID:[],
               companyID:'',
-              completed:false,
+              //completed:false,
             }
           }
 
