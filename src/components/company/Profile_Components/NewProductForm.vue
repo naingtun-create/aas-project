@@ -215,6 +215,7 @@ export default {
       console.log("close dialog");
       this.reset();
       this.dialog = false;
+      location.reload();
     },
     onFilePicked: function() {
         

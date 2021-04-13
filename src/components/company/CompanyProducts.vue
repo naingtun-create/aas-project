@@ -12,11 +12,9 @@
 
 <script>
 import NewProductForm from './Profile_Components/NewProductForm.vue'
-//import NewActivityForm from './Profile_Components/NewActivityForm.vue'
 import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
-//import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
 
 export default {
     name: "companyPage",
@@ -33,8 +31,6 @@ export default {
     },
     components: {
         NewProductForm: NewProductForm,
-        //NewActivityForm: NewActivityForm,
-        //ActivityDisplay: ActivityDisplay,
         ProductDisplay: ProductDisplay
     },
     methods: {
@@ -45,14 +41,13 @@ export default {
             this.reset();
             this.toggleDialog();
             //this.$forceUpdate();
-            //location.reload()
+            location.reload()
             
         },
         uploadImage: async function() {
 
         var k = this.id;
           
-
         //Putting it in the storage
         try {
             //Its is place ProductImages => CompanyId
@@ -84,8 +79,8 @@ export default {
                     console.log(url)
                 
             }).then(
+                alert("Uploaded Successfully!"),
                 this.close(),
-                alert("Uploaded Successfully!")
             ).catch (e => {
                 console.log(e)
             });

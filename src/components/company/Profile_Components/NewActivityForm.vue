@@ -188,8 +188,9 @@ export default {
 
                     await db.collection('activities').add(activity).then( () => {
                         console.log("Activity added");
+                        alert("Activity added!");
                         this.close();
-                        alert("Activity added! Please refresh the page!");
+                        
                     });
                 } catch (e) {
                     console.log(e)
@@ -206,9 +207,9 @@ export default {
             console.log("close dialog");
             this.reset();
             this.dialog = false;
+            location.reload();
         },
         onFilePicked: function() {
-        
             var reader = new FileReader();
             reader.readAsDataURL(this.image);
             reader.onload = () => {

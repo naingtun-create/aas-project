@@ -16,7 +16,7 @@
           <v-card>
             <v-toolbar color="#c9AA88" dark
               >{{"Delete " + itemName}}</v-toolbar>
-            <br />
+            <br/>
             <v-card-text>
                 <h2>Are you sure?</h2>
             </v-card-text>
