@@ -8,7 +8,7 @@
     <br/>
     <DisplayActivity v-bind:companyID="this.id"></DisplayActivity>
     <br/>
-
+    hello
 </div>
 </template>
 
@@ -52,6 +52,17 @@ export default {
             //this.$forceUpdate();
             //location.reload()
             
+        },
+        compareDates: function(a, b) {
+
+            if (a.timestamp > b.timestamp) {
+                return -1;
+            } else if (a.timestamp < b.timestamp) {
+                return 1;
+            } else {
+                return 0;
+            }
+
         },
         uploadImage: async function() {
 

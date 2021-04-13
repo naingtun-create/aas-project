@@ -158,7 +158,8 @@ export default {
                     "location": this.location,
                     "image": [],
                     "startDate": this.startDate,
-                    "endDate": this.endDate
+                    "endDate": this.endDate,
+                    "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
                 };
 
                 //Putting it in the storage
@@ -212,7 +213,8 @@ export default {
             reader.onload = () => {
                 this.imageURL = reader.result;
             }
-        }
+        },
+
     }
 }
 </script>
