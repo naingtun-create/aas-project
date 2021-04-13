@@ -66,8 +66,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import db from "../../../firebase.js";
 
 export default {
   props: ["itemData"],
@@ -77,16 +75,8 @@ export default {
       show: false
     };
   },
-  methods: {
-      toggleDialog: function() {
-          this.dialog = !this.dialog;
-          console.log(firebase)
-          console.log(db)
-      }
+}
 
-      
-  }
-};
 </script>
 
 <style scoped>
