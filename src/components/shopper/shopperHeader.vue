@@ -8,17 +8,12 @@
             <v-icon dark right>mdi-store</v-icon>
           </v-btn>
 
-          <!-- <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" color="blue-grey lighten-2" dark>
-            Physical Store
-            <v-icon dark right>mdi-store</v-icon>
-          </v-btn> -->
-
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
             Marketplace
             <v-icon dark right>mdi-storefront</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/forum'})" dark>
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/activities'})" dark>
             Activities
             <v-icon dark right>mdi-lifebuoy</v-icon>
           </v-btn>

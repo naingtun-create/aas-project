@@ -13,7 +13,7 @@
       </template>
         <v-card>
             <v-toolbar
-              color="primary"
+              color="#c9AA88"
               dark
               class="headline"
             >Promote a New Activity!</v-toolbar>
@@ -139,10 +139,10 @@ export default {
             
         }
     },
-    props: ["companyID"],
+    props: ["companyID", "companyname"],
     methods: {
         addActivity: async function() {
-         
+            
             if (this.title==""|| this.description==""||this.location==""){
                 alert("Inputs required in order to add a new activity/");
             } else if (this.endDate < this.startDate) {
@@ -153,12 +153,14 @@ export default {
 
                 var activity = {
                     "companyID": this.companyID,
+                    "companyname": this.companyname,
                     "title":this.title,
                     "description": this.description,
                     "location": this.location,
                     "image": [],
                     "startDate": this.startDate,
-                    "endDate": this.endDate
+                    "endDate": this.endDate,
+                    "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
                 };
 
                 //Putting it in the storage
@@ -186,8 +188,8 @@ export default {
 
                     await db.collection('activities').add(activity).then( () => {
                         console.log("Activity added");
-                        alert("Activity added");
-                        this.close()
+                        this.close();
+                        alert("Activity added! Please refresh the page!");
                     });
                 } catch (e) {
                     console.log(e)
@@ -212,7 +214,8 @@ export default {
             reader.onload = () => {
                 this.imageURL = reader.result;
             }
-        }
+        },
+
     }
 }
 </script>
