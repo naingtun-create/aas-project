@@ -5,7 +5,7 @@
     <div id="left">
       <v-avatar size="180">
         <span v-if="!this.profileURL" id="initials">{{this.initials}}</span>
-        <img  v-else :src="this.profileURL">
+        <img  id="profilepic" v-else :src="this.profileURL">
       </v-avatar>
       <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
       <template v-slot:default="dialog">
@@ -24,7 +24,7 @@
               src="../../assets/DummyImage.png"
               height="200" width="550"
             >
-            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" />
+            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" >
           </v-card-text>
           <v-card-actions class="justify-end">
             <v-btn text @click="uploadImage">
@@ -99,7 +99,7 @@
           <div id="details">
             <ul>
               <li>{{shopperData.email}}</li>
-              <li>{{shopperData.address + " " + shopperData.postalCode}}</li>
+              <li>{{shopperData.address + ", Singapore " + shopperData.postalCode}}</li>
               <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
             </ul>
           </div>
@@ -419,10 +419,9 @@ li {
   font-family: 'Montserrat', sans-serif;
   font-size: 50px;
 }
-img {
+#profilepic{
   border-radius: 50%;
   margin-top:-50px;
-
 }
 #initials{
   border: 5px solid #c9AA88;

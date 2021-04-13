@@ -23,7 +23,7 @@
                         @change="onFilePicked"
                         ></v-file-input>
                         <img v-show="imageURL == ''" src="../../assets/DummyImage.png" height="150"/>
-                        <img v-show="imageURL != ''" :src="imageURL" height="200"/>
+                        <img id='profilepic' v-show="imageURL != ''" :src="imageURL" height="150"/>
                         
                     </v-card-text>
                     <v-card-actions class="justify-end">
@@ -38,7 +38,7 @@
                 </v-card>
                 </template>
             </v-dialog>
-            <img v-show="profileURL != ''" style="float:right" :src="profileURL">
+            <img  height="100" v-show="profileURL != ''" style="float:right" :src="profileURL">
             <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png">
             <br/>
         
@@ -259,7 +259,7 @@ export default {
     font-family: 'Anton', sans-serif;
     color:#c9AA88
 }
-img {
+#profilepic {
   border: 1px solid #ddd;
   border-radius: 2x;
   padding: 2px;

@@ -12,7 +12,7 @@
                     </v-avatar>
                     <div id="productInfo">
                       <h1>{{item.title}}</h1>
-                      <p v-for = "color in item.colors" :key="color.id">{{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
+                      <p v-for = "color in item.colors" :key="color.id">Color: {{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
                       <p id="cost"><b>Cost: ${{item.totalPrice}}</b></p>
                       <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
                     </div>
@@ -110,7 +110,7 @@ export default {
             }
           }
 
-        }
+        }this.subtotal= this.subtotal.toFixed(2)
 
         db.collection('products').get().then(snapshot => {
             let good = {}
@@ -143,6 +143,7 @@ export default {
       }
       this.filterList = this.items.filter((itemf) => itemf.id != pdt_id)
       this.subtotal -= price
+      this.subtotal= this.subtotal.toFixed(2)
       this.items = this.filterList
       
     },   

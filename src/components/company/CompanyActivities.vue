@@ -3,7 +3,6 @@
     <company-header></company-header>
     <h1>Our Activites</h1>
     <h3>Promote your activites for our community to support!</h3>
-    <ActivityDisplay v-bind:companyID="this.id"></ActivityDisplay>
     <NewActivityForm v-bind:companyID="this.id"></NewActivityForm>
     <br/>
     <DisplayActivity v-bind:companyID="this.id"></DisplayActivity>
@@ -18,7 +17,7 @@ import NewActivityForm from './Profile_Components/NewActivityForm.vue'
 //import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
-import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
+//import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
 import DisplayActivity from './Profile_Components/DisplayActivity.vue'
 
 
@@ -38,7 +37,7 @@ export default {
     components: {
         //NewProductForm: NewProductForm,
         NewActivityForm: NewActivityForm,
-        ActivityDisplay: ActivityDisplay,
+        //ActivityDisplay: ActivityDisplay,
         DisplayActivity: DisplayActivity,
         //ProductDisplay: ProductDisplay
     },
