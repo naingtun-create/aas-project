@@ -11,12 +11,9 @@
             <LineChart></LineChart>
           </div>
         </div>
-        <div id="eco">
-          <h2 id="ecoh2">Latest Eco-friendly Activities</h2>
+          <h2 class="ecoh2">Latest Eco-friendly Activities</h2>
           <v-divider></v-divider>
-          <DisplayActivity ></DisplayActivity>
-        </div>
-        
+          <DisplayActivity></DisplayActivity>
     </div>
 </template>
 
@@ -38,8 +35,9 @@ export default {
 #charts {
   padding: 4% 20% 4% 20% ;
 }
-#ecoh2 {
-  padding-top:10%;
+.ecoh2 {
+  margin-top: 25px;
+  padding-top: 25%;
 }
 h2 {
   text-align: left;

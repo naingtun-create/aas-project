@@ -134,7 +134,7 @@ h1 {
 }
 #productTitle {
   font-family: "Lucida Console", Times, serif;
-  font-size: 15px;
+  font-size: 13px;
   text-align:start;
   padding:10px;
 }
