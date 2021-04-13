@@ -1,11 +1,15 @@
 <template>
     <div id = "Activities">
         <shopper-header></shopper-header>
-        <h2>Environmental Statistics in Singapore</h2>
+        <h2>Environmental Statistics of the Month (Singapore)</h2>
         <v-divider></v-divider>
         <div id="charts">
+          <div id='halfleft'>
           <BarChart></BarChart>
-          <LineChart></LineChart>
+          </div>
+          <div id='halfright'>
+            <LineChart></LineChart>
+          </div>
         </div>
         <div id="Activities">
           <h2>Latest Eco-friendly Activities</h2>
@@ -40,5 +44,14 @@ h2 {
   padding-left: 3%;
   padding-top: 2%;
 }
-
+#halfleft{
+  width:50%;
+  float:left;
+  margin-left:-40px;
+}
+#halfright{
+  width:50%;
+  float:right;
+  margin-left: 20px;
+}
 </style>

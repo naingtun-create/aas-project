@@ -1,21 +1,24 @@
 <template>
     <div id="navbar">
       <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
-      <ul class="logo"> All About Sustainability</ul>
+      <ul> 
+        <div class="logo"> All About Sustainability</div>
+        <p id='shopperacc'> (Shopper Account) </p>
+      </ul>
       <div id="links">
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" dark>
             Nearby
             <v-icon dark right>mdi-store</v-icon>
           </v-btn>
 
-          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
-            Marketplace
-            <v-icon dark right>mdi-storefront</v-icon>
-          </v-btn>
-
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/activities'})" dark>
             Activities
             <v-icon dark right>mdi-lifebuoy</v-icon>
+          </v-btn>
+
+          <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
+            Marketplace
+            <v-icon dark right>mdi-storefront</v-icon>
           </v-btn>
 
           <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})" dark>
@@ -82,5 +85,12 @@ export default {
   font-size:20px;
   width:40%;
   margin-left:-20px;
+}
+#shopperacc{
+  color:black;
+  font-size:20px;
+  margin-top:-40px;
+  margin-left:50px;
+  font-style: italic;
 }
 </style>

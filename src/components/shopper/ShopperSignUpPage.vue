@@ -3,7 +3,7 @@
     <h1>All About Sustainability</h1>
     <router-link to="/" exact><v-icon dark right>mdi-home</v-icon></router-link>
     <h2>Shopper's Sign Up Page</h2>
-    <br /><br />
+    <br />
     <div id="vcard">
       <v-card id="test" width="700">
         <div id="content">
@@ -14,12 +14,12 @@
                 type="email"
                 label="Email"
                 v-model="email"
-                append-icon="mdi-email"
+                append-icon="mdi-email" 
               ></v-text-field>
               <v-text-field
                 label="Full Name"
                 v-model="fullName"
-                append-icon="mdi-account"
+                append-icon="mdi-account" 
               ></v-text-field>
               <v-text-field
                 label="Phone Number"
@@ -32,24 +32,24 @@
                 :value="myPass"
                 :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="() => (value = !value)"
-                :type="value ? 'password' : 'text'"
+                :type="value ? 'password' : 'text'" 
               >
               </v-text-field>
               <v-text-field
                 label="Address"
                 v-model="address"
-                append-icon="mdi-home"
+                append-icon="mdi-home" 
               ></v-text-field>
               <v-text-field
                 type="number"
                 label="Postal Code"
                 v-model="postalCode"
-                append-icon="mdi-map-marker"
+                append-icon="mdi-map-marker" 
               ></v-text-field>
               <v-text-field
                 label="Unit Number"
                 v-model="unitNo"
-                append-icon="mdi-ticket-confirmation"
+                append-icon="mdi-ticket-confirmation" 
               ></v-text-field>
               <v-btn color="#B3E5FC" class="mr-4" type="submit">Register</v-btn>
             </v-form>
@@ -157,7 +157,7 @@ h2 {
   font-size: 34px;
   font-family: Nunito;
   font-weight: bolder;
-  margin-top: 75px;
+  margin-top: 25px;
   color: rgb(255, 255, 255);
 }
 h3 {
@@ -174,4 +174,5 @@ h3 {
 #content {
     padding: 3%
 }
+
 </style>
