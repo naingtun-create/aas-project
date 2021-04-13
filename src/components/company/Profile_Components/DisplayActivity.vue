@@ -127,8 +127,8 @@ p{
 }
 #images {
     float:left;
-    height:360px;
-    width:360px;
+    width:25vw;
+    height:25vw;
 }
 #afterimages {
     width:70%;
