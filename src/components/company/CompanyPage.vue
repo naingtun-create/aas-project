@@ -39,7 +39,7 @@
                 </template>
             </v-dialog>
             <img  height="100" v-show="profileURL != ''" style="float:right" :src="profileURL">
-            <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png">
+            <img  height="100" v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png">
             <br/>
         
         </div>

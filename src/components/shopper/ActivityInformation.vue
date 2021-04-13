@@ -30,15 +30,19 @@
                     <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                 </v-btn>
             </v-card-actions>
+
+            <h4 class="title">Company Name</h4>
+            {{itemData.companyname}}
+
             <v-divider></v-divider>
             <v-expand-transition>
-            <div v-show="show">
-                
+              <div v-show="show">
+                  
 
-                <v-card-text>
-                {{itemData.description}}
-                </v-card-text>
-            </div>
+                  <v-card-text>
+                  {{itemData.description}}
+                  </v-card-text>
+              </div>
             </v-expand-transition>
             
             <h4 class="title">Start Date</h4>
@@ -67,7 +71,7 @@
 
 <script>
 import firebase from "firebase";
-import db from "../../../firebase.js";
+import db from "../../firebase.js";
 
 export default {
   props: ["itemData"],

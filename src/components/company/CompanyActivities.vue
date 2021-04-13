@@ -1,23 +1,19 @@
 <template>
 <div id="companyactivities">
     <company-header></company-header>
-    <h1>Our Activites</h1>
+    <h1>Our Activities</h1>
     <h3>Promote your activites for our community to support!</h3>
-    <NewActivityForm v-bind:companyID="this.id"></NewActivityForm>
+    <NewActivityForm v-bind:companyID="this.id" v-bind:companyname="this.companyData[0].companyname"></NewActivityForm>
     <br/>
     <DisplayActivity v-bind:companyID="this.id"></DisplayActivity>
     <br/>
-    hello
 </div>
 </template>
 
 <script>
-//import NewProductForm from './Profile_Components/NewProductForm.vue'
 import NewActivityForm from './Profile_Components/NewActivityForm.vue'
-//import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
-//import ActivityDisplay from './Profile_Components/ActivityDisplay.vue';
 import DisplayActivity from './Profile_Components/DisplayActivity.vue'
 
 
@@ -26,101 +22,24 @@ export default {
     data: () => {
         return {   
             id:"",
-            dialog: false,
-            image: [], 
-            imageURL: "",
-            profileURL: '',
             companyData: [],
-            products: []
         }
     },
     components: {
-        //NewProductForm: NewProductForm,
         NewActivityForm: NewActivityForm,
-        //ActivityDisplay: ActivityDisplay,
         DisplayActivity: DisplayActivity,
-        //ProductDisplay: ProductDisplay
     },
     methods: {
         toggleDialog: function() {
             this.dialog = !this.dialog
         },
         close: function() {
-            this.reset();
+
             this.toggleDialog();
-            //this.$forceUpdate();
             //location.reload()
             
         },
-        compareDates: function(a, b) {
 
-            if (a.timestamp > b.timestamp) {
-                return -1;
-            } else if (a.timestamp < b.timestamp) {
-                return 1;
-            } else {
-                return 0;
-            }
-
-        },
-        uploadImage: async function() {
-
-        var k = this.id;
-          
-
-        //Putting it in the storage
-        try {
-            //Its is place ProductImages => CompanyId
-            //Reference to the storage
-            var storageRef = firebase.storage().ref("ProfilePics/" + k );
-
-            //remember to add the delete or update storage to check first
-            
-            //Waiting till it uploaded to firebase storage
-            await storageRef.put(this.image)
-            var _extension = this.image.name.split(".")[1]
-
-            //Update the metadata to be uploaded as image
-            var newMetadata = {
-                contentType: 'image/' + _extension
-            };
-
-            await storageRef.updateMetadata(newMetadata)
-
-            //Retrieving the download URL for the product Image
-            await storageRef.getDownloadURL().then( async function(url) {
-                    //Add it into the database
-                    await db.collection("company")
-                    .doc(k)
-                    .update({
-                        "profilePic" : url.toString()
-                    })
-
-                    console.log(url)
-                
-            }).then(
-                this.close(),
-                alert("Uploaded Successfully!")
-            ).catch (e => {
-                console.log(e)
-            });
-
-        } catch (e) {
-          console.log(e);
-        }
-            
-        },
-        onFilePicked: function() {
-            var reader = new FileReader() 
-            reader.readAsDataURL(this.image)
-            reader.onload = () => {
-                this.imageURL = reader.result;
-            }
-        },
-        reset: function() {
-            this.imageURL = ''
-            this.image = []
-        },
         fetchData: async function() {
             var user = firebase.auth().currentUser;
             var k = user.uid;
@@ -129,25 +48,19 @@ export default {
                 var data = {};
                 data = doc.data();
                 this.companyData.push(data);
-                //this.companyData = doc.data();
 
                 if (typeof this.companyData[0].profilePic !== 'undefined') {
                     this.profileURL = this.companyData[0].profilePic
                 }
                 console.log(this.profileURL)
             })
-
-            var products = await db.collection("products").where("company","==",k).get()
-            console.log(products)
-            console.log(this.companyData)
-
+            
         }
     },
     created () {
         var user = firebase.auth().currentUser;
         this.id = user.uid;
-        this.fetchData()
-        
+        this.fetchData();
     }
 }
 </script>

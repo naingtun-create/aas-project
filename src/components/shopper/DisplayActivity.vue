@@ -5,6 +5,14 @@
                     <img id="images" :src="activity.image" dark>
                     <div id="afterimages">
                         <ul>
+
+                           <v-list-item>
+                                <v-list-item-icon>
+                                <v-icon color="indigo">mdi-subtitles</v-icon>
+                                </v-list-item-icon>
+                                <div class="my-4">{{activity.companyname}}</div>
+                            </v-list-item>
+
                            <v-list-item>
                                 <v-list-item-icon>
                                 <v-icon color="indigo">mdi-subtitles</v-icon>
@@ -46,7 +54,7 @@
                             </v-list-item>
 
                             <v-list-item>
-                            <error-prevention-dialog :itemName="activity.title" :itemID="activity.id" type="activities"/>
+
                             <activity-information :itemData="activity"/>
                             </v-list-item>
                         </ul>
@@ -57,8 +65,7 @@
 </template>
 
 <script>
-import db from "../../../firebase.js";
-import ErrorPreventionDialog from "./ErrorPreventionDialog.vue"
+import db from "../../firebase.js";
 import ActivityInformation from "./ActivityInformation.vue"
 
 export default {
@@ -72,7 +79,7 @@ export default {
     methods: {
         fetchActivity: async function () {
             let activity = {}
-            await db.collection("activities").where("companyID", "==", this.companyID).get().then((docs) => {
+            await db.collection("activities").get().then((docs) => {
                 docs.forEach((doc) => {
                     activity = doc.data();
                     activity.id = doc.id;
@@ -85,12 +92,6 @@ export default {
 
             console.log(this.activities)
             
-        },
-        deleteActivity: async function(id) {
-
-            await db.collection("activities").doc(id).delete()
-
-
         },
         compareDates: function(a, b) {
 
@@ -105,7 +106,6 @@ export default {
         },
     },
     components: {
-        ErrorPreventionDialog: ErrorPreventionDialog,
         ActivityInformation: ActivityInformation
     },
     created () {
