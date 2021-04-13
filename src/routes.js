@@ -7,7 +7,6 @@ import CompanyActivities from './components/company/CompanyActivities.vue'
 import CompanyOrders from './components/company/CompanyOrders.vue'
 import CompanySignUpPage from './components/company/CompanySignUpPage.vue'
 import CompanyLoginPage from './components/company/CompanyLoginPage.vue'
-import cForum from './components/company/CompanyForum.vue'
 import cProductPage from './components/company/CompanyProductPage.vue'
 import cPhysicalStore from './components/company/CompanyPhysicalStore.vue'
 import cOnlineMarketplace from './components/company/CompanyOnlineMarketplace.vue'
@@ -46,11 +45,9 @@ export default [
     { path: '/company/companypage', component: CompanyPage},
     { path: '/company/companyproducts', component: CompanyProducts},
     { path: '/company/companyactivities', component: CompanyActivities},
-    { path: '/company/companyactivities', component: CompanyActivities},
     { path: '/company/companyorders', component: CompanyOrders},
     { path: '/company/physicalstore', component: cPhysicalStore},
     { path: '/company/onlinemarketplace', component: cOnlineMarketplace},
-    { path: '/company/forum', component: cForum},
     { path: '/company/product/:id', name: 'companyProduct', component: cProductPage, props: true },
     
 ]

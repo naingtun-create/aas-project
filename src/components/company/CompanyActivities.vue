@@ -34,10 +34,8 @@ export default {
             this.dialog = !this.dialog
         },
         close: function() {
-
             this.toggleDialog();
-            //location.reload()
-            
+            location.reload();
         },
 
         fetchData: async function() {
@@ -52,7 +50,6 @@ export default {
                 if (typeof this.companyData[0].profilePic !== 'undefined') {
                     this.profileURL = this.companyData[0].profilePic
                 }
-                console.log(this.profileURL)
             })
             
         }

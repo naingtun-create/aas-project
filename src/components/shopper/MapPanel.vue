@@ -144,7 +144,7 @@ export default {
                         this.myCoordinates = coordinates;
                     })
                     .catch(error => alert(error));
-                alert("Hold on! This might take a while!")
+                alert("Please enable location services. Hold on! This might take a while!")
             setTimeout(() => {
                 const location = {
                     lat: this.myCoordinates.lat,
