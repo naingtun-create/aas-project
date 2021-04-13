@@ -68,7 +68,7 @@
                                 <h1 id="productTitle">{{item.title}}</h1>
                                 
                                 <p id='name'>{{item.companyname}}<br>
-                                CATEGORY: {{item.category}} </p>  
+                                Category: {{item.category}} </p>  
                                 <p id="price"><b>$ {{item.price}}</b>
                                 <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> </p>
                             </v-card>
