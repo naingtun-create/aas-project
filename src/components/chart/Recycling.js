@@ -17,9 +17,8 @@ export default {
             legend: { display: false },
             title: {
               display: true,
-              text: 'Resource Conservation: Recycling Rate By Waste Type 2020',
-              fontSize:30,
-              fontFamily: 'monospace'
+              text: 'Resource Conservation: Recycling Rate By Type 2020',
+              fontSize:25,
             },
             scales: {
               yAxes: [{ 
