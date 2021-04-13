@@ -103,7 +103,7 @@
               <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
             </ul>
           </div>
-          <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Edit Contact
+          <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Edit Details
                   <v-icon dark right>mdi-account-cog</v-icon>
                 </v-btn>
         </div><br><br><br>
@@ -349,11 +349,11 @@ h1 {
   color: #c9AA88;
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 1vw;
 }
 h2 {
   margin: -20px;
-  font-size: 25px;
+  font-size: 2vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   margin-top: 35px;
@@ -376,7 +376,8 @@ p{
 
 #boxcontact {
   width: 90%;
-  height:270px;
+  height:auto;
+  min-height:250px;
   border: 3px solid #c9AA88;
   border-radius: 10px;
 }
@@ -386,11 +387,10 @@ p{
   border: 3px solid #c9AA88;
   border-radius: 10px;
   min-height: 100px;
-
   height: auto;
 }
 #changepw {
-  margin-left:-40px;
+  margin-left:-20px;
   margin-top:-10px;
   margin-bottom:55px;
 }
@@ -448,20 +448,20 @@ li {
 }
 #innerbutton{
   margin-top:60px;
-  margin-right:40px;
+  margin-right:3vw;
   height: 60px;
   width: 15%;
   font-weight: bold;
   background-color: white;
   color:black;
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+  font-size: 0.8vw;
   border-radius: 10px;
   border: 2px solid #c9AA88;
 }
 button {
   height: 70px;
-  width: 150px;
+  width: 70%;
   background-color: #c9AA88;
   border-radius: 10px;
   font-weight: bold;
@@ -470,7 +470,7 @@ button {
   border-width: 1px;
   text-align:center;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-size: 1vw;
 }
 #left {
   float:left;
