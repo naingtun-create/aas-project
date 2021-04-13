@@ -10,23 +10,24 @@
     <h3> Our Story </h3>
     <br/>
     <p>{{companyData.description}}</p>
+    <p> Visit us at: <a :href="companyData.website">{{companyData.website}}</a></p>
     </div>
 
     <div id="combined">
-        <ul>
-            <li>
-                <div id="productsection">
-                    <h3>Our Products</h3>
-                    <ProductDisplay :companyID="this.id"></ProductDisplay>
-                </div>
-            </li>
-            
-            <li>
-                <div id="promotionsection">
-                    <h3>Upcoming Promotional Activities</h3>
-                </div>
-            </li>
-        </ul>
+        <div id="productsection">
+            <h3>Our Products</h3>
+            <br/>
+            <v-divider></v-divider>
+            <ProductDisplay :companyID="this.id"></ProductDisplay>
+        </div>
+      
+        <div id="activitysection">
+            <h3>Our Activities</h3>
+            <br/>
+            <v-divider></v-divider>
+            <DisplayActivity :companyID="this.id"></DisplayActivity>
+        </div>
+
     </div>
     <br><br>
 
@@ -36,6 +37,7 @@
 <script>
 import ProductDisplay from "./View_Company_Components/ProductDisplay"
 import db from "../../firebase.js";
+import DisplayActivity from "./DisplayActivity.vue"
 
 
 export default {
@@ -51,7 +53,8 @@ export default {
         }
     },
     components: {
-        ProductDisplay: ProductDisplay
+        ProductDisplay,
+        DisplayActivity
     },
     methods: {
         close: function() {
@@ -85,6 +88,7 @@ export default {
 </script>
 
 <style scoped>
+
 #companypage {
   position: relative;
   background-size: cover;
@@ -92,23 +96,26 @@ export default {
   background-repeat: no-repeat;
   height: 100%;
 }
+
 #intro {
     float:left;
-    padding-top:50px;
-    padding-left:100px;
+    padding:3%;
     font-size:15px;
     text-align:left;
     display:inline-table
 }
+
 #heading {
     display: flex;   
 }
+
 #title{
     font-weight: bold;
     font-size:30px;
     font-family: 'Anton', sans-serif;
     color:#c9AA88
 }
+
 #profilepic {
   border: 1px solid #ddd;
   border-radius: 2x;
@@ -116,21 +123,31 @@ export default {
   width: 200px;
   margin-top: -10px;
 }
+
 h3 {
     margin-top:20px;
     margin-bottom:-15px;
-    font-size:25px;
+    font-size:25px;    
 }
+
 #editstory{
     float:right;
     padding-right:100px;
 }
+
 #uploadpic{
     float:right;
     padding-right:100px;
 }
-p{
+
+p {
     font-size:20px;
+}
+
+#combined {
+    text-align: left;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
 </style>
