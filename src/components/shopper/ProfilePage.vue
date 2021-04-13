@@ -27,10 +27,10 @@
             <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" >
           </v-card-text>
           <v-card-actions class="justify-end">
-            <v-btn text @click="uploadImage">
+            <v-btn id='upload' text @click="uploadImage">
               Upload
             </v-btn>
-            <v-btn text @click="dialog.value = false">Close</v-btn>
+            <v-btn id='upload' text @click="dialog.value = false">Close</v-btn>
           </v-card-actions>
         </v-card>
       </template>
@@ -84,7 +84,6 @@
       </div>
     
     <div id="right">
-      
         <h1 id="name">{{ shopperData.fullname }}</h1>
         <button id='profilebtn' v-on:click="toggleUploadDialog">Upload Profile Picture</button>
         <div id="boxcontact">
@@ -365,6 +364,9 @@ p{
   font-family: 'Montserrat', sans-serif;
   font-style: italic;
 }
+#upload{
+  width:150px;
+}
 #boxleft {
   padding:50px;
   margin-top:-50px;
@@ -421,7 +423,7 @@ li {
 }
 #profilepic{
   border-radius: 50%;
-  margin-top:-50px;
+  margin-top:-20px;
 }
 #initials{
   border: 5px solid #c9AA88;
