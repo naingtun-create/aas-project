@@ -4,8 +4,8 @@
     <div id="intro">
         <p id="title" >{{companyData.companyname}}</p>
         <div id="heading">
-            <img v-show="profileURL != ''" style="float:left" :src="profileURL">
-            <img v-show="profileURL == ''" style="float:left" src="../../assets/NoCompanyImage.png">
+            <img id='profilepic' v-show="profileURL != ''" style="float:left" :src="profileURL">
+            <img height="150" v-show="profileURL == ''" style="float:left" src="../../assets/NoCompanyImage.png">
         </div>
     <h3> Our Story </h3>
     <br/>
@@ -105,42 +105,32 @@ export default {
 }
 #title{
     font-weight: bold;
-    font-size:20px;
+    font-size:30px;
     font-family: 'Anton', sans-serif;
     color:#c9AA88
 }
-img {
+#profilepic {
   border: 1px solid #ddd;
   border-radius: 2x;
   padding: 2px;
-  width: 150px;
+  width: 200px;
   margin-top: -10px;
 }
 h3 {
     margin-top:20px;
     margin-bottom:-15px;
+    font-size:25px;
 }
-#combined{
-    display:table-cell;
+#editstory{
+    float:right;
+    padding-right:100px;
 }
-#productsection {
-    float:left;
-    text-align:left;
-    padding-left:75px;
-    margin-top:-15px;
+#uploadpic{
+    float:right;
+    padding-right:100px;
 }
-#promotionsection {
-    float:left;
-    text-align:left;
-    padding-left:75px;
+p{
+    font-size:20px;
 }
-ul {
-  padding: 0;
-  list-style-type: none;
-}
-li {
-  margin-top:0px;
-}
-
 
 </style>
