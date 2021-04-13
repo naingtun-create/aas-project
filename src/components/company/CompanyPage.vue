@@ -118,6 +118,7 @@ export default {
             this.imageURL = '';
             this.image = [];
             this.dialog = false;
+            location.reload();
         },
         closeUpdateDialog: function() {
             this.editDialog = false;
@@ -194,8 +195,6 @@ export default {
                 .catch((e) => {
                 console.log(e);
                 });
-
-            alert("Update Successful");
 
             location.reload()
 
