@@ -44,7 +44,7 @@ export default {
       invoice: "",
       purchasedItems:[],
       date: new Date().toISOString().substr(0, 10),
-      time: new Date().getTime()
+      complete:[]
     };
   },
   props: {
@@ -69,6 +69,7 @@ export default {
           features.push(string)
         }    
         this.purchasedItems[i].colors = features
+        this.complete.push(false)
         features = []
       }
 
@@ -79,8 +80,8 @@ export default {
         "PaidAmount":this.paidPrice,
         "UserID": user.uid,       
         "Date": this.date,
-        "Time": this.time,
         "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
+        "completed":this.complete
       }
       db.collection('transactions').add(order).then(()=>{
         console.log("payment added");

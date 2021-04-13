@@ -38,8 +38,8 @@
                 </v-card>
                 </template>
             </v-dialog>
-            <img  height="100" v-show="profileURL != ''" style="float:right" :src="profileURL">
-            <img  height="100" v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png">
+            <img  height="120" v-show="profileURL != ''" style="float:right" :src="profileURL">
+            <img v-show="profileURL == ''" style="float:right" src="../../assets/UploadCompanyImage.png">
             <br/>
         
         </div>
@@ -79,8 +79,9 @@
         <v-icon dark right>mdi-information</v-icon>
         </v-btn>
         </div>
-        <br/><br/><br/><br/>
+        <br/><br/>
         <change-password-dialog/>
+        <br/>
 
 
     </div>
@@ -255,7 +256,7 @@ export default {
 }
 #title{
     font-weight: bold;
-    font-size:20px;
+    font-size:30px;
     font-family: 'Anton', sans-serif;
     color:#c9AA88
 }
@@ -269,6 +270,7 @@ export default {
 h3 {
     margin-top:20px;
     margin-bottom:-15px;
+    font-size:25px;
 }
 #editstory{
     float:right;
@@ -277,5 +279,8 @@ h3 {
 #uploadpic{
     float:right;
     padding-right:100px;
+}
+p{
+    font-size:20px;
 }
 </style>
