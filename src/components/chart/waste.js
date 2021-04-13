@@ -29,9 +29,8 @@ export default {
             legend: { display: true },
             title: {
               display: true,
-              text: 'Annual Waste Disposal VS Recycling in Singapore',
-              fontSize:30,
-              fontFamily: 'monospace'
+              text: 'Annual Waste Disposal vs Recycling in Singapore',
+              fontSize:25,
             },
             scales: {
                 yAxes: [{ 

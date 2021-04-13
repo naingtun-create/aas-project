@@ -141,6 +141,9 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  height:85px;
+}
 #title{
   font-weight: bold;
   font-size:30px;
