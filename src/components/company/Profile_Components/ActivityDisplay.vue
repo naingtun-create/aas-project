@@ -69,7 +69,6 @@
 
                     <v-list-item>
                         <v-list-item-content>
-
                             <error-prevention-dialog :itemName="activity.title" :itemID="activity.id" type="activities"/>
                             <activity-information :itemData="activity"/>
                         </v-list-item-content>

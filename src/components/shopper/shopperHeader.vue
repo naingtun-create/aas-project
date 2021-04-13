@@ -86,6 +86,6 @@ export default {
   display:inline-flex;
   font-size:20px;
   width:40%;
-
+  margin-left:-20px;
 }
 </style>

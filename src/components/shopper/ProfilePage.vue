@@ -5,7 +5,7 @@
     <div id="left">
       <v-avatar size="180">
         <span v-if="!this.profileURL" id="initials">{{this.initials}}</span>
-        <img  v-else :src="this.profileURL">
+        <img  id="profilepic" v-else :src="this.profileURL">
       </v-avatar>
       <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
       <template v-slot:default="dialog">
@@ -24,13 +24,13 @@
               src="../../assets/DummyImage.png"
               height="200" width="550"
             >
-            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" />
+            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" >
           </v-card-text>
           <v-card-actions class="justify-end">
-            <v-btn text @click="uploadImage">
+            <v-btn id='upload' text @click="uploadImage">
               Upload
             </v-btn>
-            <v-btn text @click="dialog.value = false">Close</v-btn>
+            <v-btn id='upload' text @click="dialog.value = false">Close</v-btn>
           </v-card-actions>
         </v-card>
       </template>
@@ -65,12 +65,17 @@
             </ul>
             <ul>
               <li>
+                <div id="changepw">
                 <change-password-dialog/>
+                </div>
               </li>
               <li>
+                <div id="signoutbutton">
                 <button v-on:click="logout">Sign Out
                   <v-icon dark right>mdi-account-remove</v-icon>
-                </button><br><br>
+                </button>
+                </div>
+                <br><br>
 
               </li>
             </ul>
@@ -79,7 +84,6 @@
       </div>
     
     <div id="right">
-      
         <h1 id="name">{{ shopperData.fullname }}</h1>
         <button id='profilebtn' v-on:click="toggleUploadDialog">Upload Profile Picture</button>
         <div id="boxcontact">
@@ -94,11 +98,11 @@
           <div id="details">
             <ul>
               <li>{{shopperData.email}}</li>
-              <li>{{shopperData.address + " " + shopperData.postalCode}}</li>
+              <li>{{shopperData.address + ", Singapore " + shopperData.postalCode}}</li>
               <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
             </ul>
           </div>
-          <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Edit Contact
+          <v-btn id="innerbutton" dark v-on:click="toggleEditDialog">Edit Details
                   <v-icon dark right>mdi-account-cog</v-icon>
                 </v-btn>
         </div><br><br><br>
@@ -109,7 +113,7 @@
             <v-list-item v-for="(purchase,id) in purchaseHistory" :key="id">
               <v-list width="100%" subheader>
                 <div id="leftdetails">
-                  <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice}}</v-subheader>
+                  <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice + " |  " + purchase.Date}}</v-subheader>
                   <v-list-item v-for="(product,id) in purchase.Products" :key="id"> 
                     <div id="invoice">
                       <v-list-item-avatar tile size="100px"> 
@@ -263,10 +267,22 @@ export default {
             this.purchaseHistory.push(doc.data());
           });
         });
+      this.purchaseHistory = this.purchaseHistory.sort(this.compareDates);
 
       console.log(this.shopperData);
     },
-    generateInitials() {
+    compareDates: function(a, b) {
+
+      if (a.timestamp > b.timestamp) {
+        return -1;
+      } else if (a.timestamp < b.timestamp) {
+        return 1;
+      } else {
+        return 0;
+      }
+
+    },
+    generateInitials: function () {
       var fullname = this.shopperData.fullname.split("\\s+");
       if (fullname.length > 1) {
         this.initials = fullname[0][0] + fullname[1][0];
@@ -303,6 +319,7 @@ export default {
       this.updateAddress = this.shopperData.address;
       this.updatePhone = this.shopperData.phoneNumber;
       this.updatePostalCode = this.shopperData.postalCode;
+
     },
   },
   created() {
@@ -331,11 +348,11 @@ h1 {
   color: #c9AA88;
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 1vw;
 }
 h2 {
   margin: -20px;
-  font-size: 25px;
+  font-size: 2vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   margin-top: 35px;
@@ -346,6 +363,9 @@ p{
   font-size: 15px;
   font-family: 'Montserrat', sans-serif;
   font-style: italic;
+}
+#upload{
+  width:150px;
 }
 #boxleft {
   padding:50px;
@@ -358,7 +378,8 @@ p{
 
 #boxcontact {
   width: 90%;
-  height:270px;
+  height:auto;
+  min-height:250px;
   border: 3px solid #c9AA88;
   border-radius: 10px;
 }
@@ -368,10 +389,16 @@ p{
   border: 3px solid #c9AA88;
   border-radius: 10px;
   min-height: 100px;
-
   height: auto;
 }
-
+#changepw {
+  margin-left:-20px;
+  margin-top:-10px;
+  margin-bottom:55px;
+}
+#signoutbutton {
+  margin-left:-23px;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -394,10 +421,9 @@ li {
   font-family: 'Montserrat', sans-serif;
   font-size: 50px;
 }
-img {
+#profilepic{
   border-radius: 50%;
-  margin-top:-50px;
-
+  margin-top:-20px;
 }
 #initials{
   border: 5px solid #c9AA88;
@@ -424,20 +450,20 @@ img {
 }
 #innerbutton{
   margin-top:60px;
-  margin-right:40px;
+  margin-right:3vw;
   height: 60px;
   width: 15%;
   font-weight: bold;
   background-color: white;
   color:black;
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+  font-size: 0.8vw;
   border-radius: 10px;
   border: 2px solid #c9AA88;
 }
 button {
   height: 70px;
-  width: 150px;
+  width: 70%;
   background-color: #c9AA88;
   border-radius: 10px;
   font-weight: bold;
@@ -446,7 +472,7 @@ button {
   border-width: 1px;
   text-align:center;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-size: 1vw;
 }
 #left {
   float:left;
