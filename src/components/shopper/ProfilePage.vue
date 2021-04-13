@@ -24,7 +24,7 @@
               src="../../assets/DummyImage.png"
               height="200" width="550"
             >
-            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" height="200" width="300n">
+            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" height="200" width="300">
           </v-card-text>
           <v-card-actions class="justify-end">
             <v-btn id='upload' text @click="uploadImage">
