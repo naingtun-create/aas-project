@@ -25,7 +25,7 @@
         <p id="bold"> Select Quantity: </p>
         <input v-model="qty" id=index placeholder=0 type="number" min="1">
         <br>
-        <span v-if="this.datapacket[0].size" id="select">Selected Size: {{ selectedSize }}</span>
+        <span v-if="this.datapacket[0].sizings" id="select">Selected Size: {{ selectedSize }}</span>
         <br>
         <span v-if="this.datapacket[0].colors" id="select">Selected Colour: {{ selectedColour }}</span>
         <br>
