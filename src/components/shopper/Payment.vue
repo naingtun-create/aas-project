@@ -6,8 +6,8 @@
             <v-container>
                 <ul>
                 <li v-for="(item,id) in items" :key="id">
-                  <div class="d-lg-flex flex-no-wrap" >
-                    <v-avatar class="ma-3" size="200" tile>
+                  <div class="d-lg-flex flex-no-wrap">
+                    <v-avatar position='static' size="10vw" tile>
                       <v-img height="200" v-bind:src="item.image"></v-img>
                     </v-avatar>
                     <div id="productInfo">
@@ -106,10 +106,9 @@ export default {
               totalPrice: 0,
               cartID:[],
               companyID:'',
-              //completed:false,
+              completed:false,
             }
           }
-
         }this.subtotal= this.subtotal.toFixed(2)
 
         db.collection('products').get().then(snapshot => {
@@ -221,5 +220,6 @@ h1{
 }
 #order{
   border: 2px solid #c9AA88;
+  position:relative;
 }
 </style>
