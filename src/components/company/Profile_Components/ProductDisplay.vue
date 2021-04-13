@@ -21,6 +21,7 @@
               <h1 id="productTitle">
                 <b>{{ item.title }}</b>
               </h1>
+              <div id="price">
               <p class="my-4 subtitle-1">
                 <b>${{ item.price }}</b>
               </p>
@@ -37,6 +38,7 @@
                   >Learn More</v-btn>
                   <error-prevention-dialog :itemName="item.title" :itemID="item.id" type="products"/>
               </v-card-actions>
+              </div>
             </v-card>
           </li>
         </ul>
@@ -119,6 +121,9 @@ li {
   padding: 10px;
   margin: 20px;
 }
+h1 {
+  height:85px;
+}
 .v-card--reveal {
   align-items: flex-start;
   bottom: 0;
@@ -132,6 +137,9 @@ li {
   font-size: 15px;
   text-align:start;
   padding:10px;
+}
+#price {
+  margin-top: -20px;
 }
 p {
   text-align:start;
