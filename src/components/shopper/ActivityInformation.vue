@@ -8,7 +8,7 @@
         persistent
       >
         <template v-slot:activator="{ on, attrs }">
-        <v-btn x-small  v-bind="attrs" v-on="on">
+        <v-btn x-small v-bind="attrs" v-on="on">
           Learn more
         </v-btn>
       </template>

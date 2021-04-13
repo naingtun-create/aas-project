@@ -8,7 +8,7 @@
 
                            <v-list-item>
                                 <v-list-item-icon>
-                                <v-icon color="indigo">mdi-subtitles</v-icon>
+                                <v-icon color="indigo">mdi-domain</v-icon>
                                 </v-list-item-icon>
                                 <div class="my-4">{{activity.companyname}}</div>
                             </v-list-item>
@@ -56,6 +56,9 @@
                             <v-list-item>
 
                             <activity-information :itemData="activity"/>
+
+                            <v-btn v-if="routeButton" x-small v-on:click="reroute(activity.companyID)">View Company</v-btn>
+                        
                             </v-list-item>
                         </ul>
                     </div>
@@ -73,20 +76,40 @@ export default {
     data: () => {
         return {
             activities: [],
+            routeButton: true,
         }
     },
     props: ["companyID"],
     methods: {
         fetchActivity: async function () {
-            let activity = {}
-            await db.collection("activities").get().then((docs) => {
-                docs.forEach((doc) => {
-                    activity = doc.data();
-                    activity.id = doc.id;
-                    this.activities.push(activity);
 
+             let activity = {}
+
+            if (this.companyID) {
+
+                this.routeButton = false;
+
+                await db.collection("activities").where("companyID", "==", this.companyID).get().then((docs) => {
+                    
+                    docs.forEach((doc) => {
+                        activity = doc.data();
+                        activity.id = doc.id;
+                        this.activities.push(activity);
+
+                        })
+                    })
+
+            } else {
+
+                await db.collection("activities").get().then((docs) => {
+                    docs.forEach((doc) => {
+                        activity = doc.data();
+                        activity.id = doc.id;
+                        this.activities.push(activity);
+
+                    })
                 })
-            }) 
+            }
 
             this.activities = this.activities.sort(this.compareDates);
 
@@ -103,7 +126,12 @@ export default {
                 return 0;
             }
 
-        },
+        },      
+        reroute: function(companyID) {
+     
+            this.$router.push({ name: "viewCompanyPage", params: { id: companyID } });
+        }
+
     },
     components: {
         ActivityInformation: ActivityInformation

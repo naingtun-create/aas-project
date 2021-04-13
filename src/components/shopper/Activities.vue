@@ -14,9 +14,8 @@
         <div id="Activities">
           <h2>Latest Eco-friendly Activities</h2>
           <v-divider></v-divider>
-          <DisplayActivity></DisplayActivity>
+          <DisplayActivity ></DisplayActivity>
         </div>
-      
         
     </div>
 </template>
@@ -25,6 +24,7 @@
 import BarChart from "../chart/Recycling";
 import LineChart from "../chart/waste";
 import DisplayActivity from "./DisplayActivity.vue"
+
 export default {
   components: {
     BarChart,
