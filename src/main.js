@@ -6,7 +6,7 @@ import Routes from './routes.js'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
 import store from './store/store' 
 import firebase from  'firebase';
-import shopperHeader from './components/shopper/ShopperHeader.vue'
+import ShopperHeader from './components/shopper/ShopperHeader.vue'
 import companyHeader from './components/company/CompanyHeader.vue'
 import VueGoogleMaps from 'vue-googlemaps'
 import 'vue-googlemaps/dist/vue-googlemaps.css'
@@ -18,7 +18,7 @@ Vue.use(Vuex)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(VueGeolocation)
-Vue.component('shopper-header',shopperHeader)
+Vue.component('shopper-header',ShopperHeader)
 Vue.component('company-header',companyHeader)
 Vue.use(VueGoogleMaps, {
   load: {
