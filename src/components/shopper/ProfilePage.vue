@@ -24,7 +24,7 @@
               src="../../assets/DummyImage.png"
               height="200" width="550"
             >
-            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" >
+            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" height="200" width="550">
           </v-card-text>
           <v-card-actions class="justify-end">
             <v-btn id='upload' text @click="uploadImage">
@@ -181,6 +181,7 @@ export default {
       this.uploadDialog = false;
       this.editDialog = false;
       this.reset();
+      location.reload();
     },
     uploadImage: async function() {
 
@@ -220,10 +221,9 @@ export default {
                         console.log(url)
                     
                 }).then(
-                    this.close(),
-                    alert("Uploaded Successfully! Please refresh the page yourself!"),
+                    alert("Uploaded Successfully!"),
+                    this.close()
                     
-                   
                 ).catch (e => {
                     console.log(e)
                 });
@@ -280,7 +280,6 @@ export default {
       } else {
         return 0;
       }
-
     },
     generateInitials: function () {
       var fullname = this.shopperData.fullname.split("\\s+");
@@ -311,7 +310,7 @@ export default {
 
       alert("Update Successful");
 
-      location.reload()
+      this.close();
     },
   },
   watch: {

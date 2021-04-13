@@ -59,9 +59,7 @@ export default {
     methods: {
         close: function() {
             this.reset();
-            //this.$forceUpdate();
             location.reload();
-            
         },
         fetchData: async function() {
 

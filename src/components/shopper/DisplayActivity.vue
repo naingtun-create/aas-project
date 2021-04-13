@@ -128,7 +128,6 @@ export default {
 
         },      
         reroute: function(companyID) {
-     
             this.$router.push({ name: "viewCompanyPage", params: { id: companyID } });
         }
 
