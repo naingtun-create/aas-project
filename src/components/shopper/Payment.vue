@@ -26,11 +26,43 @@
         </v-card>
         </nav>
         <div id="contents">
+          <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
+            <template v-slot:default="dialog">
+              <v-card>
+                <v-toolbar color="#c9AA88" dark>How to get invoice number?</v-toolbar>
+                <br>
+                <v-card-text>
+                  <p> After making payment: </p><br>
+                  <p> Step 1: Click on History tab</p>
+                  <img
+                    src="../../assets/paylah-step1.jpeg"
+                    height="280" width="150"
+                  ><br><br>
+                <p> Step 2: Click on the Payment made to AAS</p>
+                  <img
+                    src="../../assets/paylah-step2.png"
+                    height="200" width="160"
+                  ><br><br>
+                  <p> Step 3: Retrieve the Transaction Ref No.</p><br>
+                  <img
+                    src="../../assets/paylah-step3.jpg"
+                    height="320" width="290"
+                  >  
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn id='upload' text @click="dialog.value = false">Close</v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+
             <img src = "../../assets/payment_code.png" width = "350px" >
             <p>Please scan the QR code</p> 
             <p>Pay the required amount as stated in the subtotal</p>
-            <NewPaymentForm v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
-            
+            <div class='rowC'>
+            <NewPaymentForm  v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
+            <button  v-on:click="toggleUploadDialog">How to get invoice number</button>
+            </div>
         </div>
     </div>
 </template>
@@ -48,10 +80,14 @@ export default {
         subtotal:0,
         absent:true,
         productInfo:[],  
+        uploadDialog: false,
     }
   },
   components: {
       NewPaymentForm: NewPaymentForm,
+  },
+  close: function() {
+    this.uploadDialog = false;
   },
   methods:{
     fetchItems:function(){
@@ -132,6 +168,9 @@ export default {
         });
       });
     },
+    toggleUploadDialog: function() {
+      this.uploadDialog = !this.uploadDialog;
+    },
     deleteItem:function(cart_id, pdt_id, price){
       var user = firebase.auth().currentUser;
       console.log(cart_id)
@@ -170,6 +209,21 @@ li {
   margin: 10px;
   width:1300px;
 }
+button {
+  height: 40px;
+  width:20%;
+  background-color: #4000ff;
+  border-radius: 10px;
+  font-weight: bold;
+  color:white;
+  border: 10px solid #4000ff;
+  border-width: 1px;
+  text-align:center;
+  margin-left:2.8vw;
+  margin-top:1.8vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8vw;
+}
 nav {
     float: left;
     width: 60%;
@@ -202,14 +256,12 @@ p{
   text-align: start;
   
 }
-
 h1{
   font-size: 20px;
   font-family: "Copperplate", Times, serif;
   padding-bottom: 15px;
   color:"#A52A2A";
 }
-
 #delete {
   left: 300px;
 }
@@ -222,4 +274,15 @@ h1{
   border: 2px solid #c9AA88;
   position:relative;
 }
+#upload{
+  width:150px;
+}
+.rowC{
+  padding-left:5.5vw;
+  align-content: center;
+  display:flex; 
+  
+  flex-direction:row;
+  
+  }
 </style>

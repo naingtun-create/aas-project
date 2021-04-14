@@ -56,8 +56,7 @@
           </v-card-text>
           <p>Already have account?</p>
           <v-btn id='login' v-on:click="$router.push('shopperlogin')" color="blue">
-            Login</v-btn
-          >
+            Login</v-btn>
         </div>
       </v-card>
     </div>
@@ -172,7 +171,8 @@ h3 {
   text-align: center;
 }
 #content {
-    padding: 3%
+    padding: 3%;
+    align-content:center;
 }
 #login{
   margin-left: -10px;
