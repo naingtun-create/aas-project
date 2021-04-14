@@ -95,9 +95,7 @@ export default {
 </script>
 
 <style scoped>
-
 * {
     text-align: left;
 }
-
 </style>

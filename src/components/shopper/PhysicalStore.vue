@@ -1,7 +1,7 @@
 <template>
     <div id="store">
     <shopper-header></shopper-header>
-    <v-container id="left" fluid fill-height grid-list-lg>
+    <v-container fluid fill-height grid-list-lg>
         <v-layout row wrap align-content-start>
             <v-flex xs4 xs3>
                 <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
@@ -49,6 +49,7 @@
     </v-container>
     </div>
 </template>
+
 <script>
 import EventBus from '../../eventBus.js'
 import db from '../../firebase.js'

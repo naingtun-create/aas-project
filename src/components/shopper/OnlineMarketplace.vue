@@ -61,7 +61,7 @@
         <div id="content">          
             <v-container fluid>
                 <v-layout>
-                    <ul id="itemsList">
+                    <ul>
                         <li v-for="item in filteredProduct" :key="item.id">
                             <v-card class="mx-auto my-12" width="230" height = "370" color="#EBFFED">
                                 <v-img height="200" v-bind:src="item.image"></v-img>
@@ -158,9 +158,7 @@ h1 {
   margin-left:10px;
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
-
 }
-
 #content {
   float: right;
   width: 78%;
@@ -173,35 +171,30 @@ h1 {
   padding: 10px; 
   margin-right:30px;
 } 
-
 #rightBtn{
   width: 30%;
   float: right;
   margin-right:10px;
   margin-bottom:10px;
 }
-
 #leftInfo{
   width: 60%;
   float: left;
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
 }
-
 ul {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
 }
-
 li {
   flex-grow: 1;
   flex-basis: auto;
   text-align: center;
   margin-top: 10px;
 }
-
 .v-card--reveal {
   align-items: flex-start;
   bottom: 0;
@@ -217,8 +210,8 @@ li {
   padding:10px;
 }
 p{
-    text-align:start;
-    padding-left:15px;
+  text-align:start;
+  padding-left:15px;
 }
 #price {
   font-size:20px;

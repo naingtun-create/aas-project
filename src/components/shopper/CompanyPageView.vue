@@ -86,7 +86,6 @@ export default {
 </script>
 
 <style scoped>
-
 #companypage {
   position: relative;
   background-size: cover;
@@ -94,7 +93,6 @@ export default {
   background-repeat: no-repeat;
   height: 100%;
 }
-
 #intro {
     float:left;
     padding:3%;
@@ -102,18 +100,15 @@ export default {
     text-align:left;
     display:inline-table
 }
-
 #heading {
     display: flex;   
 }
-
 #title{
     font-weight: bold;
     font-size:30px;
     font-family: 'Anton', sans-serif;
     color:#c9AA88
 }
-
 #profilepic {
   border: 1px solid #ddd;
   border-radius: 2x;
@@ -121,31 +116,25 @@ export default {
   width: 200px;
   margin-top: -10px;
 }
-
 h3 {
     margin-top:20px;
     margin-bottom:-15px;
     font-size:25px;    
 }
-
 #editstory{
     float:right;
     padding-right:100px;
 }
-
 #uploadpic{
     float:right;
     padding-right:100px;
 }
-
 p {
     font-size:20px;
 }
-
 #combined {
     text-align: left;
     padding-left: 3%;
     padding-right: 3%;
 }
-
 </style>

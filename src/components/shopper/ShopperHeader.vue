@@ -71,10 +71,6 @@ export default {
   height:80px;
   padding-left: 50px;
   font-size:25px;
-  
-}
-.btnroutes{
-  font-size:10px;
 }
 #links{
   float:left;

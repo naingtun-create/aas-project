@@ -38,10 +38,10 @@ export default {
 </script>
 
 <style>
-  button {
-    background-color: BCC6CC;
-    font-size: 16px;
-    padding: 15px 24px;
-    border-radius: 10px;
-  } 
+button {
+  background-color: BCC6CC;
+  font-size: 16px;
+  padding: 15px 24px;
+  border-radius: 10px;
+} 
 </style>

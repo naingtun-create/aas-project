@@ -7,7 +7,7 @@
         <span v-if="!this.profileURL" id="initials">{{this.initials}}</span>
         <img  id="profilepic" v-else :src="this.profileURL">
       </v-avatar>
-      <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
+      <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent>
       <template v-slot:default="dialog">
         <v-card>
           <v-toolbar color="#c9AA88" dark>Upload Your Profile Image</v-toolbar>
@@ -24,7 +24,7 @@
               src="../../assets/DummyImage.png"
               height="200" width="550"
             >
-            <img class="imageUpload" v-show="imageURL != ''" :src="imageURL" height="200" width="300">
+            <img v-show="imageURL != ''" :src="imageURL" height="200" width="250">
           </v-card-text>
           <v-card-actions class="justify-end">
             <v-btn id='upload' text @click="uploadImage">
@@ -335,7 +335,6 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
-
 #profilepage {
   position: relative;
   background-size: cover;
@@ -344,18 +343,15 @@ export default {
   height: 100%;
   padding-bottom:50px;
 }
-
 h1 {
   text-align: left;
   padding-left: 150px;
   color: #c9AA88;
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
-  font-size: 1vw;
 }
 h2 {
   margin: -20px;
-  font-size: 2vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   margin-top: 35px;
@@ -378,7 +374,6 @@ p{
   border-radius: 10px;
   background-color: #c9AA88;
 }
-
 #boxcontact {
   width: 90%;
   height:auto;
@@ -402,7 +397,6 @@ p{
 #signoutbutton {
   margin-left:-23px;
 }
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
@@ -449,7 +443,6 @@ li {
   color:black;
   background-color:white;
   border: 2px solid #c9AA88;
-
 }
 #innerbutton{
   margin-top:60px;
@@ -531,12 +524,10 @@ button {
 #leftdetails{
   width:60%;
   float:left;
-
 }
 #rightdetails{
   width:40%;
   float:right;
   padding-top:50px;
 }
-
 </style>

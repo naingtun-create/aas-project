@@ -99,7 +99,6 @@ h3 {
   padding-left: 20px;
   text-align: center;
 }
-
 #content {
   padding: 3%;
 }

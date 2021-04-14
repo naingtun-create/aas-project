@@ -99,10 +99,10 @@ export default {
 
 <style scoped>
 #paidAmount {
-    font-size: 30px;
-    background-color: #ffcccc;
-    padding:10px;
-    text-align: start;
-    border-width: 20px;
+  font-size: 30px;
+  background-color: #ffcccc;
+  padding:10px;
+  text-align: start;
+  border-width: 20px;
 }
 </style>
