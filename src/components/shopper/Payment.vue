@@ -32,20 +32,21 @@
                 <v-toolbar color="#c9AA88" dark>How to get invoice number?</v-toolbar>
                 <br>
                 <v-card-text>
+                  <p> After making payment: </p><br>
                   <p> Step 1: Click on History tab</p>
                   <img
                     src="../../assets/paylah-step1.jpeg"
                     height="280" width="150"
                   ><br><br>
-                <p> Step 2: Click on Payment made to AAS</p>
+                <p> Step 2: Click on the Payment made to AAS</p>
                   <img
                     src="../../assets/paylah-step2.png"
-                    height="180" width="150"
+                    height="200" width="160"
                   ><br><br>
-                  <p> Step 3: Retrieve the Transaction Ref No..</p><br>
+                  <p> Step 3: Retrieve the Transaction Ref No.</p><br>
                   <img
                     src="../../assets/paylah-step3.jpg"
-                    height="280" width="250"
+                    height="320" width="290"
                   >  
                 </v-card-text>
                 <v-card-actions class="justify-end">
