@@ -2,7 +2,7 @@
   <div id="NewPaymentForm">
     <v-dialog v-model="dialog" persistent width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn class="ml-2 mt-5" color = "#4000ff" outlined rounded x-large v-bind="attrs" v-on="on">Make Payment</v-btn>
+        <v-btn class="ml-2 mt-5" color = "#4000ff" outlined rounded x-large v-bind="attrs" v-on="on">Confirm Payment</v-btn>
       </template>
       <v-card>
         <v-card-title class="headline grey lighten-2">
