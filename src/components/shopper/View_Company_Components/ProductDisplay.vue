@@ -94,7 +94,6 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   flex-grow: 1;
   flex-basis: 250px;
@@ -102,7 +101,6 @@ li {
   padding: 10px;
   margin: 20px;
 }
-
 .v-card--reveal {
   align-items: flex-start;
   bottom: 0;
@@ -111,7 +109,6 @@ li {
   position: absolute;
   width: 100%;
 }
-
 #productTitle {
   font-family: "Lucida Console", Times, serif;
   font-size: 12px;

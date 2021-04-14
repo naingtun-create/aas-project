@@ -200,7 +200,6 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   flex-grow: 1;
   flex-basis: 500px;
@@ -225,19 +224,19 @@ button {
   font-size: 0.8vw;
 }
 nav {
-    float: left;
-    width: 60%;
-    padding:15px; 
-    height: 1000px; 
-    margin-top:10px;
-    margin-left:10px;
+  float: left;
+  width: 60%;
+  padding:15px; 
+  height: 1000px; 
+  margin-top:10px;
+  margin-left:10px;
 }
 #content {
-    float: right;
-    padding: 15px; 
-    width: 45%;
-    background-color: #FFFAF0;
-    height: 1000px; 
+  float: right;
+  padding: 15px; 
+  width: 45%;
+  background-color: #FFFAF0;
+  height: 1000px; 
 }  
 p{
   font-family: "Courier New", Times, serif;
@@ -246,15 +245,14 @@ p{
   font-weight: bold;
 }
 #subtotal{
-    font-size: 20px;
-    text-align:end;
-    padding-right:100px;
-    color:lightcoral;
+  font-size: 20px;
+  text-align:end;
+  padding-right:100px;
+  color:lightcoral;
 }
 #productInfo {
   padding-left:80px;
   text-align: start;
-  
 }
 h1{
   font-size: 20px;
@@ -265,7 +263,6 @@ h1{
 #delete {
   left: 300px;
 }
-
 #cost {
   color:red;
   font-weight: bolder;
@@ -281,8 +278,6 @@ h1{
   padding-left:5.5vw;
   align-content: center;
   display:flex; 
-  
   flex-direction:row;
-  
-  }
+}
 </style>

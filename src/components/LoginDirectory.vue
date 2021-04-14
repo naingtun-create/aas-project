@@ -53,11 +53,6 @@ h3 {
   margin-top:175px;
   color: rgb(16, 240, 210);
 }
-h4 {
-  font-size: 20px;
-  font-family: Nunito;
-  font-weight: normal;
-}
 ul {
   list-style-type: none;
   margin-top: -20px;
@@ -72,8 +67,5 @@ a {
   font-weight: bold;
   color: rgb(0, 114, 180);
   text-decoration: none;
-}
-.router-link-active {
-  color:white
 }
 </style>
