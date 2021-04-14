@@ -190,6 +190,7 @@ export default {
                         console.log("Activity added");
                         alert("Activity added!");
                         this.close();
+                        location.reload();
                         
                     });
                 } catch (e) {
@@ -207,7 +208,6 @@ export default {
             console.log("close dialog");
             this.reset();
             this.dialog = false;
-            location.reload();
         },
         onFilePicked: function() {
             var reader = new FileReader();

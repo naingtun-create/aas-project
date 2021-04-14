@@ -186,6 +186,8 @@ export default {
     uploadImage: async function() {
 
         var k = this.id;
+
+        if (this.image != []) {
         //Putting it in the storage
             try {
                 //Its is place ProductImages => CompanyId
@@ -231,7 +233,9 @@ export default {
             } catch (e) {
             console.log(e);
             }
-                
+        } else {
+          alert("Please choose an image to be uploaded!")
+        }
     },
     onFilePicked: function() {
       var reader = new FileReader();

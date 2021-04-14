@@ -196,8 +196,7 @@ export default {
           .then(() => {
             console.log("product added");
             alert("Product Added");
-            this.dialog = false;
-            this.reset();
+            this.close();
             location.reload();
           });
         
@@ -215,7 +214,6 @@ export default {
       console.log("close dialog");
       this.reset();
       this.dialog = false;
-      location.reload();
     },
     onFilePicked: function() {
         
