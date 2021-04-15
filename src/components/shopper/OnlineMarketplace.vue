@@ -1,14 +1,13 @@
 <template>
     <div id = "OnlineMarketPlace">
-      <shopper-header></shopper-header>
-      <h3 id="title">Support your local eco-friendly products!</h3>
-          <div id='search'>
+        <shopper-header></shopper-header>
+        <h3 id="title">Support your local eco-friendly products!</h3>
+        <div id='search'>
             <v-toolbar floating width="400">   
                 <v-text-field  single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
             </v-toolbar>
-          </div>
-           
-          <div id='nav'>  
+        </div>   
+        <div id='nav'>  
             <v-card>
                 <v-card-title id="categories">Categories</v-card-title>
                 <v-container id="info" fluid>
@@ -55,9 +54,8 @@
                     ></v-checkbox>
                 </v-container>
             </v-card>
-          </div>
+        </div>
               
-       
         <div id="content">          
             <v-container fluid>
                 <v-layout>
@@ -65,17 +63,16 @@
                         <li v-for="item in filteredProduct" :key="item.id">
                             <v-card class="mx-auto my-12" width="230" height = "370" color="#EBFFED">
                                 <v-img height="200" v-bind:src="item.image"></v-img>
-                                <h1 id="productTitle">{{item.title}}</h1>
-                                
+                                <h1 id="productTitle">{{item.title}}</h1>                                
                                 <p id='name'>{{item.companyname}}<br></p>
                                 <p id='category'>Category: {{item.category}} </p>  
-                                <p id="price" class="my-4 subtitle-1"><b>$ {{item.price}}</b>
-                                <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> </p>
+                                <p id="price" class="my-4 subtitle-1">
+                                    <b>$ {{item.price}}</b>
+                                    <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> 
+                                </p>
                             </v-card>
-                        </li>
-                
-                    </ul>
-         
+                        </li>                
+                    </ul>        
                 </v-layout> 
             </v-container>  
         </div>
@@ -86,58 +83,57 @@
 import db from '../../firebase.js'
 
 export default {
-  name: 'OnlineMarketPlacePage',
-  data(){
-    return{
-        items:[],
-        search:"",
-        sortPrice:"",
-        selectedCategories:"All",
+    name: 'OnlineMarketPlacePage',
+    data(){
+        return{
+            items:[],
+            search:"",
+            sortPrice:"",
+            selectedCategories:"All",
+        }
+    },
+    methods:{
+        fetchItems:function(){
+            db.collection('products').get().then(snapshot => {
+                let item = []
+                snapshot.docs.forEach(doc => {
+                    item = doc.data();
+                    item.id = doc.id,
+                    this.items.push(item)
+                });
+            });
+        },
+        route:function(id){
+            let doc_id = id;
+            this.$router.push({name: 'product', params: {id: doc_id}});
+        },
+        sortByPrice:function(){
+            if(this.sortPrice == "Descending"){
+                this.items.sort(function(a, b) {return parseFloat(b.price) - parseFloat(a.price);});
+            } else{
+                this.items.sort(function(a, b) {return parseFloat(a.price) - parseFloat(b.price);});
+            }
+        },
+        selectByCategory:function(){
+            this.items.filter(item => item.category.toLowerCase() == this.selectedCategories.toLowerCase());
+        }
+    },
+    created(){this.fetchItems()},
+    computed:{
+        filteredProduct:function(){
+            var finalList = []
+            finalList = this.items
+            if(this.search != "" && this.selectedCategories != "All"){
+                finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase()) && (item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase()));})
+            } else if(this.search != ""){
+                finalList = this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase());})
+            } else if(this.selectedCategories != "All"){
+                finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase())});
+            } 
+            return finalList;
+        }
     }
-  },
-  methods:{
-    fetchItems:function(){
-      db.collection('products').get().then(snapshot => {
-        let item = []
-        snapshot.docs.forEach(doc => {
-          item = doc.data();
-          item.id = doc.id,
-          this.items.push(item)
-        });
-      });
-    },
-    route:function(id){
-      let doc_id = id;
-      this.$router.push({name: 'product', params: {id: doc_id}});
-    },
-    sortByPrice:function(){
-      if(this.sortPrice == "Descending"){
-        this.items.sort(function(a, b) {return parseFloat(b.price) - parseFloat(a.price);});
-      } else{
-        this.items.sort(function(a, b) {return parseFloat(a.price) - parseFloat(b.price);});
-      }
-    },
-    selectByCategory:function(){
-      this.items.filter(item => item.category.toLowerCase() == this.selectedCategories.toLowerCase());
-    }
-  },
-  created(){this.fetchItems()},
-  computed:{
-      filteredProduct:function(){
-        var finalList = []
-        finalList = this.items
-        if(this.search != "" && this.selectedCategories != "All"){
-          finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase()) && (item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase()));})
-        } else if(this.search != ""){
-          finalList = this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase());})
-        } else if(this.selectedCategories != "All"){
-          finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase())});
-        } 
-        return finalList;
-      }
-  }
 }
-
 </script>
 
 <style scoped>
