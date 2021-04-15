@@ -1,39 +1,39 @@
 <template>
-<div id="companyproducts">
-    <company-header></company-header>
-    <h1>View Customer Orders </h1>
-    <div id="boxorder">
-        <v-list><br>
-            <v-list-item v-for="(item,id) in items" :key="id">
+    <div id="companyproducts">
+        <company-header></company-header>
+        <h1>View Customer Orders</h1>
+        <div id="boxorder">
+            <v-list>
+                <br/>
+                <v-list-item v-for="(item,id) in items" :key="id">
                     <div id="invoice">
-                      <v-list-item-avatar tile size="200px"> 
-                        <v-img :alt="`${item.title}`" :src="item.image" ></v-img>
-                      </v-list-item-avatar>
-                    </div>
-                    <v-list-item-content>
-                        <h2 id="itemTitle" >{{item.title}}</h2><br>
-                        <p v-for = "color in item.product" :key="color.id" id="details">ORDER DETAILS: <b>{{color}}</b></p>
-                        <p id="cost">TOTAL COST: ${{item.paidAmount}}</p>
-                        <p id="date"> DATE: {{item.date}}</p>
-                        <v-divider></v-divider>
-                    </v-list-item-content>
-                    <v-list-item-content>
-                        <ClientDetailForm v-bind:clientID = item.userID></ClientDetailForm>
-                        <v-btn id = "complete" small color="red lighten-2" dark @click="updateItems(item.orderID, item.productID, item.completed)"> 
-                            Complete Order 
-                            <v-icon dark right>mdi-thumb-up</v-icon>
-                        </v-btn>
-                    </v-list-item-content>
-                        
-                    <v-list-item-content>
-                        <v-icon x-large color= "green" v-show="item.completed[item.productID]">mdi-sticker-check</v-icon>
-                        <v-icon x-large color= "red" v-show="!item.completed[item.productID]">mdi-account-clock</v-icon>
-                    </v-list-item-content>
-                  
-            </v-list-item><br><br>
-          </v-list>
+                        <v-list-item-avatar tile size="200px"> 
+                            <v-img :alt="`${item.title}`" :src="item.image" ></v-img>
+                        </v-list-item-avatar>
+                        </div>
+                        <v-list-item-content>
+                            <h2 id="itemTitle" >{{item.title}}</h2><br>
+                            <p v-for = "color in item.product" :key="color.id" id="details">ORDER DETAILS: <b>{{color}}</b></p>
+                            <p id="cost">TOTAL COST: ${{item.paidAmount}}</p>
+                            <p id="date"> DATE: {{item.date}}</p>
+                            <v-divider></v-divider>
+                        </v-list-item-content>
+                        <v-list-item-content>
+                            <ClientDetailForm v-bind:clientID = item.userID></ClientDetailForm>
+                            <v-btn id = "complete" small color="red lighten-2" dark @click="updateItems(item.orderID, item.productID, item.completed)"> 
+                                Complete Order 
+                                <v-icon dark right>mdi-thumb-up</v-icon>
+                            </v-btn>
+                        </v-list-item-content>       
+                        <v-list-item-content>
+                            <v-icon x-large color= "green" v-show="item.completed[item.productID]">mdi-sticker-check</v-icon>
+                            <v-icon x-large color= "red" v-show="!item.completed[item.productID]">mdi-account-clock</v-icon>
+                        </v-list-item-content>
+                </v-list-item>
+                <br/><br/>
+            </v-list>
         </div>
-</div>
+    </div>
 </template>
 
 <script>
@@ -52,13 +52,12 @@ export default {
         ClientDetailForm: ClientDetailForm,
     },
     methods:{
-        fetchItems:function(){
+        fetchItems: async function(){
             var user = firebase.auth().currentUser;
-            db.collection('transactions').orderBy("timestamp","desc").get().then(snapshot => {
-                let item = []
+            await db.collection('transactions').orderBy("timestamp","desc").get().then(snapshot => {
+                let item = [];
                 snapshot.docs.forEach(doc => {
-                    item = doc.data()
-                    //console.log(item)
+                    item = doc.data();
                     for(var i in item.Products){
                         console.log(item.Products)
                         if(item.Products[i].companyID == user.uid){
@@ -72,26 +71,24 @@ export default {
                                 "orderID":doc.id,
                                 "completed":item.completed,
                                 "productID":i,
-                            }
-                            //console.log(intake.orderID)
-                            this.items.push(intake)    
+                            };
+                            this.items.push(intake); 
                         }
                     }
                 });
-                //console.log(this.items)
             });
         },
-        updateItems:function(orderID, productID, completedList){
-            completedList[productID] = true
-            console.log(completedList)
+        updateItems: function(orderID, productID, completedList) {
+            completedList[productID] = true;
+            console.log(completedList);
             db.collection('transactions').doc(orderID).update({
                 completed: completedList
-            }).then(() => location.reload())
+            }).then(() => location.reload());
         }
-
-
     },
-    created(){this.fetchItems()},
+    created() {
+        this.fetchItems();
+    },
     
 }
 </script>

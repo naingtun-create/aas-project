@@ -21,7 +21,6 @@ export default {
                     borderColor:"green",
                     backgroundColor:"Cornsilk",
                     label:"Waste Recycling"
-            
                 },
             ]
         },
@@ -63,7 +62,6 @@ export default {
                 this.datacollection.datasets[0].data.push(records[i].waste_disposed_of)
                 this.datacollection.datasets[1].data.push(records[i].waste_recycled)
             }
-
             this.renderChart(this.datacollection, this.options)
         })
     }

@@ -6,13 +6,12 @@
     <ProductDisplay></ProductDisplay>
     <NewProductForm v-bind:companyData="companyData"></NewProductForm>
     <br/>
-
 </div>
 </template>
 
 <script>
-import NewProductForm from './Profile_Components/NewProductForm.vue'
-import ProductDisplay from "./Profile_Components/ProductDisplay.vue"
+import NewProductForm from './NewProductForm.vue'
+import ProductDisplay from "./ProductDisplay.vue"
 import firebase from "firebase";
 import db from "../../firebase.js";
 
@@ -35,99 +34,67 @@ export default {
     },
     methods: {
         toggleDialog: function() {
-            this.dialog = !this.dialog
+            this.dialog = !this.dialog;
         },
         close: function() {
             this.reset();
             this.toggleDialog();
-            //this.$forceUpdate();
-            location.reload()
-            
+            location.reload();
         },
         uploadImage: async function() {
-
-        var k = this.id;
-          
-        //Putting it in the storage
-        try {
-            //Its is place ProductImages => CompanyId
-            //Reference to the storage
-            var storageRef = firebase.storage().ref("ProfilePics/" + k );
-
-            //remember to add the delete or update storage to check first
-            
-            //Waiting till it uploaded to firebase storage
-            await storageRef.put(this.image)
-            var _extension = this.image.name.split(".")[1]
-
-            //Update the metadata to be uploaded as image
-            var newMetadata = {
-                contentType: 'image/' + _extension
-            };
-
-            await storageRef.updateMetadata(newMetadata)
-
-            //Retrieving the download URL for the product Image
-            await storageRef.getDownloadURL().then( async function(url) {
-                    //Add it into the database
-                    await db.collection("company")
-                    .doc(k)
-                    .update({
-                        "profilePic" : url.toString()
-                    })
-
-                    console.log(url)
-                
-            }).then(
-                alert("Uploaded Successfully!"),
-                this.close(),
-            ).catch (e => {
-                console.log(e)
-            });
-
-        } catch (e) {
-          console.log(e);
-        }
-            
+            var k = this.id;
+            try {
+                var storageRef = firebase.storage().ref("ProfilePics/" + k );
+                await storageRef.put(this.image);
+                var _extension = this.image.name.split(".")[1];
+                var newMetadata = {
+                    contentType: 'image/' + _extension
+                };
+                await storageRef.updateMetadata(newMetadata);
+                await storageRef.getDownloadURL().then( async function(url) {
+                        await db.collection("company")
+                        .doc(k)
+                        .update({
+                            "profilePic" : url.toString()
+                        });
+                }).then(
+                    alert("Uploaded Successfully!"),
+                    this.close(),
+                ).catch (e => {
+                    console.log(e);
+                });
+            } catch (e) {
+                console.log(e);
+            }
         },
         onFilePicked: function() {
-            var reader = new FileReader() 
-            reader.readAsDataURL(this.image)
+            var reader = new FileReader();
+            reader.readAsDataURL(this.image);
             reader.onload = () => {
                 this.imageURL = reader.result;
             }
         },
         reset: function() {
-            this.imageURL = ''
-            this.image = []
+            this.imageURL = '';
+            this.image = [];
         },
         fetchData: async function() {
             var user = firebase.auth().currentUser;
             var k = user.uid;
-
             await db.collection("company").doc(k).get().then((doc) => {
                 var data = {};
                 data = doc.data();
                 this.companyData.push(data);
-                //this.companyData = doc.data();
-
                 if (typeof this.companyData[0].profilePic !== 'undefined') {
-                    this.profileURL = this.companyData[0].profilePic
+                    this.profileURL = this.companyData[0].profilePic;
                 }
-                console.log(this.profileURL)
             })
-
-            var products = await db.collection("products").where("company","==",k).get()
-            console.log(products)
-            console.log(this.companyData)
-
         }
     },
-    created () {
+    created() {
         var user = firebase.auth().currentUser;
         this.id = user.uid;
-        this.fetchData()
-        
+        this.fetchData();
     }
 }
 </script>
