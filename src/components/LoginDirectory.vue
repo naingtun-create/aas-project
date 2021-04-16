@@ -1,7 +1,7 @@
 <template>
     <div id="loginDir">
         <h1>All About Sustainability</h1>
-        <h2>Come be part of Our<br>Eco-Friendly Movement</h2>
+        <h2>Come be part of the<br>Eco-Friendly Movement</h2>
         <h3>Account Type</h3>
         <div style="margin-left: 0px; margin-top:100px; position: aboslute;right:150px;">
             <ul>
