@@ -3,7 +3,7 @@
     <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
     <ul> 
       <div class="logo">All About Sustainability</div>
-      <p id='storeacc'>(Store Account)</p>
+      <p id='storeacc'>(Company Account)</p>
     </ul>
     <div id="links">
       <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
