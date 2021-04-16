@@ -80,6 +80,7 @@ export default {
   display:inline-flex;
   font-size:20px;
   width:40%;
+  margin-left:-100px;
 }
 #storeacc {
   color:#a0afa0;
