@@ -1,52 +1,49 @@
 <template>
     <div id="store">
-    <shopper-header></shopper-header>
-    <v-container fluid fill-height grid-list-lg>
-        <v-layout row wrap align-content-start>
-            <v-flex xs4 xs3>
-                <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
-                    <v-card color="#c9AA88" class="elevation-8 fill-height">
-                        <v-container fluid grid-list-lg>
-                            <v-layout row wrap>
-                                <v-flex xs12 class="stores-list">
-                                    <br>
-                                    <h1 id='title'>Eco-Friendly Stores</h1>
-                                    <br>
-                                    <v-container fluid class="stores-list-container">
-                                        <v-layout row wrap>
-                                            <ul>
-                                                <v-flex xs12 v-for="store in stores" :key="store.id" 
-                                                    class="store-container" @mouseover="hoveredOnStore=store.id" @mouseleave="hoveredOnStore=null" :class="[(hoveredOnStore===store.id && selectedSt!==store.id)? 'animated pulse store-hovered-on': '']">
-                                                    <v-card class="store-item-card" 
-                                                        :class="{isSelected: selectedSt === store.id}"
-                                                        @click.capture="onStoreClick(store,store.id)">
-                                                        <v-card-text >
-                                                            <a v-bind:href="store.website" target="_blank">{{store.name}}</a>
-                                                            <p> {{store.Address}}
-                                                            <br>Singapore {{store.postalCode}}</p>
-                                                            
-                                                        </v-card-text>
-                                                    </v-card>
-                                                </v-flex>
-                                            </ul>
-                                        </v-layout>
-                                    </v-container>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                        <h1 id='title'>Find Stores Nearby!</h1>
-                        <button v-on:click="trigger()"> Use Current Location </button>
-                        <p id="locationsharing"> Please ensure your browser enables location sharing </p>
-                    </v-card>
-                    {{this.stores +this.useLocation}}
-
-                </transition>
-            </v-flex>
-            <v-flex xs8 sm9>
-                <app-map-panel :testProp="useLocation" v-bind:stores="stores" v-bind:selectedStore="selectedStore" v-on:selectedMarker="selectedMarker"></app-map-panel>
-            </v-flex>
-        </v-layout>
-    </v-container>
+        <shopper-header></shopper-header>
+        <v-container fluid fill-height grid-list-lg>
+            <v-layout row wrap align-content-start>
+                <v-flex xs4 xs3>
+                    <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
+                        <v-card color="#c9AA88" class="elevation-8 fill-height">
+                            <v-container fluid grid-list-lg>
+                                <v-layout row wrap>
+                                    <v-flex xs12 class="stores-list">
+                                        <br>
+                                        <h1 id='title'>Eco-Friendly Stores</h1>
+                                        <br>
+                                        <v-container fluid class="stores-list-container">
+                                            <v-layout row wrap>
+                                                <ul>
+                                                    <v-flex xs12 v-for="store in stores" :key="store.id" 
+                                                        class="store-container" @mouseover="hoveredOnStore=store.id" @mouseleave="hoveredOnStore=null" :class="[(hoveredOnStore===store.id && selectedSt!==store.id)? 'animated pulse store-hovered-on': '']">
+                                                        <v-card class="store-item-card" 
+                                                            :class="{isSelected: selectedSt === store.id}"
+                                                            @click.capture="onStoreClick(store,store.id)">
+                                                            <v-card-text>
+                                                                <a v-bind:href="store.website" target="_blank">{{store.name}}</a>
+                                                                <p> {{store.Address}}<br>Singapore {{store.postalCode}}</p>                                                   
+                                                            </v-card-text>
+                                                        </v-card>
+                                                    </v-flex>
+                                                </ul>
+                                            </v-layout>
+                                        </v-container>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                            <h1 id='title'>Find Stores Nearby!</h1>
+                            <button v-on:click="trigger()"> Use Current Location </button>
+                            <p id="locationsharing"> Please ensure your browser enables location sharing </p>
+                        </v-card>
+                        {{this.stores +this.useLocation}}
+                    </transition>
+                </v-flex>
+                <v-flex xs8 sm9>
+                    <app-map-panel :testProp="useLocation" v-bind:stores="stores" v-bind:selectedStore="selectedStore" v-on:selectedMarker="selectedMarker"></app-map-panel>
+                </v-flex>
+            </v-layout>
+        </v-container>
     </div>
 </template>
 
@@ -54,6 +51,7 @@
 import EventBus from '../../eventBus.js'
 import db from '../../firebase.js'
 import MapPanel from './MapPanel'
+
 export default {
     data () {
         return {
@@ -71,9 +69,9 @@ export default {
     },
     watch: {
         selectedStore () {
-                setTimeout(() => {
-                    this.scrollToSelectedStore()
-                }, 50)
+            setTimeout(() => {
+                this.scrollToSelectedStore()
+            }, 50)
         }
     },
     methods: {
@@ -81,9 +79,9 @@ export default {
             db.collection('physicalStores').get().then(snapshot => {
                 let item = []
                 snapshot.docs.forEach(doc => {
-                item = doc.data();
-                item.id = doc.id,
-                this.stores.push(item)
+                    item = doc.data();
+                    item.id = doc.id,
+                    this.stores.push(item)
                 });
             });
         },
@@ -102,7 +100,6 @@ export default {
             }
         },
         scrollToSelectedStore () {
-            // scroll to the selected store
             const storesList = this.$el.querySelector('.container.stores-list-container')
             const selectedSt = this.$el.querySelector('.store-item-card.v-card.isSelected')
             console.log(storesList )
@@ -127,44 +124,43 @@ export default {
 
 <style scoped>
 #title {
-    font-family: "Sanchez";
-    font-size: 20px;
-    margin-top:5px;
+  font-family: "Sanchez";
+  font-size: 20px;
+  margin-top:5px;
 }
 p{
-    font-size:12px;
+  font-size:12px;
 }
 #locationsharing{
-    margin-top:5px;
+  margin-top:5px;
 }
 .stores-list-container {
-    padding-left: 0;
-    padding-right: 0;
-    height: 60vh;
-    overflow: auto;
-    margin-top:-20px;
-
+  padding-left: 0;
+  padding-right: 0;
+  height: 60vh;
+  overflow: auto;
+  margin-top:-20px;
 }
 .store-container {
-    padding-left: 0!important;
-    padding-right: 0!important;
+  padding-left: 0!important;
+  padding-right: 0!important;
 }
 .store-container.store-hovered-on .store-item-card {
-    outline: 5px solid #9FA8DA;
-    background-color: #BBDEFB;
+  outline: 5px solid #9FA8DA;
+  background-color: #BBDEFB;
 }
 .store-item-card {
-    width: 250px;
-    cursor: pointer;
-    height: auto;
-    height:105px;
+  width: 250px;
+  cursor: pointer;
+  height: auto;
+  height:105px;
 }
 .store-item-card.isSelected {
-    border: 4px solid #5C6BC0;
-    background-color: #BBDEFB;
+  border: 4px solid #5C6BC0;
+  background-color: #BBDEFB;
 }
 .recenter-map-icon {
-    cursor: pointer;
+  cursor: pointer;
 }
 button {
   width: 160px;

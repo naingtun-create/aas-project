@@ -4,16 +4,16 @@
         <h2>Environmental Statistics of the Month (Singapore)</h2>
         <v-divider></v-divider>
         <div id="charts">
-          <div id='halfleft'>
-          <BarChart></BarChart>
-          </div>
-          <div id='halfright'>
-            <LineChart></LineChart>
-          </div>
+            <div id='halfleft'>
+                <BarChart></BarChart>
+            </div>
+            <div id='halfright'>
+                <LineChart></LineChart>
+            </div>
         </div>
-          <h2 class="ecoh2">Latest Eco-friendly Activities</h2>
-          <v-divider></v-divider>
-          <DisplayActivity></DisplayActivity>
+        <h2 class="ecoh2">Latest Eco-friendly Activities</h2>
+        <v-divider></v-divider>
+        <DisplayActivity></DisplayActivity>
     </div>
 </template>
 
@@ -23,11 +23,11 @@ import LineChart from "../chart/waste";
 import DisplayActivity from "./DisplayActivity.vue"
 
 export default {
-  components: {
-    BarChart,
-    LineChart,
-    DisplayActivity
-  }
+    components: {
+        BarChart,
+        LineChart,
+        DisplayActivity
+    }
 };
 </script>
 

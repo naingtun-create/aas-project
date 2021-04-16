@@ -62,13 +62,9 @@ export default {
     },
     methods: {
         ...mapActions(['onMapMarkerClick','centerOnStore','selectMapMarker']),
-        // -------------------
-        // events
-        // -------------------
         onMapMarkerClick (id) {
             this.selectedMarker = id
             this.$emit('selectedMarker', this.selectedMarker);
-
         },
         onMapMarkerMouseOver (id) {
             const marker = this.mapMarkers[id]
@@ -81,11 +77,7 @@ export default {
             const marker = this.mapMarkers[id]
             marker.animation = 4
         },
-        // -------------------
-        // other methods
-        // -------------------
         addMapMarkers(){
-            // go through the stores list and add a map marker for each
             let markers = {}
             for (let i = 0; i < Object.keys(this.stores).length; i++) {
                 const marker = {}
@@ -102,7 +94,6 @@ export default {
             this.mapMarkers=markers
         },
         centerOnStore (location) {
-            // will repositioned the map center to the specific location
             if (this.ignoreCenterOnSelectedStore) {
                 this.ignoreCenterOnSelectedStore = false
             } else {
@@ -116,35 +107,34 @@ export default {
                 const location = {
                         lat: 1.3521,
                         lng: 103.8198
-                    }
+                }
                 this.addMapMarkers()    
                 this.centerOnStore(location)
             }, 500);
         },
         selectMapMarker (store, isOn) {
-            // will make the specified id marker either heilighted or not
-                if (this.mapMarkers && this.mapMarkers[store.id]) {
-                    if (isOn) {
-                        const icon = {url:this.imgLocation, scaledSize: this.mapMarkerIconSize}
-                        this.mapMarkers[store.id].icon = icon
-                        this.mapMarkers[store.id].label = this.stores[store.id]
-                        const storeLocation = Object.assign({}, this.mapMarkers[store.id].position)
-                        this.centerOnStore(storeLocation)
-                        this.zoom=14
-                    } else {
-                        const icon = null
-                        this.mapMarkers[store.id].label = null
-                        this.mapMarkers[store.id].icon = icon                        
-                    }
+            if (this.mapMarkers && this.mapMarkers[store.id]) {
+                if (isOn) {
+                    const icon = {url:this.imgLocation, scaledSize: this.mapMarkerIconSize}
+                    this.mapMarkers[store.id].icon = icon
+                    this.mapMarkers[store.id].label = this.stores[store.id]
+                    const storeLocation = Object.assign({}, this.mapMarkers[store.id].position)
+                    this.centerOnStore(storeLocation)
+                    this.zoom=14
+                } else {
+                    const icon = null
+                    this.mapMarkers[store.id].label = null
+                    this.mapMarkers[store.id].icon = icon                        
+                }
             }
         },
         useLocation() {
             this.$getLocation({})
-                    .then(coordinates => {
-                        this.myCoordinates = coordinates;
-                    })
-                    .catch(error => alert(error));
-                alert("Please enable location services. Hold on! This might take a while!")
+                .then(coordinates => {
+                    this.myCoordinates = coordinates;
+                })
+                .catch(error => alert(error));
+            alert("Please enable location services. Hold on! This might take a while!")
             setTimeout(() => {
                 const location = {
                     lat: this.myCoordinates.lat,
@@ -167,10 +157,10 @@ export default {
 </script>
 <style>
 .map-panel-container {
-    height: 100%;
+  height: 100%;
 }
 .map {
-    flex: 100% 1 1;
-    height: 100%;
+  flex: 100% 1 1;
+  height: 100%;
 }
 </style>
