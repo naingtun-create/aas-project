@@ -129,12 +129,12 @@ export default {
             }
         },
         useLocation() {
+            alert("Please enable location services. Hold on! This might take a while!")
             this.$getLocation({})
                 .then(coordinates => {
                     this.myCoordinates = coordinates;
                 })
                 .catch(error => alert(error));
-            alert("Please enable location services. Hold on! This might take a while!")
             setTimeout(() => {
                 const location = {
                     lat: this.myCoordinates.lat,
@@ -142,7 +142,7 @@ export default {
                 }
                 this.zoom=14;
                 this.centerOnStore(location)
-            }, 3000)
+            }, 3500)
         }
         
     },
