@@ -7,31 +7,31 @@
         </ul>
         <div id="links">
             <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" dark>
-                Nearby
+                <div id="buttoncolour">Nearby</div>
                 <v-icon dark right>mdi-store</v-icon>
             </v-btn>
 
             <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/activities'})" dark>
-                Activities
+                <div id="buttoncolour">Activities</div>
                 <v-icon dark right>mdi-lifebuoy</v-icon>
             </v-btn>
 
             <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
-                Marketplace
+                <div id="buttoncolour">Marketplace</div>
                 <v-icon dark right>mdi-storefront</v-icon>
             </v-btn>
 
             <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})" dark>
-                Cart
+                <div id="buttoncolour">Cart</div>
                 <v-icon dark right>mdi-cart</v-icon>
             </v-btn>
 
             <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" dark>
-                Profile
+                <div id="buttoncolour">Profile</div>
                 <v-icon dark right>mdi-account</v-icon>
             </v-btn>          
 
-            <v-btn class="ma-2" color="red" v-on:click="logout" dark>Sign Out
+            <v-btn class="ma-2" color="red" v-on:click="logout" dark><div id="buttoncolour">Sign Out</div>
                 <v-icon dark right>mdi-account-remove</v-icon>
             </v-btn>
 
@@ -57,20 +57,23 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #navbar {
   display: flex;
   padding-top: 0px;
   color:white;
-  background-color:#c9AA88;
+  background-color:#235347;
   height:80px;
   font-size:35px;
   padding-top: 0px;
-  font-family: "Sanchez";
 }
 .logo {
   height:80px;
   padding-left: 50px;
   font-size:25px;
+  display: block;
+  font-family: Nunito;
+  font-weight: bolder;
 }
 #links{
   float:left;
@@ -80,13 +83,17 @@ export default {
   display:inline-flex;
   font-size:20px;
   width:40%;
-  margin-left:-60px;
+  margin-left:-100px;
+}
+#buttoncolour {
+  font-family: Nunito;
 }
 #shopperacc{
-  color:black;
+  color:#a0afa0;
   font-size:20px;
   margin-top:-40px;
   margin-left:50px;
   font-style: italic;
+  font-family:Nunito;
 }
 </style>
