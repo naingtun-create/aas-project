@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div id="companyproductpage">
     <company-header></company-header>
     <div id="intro">
         <img id="arrow" src='../../assets/arrow.png'>
         <router-link id="back" to="/company/companyproducts" exact>Back to My Products</router-link>
         <br><br>
-        <p> {{this.datapacket[0].category}} <p>
+        <p>{{this.datapacket[0].category}}<p>
         <p id="title"> {{this.datapacket[0].title}}</p>
         <p>{{this.datapacket[0].description}}</p>
         <br>
@@ -21,7 +21,6 @@
         </p>
         <p id="bold"> Colours Available:</p>
         <p id="details" v-for="color in this.datapacket[0].colors" :key="color.id">{{color}}</p>
-
         <p id="bold"> Sizes Available:</p>
         <p id="details" v-for="size in this.datapacket[0].sizings" :key="size.id">{{size}}</p>
     </div> 
@@ -37,56 +36,53 @@ Vue.component('database',database)
 
 export default {
     props: ["id"],
-    data(){  
+    data() {  
         return{
-        qty:1,
-        currentSize: '',
-        selectedSize: '',
-        selectedColour: '',
-        datapacket:[],
-        order:[],
-        currentCart:[],
-        user:firebase.auth().currentUser.uid,
+            qty:1,
+            currentSize: '',
+            selectedSize: '',
+            selectedColour: '',
+            datapacket:[],
+            order:[],
+            currentCart:[],
+            user:firebase.auth().currentUser.uid,
         }
     },
     methods:{
-        fetchItems: function(){
-            database.collection('products').doc(this.id).get().then((doc)=>{
-                let item ={}
-                item=doc.data()
-                this.datapacket.push(item)
+        fetchItems: async function() {
+            await database.collection('products').doc(this.id).get().then((doc)=>{
+                let item ={};
+                item=doc.data();
+                this.datapacket.push(item);
                 })
             var docRef = database.collection("cart").doc(this.user);
-            docRef.get().then((docSnapshot) => {
+            await docRef.get().then((docSnapshot) => {
                 if (docSnapshot.exists) {
                     docRef.get().then((doc) => {
-                        let item={}
-                        item=doc.data()
-                        console.log(item)
+                        let item={};
+                        item=doc.data();
                         this.currentCart.push(item);
                     })
                 }
             });
         },
         sendOrder: function() {
-            if(Object.keys(this.currentCart).length>0){
+            if (Object.keys(this.currentCart).length>0) {
                 this.currentCart=Object.values(this.currentCart[0]);
-                console.log(Object.values(this.currentCart)[0])
             }
             this.currentCart.push({
-                    id:this.id,
-                    qty:this.qty,
-                    size:this.selectedSize,
-                    color:this.selectedColour,
-                    price:this.datapacket[0].price,
-                });
+                id:this.id,
+                qty:this.qty,
+                size:this.selectedSize,
+                color:this.selectedColour,
+                price:this.datapacket[0].price,
+            });
             database.collection("cart").doc(this.user).set(Object.assign({},this.currentCart));
-            alert("Your order has been added to cart")
-
+            alert("Your order has been added to cart");
         },  
     },
-    created: function(){
-        this.fetchItems()
+    created: function() {
+        this.fetchItems();
     },
 }
 </script>

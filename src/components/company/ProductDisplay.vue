@@ -1,55 +1,40 @@
 <template>
-  <div id="contents">
-    <v-container fluid>
-      <v-layout>
-        <ul id="itemsList">
-          <li v-for="item in items" :key="item.id">
-            <v-card
-              class="mx-auto"
-              width="250"
-              height="400"
-              color="green lighten-5"
-            >
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
-              <v-img height="200" v-bind:src="item.image"></v-img>
-              <h1 id="productTitle">
-                <b>{{ item.title }}</b>
-              </h1>
-              <div id="price">
-              <p class="my-4 subtitle-1">
-                <b>${{ item.price }}</b>
-              </p>
-              <p id="description">Category: {{ item.category }}</p>
-              <v-divider class="mx-4"></v-divider>
-
-              <v-card-actions>
-                <v-btn
-                  small
-                  depressed
-                  outlined
-                  color="indigo"
-                  v-on:click="route(item.id)"
-                  >Learn More</v-btn>
-                  <error-prevention-dialog :itemName="item.title" :itemID="item.id" type="products"/>
-              </v-card-actions>
-              </div>
-            </v-card>
-          </li>
-        </ul>
-        
-      </v-layout>
-    </v-container>
+  <div id="productdisplay">
+    <div id="contents">
+      <v-container fluid>
+        <v-layout>
+          <ul id="itemsList">
+            <li v-for="item in items" :key="item.id">
+              <v-card class="mx-auto" width="250" height="400" color="green lighten-5">
+                <template slot="progress">
+                  <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
+                </template>
+                <v-img height="200" v-bind:src="item.image"></v-img>
+                <h1 id="productTitle">
+                  <b>{{ item.title }}</b>
+                </h1>
+                <div id="price">
+                  <p class="my-4 subtitle-1">
+                    <b>${{ item.price }}</b>
+                  </p>
+                  <p id="description">Category: {{item.category}}</p>
+                  <v-divider class="mx-4"></v-divider>
+                  <v-card-actions>
+                    <v-btn small depressed outlined color="indigo" v-on:click="route(item.id)">Learn More</v-btn>
+                    <error-prevention-dialog :itemName="item.title" :itemID="item.id" type="products"/>
+                  </v-card-actions>
+                </div>
+              </v-card>
+            </li>
+          </ul>
+        </v-layout>
+      </v-container>
+    </div>
   </div>
 </template>
 
 <script>
-import db from "../../../firebase.js";
+import db from "../../firebase.js";
 import firebase from "firebase";
 import ErrorPreventionDialog from "./ErrorPreventionDialog.vue"
 
@@ -64,27 +49,22 @@ export default {
       ErrorPreventionDialog: ErrorPreventionDialog
   },
   methods: {
-    fetchItems() {
+    fetchItems: async function() {
       var user = firebase.auth().currentUser;
       var k = user.uid;
-
-      db.collection("products")
+      await db.collection("products")
         .where("company", "==", k)
         .get()
         .then((snapshot) => {
           let item = [];
           snapshot.docs.forEach((doc) => {
-            
             item = doc.data();
-            item.id = doc.id
-            console.log(item)
+            item.id = doc.id;
             this.items.push(item);
           });
-
-          console.log(this.items)
         });
     },
-    route:function(id){
+    route: function(id) {
       let doc_id = id;
       this.$router.push({name: 'companyProduct', params: {id: doc_id}});
     },
@@ -96,7 +76,7 @@ export default {
 </script>
 
 <style scoped>
-#title{
+#title {
     font-weight: bold;
     font-size:80px;
     font-family: 'Anton', sans-serif;
