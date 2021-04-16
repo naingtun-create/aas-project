@@ -10,7 +10,7 @@
 					</template>
 					<template v-slot:default="dialog">
 						<v-card>
-							<v-toolbar color="#c9AA88" dark>{{itemData.title}}</v-toolbar>
+							<v-toolbar color="#4ca08b" dark>{{itemData.title}}</v-toolbar>
 							<br/>
 							<v-card-text>
 								<v-card-actions>

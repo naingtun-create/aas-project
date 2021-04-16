@@ -15,7 +15,7 @@
         </template>
         <template v-slot:default="dialog">
           <v-card>
-            <v-toolbar color="#c9AA88" dark>{{"Delete " + itemName}}</v-toolbar>
+            <v-toolbar color="#4ca08b" dark>{{"Delete " + itemName}}</v-toolbar>
             <br/>
             <v-card-text>
               <h2>Are you sure?</h2>

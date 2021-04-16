@@ -7,7 +7,7 @@
         </v-btn>
       </template>
       <v-toolbar
-        color="primary"
+        color="#4ca08b"
         dark
         class="headline"
       >Add a New Product!</v-toolbar>

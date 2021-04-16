@@ -119,7 +119,7 @@ ul {
 #box{
     margin:40px;
     height:auto;
-    border: 5px solid #c9AA88;
+    border: 5px solid #4ca08b;
 }
 p{
     padding-left:20px;
@@ -134,5 +134,4 @@ p{
     float:right;
     padding-right:100px;
 }
-
 </style>

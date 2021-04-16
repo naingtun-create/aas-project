@@ -94,15 +94,16 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+
 h1{
     padding:20px;
-    font-family:Verdana, Tahoma, sans-serif;
-
+    font-family:Nunito;
 }
 #boxorder {
     width: 80%;
     border-radius: 25px;
-    border: 3px solid #c9AA88;
+    border: 3px solid #4ca08b;
     border-radius: 10px;
     min-height: 100px;
     height: auto;
@@ -113,15 +114,14 @@ h1{
     font-size:15px;
     padding-left:100px;
     font-weight:bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Nunito;
     padding-bottom: 10px;
 }
 #itemTitle{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito';
     font-weight:bold;
     font-size:20px;
     padding-bottom: 15px;
-
 }
 #details{
     color:lightcoral;

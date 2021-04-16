@@ -88,6 +88,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+
 #intro {
     width:40%;
     float:left;
@@ -110,7 +112,7 @@ export default {
 #title{
     font-weight: bold;
     font-size:30px;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Nunito';
     color:#c9AA88;
 }
 #select{

@@ -100,8 +100,13 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+h1 {
+    font-family:Nunito;
+}
 h3 {
     text-align: left;
     padding-left: 65px;
+    font-family:Nunito;
 }
 </style>
