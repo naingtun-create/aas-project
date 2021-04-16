@@ -21,7 +21,7 @@
                   <v-divider class="mx-4"></v-divider>
                   <v-card-actions>
                     <v-btn small depressed outlined color="indigo" v-on:click="route(item.id)">Learn More</v-btn>
-                    <error-prevention-dialog :itemName="item.title" :itemID="item.id" type="products"/>
+                    <error-prevention-dialog id="delete" :itemName="item.title" :itemID="item.id" type="products"/>
                   </v-card-actions>
                 </div>
               </v-card>
@@ -130,5 +130,8 @@ p {
   font-size: 13px;
   text-align:start;
   margin-top:-5px;
+}
+#delete {
+  margin-left:30px;
 }
 </style>

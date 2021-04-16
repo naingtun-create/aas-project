@@ -7,22 +7,22 @@
     </ul>
     <div id="links">
       <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
-        My Activities
+        <div id="buttoncolour">My Activities</div>
         <v-icon dark right>mdi-sale</v-icon> 
       </v-btn>
       <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
-        My Products
+        <div id="buttoncolour">My Products</div>
         <v-icon dark right>mdi-storefront</v-icon>
       </v-btn>
       <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
-        My Orders
+        <div id="buttoncolour">My Orders</div>
         <v-icon dark right>mdi-receipt</v-icon>
       </v-btn>
       <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" dark>
-        Profile
+        <div id="buttoncolour">Profile</div>
         <v-icon dark right>mdi-account</v-icon>
       </v-btn>
-      <v-btn class="ma-2" color="red" v-on:click="logout()" dark>Sign Out
+      <v-btn class="ma-2" color="red" v-on:click="logout()" dark><div id="buttoncolour">Sign Out</div>
       <v-icon dark right>mdi-account-remove</v-icon>
       </v-btn>
     </div>
@@ -47,11 +47,12 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #navbar {
   display: flex;
   padding-top: 0px;
   color:white;
-  background-color:#c9AA88;
+  background-color:#235347;
   height:80px;
   font-size:35px;
   padding-top: 0px;
@@ -62,9 +63,14 @@ export default {
   padding-left: 50px;
   font-size: 25px;
   display: block;
+  font-family: Nunito;
+  font-weight: bolder;
 }
 .btnroutes {
   font-size:10px;
+}
+#buttoncolour {
+  font-family: Nunito;
 }
 #links {
   float:left;
@@ -74,13 +80,13 @@ export default {
   display:inline-flex;
   font-size:20px;
   width:40%;
-
 }
 #storeacc {
-  color:black;
+  color:#a0afa0;
   font-size:20px;
   margin-top:-40px;
   margin-left:50px;
   font-style: italic;
+  font-family:Nunito;
 }
 </style>
