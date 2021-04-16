@@ -8,8 +8,6 @@ import CompanyOrders from './components/company/CompanyOrders.vue'
 import CompanySignUpPage from './components/company/CompanySignUpPage.vue'
 import CompanyLoginPage from './components/company/CompanyLoginPage.vue'
 import cProductPage from './components/company/CompanyProductPage.vue'
-import cPhysicalStore from './components/company/CompanyPhysicalStore.vue'
-import cOnlineMarketplace from './components/company/CompanyOnlineMarketplace.vue'
 
 import ShopperLoginPage from './components/shopper/ShopperLoginPage.vue'
 import ShopperSignUpPage from './components/shopper/ShopperSignUpPage.vue'
@@ -46,8 +44,6 @@ export default [
     { path: '/company/companyproducts', component: CompanyProducts},
     { path: '/company/companyactivities', component: CompanyActivities},
     { path: '/company/companyorders', component: CompanyOrders},
-    { path: '/company/physicalstore', component: cPhysicalStore},
-    { path: '/company/onlinemarketplace', component: cOnlineMarketplace},
     { path: '/company/product/:id', name: 'companyProduct', component: cProductPage, props: true },
     
 ]

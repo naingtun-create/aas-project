@@ -7,24 +7,8 @@
 </template>
 
 <script>
-//import Header from './components/Header.vue'
-//import HomePage from './components/HomePage.vue'
-//import ProfilePage from './components/ProfilePage.vue'
-//import SignUpPage from './components/SignUpPage.vue'
-//import LoginPage from './components/LoginPage.vue'
-
-
-
 export default {
   name: 'App',
-  components: {
-    //HomePage:HomePage,
-    //ProfilePage:ProfilePage,
-    //SignUpPage: SignUpPage,
-    //LoginPage: LoginPage,
-    //ProfilePage:ProfilePage,
-    //Header:Header,
-  }
 }
 </script>
 
@@ -37,5 +21,4 @@ export default {
   color: #2c3e50;
 
 }
-
 </style>
