@@ -7,7 +7,7 @@
                 </template>
                 <template v-slot:default="dialog">
                     <v-card>
-                        <v-toolbar color="#c9AA88" dark>{{itemData.title}}</v-toolbar>
+                        <v-toolbar color="#4ca08b" dark>{{itemData.title}}</v-toolbar>
                         <br />
                         <v-card-text>
                             <v-card-actions>
@@ -18,7 +18,7 @@
                                 </v-btn>
                             </v-card-actions>
                             <h4 class="title">Company Name</h4>
-                            <a v-on:click="reroute">{{itemData.companyname}}</a>
+                            <a id='titlecompany' v-on:click="reroute">{{itemData.companyname}}</a>
                             <v-divider></v-divider>
                             <v-expand-transition>
                                 <div v-show="show">
@@ -69,5 +69,8 @@ export default {
 <style scoped>
 * {
   text-align: left;
+}
+#titlecompany{
+    color:#4ca08b;
 }
 </style>
