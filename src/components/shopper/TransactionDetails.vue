@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
 ul {
   display: block;
   list-style-type: none;
@@ -84,9 +85,9 @@ button {
 }
 h1 {
   color: #c9AA88;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Nunito;
   font-weight: bolder;
-  font-size: 25px;
+  font-size: 18px;
   margin-left:50px;
   text-align:center;
   line-height: 150%;

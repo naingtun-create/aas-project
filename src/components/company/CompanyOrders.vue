@@ -30,8 +30,8 @@
                             <v-icon x-large color= "red" v-show="!item.completed[item.productID]">mdi-account-clock</v-icon>
                         </v-list-item-content>
                 </v-list-item>
-                <br/><br/>
             </v-list>
+            
         </div>
     </div>
 </template>

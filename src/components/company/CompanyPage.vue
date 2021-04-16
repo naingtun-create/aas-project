@@ -48,7 +48,7 @@
             <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template>
                     <v-card>
-                        <v-toolbar color="#c9AA88" dark>Update Company's Story</v-toolbar>
+                        <v-toolbar color="#4ca08b" dark>Update Company's Story</v-toolbar>
                         <br/>
                         <v-card-text>
                             <v-textarea solo v-model="updateStory">

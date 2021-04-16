@@ -8,7 +8,7 @@
                 <template v-slot:default="dialog" >
                 <v-card>
                     <v-toolbar
-                    color="#c9AA88" 
+                    color="#eb9292" 
                     dark
                     >Change Account Password</v-toolbar>
                     <br>
@@ -85,3 +85,8 @@ export default {
     },
 }
 </script>
+<style scoped>
+h3 {
+    color:#eb9292;
+}
+</style>
