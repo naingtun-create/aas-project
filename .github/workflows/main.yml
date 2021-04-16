@@ -4,7 +4,7 @@ nname: Build and Deploy
 on:
  push:
  branches:
- - master
+ - main
 jobs:
  build:
  name: Build
@@ -17,7 +17,7 @@ jobs:
  - name: Build
  run: npm run build
  - name: Archive Production Artifact
- uses: actions/upload-artifact@master
+ uses: actions/upload-artifact@main
  with:
  name: dist
  path: dist
@@ -27,13 +27,13 @@ jobs:
  runs-on: ubuntu-latest
  steps:
  - name: Checkout Repo
- uses: actions/checkout@master
+ uses: actions/checkout@main
  - name: Download Artifact
  uses: actions/download-artifact@master
  with:
  name: dist
  - name: Deploy to Firebase
- uses: w9jds/firebase-action@master
+ uses: w9jds/firebase-action@main
  with: args: deploy --only hosting
  env:
  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
