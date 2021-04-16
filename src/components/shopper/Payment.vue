@@ -20,7 +20,7 @@
                             <v-divider width="60%"></v-divider>     
                         </li>               
                     </ul>
-                    <p id="subtotal" > SUBTOTAL:${{this.subtotal}}</p>
+                    <p id="subtotal" > SUBTOTAL: ${{this.subtotal}}</p>
                 </v-container>
             </v-card>
         </nav>
@@ -61,7 +61,7 @@
             <p>Pay the required amount as stated in the subtotal</p>
             <div class='rowC'>
                 <NewPaymentForm  v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
-                <button v-on:click="toggleUploadDialog">How to get invoice number</button>
+                <button v-on:click="toggleUploadDialog">How to Get Invoice Number</button>
             </div>
         </div>
     </div>
