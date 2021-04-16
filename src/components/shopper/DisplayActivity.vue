@@ -128,7 +128,7 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100%;
+  height: auto;
   float:left;
   text-align: left;
 }
@@ -141,7 +141,7 @@ ul {
 #box{
   margin:40px;
   height:auto;
-  border: 5px solid #c9AA88;
+  border: 5px solid #4ca08b;
 }
 p{
   padding-left:20px;

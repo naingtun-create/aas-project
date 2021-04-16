@@ -137,13 +137,14 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 h1 {
   height:85px;
 }
 #title{
   font-weight: bold;
   font-size:30px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   padding-top:30px
 }
 #nav {
@@ -152,7 +153,7 @@ h1 {
   padding: 30px; 
   padding-top:100px;
   margin-left:10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-size: 15px;
 }
 #content {
@@ -177,7 +178,7 @@ h1 {
   width: 60%;
   float: left;
   font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
 }
 ul {
   display: flex;
@@ -200,7 +201,7 @@ li {
   width: 100%; 
 }
 #productTitle {
-  font-family: "Lucida Console", Times, serif;
+  font-family: "Nunito";
   font-size: 13px;
   text-align:start;
   padding:10px;
@@ -225,12 +226,12 @@ p{
 }
 #info{
   font-size:10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Nunito";
   margin-top:-30px;
 }
 #categories{
   font-size:20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Nunito";
   font-weight: bold;
 }
 button {
