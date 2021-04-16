@@ -82,7 +82,7 @@ li {
   width: 100%;
 }
 #productTitle {
-  font-family: "Lucida Console", Times, serif;
+  font-family: Nunito;
   font-size: 12px;
   text-align: start;
   padding: 5px;
