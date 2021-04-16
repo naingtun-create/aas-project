@@ -151,7 +151,7 @@ export default {
         this.recenterMapLocation();
     },
     googleMapsReady () {
-        this.mapMarkerIconSize = new window.google.mapsAutocompleteService().Size(100, 100)
+        this.mapMarkerIconSize = new window.google.maps.Size(100, 100)
     }
 }
 </script>
