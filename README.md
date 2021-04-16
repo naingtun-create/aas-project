@@ -1,5 +1,8 @@
 # aas-project
-
+Welcome to our GitHub for AllAboutSustainability website!
+This was done by @naingtun-create, @aliciateo, @brandaphoon & @Shudan88.
+Hope you will have fun exploring our website where the link has been provided in the Description.
+Have fun!
 ## Project setup
 ```
 npm install
