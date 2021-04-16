@@ -2,7 +2,7 @@
     <div id="NewPaymentForm">
         <v-dialog v-model="dialog" persistent width="600px">
             <template v-slot:activator="{ on, attrs }">
-                <v-btn class="ml-2 mt-5" color = "#4000ff" outlined rounded x-large v-bind="attrs" v-on="on">Confirm Payment</v-btn>
+                <v-btn id='button' color = "#4ca08b" outlined rounded x-large v-bind="attrs" v-on="on">Confirm Payment</v-btn>
             </template>
             <v-card>
                 <v-card-title class="headline grey lighten-2">
@@ -98,11 +98,26 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #paidAmount {
   font-size: 30px;
   background-color: #ffcccc;
   padding:10px;
   text-align: start;
   border-width: 20px;
+}
+button {
+  height: 40px;
+  width:80%;
+  border-radius: 10px;
+  font-weight: bold;
+  color:white;
+  border: 10px solid #4ca08b;
+  border-width: 1px;
+  text-align:center;
+  margin-left:2.8vw;
+  margin-top:1.8vw;
+  font-family: 'Nunito';
+  font-size: 0.8vw;
 }
 </style>

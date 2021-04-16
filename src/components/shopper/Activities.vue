@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #charts {
   padding: 4% 20% 4% 20% ;
 }
@@ -43,6 +44,7 @@ h2 {
   text-align: left;
   padding-left: 3%;
   padding-top: 2%;
+  font-family:"Nunito";
 }
 #halfleft{
   width:50%;
