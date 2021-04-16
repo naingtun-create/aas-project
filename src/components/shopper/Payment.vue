@@ -14,7 +14,7 @@
                                     <h1>{{item.title}}</h1>
                                     <p v-for = "color in item.colors" :key="color.id">Color: {{color[0]}} | Quantity: {{color[1]}} | Size: {{color[2]}}</p>
                                     <p id="cost"><b>Cost: ${{item.totalPrice}}</b></p>
-                                    <v-btn id="delete" class="ml-2 mt-5" color = "#4000ff" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
+                                    <v-btn id="delete" class="ml-2 mt-5" color = "white" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
                                 </div>
                             </div><br>
                             <v-divider width="60%"></v-divider>     
@@ -191,6 +191,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 ul {
   display: block;
   list-style-type: none;
@@ -207,16 +208,16 @@ li {
 button {
   height: 40px;
   width:20%;
-  background-color: #4000ff;
+  background-color: #4ca08b;
   border-radius: 10px;
   font-weight: bold;
   color:white;
-  border: 10px solid #4000ff;
+  border: 10px solid #4ca08b;
   border-width: 1px;
   text-align:center;
   margin-left:2.8vw;
   margin-top:1.8vw;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-size: 0.8vw;
 }
 nav {
@@ -235,7 +236,7 @@ nav {
   height: 1000px; 
 }  
 p{
-  font-family: "Courier New", Times, serif;
+  font-family:"Nunito";
   color:"black";
   font-size: 15px;
   font-weight: bold;
@@ -244,15 +245,17 @@ p{
   font-size: 20px;
   text-align:end;
   padding-right:100px;
-  color:lightcoral;
+  font-family:'Nunito';
+  color:red;
 }
 #productInfo {
   padding-left:80px;
   text-align: start;
+  font-family:"Nunito";
 }
 h1{
   font-size: 20px;
-  font-family: "Copperplate", Times, serif;
+  font-family:"Nunito";
   padding-bottom: 15px;
   color:"#A52A2A";
 }
@@ -260,11 +263,11 @@ h1{
   left: 300px;
 }
 #cost {
-  color:red;
+  color:lightcoral;
   font-weight: bolder;
 }
 #order{
-  border: 2px solid #c9AA88;
+  border: 2px solid #4ca08b;
   position:relative;
 }
 #upload{

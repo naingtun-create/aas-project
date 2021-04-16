@@ -12,7 +12,7 @@
             <v-img v-bind:src="this.datapacket[0].image"></v-img>
         </div>
         <div id="contents">
-            <p id="bold"> View Company: <a v-on:click="reroute">{{this.datapacket[0].companyname}} </a></p>
+            <p id="bold"> View Company: <a id="company" v-on:click="reroute">{{this.datapacket[0].companyname}} </a></p>
             <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br><br>
             <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
             <br><br>
@@ -31,7 +31,9 @@
             <br>
             <span id="select">Selected Quantity: {{this.qty}}</span>
             <br>
-            <button v-on:click="sendOrder()">Add to Cart</button>
+            <button v-on:click="sendOrder()" >
+              <div id='add' > Add to Cart</div>
+              </button>
         </div> 
     </div>
 </template>
@@ -105,6 +107,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #intro {
   width:40%;
   float:left;
@@ -112,6 +115,12 @@ export default {
   padding-left:100px;
   font-size:20px;
   text-align:left;
+}
+#add{
+  font-family:"Nunito";
+}
+#company{
+  color:#4ca08b;
 }
 #contents {
   width:40%;
@@ -133,7 +142,7 @@ export default {
 #title{
   font-weight: bold;
   font-size:30px;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Nunito';
   color:#c9AA88;
 }
 #select{
@@ -146,6 +155,8 @@ button {
   background-color: #c9AA88;
   border-radius: 10px;
   border-width: 1px;
+  font-family:'Nunito';
+
 }
 input[type=number] {
   background-color: #ececec;
