@@ -111,7 +111,8 @@
                     <v-list-item v-for="(purchase,id) in purchaseHistory" :key="id">
                         <v-list width="100%" subheader>
                             <div id="leftdetails">
-                                <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice + " |  " + purchase.Date}}</v-subheader>
+                                <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice}}</v-subheader>
+                                <v-subheader id="date">Date: {{purchase.Date}}</v-subheader>                                
                                 <v-list-item v-for="(product,id) in purchase.Products" :key="id"> 
                                     <div id="invoice">
                                         <v-list-item-avatar tile size="100px"> 
@@ -496,6 +497,13 @@ button {
   padding-left:100px;
   font-weight:bold;
   font-family: 'Nunito';
+}
+#date{
+  font-size:15px;
+  padding-left:100px;
+  font-weight:bold;
+  font-family: 'Nunito';
+  margin-top:-20px;
 }
 #purchasedetails{
   font-size:15px;

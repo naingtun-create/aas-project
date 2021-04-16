@@ -9,7 +9,7 @@
       </template>
       <template v-slot:default="dialog">
         <v-card width="100%">
-          <v-toolbar color="primary" dark><b>Client Detail:</b>{{client.name}} </v-toolbar>
+          <v-toolbar color="#4ca08b" dark><p id="details"><b>Client Name:</b> {{client.name}}</p></v-toolbar>
           <v-card-text>
             <v-container>
               <div id="productInfo">
@@ -68,3 +68,12 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+
+#details {
+  font-family: Nunito;
+}
+</style>
