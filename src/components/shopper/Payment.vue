@@ -1,5 +1,5 @@
 <template>
-    <div id = "PaymentPage">
+    <div id ="PaymentPage">
         <shopper-header></shopper-header>
         <nav>
             <v-card size="1000" id="order">
@@ -29,7 +29,7 @@
             <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
                 <template v-slot:default="dialog">
                     <v-card>
-                        <v-toolbar color="#c9AA88" dark>Way to get invoice number</v-toolbar>
+                        <v-toolbar id='invoicetitle' color="#4ca08b" dark>How to Get Invoice Number</v-toolbar>
                         <br>
                         <v-card-text>
                             <p> After making payment: </p><br>
@@ -228,6 +228,9 @@ nav {
   margin-top:10px;
   margin-left:10px;
 }
+#PaymentPage{
+    height:auto;
+}
 #content {
   float: right;
   padding: 15px; 
@@ -240,6 +243,9 @@ p{
   color:"black";
   font-size: 15px;
   font-weight: bold;
+}
+#invoicetitle{
+    font-family:'Nunito';
 }
 #subtotal{
   font-size: 20px;
