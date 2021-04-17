@@ -59,6 +59,7 @@ export default {
   height:80px;
   font-size:35px;
   font-family: "Sanchez";
+  min-width:1400px;
 }
 .logo {
   height:80px;

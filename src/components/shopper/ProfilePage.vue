@@ -321,6 +321,7 @@ export default {
   background-repeat: no-repeat;
   height: 100%;
   padding-bottom:50px;
+  min-width:1400px;  
 }
 h1 {
   text-align: left;

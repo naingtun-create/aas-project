@@ -68,6 +68,7 @@ export default {
   background-color:#079C72;
   height:80px;
   font-size:35px;
+  min-width:1400px;
 }
 .logo {
   height:80px;
