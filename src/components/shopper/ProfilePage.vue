@@ -178,7 +178,7 @@ export default {
             this.uploadDialog = false;
             this.editDialog = false;
             this.reset();
-            location.reload();
+            this.window.location.reload();
         },
         uploadImage: async function() {
             var k = this.id;
@@ -207,8 +207,8 @@ export default {
                         })
                         console.log(url)      
                     }).then(
-                        alert("Uploaded Successfully!"),
-                        this.close() 
+                        this.close(),
+                        alert("Uploaded Successfully! Please refresh the page!"),
                     ).catch (e => {
                         console.log(e)
                     });
