@@ -62,7 +62,7 @@
             <p>Pay the required amount as stated in the subtotal</p>
             <div class='rowC'>
                 <NewPaymentForm  v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
-                <button v-on:click="toggleUploadDialog">How to Get Invoice Number</button>
+                <v-btn id='button2' color = "#4ca08b" v-on:click="toggleUploadDialog">How to Get Invoice Number</v-btn>
             </div>
         </div>
     </div>
@@ -205,6 +205,21 @@ li {
   padding: 10px;
   margin: 10px;
   width:1300px;
+}
+#button2 {
+  height: 40px;
+  width:30%;
+  border-radius: 10px;
+  font-weight: bold;
+  color:white;
+  background-color:#4ca08b;
+  border: 10px solid #4ca08b;
+  border-width: 1px;
+  text-align:center;
+  margin-left:1.8vw;
+  margin-top:2.2vw;
+  font-family: 'Nunito';
+  font-size: 0.55vw;
 }
 button {
   height: 40px;
