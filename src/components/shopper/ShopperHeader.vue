@@ -6,27 +6,27 @@
             <p id='shopperacc'> (Shopper Account) </p>
         </ul>
         <div id="links">
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" dark>
+            <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" dark>
                 <div id="buttoncolour">Nearby</div>
                 <v-icon dark right>mdi-store</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/activities'})" dark>
+            <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/shopper/activities'})" dark>
                 <div id="buttoncolour">Activities</div>
                 <v-icon dark right>mdi-lifebuoy</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
+            <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
                 <div id="buttoncolour">Marketplace</div>
                 <v-icon dark right>mdi-storefront</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})" dark>
+            <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})" dark>
                 <div id="buttoncolour">Cart</div>
                 <v-icon dark right>mdi-cart</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" dark>
+            <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" dark>
                 <div id="buttoncolour">Profile</div>
                 <v-icon dark right>mdi-account</v-icon>
             </v-btn>          
@@ -65,7 +65,7 @@ export default {
   z-index: 9999;
   display: flex;
   color:white;
-  background-color:#235347;
+  background-color:#079C72;
   height:80px;
   font-size:35px;
 }
@@ -89,9 +89,10 @@ export default {
 }
 #buttoncolour {
   font-family: Nunito;
+  color:white;
 }
 #shopperacc{
-  color:#a0afa0;
+  color:#3d3838;
   font-size:20px;
   margin-top:-40px;
   margin-left:50px;

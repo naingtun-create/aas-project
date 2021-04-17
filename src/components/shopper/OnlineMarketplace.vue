@@ -147,19 +147,20 @@ h1 {
   font-weight: bold;
   font-size:30px;
   font-family: 'Nunito';
-  padding-top:30px
+  padding-top:30px;
 }
 #contents{
     padding-top:100px;
 }
 #nav {
-  position: fixed;
   float: left;
+  position:fixed;
   width: 20%;
   padding: 30px; 
   margin-left:10px;
   font-family: 'Nunito';
   font-size: 15px;
+  margin-top:-70px;
 }
 #content {
   float: right;

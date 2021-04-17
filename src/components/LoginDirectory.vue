@@ -3,7 +3,7 @@
         <h1>All About Sustainability</h1>
         <h2>Come be part of the<br>Eco-Friendly Movement</h2>
         <h3>Account Type</h3>
-        <div style="margin-left: 0px; margin-top:100px; position: aboslute;right:150px;">
+        <div style="margin-left: 0px; margin-top:75px; position: aboslute;right:150px;">
             <ul>
                 <li>
                     <v-btn><router-link to="/companylogin" exact>As a Company</router-link></v-btn>
@@ -12,6 +12,9 @@
                     <v-btn><router-link to="/shopperlogin" exact>As a Shopper</router-link></v-btn>
                 </li>
             </ul>
+        </div>
+        <div id="email">
+          <h2 id="emailh2">For any enquiries or issues, please feel free to contact us at allaboutsustainability3103@gmail.com</h2>
         </div>
     </div>
 </template>
@@ -45,12 +48,16 @@ h2 {
   margin-top:75px;
   color: rgb(255, 255, 255);
 }
+#emailh2 {
+  font-size:15px;
+  margin-top: 175px;
+}
 h3 {
   margin: -20px;
   font-size: 34px;
   font-family: Nunito;
   font-weight: bolder;
-  margin-top:175px;
+  margin-top:50px;
   color: rgb(16, 240, 210);
 }
 ul {

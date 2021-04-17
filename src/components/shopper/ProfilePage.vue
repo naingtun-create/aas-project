@@ -10,7 +10,7 @@
             <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog">
                     <v-card>
-                        <v-toolbar color="#c9AA88" dark>Upload Your Profile Image</v-toolbar>
+                        <v-toolbar color="#4ca08b" dark>Upload Your Profile Image</v-toolbar>
                         <br>
                         <v-card-text>
                             <v-file-input
@@ -47,7 +47,7 @@
                         <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
                             <template v-slot:default="dialog">
                                 <v-card>
-                                    <v-toolbar color="#c9AA88" dark>Update your Personal Details</v-toolbar>
+                                    <v-toolbar color="#4ca08b" dark>Update your Personal Details</v-toolbar>
                                     <br>
                                     <v-card-text>
                                         <v-text-field label="Address" v-model="updateAddress"></v-text-field>
@@ -344,7 +344,8 @@ p{
 }
 #upload{
   width:150px;
-  background-color:#c9AA88;
+  background-color:#4ca08b;
+  color:white;
 }
 #boxleft {
   padding:50px;
@@ -352,19 +353,19 @@ p{
   border-radius: 25px;
   border: 3px solid white;
   border-radius: 10px;
-  background-color: #c9AA88;
+  background-color: #4ca08b;
 }
 #boxcontact {
   width: 90%;
   height:auto;
   min-height:250px;
-  border: 3px solid #c9AA88;
+  border: 3px solid #4ca08b;
   border-radius: 10px;
 }
 #boxpayment {
   width: 90%;
   border-radius: 25px;
-  border: 3px solid #c9AA88;
+  border: 3px solid #4ca08b;
   border-radius: 10px;
   min-height: 100px;
   height: auto;
@@ -378,7 +379,7 @@ p{
   margin-left:-23px;
 }
 #buttonsign {
-  background-color:#c9AA88;
+  background-color:#4ca08b;
 }
 .row:after {
   content: "";
@@ -406,11 +407,11 @@ li {
   margin-top:-20px;
 }
 #initials{
-  border: 5px solid #c9AA88;
+  border: 5px solid #4ca08b;
   border-radius: 50%;
   text-align:center;
   font-size:100px;
-  color:#c9AA88;
+  color:#4ca08b;
   margin-top:-30px;
   width:130px;
   height:130px;
@@ -425,7 +426,7 @@ li {
   height:30px;
   color:black;
   background-color:white;
-  border: 2px solid #c9AA88;
+  border: 2px solid #4ca08b;
 }
 #innerbutton{
   margin-top:60px;
@@ -438,12 +439,12 @@ li {
   font-family: 'Nunito';
   font-size: 0.8vw;
   border-radius: 10px;
-  border: 2px solid #c9AA88;
+  border: 2px solid #4ca08b;
 }
 button {
   height: 70px;
   width: 70%;
-  background-color:#c9AA88;
+  background-color:#4ca08b;
   border-radius: 10px;
   font-weight: bold;
   color:white;
@@ -466,7 +467,7 @@ button {
 }
 #name{
   text-align:left;
-  color: #c9AA88;
+  color: #4ca08b;
   font-family: 'Nunito';
   font-weight: bold;
   font-size: 40px;
@@ -475,7 +476,7 @@ button {
   height:170px;
 }
 #mycontactdetails{
-  color:#c9AA88;
+  color:#4ca08b;
   text-align:left;
   padding-left:100px;
 }
@@ -521,6 +522,6 @@ button {
   width:40%;
   float:right;
   padding-top:50px;
-  color:'#c9AA88';
+  color:'#4ca08b';
 }
 </style>
