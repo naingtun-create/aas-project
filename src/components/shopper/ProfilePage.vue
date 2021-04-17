@@ -97,7 +97,9 @@
                 <div id="details">
                     <ul>
                         <li>{{shopperData.email}}</li>
-                        <li>{{shopperData.address + ", Singapore " + shopperData.postalCode + " #" + shopperData.unitNo}}</li>
+                        <li>{{shopperData.address + ", Singapore " + shopperData.postalCode }}<br>
+                            <span>#{{shopperData.unitNo}}</span>
+                        </li>
                         <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
                     </ul>
                 </div>
@@ -342,7 +344,7 @@ h2 {
   color:white;
 }
 #phone {
-    padding-top: 15px;
+    padding-top:11px;
 }
 p{
   color:black;
