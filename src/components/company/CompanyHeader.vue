@@ -6,19 +6,19 @@
       <p id='storeacc'>(Company Account)</p>
     </ul>
     <div id="links">
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
+      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
         <div id="buttoncolour">My Activities</div>
         <v-icon dark right>mdi-sale</v-icon> 
       </v-btn>
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
+      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
         <div id="buttoncolour">My Products</div>
         <v-icon dark right>mdi-storefront</v-icon>
       </v-btn>
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
+      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
         <div id="buttoncolour">My Orders</div>
         <v-icon dark right>mdi-receipt</v-icon>
       </v-btn>
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" dark>
+      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" dark>
         <div id="buttoncolour">Profile</div>
         <v-icon dark right>mdi-account</v-icon>
       </v-btn>
@@ -55,7 +55,7 @@ export default {
   z-index: 9999;
   display: flex;
   color:white;
-  background-color:#235347;
+  background-color:#079C72;
   height:80px;
   font-size:35px;
   font-family: "Sanchez";
@@ -85,7 +85,7 @@ export default {
   margin-left:-100px;
 }
 #storeacc {
-  color:#a0afa0;
+  color:#3d3838;
   font-size:20px;
   margin-top:-40px;
   margin-left:50px;

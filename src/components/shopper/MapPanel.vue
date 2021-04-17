@@ -1,6 +1,7 @@
 <template>
     <div class="map-panel-container elevation-8 brown lighten-4">
-        <input type='text' placeholder='Enter your location' v-model='address' @click='locatorButtonPressed' id='autocomplete' />
+        <input type='text' placeholder='Put in your address to check out stores in the area!'
+         v-model='address' @click='locatorButtonPressed' id='autocomplete' />
 
         <googlemaps-map
             ref="map"
