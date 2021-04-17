@@ -52,6 +52,7 @@
                                     <v-card-text>
                                         <v-text-field label="Address" v-model="updateAddress"></v-text-field>
                                         <v-text-field label="Postal Code" v-model="updatePostalCode"></v-text-field>
+                                        <v-text-field label="Unit Number" v-model="updateUnitNo"></v-text-field>
                                         <v-text-field label="Phone Number" v-model="updatePhone"></v-text-field>
                                     </v-card-text>
                                     <v-card-actions class="justify-end">
@@ -90,13 +91,13 @@
                     <ul>
                         <li><v-icon size=20>mdi-email</v-icon></li>
                         <li><v-icon size=20>mdi-map-marker</v-icon></li>
-                        <li><v-icon size=20>mdi-phone</v-icon></li>
+                        <li id="phone"><v-icon size=20>mdi-phone</v-icon></li>
                     </ul>
                 </div>
                 <div id="details">
                     <ul>
                         <li>{{shopperData.email}}</li>
-                        <li>{{shopperData.address + ", Singapore " + shopperData.postalCode}}</li>
+                        <li>{{shopperData.address + ", Singapore " + shopperData.postalCode + " #" + shopperData.unitNo}}</li>
                         <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
                     </ul>
                 </div>
@@ -157,6 +158,7 @@ export default {
             updateAddress: "",
             updatePhone: "",
             updatePostalCode: "",
+            updateUnitNo: "",
             uploadDialog: false,
             editDialog: false,
         };
@@ -176,7 +178,6 @@ export default {
         },
         close: function() {
             this.uploadDialog = false;
-            this.editDialog = false;
             this.reset();
             this.window.location.reload();
         },
@@ -207,8 +208,8 @@ export default {
                         })
                         console.log(url)      
                     }).then(
-                        this.close(),
                         alert("Uploaded Successfully! Please refresh the page!"),
+                        this.close(),
                     ).catch (e => {
                         console.log(e)
                     });
@@ -287,13 +288,15 @@ export default {
                 address: this.updateAddress,
                 postalCode: this.updatePostalCode,
                 phoneNumber: this.updatePhone,
+                unitNo: this.updateUnitNo
             })
             .catch((e) => {
                 console.log(e);
             });
 
             alert("Update Successful");
-            this.close();
+            this.editDialog = false;
+            location.reload();
         },
     },
     watch: {
@@ -301,6 +304,7 @@ export default {
             this.updateAddress = this.shopperData.address;
             this.updatePhone = this.shopperData.phoneNumber;
             this.updatePostalCode = this.shopperData.postalCode;
+            this.updateUnitNo = this.shopperData.unitNo;
         },
     },
     created() {
@@ -337,6 +341,9 @@ h2 {
   margin-top: 35px;
   color:white;
 }
+#phone {
+    padding-top: 15px;
+}
 p{
   color:black;
   font-size: 15px;
@@ -359,7 +366,7 @@ p{
 #boxcontact {
   width: 90%;
   height:auto;
-  min-height:250px;
+  min-height:280px;
   border: 3px solid #4ca08b;
   border-radius: 10px;
 }

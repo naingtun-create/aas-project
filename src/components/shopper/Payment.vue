@@ -29,6 +29,7 @@
             <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
                 <template v-slot:default="dialog">
                     <v-card>
+                        <br><br>
                         <v-toolbar id='invoicetitle' color="#4ca08b" dark>How to Get Invoice Number</v-toolbar>
                         <br>
                         <v-card-text>
