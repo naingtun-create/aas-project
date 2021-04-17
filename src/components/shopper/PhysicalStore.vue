@@ -1,6 +1,7 @@
 <template>
     <div id="store">
         <shopper-header></shopper-header>
+        <div id='contents'>
         <v-container fluid fill-height grid-list-lg>
             <v-layout row wrap align-content-start>
                 <v-flex xs4 xs3>
@@ -44,6 +45,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        </div>
     </div>
 </template>
 
@@ -121,6 +123,9 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #store{
     height:600px;
+}
+#contents{
+    padding-top:80px;
 }
 #title {
   font-family: "Nunito";

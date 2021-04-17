@@ -1,5 +1,7 @@
 <template>
     <div class="map-panel-container elevation-8 brown lighten-4">
+        <input type='text' placeholder='Enter your location' v-model='address' @click='locatorButtonPressed' id='autocomplete' />
+
         <googlemaps-map
             ref="map"
             class="map"
@@ -26,10 +28,13 @@ import {mapActions} from 'vuex'
 export default {
     data () {
         return {
+            address:"",
             mapCenter: {lat: 0, lng: 0},
             myCoordinates: {lat: 0,lng: 0},
             zoom: 11,
             test:null,
+            error:"",
+            spinner:false,
             mapMarkers: null,
             mapMarkerIconSize: null,
             ignoreCenterOnSelectedStore: false,
@@ -142,9 +147,40 @@ export default {
                 }
                 this.zoom=14;
                 this.centerOnStore(location)
-            }, 4000)
+            }, 5000)
+        },
+        locatorButtonPressed(){
+            console.log(this.address);
+            this.spinner=true;
+            if (navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        this.getAddressFrom(
+                            position.coords.latitude,
+                            position.coords.longitude
+                        );
+                        this.showUserLocationOnMap(
+                            position.coords.latitude,
+                            position.coords.longitude
+                        );
+                    },
+                    () => {
+                        this.error = 
+                            "Locator is unable to find your address. Please type your address manually.";
+                        this.spinner=false;
+                    }
+                );
+            } else {
+                this.spinner = false;
+                console.log("Your browser does not support Geolocation API");
+            }
+        },
+
+        showUserLocationOnMap(latitude,longitude){
+            new window.google.maps.Marker({
+                position: new window.google.maps.LatLng(latitude,longitude),
+            })
         }
-        
     },
     created(){
         this.addMapMarkers();
@@ -152,15 +188,56 @@ export default {
     },
     googleMapsReady () {
         this.mapMarkerIconSize = new window.google.maps.Size(100, 100)
+    },
+    mounted(){
+        let autocomplete = new window.google.maps.places.Autocomplete(
+            document.getElementById('autocomplete'),
+            {
+                bounds: new window.google.maps.LatLngBounds(
+                    new window.google.maps.LatLng(1.3521,103.8198)
+                )
+            }
+        );
+        autocomplete.addListener("place_changed",() => {
+            let place = autocomplete.getPlace();
+            this.myCoordinates.lat = place.geometry.location.lat()
+            this.myCoordinates.lng = place.geometry.location.lng()
+            const location = {
+                    lat: this.myCoordinates.lat,
+                    lng: this.myCoordinates.lng
+                }
+            this.zoom=14;
+            this.centerOnStore(location)
+        })
     }
 }
 </script>
+
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
 .map-panel-container {
   height: 100%;
 }
 .map {
   flex: 100% 1 1;
   height: 100%;
+}
+#autocomplete{
+    width:100%;
+    height:50px;
+    text-align:center;
+    background-color:white;
+    font-family:'Nunito';
+}
+.pac-item{
+    padding:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+.pac-item:hover{
+    background-color: blue;
+}
+.pac-item-query{
+    font-size:16px;
 }
 </style>

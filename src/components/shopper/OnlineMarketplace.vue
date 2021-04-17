@@ -148,6 +148,7 @@ h1 {
   padding-top:30px
 }
 #nav {
+  position: fixed;
   float: left;
   width: 20%;
   padding: 30px; 
