@@ -128,8 +128,8 @@ export default {
                             "profilePic" : url.toString()
                         })         
                     }).then(
-                        this.close(),
-                        alert("Uploaded Successfully! Please refresh the page!")
+                        alert("Uploaded Successfully! Please refresh the page!"),
+                        this.close()
                     ).catch (e => {
                         console.log(e)
                     });
