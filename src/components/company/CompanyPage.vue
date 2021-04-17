@@ -197,7 +197,7 @@ export default {
 }
 #intro {
     float:left;
-    padding-top:50px;
+    padding-top:100px;
     padding-left:100px;
     font-size:15px;
     text-align:left;

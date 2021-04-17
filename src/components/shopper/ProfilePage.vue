@@ -457,10 +457,12 @@ button {
   float:left;
   width:20%;
   margin-left:60px;
+  padding-top:50px;
 }
 #right {
   float:right;
   width:70%;
+  padding-top:50px;
 }
 #name{
   text-align:left;

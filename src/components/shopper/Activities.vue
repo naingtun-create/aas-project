@@ -1,19 +1,21 @@
 <template>
     <div id = "Activities">
         <shopper-header></shopper-header>
-        <h2>Environmental Statistics of the Month (Singapore)</h2>
-        <v-divider></v-divider>
-        <div id="charts">
-            <div id='halfleft'>
-                <BarChart></BarChart>
-            </div>
-            <div id='halfright'>
-                <LineChart></LineChart>
-            </div>
+        <div id='content'>
+          <h2>Environmental Statistics of the Month (Singapore)</h2>
+          <v-divider></v-divider>
+          <div id="charts">
+              <div id='halfleft'>
+                  <BarChart></BarChart>
+              </div>
+              <div id='halfright'>
+                  <LineChart></LineChart>
+              </div>
+          </div>
+          <h2 class="ecoh2">Latest Eco-friendly Activities</h2>
+          <v-divider></v-divider>
+          <DisplayActivity></DisplayActivity>
         </div>
-        <h2 class="ecoh2">Latest Eco-friendly Activities</h2>
-        <v-divider></v-divider>
-        <DisplayActivity></DisplayActivity>
     </div>
 </template>
 
@@ -35,6 +37,9 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #charts {
   padding: 4% 20% 4% 20% ;
+}
+#content{
+  padding-top:100px;
 }
 .ecoh2 {
   margin-top: 25px;

@@ -93,14 +93,14 @@ export default {
 #intro {
     width:40%;
     float:left;
-    padding-top:50px;
+    padding-top:100px;
     padding-left:100px;
     font-size:20px;
     text-align:left;
 }
 #contents {
     width:40%;
-    padding-top:50px;
+    padding-top:100px;
     float:right;
     font-size:20px;
     margin: 100px;  

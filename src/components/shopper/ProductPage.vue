@@ -78,6 +78,9 @@ export default {
             });
         },
         sendOrder: function() {
+          if (this.selectedSize=='' || this.selectedColour==''){
+            alert("Please select size and color");
+          } else {
             if(Object.keys(this.currentCart).length>0){
                 this.currentCart=Object.values(this.currentCart[0]);
                 console.log(Object.values(this.currentCart)[0])
@@ -93,6 +96,7 @@ export default {
             this.currentCart=[];
             this.fetchItems();
             alert("Your order has been added to cart")
+          }
         },
         reroute: function() {
             var companyID = this.datapacket[0].company;
@@ -111,7 +115,7 @@ export default {
 #intro {
   width:40%;
   float:left;
-  padding-top:50px;
+  padding-top:100px;
   padding-left:100px;
   font-size:20px;
   text-align:left;

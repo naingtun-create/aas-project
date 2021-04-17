@@ -17,7 +17,7 @@
                                     <v-btn id="delete" class="ml-2 mt-5" color = "white" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
                                 </div>
                             </div><br>
-                            <v-divider width="60%"></v-divider>     
+                            <v-divider width="50%"></v-divider>     
                         </li>               
                     </ul>
                     <p id="subtotal" > SUBTOTAL: ${{this.subtotal}}</p>
@@ -222,21 +222,19 @@ button {
 }
 nav {
   float: left;
-  width: 60%;
+  width: 55%;
   padding:15px; 
   height: 1000px; 
-  margin-top:10px;
+  padding-top:100px;
   margin-left:10px;
 }
 #PaymentPage{
     height:auto;
 }
-#content {
+#contents {
   float: right;
-  padding: 15px; 
-  width: 45%;
-  background-color: #FFFAF0;
-  height: 1000px; 
+  width: 40%;
+  padding-top:100px;
 }  
 p{
   font-family:"Nunito";

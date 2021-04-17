@@ -59,13 +59,15 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
   display: flex;
-  padding-top: 0px;
   color:white;
   background-color:#235347;
   height:80px;
   font-size:35px;
-  padding-top: 0px;
 }
 .logo {
   height:80px;
