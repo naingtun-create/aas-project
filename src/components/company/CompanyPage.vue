@@ -101,7 +101,7 @@ export default {
             this.imageURL = '';
             this.image = [];
             this.dialog = false;
-            location.reload();
+            this.window.location.reload();
         },
         closeUpdateDialog: function() {
             this.editDialog = false;
@@ -129,7 +129,7 @@ export default {
                         })         
                     }).then(
                         this.close(),
-                        alert("Uploaded Successfully!")
+                        alert("Uploaded Successfully! Please refresh the page!")
                     ).catch (e => {
                         console.log(e)
                     });
