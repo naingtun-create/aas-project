@@ -4,7 +4,7 @@
         <div id="intro">
             <p id="title" >{{companyData.companyname}}</p>
             <div id="heading">
-                <img id='profilepic' v-show="profileURL != ''" style="float:left" :src="profileURL">
+                <img height='150' id='profilepic' v-show="profileURL != ''" style="float:left" :src="profileURL">
                 <img height="150" v-show="profileURL == ''" style="float:left" src="../../assets/NoCompanyImage.png">
             </div>
             <h3> Our Story </h3>
@@ -92,7 +92,8 @@ export default {
   padding:3%;
   font-size:15px;
   text-align:left;
-  display:inline-table
+  display:inline-table;
+  padding-top:100px;
 }
 #heading {
   display: flex;   
