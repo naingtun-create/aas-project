@@ -126,9 +126,9 @@ export default {
             var finalList = []
             finalList = this.items
             if(this.search != "" && this.selectedCategories != "All"){
-                finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase()) && (item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase()));})
+                finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase()) && (item.title.toLowerCase().match(this.search.toLowerCase()) || item.companyname.toLowerCase().match(this.search.toLowerCase()));})
             } else if(this.search != ""){
-                finalList = this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase());})
+                finalList = this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.companyname.toLowerCase().match(this.search.toLowerCase());})
             } else if(this.selectedCategories != "All"){
                 finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase())});
             } 
