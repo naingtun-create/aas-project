@@ -12,7 +12,7 @@
             <v-img v-bind:src="this.datapacket[0].image"></v-img>
         </div>
         <div id="contents">
-            <p id="bold"> View Company: <a v-on:click="reroute">{{this.datapacket[0].companyname}} </a></p>
+            <p id="bold"> View Company: <a id="company" v-on:click="reroute">{{this.datapacket[0].companyname}} </a></p>
             <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br><br>
             <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
             <br><br>
@@ -31,7 +31,9 @@
             <br>
             <span id="select">Selected Quantity: {{this.qty}}</span>
             <br>
-            <button v-on:click="sendOrder()">Add to Cart</button>
+            <button v-on:click="sendOrder()" >
+              <div id='add' > Add to Cart</div>
+              </button>
         </div> 
     </div>
 </template>
@@ -76,6 +78,9 @@ export default {
             });
         },
         sendOrder: function() {
+          if (this.selectedSize=='' || this.selectedColour==''){
+            alert("Please select size and color");
+          } else {
             if(Object.keys(this.currentCart).length>0){
                 this.currentCart=Object.values(this.currentCart[0]);
                 console.log(Object.values(this.currentCart)[0])
@@ -91,6 +96,7 @@ export default {
             this.currentCart=[];
             this.fetchItems();
             alert("Your order has been added to cart")
+          }
         },
         reroute: function() {
             var companyID = this.datapacket[0].company;
@@ -105,13 +111,20 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #intro {
   width:40%;
   float:left;
-  padding-top:50px;
+  padding-top:100px;
   padding-left:100px;
   font-size:20px;
   text-align:left;
+}
+#add{
+  font-family:"Nunito";
+}
+#company{
+  color:#4ca08b;
 }
 #contents {
   width:40%;
@@ -133,7 +146,7 @@ export default {
 #title{
   font-weight: bold;
   font-size:30px;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Nunito';
   color:#c9AA88;
 }
 #select{
@@ -146,6 +159,8 @@ button {
   background-color: #c9AA88;
   border-radius: 10px;
   border-width: 1px;
+  font-family:'Nunito';
+
 }
 input[type=number] {
   background-color: #ececec;

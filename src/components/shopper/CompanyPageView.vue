@@ -78,6 +78,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+
 #companypage {
   position: relative;
   background-size: cover;
@@ -98,8 +100,8 @@ export default {
 #title{
   font-weight: bold;
   font-size:30px;
-  font-family: 'Anton', sans-serif;
-  color:#c9AA88
+  font-family: 'Nunito';
+  color:#4ca08b;
 }
 #profilepic {
   border: 1px solid #ddd;
@@ -112,6 +114,10 @@ h3 {
   margin-top:20px;
   margin-bottom:-15px;
   font-size:25px;    
+  font-family:Nunito;
+}
+p {
+  font-family: Nunito;
 }
 #editstory{
   float:right;

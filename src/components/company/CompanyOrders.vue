@@ -1,37 +1,38 @@
 <template>
     <div id="companyproducts">
         <company-header></company-header>
-        <h1>View Customer Orders</h1>
-        <div id="boxorder">
-            <v-list>
-                <br/>
-                <v-list-item v-for="(item,id) in items" :key="id">
-                    <div id="invoice">
-                        <v-list-item-avatar tile size="200px"> 
-                            <v-img :alt="`${item.title}`" :src="item.image" ></v-img>
-                        </v-list-item-avatar>
-                        </div>
-                        <v-list-item-content>
-                            <h2 id="itemTitle" >{{item.title}}</h2><br>
-                            <p v-for = "color in item.product" :key="color.id" id="details">ORDER DETAILS: <b>{{color}}</b></p>
-                            <p id="cost">TOTAL COST: ${{item.paidAmount}}</p>
-                            <p id="date"> DATE: {{item.date}}</p>
-                            <v-divider></v-divider>
-                        </v-list-item-content>
-                        <v-list-item-content>
-                            <ClientDetailForm v-bind:clientID = item.userID></ClientDetailForm>
-                            <v-btn id = "complete" small color="red lighten-2" dark @click="updateItems(item.orderID, item.productID, item.completed)"> 
-                                Complete Order 
-                                <v-icon dark right>mdi-thumb-up</v-icon>
-                            </v-btn>
-                        </v-list-item-content>       
-                        <v-list-item-content>
-                            <v-icon x-large color= "green" v-show="item.completed[item.productID]">mdi-sticker-check</v-icon>
-                            <v-icon x-large color= "red" v-show="!item.completed[item.productID]">mdi-account-clock</v-icon>
-                        </v-list-item-content>
-                </v-list-item>
-                <br/><br/>
-            </v-list>
+        <div id='content'>
+            <h1>View Customer Orders</h1>
+            <div id="boxorder">
+                <v-list>
+                    <br/>
+                    <v-list-item v-for="(item,id) in items" :key="id">
+                        <div id="invoice">
+                            <v-list-item-avatar tile size="200px"> 
+                                <v-img :alt="`${item.title}`" :src="item.image" ></v-img>
+                            </v-list-item-avatar>
+                            </div>
+                            <v-list-item-content>
+                                <h2 id="itemTitle" >{{item.title}}</h2><br>
+                                <p v-for = "color in item.product" :key="color.id" id="details">ORDER DETAILS: <b>{{color}}</b></p>
+                                <p id="cost">TOTAL COST: ${{item.paidAmount}}</p>
+                                <p id="date"> DATE: {{item.date}}</p>
+                                <v-divider></v-divider>
+                            </v-list-item-content>
+                            <v-list-item-content>
+                                <ClientDetailForm v-bind:clientID = item.userID></ClientDetailForm>
+                                <v-btn id = "complete" small color="red lighten-2" dark @click="updateItems(item.orderID, item.productID, item.completed)"> 
+                                    Complete Order 
+                                    <v-icon dark right>mdi-thumb-up</v-icon>
+                                </v-btn>
+                            </v-list-item-content>       
+                            <v-list-item-content>
+                                <v-icon x-large color= "green" v-show="item.completed[item.productID]">mdi-sticker-check</v-icon>
+                                <v-icon x-large color= "red" v-show="!item.completed[item.productID]">mdi-account-clock</v-icon>
+                            </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </div>
         </div>
     </div>
 </template>
@@ -94,15 +95,19 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+
 h1{
     padding:20px;
-    font-family:Verdana, Tahoma, sans-serif;
-
+    font-family:Nunito;
+}
+#content{
+    padding-top:100px;
 }
 #boxorder {
     width: 80%;
     border-radius: 25px;
-    border: 3px solid #c9AA88;
+    border: 3px solid #4ca08b;
     border-radius: 10px;
     min-height: 100px;
     height: auto;
@@ -113,15 +118,14 @@ h1{
     font-size:15px;
     padding-left:100px;
     font-weight:bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Nunito;
     padding-bottom: 10px;
 }
 #itemTitle{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito';
     font-weight:bold;
     font-size:20px;
     padding-bottom: 15px;
-
 }
 #details{
     color:lightcoral;

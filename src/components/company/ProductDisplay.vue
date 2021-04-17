@@ -21,7 +21,7 @@
                   <v-divider class="mx-4"></v-divider>
                   <v-card-actions>
                     <v-btn small depressed outlined color="indigo" v-on:click="route(item.id)">Learn More</v-btn>
-                    <error-prevention-dialog :itemName="item.title" :itemID="item.id" type="products"/>
+                    <error-prevention-dialog id="delete" :itemName="item.title" :itemID="item.id" type="products"/>
                   </v-card-actions>
                 </div>
               </v-card>
@@ -76,6 +76,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+
 #title {
     font-weight: bold;
     font-size:80px;
@@ -113,7 +115,7 @@ h1 {
   width: 100%; 
 }
 #productTitle {
-  font-family: "Lucida Console", Times, serif;
+  font-family: "Nunito";
   font-size: 13px;
   text-align:start;
   padding:10px;
@@ -130,5 +132,8 @@ p {
   font-size: 13px;
   text-align:start;
   margin-top:-5px;
+}
+#delete {
+  margin-left:30px;
 }
 </style>

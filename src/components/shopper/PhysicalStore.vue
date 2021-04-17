@@ -1,11 +1,12 @@
 <template>
     <div id="store">
         <shopper-header></shopper-header>
+        <div id='contents'>
         <v-container fluid fill-height grid-list-lg>
             <v-layout row wrap align-content-start>
                 <v-flex xs4 xs3>
                     <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
-                        <v-card color="#c9AA88" class="elevation-8 fill-height">
+                        <v-card color="#4ca08b" class="elevation-8 fill-height">
                             <v-container fluid grid-list-lg>
                                 <v-layout row wrap>
                                     <v-flex xs12 class="stores-list">
@@ -32,7 +33,7 @@
                                     </v-flex>
                                 </v-layout>
                             </v-container>
-                            <h1 id='title'>Find Stores Nearby!</h1>
+                            <h1 id='titlenearby'>Find Stores Nearby!</h1>
                             <button v-on:click="trigger()"> Use Current Location </button>
                             <p id="locationsharing"> Please ensure your browser enables location sharing </p>
                         </v-card>
@@ -44,6 +45,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        </div>
     </div>
 </template>
 
@@ -56,11 +58,6 @@ export default {
     data () {
         return {
             stores:[],
-            storesEast:[],
-            storesWest:[],
-            storesNorth:[],
-            storesSouth:[],
-            storesCentral:[],
             selectedStore:{details:{},id:""},
             selectedSt:null,
             hoveredOnStore: null,
@@ -123,13 +120,25 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
+#store{
+    height:600px;
+}
+#contents{
+    padding-top:80px;
+}
 #title {
-  font-family: "Sanchez";
+  font-family: "Nunito";
   font-size: 20px;
-  margin-top:5px;
+  margin-top:-20px;
+}
+#titlenearby {
+  font-family: "Nunito";
+  font-size: 20px;
 }
 p{
   font-size:12px;
+  font-family: "Nunito";
 }
 #locationsharing{
   margin-top:5px;
@@ -140,6 +149,7 @@ p{
   height: 60vh;
   overflow: auto;
   margin-top:-20px;
+  font-family: "Nunito";
 }
 .store-container {
   padding-left: 0!important;
@@ -154,6 +164,7 @@ p{
   cursor: pointer;
   height: auto;
   height:105px;
+  font-family: "Nunito";
 }
 .store-item-card.isSelected {
   border: 4px solid #5C6BC0;
@@ -164,10 +175,11 @@ p{
 }
 button {
   width: 160px;
-  height: 60px;;
+  height: 40px;;
   background-color: white;
   border-radius: 10px;
   border-width: 1px;
   font-size:12px;
+  font-family:"Nunito";
 }
 </style>

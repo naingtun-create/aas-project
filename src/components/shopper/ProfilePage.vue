@@ -71,7 +71,7 @@
                     </li>
                     <li>
                         <div id="signoutbutton">
-                            <button v-on:click="logout">Sign Out
+                            <button id="buttonsign" v-on:click="logout">Sign Out
                                 <v-icon dark right>mdi-account-remove</v-icon>
                             </button>
                         </div>
@@ -111,7 +111,8 @@
                     <v-list-item v-for="(purchase,id) in purchaseHistory" :key="id">
                         <v-list width="100%" subheader>
                             <div id="leftdetails">
-                                <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice + " |  " + purchase.Date}}</v-subheader>
+                                <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice}}</v-subheader>
+                                <v-subheader id="date">Date: {{purchase.Date}}</v-subheader>                                
                                 <v-list-item v-for="(product,id) in purchase.Products" :key="id"> 
                                     <div id="invoice">
                                         <v-list-item-avatar tile size="100px"> 
@@ -324,13 +325,13 @@ export default {
 h1 {
   text-align: left;
   padding-left: 150px;
-  color: #c9AA88;
-  font-family: 'Montserrat', sans-serif;
+  color: #235347;
+  font-family: 'Nunito';
   font-weight: bolder;
 }
 h2 {
   margin: -20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-weight: bold;
   margin-top: 35px;
   color:white;
@@ -338,11 +339,12 @@ h2 {
 p{
   color:black;
   font-size: 15px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-style: italic;
 }
 #upload{
   width:150px;
+  background-color:#c9AA88;
 }
 #boxleft {
   padding:50px;
@@ -375,6 +377,9 @@ p{
 #signoutbutton {
   margin-left:-23px;
 }
+#buttonsign {
+  background-color:#c9AA88;
+}
 .row:after {
   content: "";
   display: table;
@@ -393,7 +398,7 @@ li {
 }
 #contact {
   display: flex;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-size: 50px;
 }
 #profilepic{
@@ -409,7 +414,7 @@ li {
   margin-top:-30px;
   width:130px;
   height:130px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-weight: bold;
 }
 #profilebtn{
@@ -430,7 +435,7 @@ li {
   font-weight: bold;
   background-color: white;
   color:black;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-size: 0.8vw;
   border-radius: 10px;
   border: 2px solid #c9AA88;
@@ -438,29 +443,31 @@ li {
 button {
   height: 70px;
   width: 70%;
-  background-color: #c9AA88;
+  background-color:#c9AA88;
   border-radius: 10px;
   font-weight: bold;
   color:white;
   border: 10px solid white;
   border-width: 1px;
   text-align:center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-size: 1vw;
 }
 #left {
   float:left;
   width:20%;
   margin-left:60px;
+  padding-top:50px;
 }
 #right {
   float:right;
   width:70%;
+  padding-top:50px;
 }
 #name{
   text-align:left;
   color: #c9AA88;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   font-weight: bold;
   font-size: 40px;
   margin-left:-150px;
@@ -484,20 +491,27 @@ button {
   color:black;
   font-size:15px;
   margin-top:-50px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
   padding-right:200px;
 }
 #invoice{
   font-size:15px;
   padding-left:100px;
   font-weight:bold;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
+}
+#date{
+  font-size:15px;
+  padding-left:100px;
+  font-weight:bold;
+  font-family: 'Nunito';
+  margin-top:-20px;
 }
 #purchasedetails{
   font-size:15px;
   padding-left:50px;
   text-align:left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito';
 }
 #leftdetails{
   width:60%;
@@ -507,5 +521,6 @@ button {
   width:40%;
   float:right;
   padding-top:50px;
+  color:'#c9AA88';
 }
 </style>

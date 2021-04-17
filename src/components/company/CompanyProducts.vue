@@ -1,11 +1,13 @@
 <template>
 <div id="companyproducts">
     <company-header></company-header>
-    <h1>Our Products</h1>
-    <h3>Share your products with our community!</h3>
-    <ProductDisplay></ProductDisplay>
-    <NewProductForm v-bind:companyData="companyData"></NewProductForm>
-    <br/>
+    <div id='content'>
+        <h1>Our Products</h1>
+        <h3>Share your products with our community!</h3>
+        <ProductDisplay></ProductDisplay>
+        <NewProductForm v-bind:companyData="companyData"></NewProductForm>
+        <br/>
+    </div>
 </div>
 </template>
 
@@ -100,8 +102,16 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
+h1 {
+    font-family:Nunito;
+}
 h3 {
     text-align: left;
     padding-left: 65px;
+    font-family:Nunito;
+}
+#content{
+    padding-top:100px;
 }
 </style>
