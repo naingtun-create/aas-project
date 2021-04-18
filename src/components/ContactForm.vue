@@ -37,13 +37,16 @@ import emailjs from 'emailjs-com';
 
 export default {
   methods: {
-    sendEmail: (e) => {
-      emailjs.sendForm('aas_service3103', 'contact_form', e.target, 'user_2STTOk9RixwRQS3H8AcRw')
+    sendEmail: async function(e) {
+  
+      await emailjs.sendForm('aas_service3103', 'contact_form', e.target, 'user_2STTOk9RixwRQS3H8AcRw')
         .then((result) => {
             console.log('SUCCESS!', result.status, result.text);
-        }, (error) => {
-            console.log('FAILED...', error);
-        });
+            this.$router.push("/");
+        }).catch((error => {
+          console.log('FAILED...', error);
+        }))
+
     }
   },
   data() {
