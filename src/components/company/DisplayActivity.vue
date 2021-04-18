@@ -108,6 +108,7 @@ export default {
     background-repeat: no-repeat;
     height: 100%;
     float:left;
+    width:100%;
     text-align: left;
 }
 li {
@@ -117,18 +118,19 @@ ul {
     list-style-type: none;
 }
 #box{
+    width:100%;
     margin:40px;
     height:auto;
     border: 5px solid #4ca08b;
-    width:100%;
+    
 }
 p{
     padding-left:20px;
 }
 #images {
     float:left;
-    width:350px;
-    height:350px;
+    width:330px;
+    height:330px;
 }
 #afterimages {
     width:70%;
