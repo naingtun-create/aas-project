@@ -42,6 +42,7 @@ export default {
       await emailjs.sendForm('aas_service3103', 'contact_form', e.target, 'user_2STTOk9RixwRQS3H8AcRw')
         .then((result) => {
             console.log('SUCCESS!', result.status, result.text);
+            alert("Email sent! We will get back to you within 3 working days.")
             this.$router.push("/");
         }).catch((error => {
           console.log('FAILED...', error);

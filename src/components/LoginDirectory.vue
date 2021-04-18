@@ -15,7 +15,7 @@
         </div>
         <div id="email">
           <div id="emailh2">Contact Us</div>
-          <div class="my-2">
+          <div class="my-1">
           <v-btn x-small fab color="white" dark><router-link to="/contactform" exact><v-icon dark>mdi-email</v-icon></router-link></v-btn>
           </div>
         </div>
