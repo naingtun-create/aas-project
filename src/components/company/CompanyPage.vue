@@ -35,10 +35,10 @@
             </div>
             <br/>
             <div id="uploadpic">
-            <v-btn x-small v-on:click="dialog = true">
-                Upload Company Picture
-                <v-icon dark right>mdi-image</v-icon>
-            </v-btn>
+                <v-btn id='btn' x-small v-on:click="dialog = true">
+                    Upload Company Picture
+                    <v-icon dark right>mdi-image</v-icon>
+                </v-btn>
             </div>
             <br/>
             <h3>Our Story</h3>
@@ -61,10 +61,11 @@
                     </v-card>
                 </template>
             </v-dialog>
+            <br>
             <div id="editstory">
-                <v-btn x-small v-on:click="editDialog = true">Edit Story
-                <v-icon dark right>mdi-information</v-icon>
-                </v-btn>
+                    <v-btn x-small v-on:click="editDialog = true">Edit Story
+                    <v-icon dark right>mdi-information</v-icon>
+                    </v-btn>
             </div>
             <br/><br/>
             <change-password-dialog/>
@@ -227,12 +228,11 @@ h3 {
     color:#4ca08b;
 }
 #editstory{
-    float:right;
-    padding-right:100px;
+    margin-left:75vw;
 }
+
 #uploadpic{
-    float:right;
-    padding-right:100px;
+    margin-left:70vw;
 }
 p{
     font-size:20px;
