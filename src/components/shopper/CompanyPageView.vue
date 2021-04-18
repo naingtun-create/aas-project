@@ -11,7 +11,7 @@
             <br/>
             <p>{{companyData.description}}</p>
             <p> Visit us at: <a :href="companyData.website">{{companyData.website}}</a></p>
-        </div>
+        </div> <br>
 
         <div id="combined">
             <div id="productsection">
@@ -88,11 +88,12 @@ export default {
   height: 100%;
 }
 #intro {
+  width:100%;
   float:left;
   padding:3%;
   font-size:15px;
   text-align:left;
-  display:inline-table;
+  /*display:inline-table;*/
   padding-top:100px;
 }
 #heading {
@@ -132,6 +133,7 @@ p {
   font-size:20px;
 }
 #combined {
+  width:100%;
   text-align: left;
   padding-left: 3%;
   padding-right: 3%;
