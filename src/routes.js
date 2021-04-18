@@ -1,5 +1,7 @@
 import ResetPassword from './components/ResetPassword.vue'
 import LoginDir from './components/LoginDirectory.vue'
+import ContactForm from './components/ContactForm.vue'
+
 
 import CompanyPage from './components/company/CompanyPage.vue'
 import CompanyProducts from './components/company/CompanyProducts.vue'
@@ -24,6 +26,7 @@ import ViewCompanyPage from './components/shopper/CompanyPageView.vue'
 export default [
     { path: '/login', component: LoginDir},
     { path: '/', component: LoginDir},
+    { path: '/contactform', component: ContactForm},
     { path: '/companylogin', component: CompanyLoginPage},
     { path: '/shopperlogin', component: ShopperLoginPage},
     { path: '/companysignup', component: CompanySignUpPage},

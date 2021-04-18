@@ -14,7 +14,10 @@
             </ul>
         </div>
         <div id="email">
-          <h2 id="emailh2">For any enquiries or issues, please feel free to contact us at allaboutsustainability3103@gmail.com</h2>
+          <div id="emailh2">Contact Us</div>
+          <div class="my-2">
+          <v-btn small fab color="white" dark><router-link to="/contactform" exact><v-icon dark>mdi-email</v-icon></router-link></v-btn>
+          </div>
         </div>
     </div>
 </template>
@@ -48,10 +51,6 @@ h2 {
   margin-top:75px;
   color: rgb(255, 255, 255);
 }
-#emailh2 {
-  font-size:15px;
-  margin-top: 175px;
-}
 h3 {
   margin: -20px;
   font-size: 34px;
@@ -74,5 +73,17 @@ a {
   font-weight: bold;
   color: rgb(0, 114, 180);
   text-decoration: none;
+}
+#email {
+  margin-top:50px;
+}
+#emailh2 {
+  font-size:16px;
+  color:whitesmoke;
+  font-weight:bolder;
+  outline-style: 2px solid black;
+}
+#contact {
+  margin-top:10px;
 }
 </style>
