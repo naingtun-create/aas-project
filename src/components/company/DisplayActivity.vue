@@ -120,18 +120,18 @@ ul {
     margin:40px;
     height:auto;
     border: 5px solid #4ca08b;
+    width:100%;
 }
 p{
     padding-left:20px;
 }
 #images {
     float:left;
-    width:25vw;
-    height:25vw;
+    width:350px;
+    height:350px;
 }
 #afterimages {
     width:70%;
     float:right;
-    padding-right:100px;
 }
 </style>

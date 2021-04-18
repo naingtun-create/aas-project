@@ -139,21 +139,21 @@ ul {
   list-style-type: none;
 }
 #box{
-  margin:40px;
-  height:auto;
-  border: 5px solid #4ca08b;
+    margin:40px;
+    height:auto;
+    border: 5px solid #4ca08b;
+    width:100%;
 }
 p{
-  padding-left:20px;
+    padding-left:20px;
 }
 #images {
-  float:left;
-  width:25vw;
-  height:25vw;
+    float:left;
+    width:350px;
+    height:350px;
 }
 #afterimages {
-  width:70%;
-  float:right;
-  padding-right:100px;
+    width:70%;
+    float:right;
 }
 </style>
