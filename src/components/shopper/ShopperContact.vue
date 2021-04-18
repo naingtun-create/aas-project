@@ -1,7 +1,6 @@
 <template>
 <div id="contactform">
   <shopper-header></shopper-header>
-    <h3 id="title">Support your local eco-friendly products!</h3>
     <div id='thankyou'>
       <img id="photo" src='../../assets/Thankyou.jpg'><br><br>
       <p> Dear {{ shopperData.fullname }}, we hope to hear any issues that you may have. </p>
@@ -104,13 +103,6 @@ export default {
   width: 45%;
   margin-top:100px;
   margin-right:50px;
-}
-#title{
-  font-weight: bold;
-  font-size:30px;
-  font-family: 'Nunito';
-  padding-top:30px;
-  color:black;
 }
 label {
   float: left;
