@@ -131,6 +131,7 @@ export default {
   height: auto;
   float:left;
   text-align: left;
+  width:100%;
 }
 li {
   margin:30px;
