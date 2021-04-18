@@ -2,7 +2,11 @@
 <div id="contactform">
   <company-header></company-header>
     <h3 id="title">Support your local eco-friendly products!</h3>
-    <div class="container">
+    <div id='thankyou'>
+      <img id="photo" src='../../assets/Thankyou.jpg'><br><br>
+      <p> Dear {{ companyData[0].companyname }}, we hope to hear any issues that you may have. </p>
+    </div>      
+      <div class="container">
         <form @submit.prevent="sendEmail">
             <label>Name</label>
             <input
@@ -32,6 +36,8 @@
 </template>
 
 <script>
+import db from '../../firebase.js';
+import firebase from "firebase";
 import emailjs from 'emailjs-com';
 import CompanyHeader from './CompanyHeader.vue';
 
@@ -44,19 +50,35 @@ export default {
         .then((result) => {
             console.log('SUCCESS!', result.status, result.text);
             alert("Email sent! We will get back to you within 3 working days.")
-            this.$router.push("/");
         }).catch((error => {
           console.log('FAILED...', error);
         }))
+        location.reload();
 
-    }
+    },
+    fetchData: async function() {
+      var user = firebase.auth().currentUser;
+      var k = user.uid;
+      await db.collection("company").doc(k).get().then((doc) => {
+        var data = {};
+        data = doc.data();
+        this.companyData.push(data);
+      })
+    },
   },
   data() {
       return {
-          name:'',
-          email:'',
-          message:'',
+        id:"",
+        companyData:[],
+        name:'',
+        email:'',
+        message:'',
       }
+  },
+  created() {
+    var user = firebase.auth().currentUser;
+    this.id = user.uid;
+    this.fetchData()
   },
   name:'ContactUs'
 }
@@ -78,14 +100,15 @@ export default {
   box-sizing: border-box;
 }
 .container {
-  display: block;
+  float:right;
   margin:auto;
   text-align: center;
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-  width: 50%;
+  width: 45%;
   margin-top:100px;
+  margin-right:50px;
 }
 #title{
   font-weight: bold;
@@ -97,7 +120,14 @@ export default {
 label {
   float: left;
 }
-
+#thankyou{
+  margin-top:100px;
+  width:50%;
+  float:left;
+}
+#photo{
+  width:80%
+}
 input[type=text], [type=email], textarea {
   width: 100%;
   padding: 12px;
