@@ -2,6 +2,10 @@
 <div id="contactform">
   <shopper-header></shopper-header>
     <h3 id="title">Support your local eco-friendly products!</h3>
+    <div id='thankyou'>
+      <img id="photo" src='../../assets/Thankyou.jpg'><br><br>
+      <p> Dear {{ shopperData.fullname }}, we hope to hear any issues that you may have. </p>
+    </div>
     <div class="container">
         <form @submit.prevent="sendEmail">
             <label>Name</label>
@@ -32,6 +36,8 @@
 </template>
 
 <script>
+import db from '../../firebase.js';
+import firebase from "firebase";
 import emailjs from 'emailjs-com';
 import ShopperHeader from './ShopperHeader.vue';
 
@@ -49,15 +55,26 @@ export default {
           console.log('FAILED...', error);
         }))
 
-    }
+    },
+    fetchItems:function(){
+      db.collection("shoppers").doc(this.id).get().then((doc) => {
+        this.shopperData = doc.data();
+          });
+    },
   },
   data() {
       return {
+          id: "",
+          shopperData: [],
           name:'',
           email:'',
           message:'',
       }
   },
+  created(){
+    var user = firebase.auth().currentUser;
+    this.id = user.uid;
+    this.fetchItems()},
   name:'ContactUs'
 }
 </script>
@@ -78,14 +95,15 @@ export default {
   box-sizing: border-box;
 }
 .container {
-  display: block;
+  float:right;
   margin:auto;
   text-align: center;
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-  width: 50%;
+  width: 45%;
   margin-top:100px;
+  margin-right:50px;
 }
 #title{
   font-weight: bold;
@@ -96,6 +114,14 @@ export default {
 }
 label {
   float: left;
+}
+#thankyou{
+  margin-top:100px;
+  width:50%;
+  float:left;
+}
+#photo{
+  width:80%
 }
 
 input[type=text], [type=email], textarea {
