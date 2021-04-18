@@ -4,8 +4,9 @@
         <ul> 
             <div class="logo"> All About Sustainability</div>
                 <div id="header">
-                    <v-btn plain rounded color="black" class="ma-2" dark v-on:click="$router.push({ path:'/contactform'})">
+                    <v-btn plain rounded color="black" class="ma-2" dark v-on:click="$router.push({ path:'/shopper/shoppercontact'})">
                         <div id='contact'>Contact Us</div>
+                        <v-icon color="black" plain dark right>mdi-email</v-icon>
                     </v-btn>
                 </div>
         </ul>

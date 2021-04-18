@@ -16,6 +16,7 @@ import ShopperSignUpPage from './components/shopper/ShopperSignUpPage.vue'
 import ShopperPurchaseHistory from './components/shopper/ShopperPurchaseHistory.vue'
 import ProfilePage from './components/shopper/ProfilePage.vue'
 import Activities from './components/shopper/Activities.vue'
+import ShopperContact from './components/shopper/ShopperContact.vue'
 import ProductPage from './components/shopper/ProductPage.vue'
 import PhysicalStore from './components/shopper/PhysicalStore.vue'
 import OnlineMarketplace from './components/shopper/OnlineMarketplace.vue'
@@ -39,6 +40,7 @@ export default [
     { path: '/shopper/physicalstore', component: PhysicalStore},
     { path: '/shopper/onlinemarketplace', component: OnlineMarketplace},
     { path: '/shopper/activities', component: Activities},
+    { path: '/shopper/shoppercontact', component: ShopperContact},
     { path: '/shopper/product/:id', name: 'product', component: ProductPage, props: true },
     { path: '/shopper/purchasehistory', component: ShopperPurchaseHistory},
     { path: '/shopper/viewcompany/:id', name: 'viewCompanyPage', component: ViewCompanyPage, props: true },
