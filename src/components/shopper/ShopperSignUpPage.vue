@@ -70,52 +70,57 @@ export default {
     name: "Register",
     data() {
         return {
-            fullName: "",
-            email: "",
-            password: "",
-            phoneNumber: "",
-            address: "",
-            postalCode: "",
-            unitNo: "",
+            fullName: null,
+            email: null,
+            password: null,
+            phoneNumber: null,
+            address: null,
+            postalCode: null,
+            unitNo: null,
             value: String,
         };
     },
     methods: {
-        register() {
-            firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.email, this.password)
-            .then(() => {
-                const user = firebase.auth().currentUser;
-                user
-                .updateProfile({
-                    displayName: this.fullName,
-                })
-                .then(() => {
-                    db.collection("shoppers")
-                    .doc(user.uid)
-                    .set({
-                        fullname: this.fullName,
-                        email: this.email,
-                        phoneNumber: this.phoneNumber,
-                        address: this.address,
-                        postalCode: this.postalCode,
-                        unitNo: this.unitNo,
-                        profilePic: ""
-                    });
-                })
-                .then(() => {
-                    alert("Account Created Successfully!");
-                    this.$router.push("shopperlogin");
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
+        register: async function() {
+            if (this.fullName == null ||this.email == null || this.password == null || this.phoneNumber == null ||
+                this.address == null || this.postalCode == null || this.unitNo == null ) {                
+                alert("Please fill up all the fields")
+            } else {
+                await firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(this.email, this.password)
+                    .then(() => {
+                        const user = firebase.auth().currentUser;
+                        user
+                        .updateProfile({
+                            displayName: this.fullName,
+                        })
+                        .then(() => {
+                            db.collection("shoppers")
+                            .doc(user.uid)
+                            .set({
+                                fullname: this.fullName,
+                                email: this.email,
+                                phoneNumber: this.phoneNumber,
+                                address: this.address,
+                                postalCode: this.postalCode,
+                                unitNo: this.unitNo,
+                                profilePic: ""
+                            });
+                        })
+                        .then(() => {
+                            alert("Account Created Successfully!");
+                            this.$router.push("shopperlogin");
+                        })
+                        .catch((error) => {
+                            alert(error.message);
+                        });
 
-            })
-            .catch((error) => {
-                alert(error.message);
-            });
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            }
         },
     },
 };

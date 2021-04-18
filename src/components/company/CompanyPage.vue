@@ -5,7 +5,7 @@
             <p id="title">{{companyData[0].companyname}}</p>
             <div id="heading">            
                 <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
-                    <template v-slot:default="dialog">
+                    <template>
                         <v-card>
                             <v-toolbar color="#4ca08b" dark>Upload Company's Profile Image</v-toolbar>
                             <br/>
@@ -23,8 +23,8 @@
                                 <img id='profilepic' v-show="imageURL != ''" :src="imageURL" height="150"/>
                             </v-card-text>
                             <v-card-actions class="justify-end">
-                            <v-btn text @click="uploadImage">Upload</v-btn>
-                            <v-btn text @click="dialog.value = false">Close</v-btn>
+                            <v-btn text v-on:click.once="uploadImage">Upload</v-btn>
+                            <v-btn text v-on:click="close">Close</v-btn>
                             </v-card-actions>
                         </v-card>
                     </template>
@@ -98,10 +98,9 @@ export default {
     },
     methods: {
         close: function() {
+            this.dialog = false;
             this.imageURL = '';
             this.image = [];
-            this.dialog = false;
-            this.window.location.reload();
         },
         closeUpdateDialog: function() {
             this.editDialog = false;
@@ -123,18 +122,17 @@ export default {
                     };
                     await storageRef.updateMetadata(newMetadata)
                     await storageRef.getDownloadURL().then( async function(url) {
-                        await db.collection("company")
-                        .doc(k)
-                        .update({
+                        await db.collection("company").doc(k).update({
                             "profilePic" : url.toString()
+                        }).then(
+                            alert("Uploaded Successfully! Please wait, while we refresh your page!"),
+                            await new Promise((resolve) => setTimeout(resolve, 1000)),
+                            location.reload(),
+                        ).catch( e => {
+                            console.log(e)
                         })
-                        console.log(url)         
-                    }).then(
-                        alert("Uploaded Successfully! Please refresh the page to see your new profile pic!"),
-                        this.close()
-                    ).catch (e => {
-                        console.log(e)
-                    });
+    
+                    })
                 } catch (e) {
                 console.log(e);
                 }
