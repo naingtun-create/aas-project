@@ -3,7 +3,12 @@
     <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
     <ul> 
       <div class="logo">All About Sustainability</div>
-      <p id='storeacc'>(Company Account)</p>
+        <div id="header">
+          <v-btn plain rounded color="black" class="ma-2" dark v-on:click="$router.push({ path:'/company/companycontact'})">
+            <div id='contact'>Contact Us</div>
+            <v-icon color="black" plain dark right>mdi-email</v-icon>
+          </v-btn>
+        </div>
     </ul>
     <div id="links">
       <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
@@ -71,6 +76,17 @@ export default {
 }
 .btnroutes {
   font-size:10px;
+}
+#header {
+    display:flex;
+    margin-top:-55px;
+    margin-left:90px;
+}
+#contact {
+    color:black;
+    font-family:Nunito;
+    font-weight:bold;
+    font-size:14px;
 }
 #buttoncolour {
   font-family: Nunito;

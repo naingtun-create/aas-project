@@ -7,6 +7,7 @@ import CompanyPage from './components/company/CompanyPage.vue'
 import CompanyProducts from './components/company/CompanyProducts.vue'
 import CompanyActivities from './components/company/CompanyActivities.vue'
 import CompanyOrders from './components/company/CompanyOrders.vue'
+import CompanyContact from './components/company/CompanyContact.vue'
 import CompanySignUpPage from './components/company/CompanySignUpPage.vue'
 import CompanyLoginPage from './components/company/CompanyLoginPage.vue'
 import cProductPage from './components/company/CompanyProductPage.vue'
@@ -48,6 +49,7 @@ export default [
     { path: '/company/companypage', component: CompanyPage},
     { path: '/company/companyproducts', component: CompanyProducts},
     { path: '/company/companyactivities', component: CompanyActivities},
+    { path: '/company/companycontact', component: CompanyContact},
     { path: '/company/companyorders', component: CompanyOrders},
     { path: '/company/product/:id', name: 'companyProduct', component: cProductPage, props: true },
     
