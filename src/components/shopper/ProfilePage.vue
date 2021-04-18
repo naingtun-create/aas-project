@@ -210,7 +210,7 @@ export default {
                         })
                         console.log(url)      
                     }).then(
-                        alert("Uploaded Successfully! Please refresh the page!"),
+                        alert("Uploaded Successfully! Please refresh the page to see your new profile pic!"),
                         this.close(),
                     ).catch (e => {
                         console.log(e)
