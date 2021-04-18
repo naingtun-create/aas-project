@@ -361,7 +361,7 @@ p{
   padding:50px;
   margin-top:-50px;
   border-radius: 25px;
-  border: 3px solid white;
+  border: 3px solid #4ca08b;
   border-radius: 10px;
   background-color: #4ca08b;
 }
@@ -390,6 +390,7 @@ p{
 }
 #buttonsign {
   background-color:#4ca08b;
+  color:white;
 }
 .row:after {
   content: "";
@@ -417,11 +418,11 @@ li {
   margin-top:-20px;
 }
 #initials{
-  border: 5px solid #4ca08b;
+  border: 5px solid black;
   border-radius: 50%;
   text-align:center;
   font-size:100px;
-  color:#4ca08b;
+  color:black;
   margin-top:-30px;
   width:130px;
   height:130px;
@@ -477,7 +478,7 @@ button {
 }
 #name{
   text-align:left;
-  color: #4ca08b;
+  color: black;
   font-family: 'Nunito';
   font-weight: bold;
   font-size: 40px;
@@ -486,7 +487,7 @@ button {
   height:170px;
 }
 #mycontactdetails{
-  color:#4ca08b;
+  color:black;
   text-align:left;
   padding-left:100px;
 }

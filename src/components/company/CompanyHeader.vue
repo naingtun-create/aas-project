@@ -6,24 +6,24 @@
       <p id='storeacc'>(Company Account)</p>
     </ul>
     <div id="links">
-      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
         <div id="buttoncolour">My Activities</div>
         <v-icon dark right>mdi-sale</v-icon> 
       </v-btn>
-      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
         <div id="buttoncolour">My Products</div>
         <v-icon dark right>mdi-storefront</v-icon>
       </v-btn>
-      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
         <div id="buttoncolour">My Orders</div>
         <v-icon dark right>mdi-receipt</v-icon>
       </v-btn>
-      <v-btn color="#2DB4B4" class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" dark>
         <div id="buttoncolour">Profile</div>
         <v-icon dark right>mdi-account</v-icon>
       </v-btn>
-      <v-btn class="ma-2" color="red" v-on:click="logout()" dark><div id="buttoncolour">Sign Out</div>
-      <v-icon dark right>mdi-account-remove</v-icon>
+      <v-btn plain rounded color="red" class="ma-2" v-on:click="logout()" dark><div id="buttoncoloursign">Sign Out</div>
+      <v-icon color="#9c0707c0" dark right>mdi-account-remove</v-icon>
       </v-btn>
     </div>
   </div>
@@ -74,6 +74,16 @@ export default {
 }
 #buttoncolour {
   font-family: Nunito;
+  color:white;
+  font-weight:bold;
+  font-size:14px;
+}
+#buttoncoloursign {
+    font-family:Nunito;
+    color:#9c0707c0;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:-20px;
 }
 #links {
   float:left;
