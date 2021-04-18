@@ -101,6 +101,7 @@ export default {
                         address: this.address,
                         postalCode: this.postalCode,
                         unitNo: this.unitNo,
+                        profilePic: ""
                     });
                 })
                 .then(() => {

@@ -177,7 +177,7 @@ export default {
             this.uploadDialog = false;
             this.editDialog = false;
             this.reset();
-            location.reload();
+            window.location.reload();
         },
         uploadImage: async function() {
             var k = this.id;
@@ -203,8 +203,7 @@ export default {
                             "profilePic" : url.toString()
                         }).catch( e => {
                             console.log(e)
-                        })
-                        console.log(url)      
+                        })  
                     }).then(
                         alert("Uploaded Successfully!"),
                         this.close() 

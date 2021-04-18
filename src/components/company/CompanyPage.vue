@@ -117,6 +117,7 @@ export default {
                     }
                     await storageRef.put(this.image)
                     var _extension = this.image.name.split(".")[1]
+                    
                     var newMetadata = {
                         contentType: 'image/' + _extension
                     };
@@ -126,7 +127,8 @@ export default {
                         .doc(k)
                         .update({
                             "profilePic" : url.toString()
-                        })         
+                        })
+                        console.log(url)         
                     }).then(
                         this.close(),
                         alert("Uploaded Successfully!")
