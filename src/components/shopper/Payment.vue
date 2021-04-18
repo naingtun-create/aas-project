@@ -29,7 +29,9 @@
             <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
                 <template v-slot:default="dialog">
                     <v-card>
+                        <div id="break">
                         <br><br>
+                        </div>
                         <v-toolbar id='invoicetitle' color="#4ca08b" dark>How to Get Invoice Number</v-toolbar>
                         <br>
                         <v-card-text>
@@ -220,6 +222,9 @@ li {
   margin-top:2.2vw;
   font-family: 'Nunito';
   font-size: 0.55vw;
+}
+#break {
+    background-color:#4ca08b;
 }
 button {
   height: 40px;
