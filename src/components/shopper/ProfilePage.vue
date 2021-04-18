@@ -40,7 +40,7 @@
             </v-dialog> <br><br><br>
 
             <div id="boxleft">
-                <h2> Welcome to All About Sustainability.</h2><br><br><br><br>
+                <h2> Welcome to All About Sustainability, {{ shopperData.fullname }}.</h2><br><br><br><br>
                 <p> "One-stop portal for eco-friendly stores"</p>
                 <ul>
                     <li>
