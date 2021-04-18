@@ -1,80 +1,82 @@
 <template>
     <div id = "OnlineMarketPlace">
         <shopper-header></shopper-header>
-        <h3 id="title">Support your local eco-friendly products!</h3>
-        <div id='search'>
-            <v-toolbar floating width="400">   
-                <v-text-field  single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
-            </v-toolbar>
-        </div>   
-        <div id='nav'>  
-            <v-card>
-                <v-card-title id="categories">Categories</v-card-title>
-                <v-container id="info" fluid>
-                    <v-checkbox
-                        label="All" v-model="selectedCategories"
-                        value="All" hide-details dense
-                    ></v-checkbox>
-                    <v-checkbox
-                        label="ACCESSORY" v-model="selectedCategories"
-                        value="ACCESSORY" hide-details dense
-                    ></v-checkbox>
-                    <v-checkbox
-                        label="CLEANING" v-model="selectedCategories"
-                        value="CLEANING" hide-details dense
-                    ></v-checkbox>
-                    <v-checkbox
-                        label="CLOTHING" v-model="selectedCategories"
-                        value="CLOTHING" hide-details dense
-                    ></v-checkbox>
-                    <v-checkbox
-                        label="FOOD and DRINK" v-model="selectedCategories"
-                        value="FOOD and DRINK" hide-details dense
-                    ></v-checkbox>
-                </v-container>
-                <br>
-                <v-divider></v-divider>
-                <v-card-title id="categories">Sort By Price</v-card-title>
-                <v-container class="pt-0" fluid>
-                    <v-checkbox id="info"
-                        label="Descending"
-                        v-model="sortPrice"
-                        hide-details
-                        value = "Descending"
-                        dense
-                        @click = "sortByPrice"
-                    ></v-checkbox>
-                    <v-checkbox
-                        label="Ascending"
-                        v-model="sortPrice"
-                        hide-details
-                        value = "Ascending"
-                        dense
-                        @click = "sortByPrice"
-                    ></v-checkbox>
-                </v-container>
-            </v-card>
-        </div>
-              
-        <div id="content">          
-            <v-container fluid>
-                <v-layout>
-                    <ul>
-                        <li v-for="item in filteredProduct" :key="item.id">
-                            <v-card class="mx-auto my-12" width="230" height = "370" color="#EBFFED">
-                                <v-img height="200" v-bind:src="item.image"></v-img>
-                                <h1 id="productTitle">{{item.title}}</h1>                                
-                                <p id='name'>{{item.companyname}}<br></p>
-                                <p id='category'>Category: {{item.category}} </p>  
-                                <p id="price" class="my-4 subtitle-1">
-                                    <b>$ {{item.price}}</b>
-                                    <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> 
-                                </p>
-                            </v-card>
-                        </li>                
-                    </ul>        
-                </v-layout> 
-            </v-container>  
+        <div id='contents'>
+            <h3 id="title">Support your local eco-friendly products!</h3>
+            <div id='search'>
+                <v-toolbar floating width="400">   
+                    <v-text-field  single-line hide-details label="Search for products" prepend-icon="mdi-magnify" v-model="search"></v-text-field>
+                </v-toolbar>
+            </div>   
+            <div id='nav'>  
+                <v-card>
+                    <v-card-title id="categories">Categories</v-card-title>
+                    <v-container id="info" fluid>
+                        <v-checkbox
+                            label="All" v-model="selectedCategories"
+                            value="All" hide-details dense
+                        ></v-checkbox>
+                        <v-checkbox
+                            label="ACCESSORY" v-model="selectedCategories"
+                            value="ACCESSORY" hide-details dense
+                        ></v-checkbox>
+                        <v-checkbox
+                            label="CLEANING" v-model="selectedCategories"
+                            value="CLEANING" hide-details dense
+                        ></v-checkbox>
+                        <v-checkbox
+                            label="CLOTHING" v-model="selectedCategories"
+                            value="CLOTHING" hide-details dense
+                        ></v-checkbox>
+                        <v-checkbox
+                            label="FOOD and DRINK" v-model="selectedCategories"
+                            value="FOOD and DRINK" hide-details dense
+                        ></v-checkbox>
+                    </v-container>
+                    <br>
+                    <v-divider></v-divider>
+                    <v-card-title id="categories">Sort By Price</v-card-title>
+                    <v-container class="pt-0" fluid>
+                        <v-checkbox id="info"
+                            label="Descending"
+                            v-model="sortPrice"
+                            hide-details
+                            value = "Descending"
+                            dense
+                            @click = "sortByPrice"
+                        ></v-checkbox>
+                        <v-checkbox
+                            label="Ascending"
+                            v-model="sortPrice"
+                            hide-details
+                            value = "Ascending"
+                            dense
+                            @click = "sortByPrice"
+                        ></v-checkbox>
+                    </v-container>
+                </v-card>
+            </div>
+                
+            <div id="content">          
+                <v-container fluid>
+                    <v-layout>
+                        <ul>
+                            <li v-for="item in filteredProduct" :key="item.id">
+                                <v-card class="mx-auto my-12" width="230" height = "370" color="#EBFFED">
+                                    <v-img height="200" v-bind:src="item.image"></v-img>
+                                    <h1 id="productTitle">{{item.title}}</h1>                                
+                                    <p id='name'>{{item.companyname}}<br></p>
+                                    <p id='category'>Category: {{item.category}} </p>  
+                                    <p id="price" class="my-4 subtitle-1">
+                                        <b>$ {{item.price}}</b>
+                                        <button id='rightBtn' v-on:click="route(item.id)">Learn More</button> 
+                                    </p>
+                                </v-card>
+                            </li>                
+                        </ul>        
+                    </v-layout> 
+                </v-container>  
+            </div>
         </div>
     </div>
 </template>
@@ -124,9 +126,9 @@ export default {
             var finalList = []
             finalList = this.items
             if(this.search != "" && this.selectedCategories != "All"){
-                finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase()) && (item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase()));})
+                finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase()) && (item.title.toLowerCase().match(this.search.toLowerCase()) || item.companyname.toLowerCase().match(this.search.toLowerCase()));})
             } else if(this.search != ""){
-                finalList = this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.company.toLowerCase().match(this.search.toLowerCase());})
+                finalList = this.items.filter((item) => {return item.title.toLowerCase().match(this.search.toLowerCase()) || item.companyname.toLowerCase().match(this.search.toLowerCase());})
             } else if(this.selectedCategories != "All"){
                 finalList = this.items.filter((item) => {return item.category.toLowerCase().match(this.selectedCategories.toLowerCase())});
             } 
@@ -145,16 +147,20 @@ h1 {
   font-weight: bold;
   font-size:30px;
   font-family: 'Nunito';
-  padding-top:30px
+  padding-top:30px;
+}
+#contents{
+    padding-top:100px;
 }
 #nav {
   float: left;
+  position:fixed;
   width: 20%;
   padding: 30px; 
-  padding-top:100px;
   margin-left:10px;
   font-family: 'Nunito';
   font-size: 15px;
+  margin-top:-70px;
 }
 #content {
   float: right;

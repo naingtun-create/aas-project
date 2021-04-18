@@ -17,7 +17,7 @@
                                     <v-btn id="delete" class="ml-2 mt-5" color = "white" outlined x-large @click="deleteItem(item.cartID, item.id, item.totalPrice)">Delete</v-btn>    
                                 </div>
                             </div><br>
-                            <v-divider width="60%"></v-divider>     
+                            <v-divider width="50%"></v-divider>     
                         </li>               
                     </ul>
                     <p id="subtotal" > SUBTOTAL: ${{this.subtotal}}</p>
@@ -29,6 +29,9 @@
             <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent >
                 <template v-slot:default="dialog">
                     <v-card>
+                        <div id="break">
+                        <br><br>
+                        </div>
                         <v-toolbar id='invoicetitle' color="#4ca08b" dark>How to Get Invoice Number</v-toolbar>
                         <br>
                         <v-card-text>
@@ -61,7 +64,7 @@
             <p>Pay the required amount as stated in the subtotal</p>
             <div class='rowC'>
                 <NewPaymentForm  v-bind:paidPrice = "subtotal" v-bind:paidItems = "items"></NewPaymentForm>
-                <button v-on:click="toggleUploadDialog">How to Get Invoice Number</button>
+                <v-btn id='button2' color = "#4ca08b" v-on:click="toggleUploadDialog">How to Get Invoice Number</v-btn>
             </div>
         </div>
     </div>
@@ -205,6 +208,24 @@ li {
   margin: 10px;
   width:1300px;
 }
+#button2 {
+  height: 40px;
+  width:30%;
+  border-radius: 10px;
+  font-weight: bold;
+  color:white;
+  background-color:#4ca08b;
+  border: 10px solid #4ca08b;
+  border-width: 1px;
+  text-align:center;
+  margin-left:1.8vw;
+  margin-top:2.2vw;
+  font-family: 'Nunito';
+  font-size: 0.55vw;
+}
+#break {
+    background-color:#4ca08b;
+}
 button {
   height: 40px;
   width:20%;
@@ -222,21 +243,19 @@ button {
 }
 nav {
   float: left;
-  width: 60%;
+  width: 55%;
   padding:15px; 
   height: 1000px; 
-  margin-top:10px;
+  padding-top:100px;
   margin-left:10px;
 }
 #PaymentPage{
     height:auto;
 }
-#content {
+#contents {
   float: right;
-  padding: 15px; 
-  width: 45%;
-  background-color: #FFFAF0;
-  height: 1000px; 
+  width: 40%;
+  padding-top:100px;
 }  
 p{
   font-family:"Nunito";

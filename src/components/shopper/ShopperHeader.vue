@@ -6,33 +6,33 @@
             <p id='shopperacc'> (Shopper Account) </p>
         </ul>
         <div id="links">
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" dark>
+            <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/shopper/physicalstore'})" dark>
                 <div id="buttoncolour">Nearby</div>
-                <v-icon dark right>mdi-store</v-icon>
+                <v-icon color="white" plain dark right>mdi-store</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/activities'})" dark>
+            <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/shopper/activities'})" dark>
                 <div id="buttoncolour">Activities</div>
-                <v-icon dark right>mdi-lifebuoy</v-icon>
+                <v-icon color="white" dark right>mdi-lifebuoy</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
+            <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/shopper/onlinemarketplace'})" dark>
                 <div id="buttoncolour">Marketplace</div>
-                <v-icon dark right>mdi-storefront</v-icon>
+                <v-icon color="white" dark right>mdi-storefront</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})" dark>
+            <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/shopper/payment'})" dark>
                 <div id="buttoncolour">Cart</div>
-                <v-icon dark right>mdi-cart</v-icon>
+                <v-icon color="white" dark right>mdi-cart</v-icon>
             </v-btn>
 
-            <v-btn class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" dark>
+            <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/shopper/profile'})" dark>
                 <div id="buttoncolour">Profile</div>
-                <v-icon dark right>mdi-account</v-icon>
+                <v-icon color="white" light right>mdi-account</v-icon>
             </v-btn>          
 
-            <v-btn class="ma-2" color="red" v-on:click="logout" dark><div id="buttoncolour">Sign Out</div>
-                <v-icon dark right>mdi-account-remove</v-icon>
+            <v-btn plain rounded class="ma-2" color="red" v-on:click="logout" dark><div id="buttoncoloursign">Sign Out</div>
+                <v-icon color="#9c0707c0" dark right>mdi-account-remove</v-icon>
             </v-btn>
 
         </div>
@@ -59,13 +59,16 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
   display: flex;
-  padding-top: 0px;
   color:white;
-  background-color:#235347;
+  background-color:#079C72;
   height:80px;
   font-size:35px;
-  padding-top: 0px;
+  min-width:1400px;
 }
 .logo {
   height:80px;
@@ -83,13 +86,23 @@ export default {
   display:inline-flex;
   font-size:20px;
   width:40%;
-  margin-left:-100px;
+  margin-left:-125px;
 }
 #buttoncolour {
   font-family: Nunito;
+  color:white;
+  font-weight:bold;
+  font-size:14px;
+}
+#buttoncoloursign {
+    font-family:Nunito;
+    color:#9c0707c0;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:-20px;
 }
 #shopperacc{
-  color:#a0afa0;
+  color:#3d3838;
   font-size:20px;
   margin-top:-40px;
   margin-left:50px;

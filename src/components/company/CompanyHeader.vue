@@ -3,27 +3,27 @@
     <img src="https://pics.freeicons.io/uploads/icons/png/18453753581581665319-512.png" class="logo">
     <ul> 
       <div class="logo">All About Sustainability</div>
-      <p id='storeacc'>(Store Account)</p>
+      <p id='storeacc'>(Company Account)</p>
     </ul>
     <div id="links">
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companyactivities'})" dark>
         <div id="buttoncolour">My Activities</div>
         <v-icon dark right>mdi-sale</v-icon> 
       </v-btn>
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companyproducts'})" dark>
         <div id="buttoncolour">My Products</div>
         <v-icon dark right>mdi-storefront</v-icon>
       </v-btn>
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companyorders'})" dark>
         <div id="buttoncolour">My Orders</div>
         <v-icon dark right>mdi-receipt</v-icon>
       </v-btn>
-      <v-btn class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" dark>
+      <v-btn plain rounded color="white" class="ma-2" v-on:click="$router.push({ path:'/company/companypage'})" dark>
         <div id="buttoncolour">Profile</div>
         <v-icon dark right>mdi-account</v-icon>
       </v-btn>
-      <v-btn class="ma-2" color="red" v-on:click="logout()" dark><div id="buttoncolour">Sign Out</div>
-      <v-icon dark right>mdi-account-remove</v-icon>
+      <v-btn plain rounded color="red" class="ma-2" v-on:click="logout()" dark><div id="buttoncoloursign">Sign Out</div>
+      <v-icon color="#9c0707c0" dark right>mdi-account-remove</v-icon>
       </v-btn>
     </div>
   </div>
@@ -49,14 +49,17 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap');
 #navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
   display: flex;
-  padding-top: 0px;
   color:white;
-  background-color:#235347;
+  background-color:#079C72;
   height:80px;
   font-size:35px;
-  padding-top: 0px;
   font-family: "Sanchez";
+  min-width:1400px;
 }
 .logo {
   height:80px;
@@ -71,6 +74,16 @@ export default {
 }
 #buttoncolour {
   font-family: Nunito;
+  color:white;
+  font-weight:bold;
+  font-size:14px;
+}
+#buttoncoloursign {
+    font-family:Nunito;
+    color:#9c0707c0;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:-20px;
 }
 #links {
   float:left;
@@ -83,7 +96,7 @@ export default {
   margin-left:-100px;
 }
 #storeacc {
-  color:#a0afa0;
+  color:#3d3838;
   font-size:20px;
   margin-top:-40px;
   margin-left:50px;

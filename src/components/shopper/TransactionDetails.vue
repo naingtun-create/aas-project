@@ -8,12 +8,12 @@
             <template v-slot:activator="{ on, attrs }">
                 <button v-bind="attrs" v-on="on"  dark>
                     View More Details
-                    <v-icon dark right>mdi-account-details</v-icon>
+                    <v-icon right>mdi-account-details</v-icon>
                 </button>
             </template>
             <template v-slot:default="dialog">
                 <v-card width="100%">
-                    <v-toolbar color="#c9AA88" dark>{{"Invoice: " + purchase.PaymentInvoice + "'s Details"}}</v-toolbar>
+                    <v-toolbar color="#4ca08b" dark>{{"Invoice: " + purchase.PaymentInvoice + "'s Details"}}</v-toolbar>
                     <v-card-text>
                         <v-container>
                             <ul>
@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap");
 ul {
   display: block;
   list-style-type: none;
@@ -74,19 +75,20 @@ li {
 button {
   height: 70px;
   width: 200px;
-  background-color: #c9AA88;
+  background-color: white;
   border-radius: 10px;
   font-weight: bold;
-  color:white;
+  color:black;
   border-width: 1px;
-  font-family: 'Montserrat', sans-serif;
+  border: 2px solid #4ca08b;
+  font-family: Nunito;
   font-size: 15px;
 }
 h1 {
   color: #c9AA88;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Nunito;
   font-weight: bolder;
-  font-size: 25px;
+  font-size: 18px;
   margin-left:50px;
   text-align:center;
   line-height: 150%;

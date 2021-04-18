@@ -10,7 +10,7 @@
             <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template v-slot:default="dialog">
                     <v-card>
-                        <v-toolbar color="#c9AA88" dark>Upload Your Profile Image</v-toolbar>
+                        <v-toolbar color="#4ca08b" dark>Upload Your Profile Image</v-toolbar>
                         <br>
                         <v-card-text>
                             <v-file-input
@@ -40,18 +40,19 @@
             </v-dialog> <br><br><br>
 
             <div id="boxleft">
-                <h2> Welcome to All About Sustainability.</h2><br><br><br><br>
+                <h2> Welcome to All About Sustainability, {{ shopperData.fullname }}.</h2><br><br><br><br>
                 <p> "One-stop portal for eco-friendly stores"</p>
                 <ul>
                     <li>
                         <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
                             <template v-slot:default="dialog">
                                 <v-card>
-                                    <v-toolbar color="#c9AA88" dark>Update your Personal Details</v-toolbar>
+                                    <v-toolbar color="#4ca08b" dark>Update your Personal Details</v-toolbar>
                                     <br>
                                     <v-card-text>
                                         <v-text-field label="Address" v-model="updateAddress"></v-text-field>
                                         <v-text-field label="Postal Code" v-model="updatePostalCode"></v-text-field>
+                                        <v-text-field label="Unit Number" v-model="updateUnitNo"></v-text-field>
                                         <v-text-field label="Phone Number" v-model="updatePhone"></v-text-field>
                                     </v-card-text>
                                     <v-card-actions class="justify-end">
@@ -90,13 +91,15 @@
                     <ul>
                         <li><v-icon size=20>mdi-email</v-icon></li>
                         <li><v-icon size=20>mdi-map-marker</v-icon></li>
-                        <li><v-icon size=20>mdi-phone</v-icon></li>
+                        <li id="phone"><v-icon size=20>mdi-phone</v-icon></li>
                     </ul>
                 </div>
                 <div id="details">
                     <ul>
                         <li>{{shopperData.email}}</li>
-                        <li>{{shopperData.address + ", Singapore " + shopperData.postalCode}}</li>
+                        <li>{{shopperData.address + ", Singapore " + shopperData.postalCode }}<br>
+                            <span>#{{shopperData.unitNo}}</span>
+                        </li>
                         <li v-show="shopperData.phoneNumber">{{ shopperData.phoneNumber }}</li>
                     </ul>
                 </div>
@@ -111,7 +114,8 @@
                     <v-list-item v-for="(purchase,id) in purchaseHistory" :key="id">
                         <v-list width="100%" subheader>
                             <div id="leftdetails">
-                                <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice + " |  " + purchase.Date}}</v-subheader>
+                                <v-subheader id="invoice">Invoice Number: {{purchase.PaymentInvoice}}</v-subheader>
+                                <v-subheader id="date">Date: {{purchase.Date}}</v-subheader>                                
                                 <v-list-item v-for="(product,id) in purchase.Products" :key="id"> 
                                     <div id="invoice">
                                         <v-list-item-avatar tile size="100px"> 
@@ -156,6 +160,7 @@ export default {
             updateAddress: "",
             updatePhone: "",
             updatePostalCode: "",
+            updateUnitNo: "",
             uploadDialog: false,
             editDialog: false,
         };
@@ -175,9 +180,12 @@ export default {
         },
         close: function() {
             this.uploadDialog = false;
-            this.editDialog = false;
             this.reset();
+<<<<<<< HEAD
             window.location.reload();
+=======
+            this.window.location.reload();
+>>>>>>> aa0eb96a885ab11d5e211492831a893ff977f02e
         },
         uploadImage: async function() {
             var k = this.id;
@@ -205,8 +213,8 @@ export default {
                             console.log(e)
                         })  
                     }).then(
-                        alert("Uploaded Successfully!"),
-                        this.close() 
+                        alert("Uploaded Successfully! Please refresh the page to see your new profile pic!"),
+                        this.close(),
                     ).catch (e => {
                         console.log(e)
                     });
@@ -285,13 +293,15 @@ export default {
                 address: this.updateAddress,
                 postalCode: this.updatePostalCode,
                 phoneNumber: this.updatePhone,
+                unitNo: this.updateUnitNo
             })
             .catch((e) => {
                 console.log(e);
             });
 
             alert("Update Successful");
-            this.close();
+            this.editDialog = false;
+            location.reload();
         },
     },
     watch: {
@@ -299,6 +309,7 @@ export default {
             this.updateAddress = this.shopperData.address;
             this.updatePhone = this.shopperData.phoneNumber;
             this.updatePostalCode = this.shopperData.postalCode;
+            this.updateUnitNo = this.shopperData.unitNo;
         },
     },
     created() {
@@ -319,6 +330,7 @@ export default {
   background-repeat: no-repeat;
   height: 100%;
   padding-bottom:50px;
+  min-width:1400px;  
 }
 h1 {
   text-align: left;
@@ -334,6 +346,9 @@ h2 {
   margin-top: 35px;
   color:white;
 }
+#phone {
+    padding-top:11px;
+}
 p{
   color:black;
   font-size: 15px;
@@ -342,27 +357,28 @@ p{
 }
 #upload{
   width:150px;
-  background-color:#c9AA88;
+  background-color:#4ca08b;
+  color:white;
 }
 #boxleft {
   padding:50px;
   margin-top:-50px;
   border-radius: 25px;
-  border: 3px solid white;
+  border: 3px solid #4ca08b;
   border-radius: 10px;
-  background-color: #c9AA88;
+  background-color: #4ca08b;
 }
 #boxcontact {
   width: 90%;
   height:auto;
-  min-height:250px;
-  border: 3px solid #c9AA88;
+  min-height:280px;
+  border: 3px solid #4ca08b;
   border-radius: 10px;
 }
 #boxpayment {
   width: 90%;
   border-radius: 25px;
-  border: 3px solid #c9AA88;
+  border: 3px solid #4ca08b;
   border-radius: 10px;
   min-height: 100px;
   height: auto;
@@ -376,7 +392,8 @@ p{
   margin-left:-23px;
 }
 #buttonsign {
-  background-color:#c9AA88;
+  background-color:#4ca08b;
+  color:white;
 }
 .row:after {
   content: "";
@@ -404,11 +421,11 @@ li {
   margin-top:-20px;
 }
 #initials{
-  border: 5px solid #c9AA88;
+  border: 5px solid black;
   border-radius: 50%;
   text-align:center;
   font-size:100px;
-  color:#c9AA88;
+  color:black;
   margin-top:-30px;
   width:130px;
   height:130px;
@@ -423,7 +440,7 @@ li {
   height:30px;
   color:black;
   background-color:white;
-  border: 2px solid #c9AA88;
+  border: 2px solid #4ca08b;
 }
 #innerbutton{
   margin-top:60px;
@@ -436,12 +453,12 @@ li {
   font-family: 'Nunito';
   font-size: 0.8vw;
   border-radius: 10px;
-  border: 2px solid #c9AA88;
+  border: 2px solid #4ca08b;
 }
 button {
   height: 70px;
   width: 70%;
-  background-color:#c9AA88;
+  background-color:#4ca08b;
   border-radius: 10px;
   font-weight: bold;
   color:white;
@@ -455,14 +472,16 @@ button {
   float:left;
   width:20%;
   margin-left:60px;
+  padding-top:50px;
 }
 #right {
   float:right;
   width:70%;
+  padding-top:50px;
 }
 #name{
   text-align:left;
-  color: #c9AA88;
+  color: black;
   font-family: 'Nunito';
   font-weight: bold;
   font-size: 40px;
@@ -471,7 +490,7 @@ button {
   height:170px;
 }
 #mycontactdetails{
-  color:#c9AA88;
+  color:black;
   text-align:left;
   padding-left:100px;
 }
@@ -496,6 +515,13 @@ button {
   font-weight:bold;
   font-family: 'Nunito';
 }
+#date{
+  font-size:15px;
+  padding-left:100px;
+  font-weight:bold;
+  font-family: 'Nunito';
+  margin-top:-20px;
+}
 #purchasedetails{
   font-size:15px;
   padding-left:50px;
@@ -510,6 +536,6 @@ button {
   width:40%;
   float:right;
   padding-top:50px;
-  color:'#c9AA88';
+  color:'#4ca08b';
 }
 </style>
