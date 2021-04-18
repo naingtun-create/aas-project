@@ -8,7 +8,7 @@
                 <img id="profilepic" v-else :src="this.profileURL">
             </v-avatar>
             <v-dialog v-model="uploadDialog" transition="dialog-top-transition" max-width="600" persistent>
-                <template v-slot:default="dialog">
+                <template>
                     <v-card>
                         <v-toolbar color="#4ca08b" dark>Upload Your Profile Image</v-toolbar>
                         <br>
@@ -32,8 +32,8 @@
                             >
                         </v-card-text>
                         <v-card-actions class="justify-end">
-                            <v-btn id='upload' text @click="uploadImage">Upload</v-btn>
-                            <v-btn id='upload' text @click="dialog.value = false">Close</v-btn>
+                            <v-btn id='upload' text v-on:click="uploadImage">Upload</v-btn>
+                            <v-btn id='upload' text v-on:click="close">Close</v-btn>
                         </v-card-actions>
                     </v-card>
                 </template>
@@ -180,8 +180,8 @@ export default {
         },
         close: function() {
             this.uploadDialog = false;
-            this.reset();
-            this.window.location.reload();
+            this.imageURL = "";
+            this.image = [];
         },
         uploadImage: async function() {
             var k = this.id;
@@ -205,16 +205,16 @@ export default {
 
                         await db.collection("shoppers").doc(k).update({
                             "profilePic" : url.toString()
-                        }).catch( e => {
+                        }).then(
+                            alert("Uploaded Successfully! Please wait, while we refresh your page!"),
+                            await new Promise((resolve) => setTimeout(resolve, 1000)),
+                            location.reload(),
+                        ).catch( e => {
                             console.log(e)
                         })
-                        console.log(url)      
-                    }).then(
-                        alert("Uploaded Successfully! Please refresh the page to see your new profile pic!"),
-                        this.close(),
-                    ).catch (e => {
-                        console.log(e)
-                    });
+
+                    })
+
                 } catch (e) {
                     console.log(e);
                 }
@@ -228,10 +228,6 @@ export default {
             reader.onload = () => {
                 this.imageURL = reader.result;
             };
-        },
-        reset: function() {
-            this.imageURL = "";
-            this.image = [];
         },
         fetchData: async function() {
             await db

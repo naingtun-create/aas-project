@@ -60,8 +60,6 @@ export default {
             companyName: '',
             email: '',
             password: '',
-            image:[],
-            imageURL:'',
             description:'',
             companyWebsite: '',
             value:String,
@@ -69,37 +67,43 @@ export default {
     },
     methods: {
         register: async function()  {
-            await firebase
-                .auth()
-                .createUserWithEmailAndPassword(this.email, this.password)
-                .then( async () => {
-                    const user = firebase.auth().currentUser;
-                    user.updateProfile({
-                        displayName: this.fullName
-                    }).then( async () => {
-                        await db.collection('company').doc(user.uid).set({
-                            companyname: this.companyName,
-                            email: this.email,
-                            type: "Company",
-                            description: this.description,
-                            website: this.companyWebsite
+
+            if (this.companyName == null || this.email == null || this.password == null || this.description == null || this.companyWebsite == null) {
+                alert("Please fill up the fields!")
+            } else {
+                await firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(this.email, this.password)
+                    .then( async () => {
+                        const user = firebase.auth().currentUser;
+                        user.updateProfile({
+                            displayName: this.fullName
+                        }).then( async () => {
+                            await db.collection('company').doc(user.uid).set({
+                                companyname: this.companyName,
+                                email: this.email,
+                                type: "Company",
+                                description: this.description,
+                                website: this.companyWebsite
+                            });
+                            await firebase.auth().signOut().then(function() {
+                                console.log("Signed Up and Signed Out!");
+                            }, function(error) {
+                                console.log(error);
+                            })
+                            .then(() => {
+                                alert("Account Created Successfully!");
+                                this.$router.push("companylogin");
+                            })  
+                        }).catch(error => {
+                            alert(error.message);
                         });
-                        await firebase.auth().signOut().then(function() {
-                            console.log("Signed Up and Signed Out!");
-                        }, function(error) {
-                            console.log(error);
-                        })
-                        .then(() => {
-                            alert("Account Created Successfully!");
-                            this.$router.push("companylogin");
-                        })  
-                    }).catch(error => {
+                    })
+                    .catch(error => {
                         alert(error.message);
                     });
-                })
-                .catch(error => {
-                    alert(error.message);
-                });
+            }
+      
         },
     },
 };
