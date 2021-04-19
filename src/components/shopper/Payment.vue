@@ -150,7 +150,7 @@ export default {
                     }
                 }
               
-                this.subtotal= this.subtotal.toFixed(2)
+                this.subtotal= parseFloat(this.subtotal.toFixed(2))
                 db.collection('products').get().then(snapshot => {
                     let good = {}
                     snapshot.docs.forEach(doc => {
