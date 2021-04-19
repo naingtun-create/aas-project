@@ -12,7 +12,7 @@
                             <v-card-text>
                                 <v-file-input
                                     accept="image/*"
-                                    label="Product Image"
+                                    label="Company Picture"
                                     truncate-length="15"
                                     type="file"
                                     v-model="image"
