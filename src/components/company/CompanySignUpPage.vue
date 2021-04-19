@@ -82,7 +82,6 @@ export default {
                             await db.collection('company').doc(user.uid).set({
                                 companyname: this.companyName,
                                 email: this.email,
-                                type: "Company",
                                 description: this.description,
                                 website: this.companyWebsite
                             });
