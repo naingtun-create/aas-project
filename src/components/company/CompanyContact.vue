@@ -3,7 +3,7 @@
   <company-header></company-header>
     <div id='thankyou'>
       <img id="photo" src='../../assets/Thankyou.jpg'><br><br>
-      <p> Dear {{ companyData[0].companyname }}, we hope to hear any issues that you may have. </p>
+      <p> Dear {{companyData[0] && companyData[0].companyname }}, we hope to hear any issues that you may have. </p>
     </div>      
       <div class="container">
         <form @submit.prevent="sendEmail">
