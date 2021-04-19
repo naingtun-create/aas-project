@@ -419,9 +419,10 @@ li {
   text-align:center;
   font-size:100px;
   color:black;
-  margin-top:-30px;
+  margin-top:-50px;
   width:130px;
   height:130px;
+  line-height:100px;
   font-family: 'Nunito';
   font-weight: bold;
 }
