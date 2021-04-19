@@ -12,7 +12,7 @@
                   <LineChart></LineChart>
               </div>
           </div>
-          <h2 class="ecoh2">Latest Eco-friendly Activities</h2>
+          <h2 class="ecoh2">Latest Activities</h2>
           <v-divider></v-divider>
           <DisplayActivity></DisplayActivity>
         </div>

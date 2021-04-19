@@ -4,9 +4,9 @@
     <div id='content'>
         <h1>Our Products</h1>
         <h3>Share your products with our community!</h3>
-        <ProductDisplay></ProductDisplay>
         <NewProductForm v-bind:companyData="companyData"></NewProductForm>
-        <br/>
+        <ProductDisplay></ProductDisplay>
+        <br>
     </div>
 </div>
 </template>

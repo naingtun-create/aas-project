@@ -5,24 +5,24 @@
         <img id="arrow" src='../../assets/arrow.png'>
         <router-link id="back" to="/company/companyproducts" exact>Back to My Products</router-link>
         <br><br>
-        <p>{{this.datapacket[0].category}}<p>
-        <p id="title"> {{this.datapacket[0].title}}</p>
-        <p>{{this.datapacket[0].description}}</p>
+        <p>{{this.datapacket[0] && this.datapacket[0].category}}<p>
+        <p id="title"> {{this.datapacket[0] && this.datapacket[0].title}}</p>
+        <p>{{this.datapacket[0] && this.datapacket[0].description}}</p>
         <br>
-        <v-img v-bind:src="this.datapacket[0].image"></v-img>
+        <v-img v-bind:src="this.datapacket[0] && this.datapacket[0].image"></v-img>
     </div>
     <div id="contents">
         <p id="bold"> Price:</p> 
-        <p id="details">SGD {{this.datapacket[0].price}} </p>
+        <p id="details">SGD {{this.datapacket[0] && this.datapacket[0].price}} </p>
         <p id="bold">Additional Information: </p>
-        <p id="details">{{this.datapacket[0].sizeguide}}</p>
-        <p v-if="this.datapacket[0].size" id="bold"> Select Size: 
-            <v-select v-model="selectedSize" :items="this.datapacket[0].size" filled label="Size" dense ></v-select>
+        <p id="details">{{this.datapacket[0] && this.datapacket[0].sizeguide}}</p>
+        <p v-if="this.datapacket[0] && this.datapacket[0].size" id="bold"> Select Size: 
+            <v-select v-model="selectedSize" :items="this.datapacket[0] && this.datapacket[0].size" filled label="Size" dense ></v-select>
         </p>
         <p id="bold"> Colours Available:</p>
-        <p id="details" v-for="color in this.datapacket[0].colors" :key="color.id">{{color}}</p>
+        <p id="details" v-for="color in this.datapacket[0] && this.datapacket[0].colors" :key="color.id">{{color}}</p>
         <p id="bold"> Sizes Available:</p>
-        <p id="details" v-for="size in this.datapacket[0].sizings" :key="size.id">{{size}}</p>
+        <p id="details" v-for="size in this.datapacket[0] && this.datapacket[0].sizings" :key="size.id">{{size}}</p>
     </div> 
   </div>
 </template>
