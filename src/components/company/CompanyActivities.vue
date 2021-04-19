@@ -4,7 +4,7 @@
         <div id='content'>
             <h1>Our Activities</h1>
             <h3>Promote your activites for our community to support!</h3>
-            <NewActivityForm v-bind:companyID="this.id" v-bind:companyname="this.companyData[0].companyname"></NewActivityForm>
+            <NewActivityForm v-bind:companyID="this.id" v-bind:companyname="this.companyData[0] && this.companyData[0].companyname"></NewActivityForm>
             <br/>
             <DisplayActivity v-bind:companyID="this.id"></DisplayActivity>
             <br/>

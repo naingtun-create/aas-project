@@ -2,7 +2,7 @@
     <div id="companypage">
         <company-header></company-header>
         <div id="intro">
-            <p id="title">{{companyData[0].companyname}}</p>
+            <p id="title">{{this.companyData[0] && this.companyData[0].companyname}}</p>
             <div id="heading">            
                 <v-dialog v-model="dialog" transition="dialog-top-transition" max-width="600" persistent>
                     <template>
@@ -43,8 +43,8 @@
             <br/>
             <h3>Our Story</h3>
             <br/>
-            <p>{{companyData[0].description}}</p>
-            <p> Visit us at: <a :href="companyData[0].website">{{companyData[0].website}}</a></p>
+            <p>{{this.companyData[0] && this.companyData[0].description}}</p>
+            <p> Visit us at: <a :href="this.companyData[0] && this.companyData[0].website">{{this.companyData[0] && this.companyData[0].website}}</a></p>
             <v-dialog v-model="editDialog" transition="dialog-top-transition" max-width="600" persistent>
                 <template>
                     <v-card>
