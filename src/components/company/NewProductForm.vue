@@ -6,12 +6,13 @@
           New Product Listing
         </v-btn>
       </template>
-      <v-toolbar
-        color="#4ca08b"
-        dark
-        class="headline"
-      >Add a New Product!</v-toolbar>
       <v-card>
+        <br><br>
+        <v-toolbar
+          color="#4ca08b"
+          dark
+          class="headline"
+        >Add a New Product!</v-toolbar>
         <div id="content">
         <v-card-text>
           <v-form ref="form" lazy-validation>
