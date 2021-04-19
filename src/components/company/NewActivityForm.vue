@@ -5,6 +5,7 @@
                 <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">New Activity</v-btn>
             </template>
             <v-card>
+                <br><br>
                 <v-toolbar color="#4ca08b" dark class="headline">Promote a New Activity!</v-toolbar>
                 <div id="content"> 
                     <v-card-text>
