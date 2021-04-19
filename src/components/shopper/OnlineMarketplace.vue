@@ -96,7 +96,7 @@ export default {
     },
     methods:{
         fetchItems:function(){
-            db.collection('products').get().then(snapshot => {
+            db.collection('products').orderBy('timestamp','desc').get().then(snapshot => {
                 let item = []
                 snapshot.docs.forEach(doc => {
                     item = doc.data();

@@ -93,7 +93,8 @@ export default {
           sizings: this.sizings,
           category: this.selectedCategory,
           colors: this.colors,
-          date: this.date
+          date: this.date,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         };
         try {
           var storageRef = firebase.storage().ref("ProductImages/" + user.uid + "/" + k);
