@@ -69,6 +69,9 @@ export default {
                 alert("There is nothing in your cart.");
             } else if (this.invoice==""){
                 alert("Please key in the invoice number.");
+            }else if (this.invoice.length !=20){
+                alert("Invoice number requires 20 digits");
+                console.log(this.invoice.length)
             } else{
                 this.purchasedItems = this.paidItems
                 var user = firebase.auth().currentUser;
