@@ -422,7 +422,7 @@ li {
   margin-top:-50px;
   width:130px;
   height:130px;
-  line-height:100px;
+  line-height:115px;
   font-family: 'Nunito';
   font-weight: bold;
 }
