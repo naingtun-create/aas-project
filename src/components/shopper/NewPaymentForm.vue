@@ -65,32 +65,38 @@ export default {
             this.$refs.form.reset();
         },
         addPayment:function(){
-            this.purchasedItems = this.paidItems
-            var user = firebase.auth().currentUser;
-            var features = []
-            for(var i in this.paidItems){
-                var item = this.paidItems[i].colors
-                for(var j in item){
-                    var string = item[j][0] + " | " + item[j][1] + " | " + item[j][2]
-                    features.push(string)
-                }    
-                this.purchasedItems[i].colors = features
-                this.complete.push(false)
-                features = []
-            }
+            if(this.paidPrice==0){
+                alert("There is nothing in your cart.");
+            } else if (this.invoice==""){
+                alert("Please key in the invoice number.");
+            } else{
+                this.purchasedItems = this.paidItems
+                var user = firebase.auth().currentUser;
+                var features = []
+                for(var i in this.paidItems){
+                    var item = this.paidItems[i].colors
+                    for(var j in item){
+                        var string = item[j][0] + " | " + item[j][1] + " | " + item[j][2]
+                        features.push(string)
+                    }    
+                    this.purchasedItems[i].colors = features
+                    this.complete.push(false)
+                    features = []
+                }
 
-            var order = { 
-                "Products": this.purchasedItems,
-                "PaymentInvoice": this.invoice,
-                "PaidAmount":this.paidPrice,
-                "UserID": user.uid,       
-                "Date": this.date,
-                "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
-                "completed":this.complete
-            }
-            db.collection('transactions').add(order).then(()=>{this.reset();})
+                var order = { 
+                    "Products": this.purchasedItems,
+                    "PaymentInvoice": this.invoice,
+                    "PaidAmount":this.paidPrice,
+                    "UserID": user.uid,       
+                    "Date": this.date,
+                    "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
+                    "completed":this.complete
+                }
+                db.collection('transactions').add(order).then(()=>{this.reset();})
 
-            db.collection('cart').doc(user.uid).delete().then(() => location.reload())
+                db.collection('cart').doc(user.uid).delete().then(() => location.reload())
+            }
         }
 
     },
