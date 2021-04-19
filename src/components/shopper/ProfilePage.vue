@@ -14,7 +14,7 @@
                         <br>
                         <v-card-text>
                             <v-file-input
-                                accept="image/*" label="Product Image"
+                                accept="image/*" label="Profile Picture"
                                 truncate-length="15" type="file"
                                 v-model="image" outlined
                                 @change="onFilePicked"
