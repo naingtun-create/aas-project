@@ -2,7 +2,7 @@
   <div id="clientdetail">
     <v-dialog v-model="dialog" transition="dialog-bottom-transition" max-width="600">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn small depressed outlined color="indigo" v-bind="attrs" v-on="on" v-on:click="route(item.id)">
+        <v-btn small depressed outlined color="indigo" v-bind="attrs" v-on="on">
             View Customer Details
             <v-icon dark right>mdi-account-details</v-icon>
         </v-btn>

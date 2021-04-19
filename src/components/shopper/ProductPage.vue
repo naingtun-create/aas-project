@@ -5,29 +5,29 @@
             <img id="arrow" src='../../assets/arrow.png'>
             <router-link id="arrow" to="/shopper/onlinemarketplace" exact>Back to Online MarketPlace</router-link>
             <br><br>
-            <p> {{this.datapacket[0].category}} <p>
-            <p id="title"> {{this.datapacket[0].title}}</p>
-            <p>{{this.datapacket[0].description}}</p>
+            <p> {{this.datapacket[0] && this.datapacket[0].category}} <p>
+            <p id="title"> {{this.datapacket[0] && this.datapacket[0].title}}</p>
+            <p>{{this.datapacket[0] && this.datapacket[0].description}}</p>
             <br>
-            <v-img v-bind:src="this.datapacket[0].image"></v-img>
+            <v-img v-bind:src="this.datapacket[0] && this.datapacket[0].image"></v-img>
         </div>
         <div id="contents">
-            <p id="bold"> View Company: <a id="company" v-on:click="reroute">{{this.datapacket[0].companyname}} </a></p>
-            <p id="bold"> Price:</p> SGD {{this.datapacket[0].price}} <br><br>
-            <p id="bold">Additional Information:</p> {{this.datapacket[0].sizeguide}}
+            <p id="bold"> View Company: <a id="company" v-on:click="reroute">{{this.datapacket[0] && this.datapacket[0].companyname}} </a></p>
+            <p id="bold"> Price:</p> SGD {{this.datapacket[0] && this.datapacket[0].price}} <br><br>
+            <p id="bold">Additional Information:</p> {{this.datapacket[0] && this.datapacket[0].sizeguide}}
             <br><br>
-            <p id="bold" v-if="this.datapacket[0].sizings[0]"> Select Size: 
-                <v-select id="choicebox" v-model="selectedSize" :items="this.datapacket[0].sizings" filled label="Size" dense ></v-select>
+            <p id="bold" v-if="this.datapacket[0] && this.datapacket[0].sizings[0]"> Select Size: 
+                <v-select id="choicebox" v-model="selectedSize" :items="this.datapacket[0] && this.datapacket[0].sizings" filled label="Size" dense ></v-select>
             </p>
-            <p v-if="this.datapacket[0].colors" id="bold"> Select Colour:
-                <v-select v-model="selectedColour" :items="this.datapacket[0].colors" filled label="Colour" dense ></v-select>
+            <p v-if="this.datapacket[0] && this.datapacket[0].colors" id="bold"> Select Colour:
+                <v-select v-model="selectedColour" :items="this.datapacket[0] && this.datapacket[0].colors" filled label="Colour" dense ></v-select>
             </p>
             <p id="bold"> Select Quantity: </p>
             <input v-model="qty" id=index placeholder=0 type="number" min="1">
             <br>
-            <span v-if="this.datapacket[0].sizings" id="select">Selected Size: {{ selectedSize }}</span>
+            <span v-if="this.datapacket[0] && this.datapacket[0].sizings" id="select">Selected Size: {{ selectedSize }}</span>
             <br>
-            <span v-if="this.datapacket[0].colors" id="select">Selected Colour: {{ selectedColour }}</span>
+            <span v-if="this.datapacket[0] && this.datapacket[0].colors" id="select">Selected Colour: {{ selectedColour }}</span>
             <br>
             <span id="select">Selected Quantity: {{this.qty}}</span>
             <br>
