@@ -142,13 +142,17 @@ export default {
                 })
                 .catch(error => alert(error));
             setTimeout(() => {
-                const location = {
-                    lat: this.myCoordinates.lat,
-                    lng: this.myCoordinates.lng
+                if(this.myCoordinates.lat==0 && this.myCoordinates.lng==0){
+                    alert("Your browser does not support location sharing");
+                } else{
+                    const location = {
+                        lat: this.myCoordinates.lat,
+                        lng: this.myCoordinates.lng
+                    }
+                    this.zoom=14;
+                    this.centerOnStore(location)
                 }
-                this.zoom=14;
-                this.centerOnStore(location)
-            }, 5000)
+            }, 5000);
         },
         locatorButtonPressed(){
             console.log(this.address);

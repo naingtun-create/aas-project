@@ -37,7 +37,6 @@
                             <button v-on:click="trigger()"> Use Current Location </button>
                             <p id="locationsharing"> Please ensure your browser enables location sharing </p>
                         </v-card>
-                        {{this.stores +this.useLocation}}
                     </transition>
                 </v-flex>
                 <v-flex xs8 sm9>
