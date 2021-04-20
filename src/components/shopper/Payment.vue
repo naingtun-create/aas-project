@@ -20,7 +20,7 @@
                             <v-divider width="50%"></v-divider>     
                         </li>               
                     </ul>
-                    <p id="subtotal" > SUBTOTAL: ${{this.subtotal}}</p>
+                    <p id="subtotal"> SUBTOTAL: ${{this.subtotal}}</p>
                 </v-container>
             </v-card>
         </nav>
